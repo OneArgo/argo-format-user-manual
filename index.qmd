@@ -1,7 +1,11 @@
 ---
 title: Argo User's manual
 ---
-We provide access to Argo data, we document data processing, formats and quality control procedures.
+
+[DOI https://dx.doi.org/10.13155/29825](https://dx.doi.org/10.13155/29825)
+
+This document is the Argo data user’s manual. It contains the description of the formats and files produced by the Argo Data Assembly Centres (DACs).
+These files are distributed by Argo Global Data Assembly Centre (GDAC).
 
 
 

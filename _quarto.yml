@@ -3,7 +3,9 @@ project:
 
 book:
   title: "Argo User's manual"
-  author: "Thierry Carval"
+  author: "Argo data management team"
+  date: 03/28/2025
+  doi: 10.13155/29825
   chapters:
     - index.qmd
     - chapter1.qmd
@@ -18,7 +20,8 @@ format:
     toc: true
     include-after-body:
       - assets/js/script.js.html
-
+  pdf:
+    documentclass: scrreprt
 
 
 resources:
