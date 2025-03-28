@@ -1,39 +1,13 @@
 project:
-  type: website
+  type: book
 
-website:
-  favicon: assets/images/Argo_logo_tallspacer.png
-  page-navigation: true
-  bread-crumbs: true
-  page-footer:
-    left: |
-      Argo data management
-    center:
-      - icon: gitlab
-        href: https://gitlab.ifremer.fr/coriolis/argodatamgt
-        aria-label: Argo data management web GitLab
-        text: Source Code
-  navbar:
-    pinned: true
-    logo: assets/images/Argo_logo_tallspacer.png
-    collapse-below: lg
-    left:
-      - href: index.qmd
-        text: Home
-      - href: news/News.qmd
-        text: News
-      - href: DataAccess.qmd
-        text: Data
-      - href: Documentation.qmd
-        text: Documentation
-      - href: DataManagementTeam.qmd
-        text: ADMT
-      - href: Dmqc.qmd
-        text: DMQC
-      - href: ArgoVocabulary.qmd
-        text: Vocabularies
-      - href: Monitoring.qmd
-        text: Monitoring
+book:
+  title: "Argo User's manual"
+  author: "Thierry Carval"
+  chapters:
+    - index.qmd
+    - chapter1.qmd
+    - chapter2.qmd
 
 format:
   html:
@@ -44,6 +18,8 @@ format:
     toc: true
     include-after-body:
       - assets/js/script.js.html
+
+
 
 resources:
   - "assets/json/"

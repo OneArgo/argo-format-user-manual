@@ -1,0 +1,60 @@
+---
+title: "Introduction au sujet"
+---
+
+# Introduction
+
+Bienvenue dans le premier chapitre de ce livre. Ici, nous allons explorer les bases du sujet abordé dans cet ouvrage.
+
+## Contexte général
+
+Il est important de comprendre le contexte général de ce sujet. Cela nous permettra de mieux appréhender les concepts qui seront présentés dans les chapitres suivants.
+
+### Importance du sujet
+
+Ce sujet est crucial pour plusieurs raisons :
+
+* Il a un impact significatif sur...
+* Il permet de mieux comprendre...
+* Il offre des perspectives intéressantes sur...
+
+## Objectifs de ce chapitre
+
+Dans ce chapitre, nous allons :
+
+1.  Définir les termes clés.
+2.  Présenter les concepts fondamentaux.
+3.  Illustrer ces concepts avec des exemples concrets.
+
+## Définitions
+
+### Terme 1
+
+Définition du terme 1.
+
+### Terme 2
+
+Définition du terme 2.
+
+## Concepts fondamentaux
+
+### Concept A
+
+Explication du concept A.
+
+### Concept B
+
+Explication du concept B.
+
+## Exemples
+
+Voici quelques exemples pour illustrer les concepts présentés :
+
+\`\`\`python
+# Exemple de code Python
+print("Bonjour, monde !")
+\`\`\`
+
+## Conclusion
+
+Dans ce chapitre, nous avons posé les bases nécessaires à la compréhension du sujet. Dans le chapitre suivant, nous approfondirons ces concepts et explorerons de nouvelles idées.
