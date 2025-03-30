@@ -320,17 +320,111 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>Global attribute name Definition title A succinct description of what is in the dataset. institution Specifies where the original data was produced. source The method of production of the original data. If it was model-generated, source should name the model and its version, as specifically as could be useful. If it is observational, source should characterize it (e.g., “surface observation” or “radiosonde”). history Provides an audit trail for modifications to the original data. Well-behaved generic NetCDF filters will automatically append their name and the parameters with which they were invoked to the global history attribute of an input NetCDF file. We recommend that each line begin with a timestamp indicating the date and time of day that the program was executed. references Published or web-based references that describe the data or methods used to produce it. id The Argo GDAC data DOI: https://doi.org/10.17882/42182 This attribute is optional and recommended comment Miscellaneous information about the data or methods used to produce it. user_manual_version The version number of the user manual Conventions The conventions supported by this file, blank separated featureType The NetCDF CF feature type. comment_on_resolution Optional comment on parameter resolution</p>
 </section>
 <section id="dimensions" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="dimensions"><span class="header-section-number">3.2.2</span> Dimensions</h3>
-<p>Name Value Definition DATE_TIME DATE_TIME = 14;</p>
-<p>This dimension is the length of an ASCII date and time value. Date_time convention is : YYYYMMDDHHMISS YYYY : year MM : month DD : day HH : hour of the day (as 0 to 23) MI : minutes (as 0 to 59) SS : seconds (as 0 to 59) Date and time values are always in universal time coordinates (UTC). Examples : 20010105172834 : January 5th 2001 17:28:34 19971217000000 : December 17th 1997 00:00:00 STRING256 STRING64 STRING32 STRING16 STRING8 STRING4 STRING2 STRING256 = 256; STRING64 = 64; STRING32 = 32; STRING16 = 16; STRING8 = 8; STRING4 = 4; STRING2 = 2;</p>
-<p>String dimensions from 2 to 256. N_PROF N_PROF = <int value="">; Number of profiles contained in the file. This dimension depends on the data set. A file contains at least one profile. There is no defined limit on the maximum number of profiles in a file. Example : N_PROF = 100 N_PARAM N_PARAM = <int value="">; Maximum number of parameters measured or calculated for a pressure sample. This dimension depends on the data set. Examples : (pressure, temperature) : N_PARAM = 2 (pressure, temperature, salinity) : N_PARAM = 3 (pressure, temperature, conductivity, salinity) : N_PARAM = 4 N_LEVELS N_LEVELS = <int value="">; Maximum number of pressure levels contained in a profile. This dimension depends on the data set. Example : N_LEVELS = 100 N_CALIB N_CALIB = <int value="">; Maximum number of calibrations performed on a profile. This dimension depends on the data set. Example : N_CALIB = 10 N_HISTORY N_HISTORY = UNLIMITED; Number of history records.</int></int></int></int></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 39%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Name</strong></th>
+<th><strong>Value</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DATE_TIME</td>
+<td>DATE_TIME = 14;</td>
+<td>This dimension is the length of an ASCII date and time value.<br>Date_time convention is&nbsp;: YYYYMMDDHHMISS<br>YYYY&nbsp;: year<br>MM&nbsp;: month<br>DD&nbsp;: day<br>HH&nbsp;: hour of the day (as 0 to 23)<br>MI&nbsp;: minutes (as 0 to 59)<br>SS&nbsp;: seconds (as 0 to 59)<br>Date and time values are always in universal time coordinates (UTC).<br>Examples&nbsp;:&nbsp;<br>20010105172834&nbsp;: January 5<sup>th</sup> 2001 17:28:34<br>19971217000000&nbsp;: December 17<sup>th</sup> 1997 00:00:00</td>
+</tr>
+<tr class="even">
+<td>STRING256<br>STRING64<br>STRING32<br>STRING16<br>STRING8<br>STRING4<br>STRING2</td>
+<td>STRING256 = 256;<br>STRING64 &nbsp; =&nbsp; 64;<br>STRING32 &nbsp; =&nbsp; 32;<br>STRING16 &nbsp; =&nbsp; 16;<br>STRING8 &nbsp; &nbsp; = &nbsp; 8;<br>STRING4 &nbsp; &nbsp; = &nbsp; 4;<br>STRING2 &nbsp; &nbsp; = &nbsp; 2;</td>
+<td>String dimensions from 2 to 256.</td>
+</tr>
+<tr class="odd">
+<td>N_PROF</td>
+<td>N_PROF = <int value="">;</int></td>
+<td>Number of profiles contained in the file.<br>This dimension depends on the data set.<br>A file contains at least one profile.<br>There is no defined limit on the maximum number of profiles in a file.<br>Example&nbsp;: N_PROF = 100</td>
+</tr>
+<tr class="even">
+<td>N_PARAM</td>
+<td>N_PARAM = <int value="">;</int></td>
+<td>Maximum number of parameters measured or calculated for a pressure sample.<br>This dimension depends on the data set.<br>Examples&nbsp;:<br>(pressure, temperature)&nbsp;: N_PARAM = 2<br>(pressure, temperature, salinity)&nbsp;: N_PARAM = 3<br>(pressure, temperature, conductivity, salinity)&nbsp;: N_PARAM = 4 <br></td>
+</tr>
+<tr class="odd">
+<td>N_LEVELS</td>
+<td>N_LEVELS = <int value="">;</int></td>
+<td>Maximum number of pressure levels contained in a profile.<br>This dimension depends on the data set.<br>Example&nbsp;: N_LEVELS = 100</td>
+</tr>
+<tr class="even">
+<td>N_CALIB</td>
+<td>N_CALIB = <int value="">;</int></td>
+<td>Maximum number of calibrations performed on a profile.<br>This dimension depends on the data set.<br>Example&nbsp;: N_CALIB = 10</td>
+</tr>
+<tr class="odd">
+<td>N_HISTORY</td>
+<td>N_HISTORY = UNLIMITED;</td>
+<td>Number of history records.</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="general-information-on-the-profile-file" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="general-information-on-the-profile-file"><span class="header-section-number">3.2.3</span> General information on the profile file</h3>
-<p>This section contains information about the whole file. Name Definition Comment DATA_TYPE char DATA_TYPE(STRING16); DATA_TYPE:long_name = “Data type”; DATA_TYPE:conventions = “Argo reference table 1”; DATA_TYPE:_FillValue = ” “; This field contains the type of data contained in the file. The list of acceptable data types is in the reference table 1 (https://vocab.nerc.ac.uk/collection/R01/). Example : Argo profile FORMAT_VERSION char FORMAT_VERSION(STRING4); FORMAT_VERSION:long_name =”File format version”; FORMAT_VERSION:_FillValue = ” “; File format version Example : “3.1” HANDBOOK_VERSION char HANDBOOK_VERSION(STRING4); HANDBOOK_VERSION:long_name = “Data handbook version”; HANDBOOK_VERSION:_FillValue = ” “; Version number of the data handbook. This field indicates that the data contained in this file are managed according to the policy described in the Argo data management handbook. Example : “1.0” REFERENCE_DATE_TIME char REFERENCE_DATE_TIME(DATE_TIME); REFERENCE_DATE_TIME:long_name = “Date of reference for Julian days”; REFERENCE_DATE_TIME:conventions = “YYYYMMDDHHMISS”; REFERENCE_DATE_TIME:_FillValue = ” “; Date of reference for Julian days. The recommended reference date time is “19500101000000” : January 1st 1950 00:00:00 DATE_CREATION char DATE_CREATION(DATE_TIME); DATE_CREATION:long_name = “Date of file creation”; DATE_CREATION:conventions = “YYYYMMDDHHMISS”; DATE_CREATION:_FillValue = ” “; Date and time (UTC) of creation of this file. Format : YYYYMMDDHHMISS Example : 20011229161700 : December 29th 2001 16 :17 :00 DATE_UPDATE char DATE_UPDATE(DATE_TIME); DATE_UPDATE:long_name =”Date of update of this file”; DATE_UPDATE:conventions = “YYYYMMDDHHMISS”; DATE_UPDATE:_FillValue = ” “; Date and time (UTC) of update of this file. Format : YYYYMMDDHHMISS Example : 20011230090500 : December 30th 2001 09 :05 :00</p>
+<p>This section contains information about the whole file.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 43%">
+<col style="width: 51%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Definition</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DATA_TYPE</td>
+<td>char DATA_TYPE(STRING16);</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>DATA_TYPE:long_name = “Data type”; DATA_TYPE:conventions = “Argo reference table 1”; DATA_TYPE:_FillValue = ” “; | This field contains the type of data contained in the file. The list of acceptable data types is in the reference table 1 (<a href="https://vocab.nerc.ac.uk/collection/R01/">https://vocab.nerc.ac.uk/collection/R01/</a>). Example&nbsp;: Argo profile |</p>
+<div class="line-block">FORMAT_VERSION | char FORMAT_VERSION(STRING4);</div>
+<p>FORMAT_VERSION:long_name = “File format version”;</p>
+<p>FORMAT_VERSION:_FillValue = ” “; | File format version</p>
+<p>Example : “3.1” | | HANDBOOK_VERSION | char HANDBOOK_VERSION(STRING4);</p>
+<p>HANDBOOK_VERSION:long_name = “Data handbook version”;</p>
+<p>HANDBOOK_VERSION:_FillValue = ” “; | Version number of the data handbook.</p>
+<p>This field indicates that the data contained in this file are managed according to the policy described in the Argo data management handbook.</p>
+<p>Example : “1.0” | | REFERENCE_DATE_TIME | char REFERENCE_DATE_TIME(DATE_TIME);</p>
+<p>REFERENCE_DATE_TIME:long_name = “Date of reference for Julian days”;</p>
+<p>REFERENCE_DATE_TIME:conventions = “YYYYMMDDHHMISS”;</p>
+<p>REFERENCE_DATE_TIME:_FillValue = ” “; | Date of reference for Julian days.</p>
+<p>The recommended reference date time is “19500101000000”&nbsp;: January 1st 1950 00:00:00 | | DATE_CREATION | char DATE_CREATION(DATE_TIME);</p>
+<p>DATE_CREATION:long_name = “Date of file creation”;</p>
+<p>DATE_CREATION:conventions = “YYYYMMDDHHMISS”;</p>
+<p>DATE_CREATION:_FillValue = ” “; | Date and time (UTC) of creation of this file.</p>
+<p>Format&nbsp;: YYYYMMDDHHMISS</p>
+<p>Example&nbsp;:</p>
+<p>20011229161700&nbsp;: December 29th 2001 16&nbsp;:17&nbsp;:00 | | DATE_UPDATE | char DATE_UPDATE(DATE_TIME);</p>
+<p>DATE_UPDATE:long_name = “Date of update of this file”;</p>
+<p>DATE_UPDATE:conventions = “YYYYMMDDHHMISS”;</p>
+<p>DATE_UPDATE:_FillValue = ” “; | Date and time (UTC) of update of this file.</p>
+<p>Format&nbsp;: YYYYMMDDHHMISS</p>
+<p>Example&nbsp;:</p>
+<p>20011230090500&nbsp;: December 30th 2001 09&nbsp;:05&nbsp;:00 |</p>
+<p>Name Definition Comment DATA_TYPE char DATA_TYPE(STRING16); DATA_TYPE:long_name = “Data type”; DATA_TYPE:conventions = “Argo reference table 1”; DATA_TYPE:_FillValue = ” “; This field contains the type of data contained in the file. The list of acceptable data types is in the reference table 1 (https://vocab.nerc.ac.uk/collection/R01/). Example : Argo profile FORMAT_VERSION char FORMAT_VERSION(STRING4); FORMAT_VERSION:long_name =”File format version”; FORMAT_VERSION:_FillValue = ” “; File format version Example : “3.1” HANDBOOK_VERSION char HANDBOOK_VERSION(STRING4); HANDBOOK_VERSION:long_name = “Data handbook version”; HANDBOOK_VERSION:_FillValue = ” “; Version number of the data handbook. This field indicates that the data contained in this file are managed according to the policy described in the Argo data management handbook. Example : “1.0” REFERENCE_DATE_TIME char REFERENCE_DATE_TIME(DATE_TIME); REFERENCE_DATE_TIME:long_name = “Date of reference for Julian days”; REFERENCE_DATE_TIME:conventions = “YYYYMMDDHHMISS”; REFERENCE_DATE_TIME:_FillValue = ” “; Date of reference for Julian days. The recommended reference date time is “19500101000000” : January 1st 1950 00:00:00 DATE_CREATION char DATE_CREATION(DATE_TIME); DATE_CREATION:long_name = “Date of file creation”; DATE_CREATION:conventions = “YYYYMMDDHHMISS”; DATE_CREATION:_FillValue = ” “; Date and time (UTC) of creation of this file. Format : YYYYMMDDHHMISS Example : 20011229161700 : December 29th 2001 16 :17 :00 DATE_UPDATE char DATE_UPDATE(DATE_TIME); DATE_UPDATE:long_name =”Date of update of this file”; DATE_UPDATE:conventions = “YYYYMMDDHHMISS”; DATE_UPDATE:_FillValue = ” “; Date and time (UTC) of update of this file. Format : YYYYMMDDHHMISS Example : 20011230090500 : December 30th 2001 09 :05 :00</p>
 </section>
 <section id="general-information-for-each-profile" class="level3" data-number="3.2.4">
 <h3 data-number="3.2.4" class="anchored" data-anchor-id="general-information-for-each-profile"><span class="header-section-number">3.2.4</span> General information for each profile</h3>
