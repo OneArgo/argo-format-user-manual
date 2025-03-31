@@ -3,17 +3,23 @@ title: "Formats description"
 ---
 
 ## Overview of the formats
-Argo data format is an implementation of NetCDF format developed by UCAR/Unidata (http://doi.org/10.5065/D6H70CW6).
-NetCDF (Network Common Data Form) is an interface for array-oriented data access and a library that provides an implementation of the interface. The NetCDF library also defines a machine-independent format for representing scientific data. Together, the interface, library, and format support the creation, access, and sharing of scientific data. The NetCDF software was developed at the Unidata Program Centre in Boulder, Colorado. 
+Argo data format is an implementation of NetCDF format developed by UCAR/Unidata (https://doi.org/10.5065/D6H70CW6).
+NetCDF (Network Common Data Form) is an interface for array-oriented data access and a library that provides an implementation of the interface. The NetCDF library also defines a machine-independent format for representing scientific data. Together, the interface, library, and format support the creation, access, and sharing of scientific data. The NetCDF software was developed at the Unidata Program Centre in Boulder, Colorado.
+
 Argo formats are divided in 4 sections:
-Dimensions and definitions
-General information
-Data section
-History section
-Argo data comply with NetCDF Climate and Forecast (CF) Metadata Conventions (version 1.6).
-http://cfconventions.org/ 
+
+- Dimensions and definitions
+- General information
+- Data section
+- History section
+
+Argo data comply with NetCDF Climate and Forecast (CF) Metadata Conventions:
+
+- https://cfconventions.org/ 
+
 Argo data uses the UDUNITS convention when applicable to populate the variable attribute "unit" in the Data section.  The UDUNITS standard, database and supporting information is available from
- https://doi.org/10.5065/D6KD1WN0.
+- https://doi.org/10.5065/D6KD1WN0.
+
 Argo date and time: all date and time have to be given either in Universal Time (UTC) or in float’s time.
 
 ## Core-Argo profile format version 3.1
@@ -26,31 +32,33 @@ For single-cycle profile file naming conventions, see §4.1.
 
 ### Global attributes
 The global attributes section is used for data discovery. The following global attributes should appear in the global section:
-// global attributes:
-:title = "Argo float vertical profile";
-:institution = "CSIRO";
-:source = "Argo float";
-:history = "2011-04-22T06:00:00Z creation";
-:references = "http://www.argodatamgt.org/Documentation";
-:id = "https://doi.org/10.17882/42182";
-:comment = "free text";
-:user_manual_version = "3.4";
-:Conventions = "Argo-3.1 CF-1.6";
-:featureType = "trajectoryProfile";
 
-| Global attribute name       | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| title                       | A succinct description of what is in the dataset.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| institution                 | Specifies where the original data was produced.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| source                      | The method of production of the original data. If it was model-generated, source should name the model and its version, as specifically as could be useful. If it is observational, source should characterize it (e.g., "surface observation" or "radiosonde").                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| history                     | Provides an audit trail for modifications to the original data. Well-behaved generic NetCDF filters will automatically append their name and the parameters with which they were invoked to the global history attribute of an input NetCDF file. We recommend that each line begin with a timestamp indicating the date and time of day that the program was executed.                                                                                                                                                                                                                                                                                                           |
-| references                  | Published or web-based references that describe the data or methods used to produce it.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| id                          | The Argo GDAC data DOI: https://doi.org/10.17882/42182 <br>This attribute is optional and recommended                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| comment                     | Miscellaneous information about the data or methods used to produce it.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| user_manual_version         | The version number of the user manual                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Conventions                 | The conventions supported by this file, blank separated                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| featureType                 | The NetCDF CF feature type.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| comment_on_resolution       | Optional comment on parameter resolution                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+// global attributes:<br>
+:title = "Argo float vertical profile";<br>
+:institution = "CSIRO";<br>
+:source = "Argo float";<br>
+:history = "2011-04-22T06:00:00Z creation";<br>
+:references = "http://www.argodatamgt.org/Documentation";<br>
+:id = "https://doi.org/10.17882/42182";<br>
+:comment = "free text";<br>
+:user_manual_version = "3.4";<br>
+:Conventions = "Argo-3.1 CF-1.6";<br>
+:featureType = "trajectoryProfile";<br>
+
+
+| Global attribute name | Definition                          |
+|-----------------------|-------------------------------------|
+| title                 | A succinct description of what is in the dataset. |
+| institution           | Specifies where the original data was produced. |
+| source                | The method of production of the original data. If it was model-generated, source should name the model and its version, as specifically as could be useful. If it is observational, source should characterize it (e.g., "surface observation" or "radiosonde"). |
+| history               | Provides an audit trail for modifications to the original data. Well-behaved generic NetCDF filters will automatically append their name and the parameters with which they were invoked to the global history attribute of an input NetCDF file. We recommend that each line begin with a timestamp indicating the date and time of day that the program was executed. |
+| references            | Published or web-based references that describe the data or methods used to produce it. |
+| id                    | The Argo GDAC data DOI: https://doi.org/10.17882/42182 <br>This attribute is optional and recommended |
+| comment               | Miscellaneous information about the data or methods used to produce it. |
+| user_manual_version   | The version number of the user manual |
+| Conventions           | The conventions supported by this file, blank separated |
+| featureType           | The NetCDF CF feature type. |
+| comment_on_resolution | Optional comment on parameter resolution |
 
 
 
@@ -60,10 +68,10 @@ The global attributes section is used for data discovery. The following global a
 | --------- | --------------- | -------------- |
 | DATE_TIME | DATE_TIME = 14; | This dimension is the length of an ASCII date and time value.<br>Date_time convention is : YYYYMMDDHHMISS<br>YYYY : year<br>MM : month<br>DD : day<br>HH : hour of the day (as 0 to 23)<br>MI : minutes (as 0 to 59)<br>SS : seconds (as 0 to 59)<br>Date and time values are always in universal time coordinates (UTC).<br>Examples : <br>20010105172834 : January 5<sup>th</sup> 2001 17:28:34<br>19971217000000 : December 17<sup>th</sup> 1997 00:00:00 |
 | STRING256<br>STRING64<br>STRING32<br>STRING16<br>STRING8<br>STRING4<br>STRING2 | STRING256 = 256;<br>STRING64   =  64;<br>STRING32   =  32;<br>STRING16   =  16;<br>STRING8     =   8;<br>STRING4     =   4;<br>STRING2     =   2; | String dimensions from 2 to 256. |
-| N_PROF | N_PROF = <int value>; |Number of profiles contained in the file.<br>This dimension depends on the data set.<br>A file contains at least one profile.<br>There is no defined limit on the maximum number of profiles in a file.<br>Example : N_PROF = 100 |
-| N_PARAM | N_PARAM = <int value>; | Maximum number of parameters measured or calculated for a pressure sample.<br>This dimension depends on the data set.<br>Examples :<br>(pressure, temperature) : N_PARAM = 2<br>(pressure, temperature, salinity) : N_PARAM = 3<br>(pressure, temperature, conductivity, salinity) : N_PARAM = 4 <br>|
-| N_LEVELS | N_LEVELS = <int value>; | Maximum number of pressure levels contained in a profile.<br>This dimension depends on the data set.<br>Example : N_LEVELS = 100 |
-| N_CALIB | N_CALIB = <int value>; | Maximum number of calibrations performed on a profile.<br>This dimension depends on the data set.<br>Example : N_CALIB = 10 |
+| N_PROF | N_PROF = \<int value>; |Number of profiles contained in the file.<br>This dimension depends on the data set.<br>A file contains at least one profile.<br>There is no defined limit on the maximum number of profiles in a file.<br>Example : N_PROF = 100 |
+| N_PARAM | N_PARAM = \<int value>; | Maximum number of parameters measured or calculated for a pressure sample.<br>This dimension depends on the data set.<br>Examples :<br>(pressure, temperature) : N_PARAM = 2<br>(pressure, temperature, salinity) : N_PARAM = 3<br>(pressure, temperature, conductivity, salinity) : N_PARAM = 4 <br>|
+| N_LEVELS | N_LEVELS = \<int value>; | Maximum number of pressure levels contained in a profile.<br>This dimension depends on the data set.<br>Example : N_LEVELS = 100 |
+| N_CALIB | N_CALIB = \<int value>; | Maximum number of calibrations performed on a profile.<br>This dimension depends on the data set.<br>Example : N_CALIB = 10 |
 | N_HISTORY | N_HISTORY = UNLIMITED; | Number of history records. |
 
 

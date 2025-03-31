@@ -254,18 +254,32 @@ window.Quarto = {
 
 <section id="overview-of-the-formats" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="overview-of-the-formats"><span class="header-section-number">3.1</span> Overview of the formats</h2>
-<p>Argo data format is an implementation of NetCDF format developed by UCAR/Unidata (http://doi.org/10.5065/D6H70CW6). NetCDF (Network Common Data Form) is an interface for array-oriented data access and a library that provides an implementation of the interface. The NetCDF library also defines a machine-independent format for representing scientific data. Together, the interface, library, and format support the creation, access, and sharing of scientific data. The NetCDF software was developed at the Unidata Program Centre in Boulder, Colorado. Argo formats are divided in 4 sections: Dimensions and definitions General information Data section History section Argo data comply with NetCDF Climate and Forecast (CF) Metadata Conventions (version 1.6). http://cfconventions.org/ Argo data uses the UDUNITS convention when applicable to populate the variable attribute “unit” in the Data section. The UDUNITS standard, database and supporting information is available from https://doi.org/10.5065/D6KD1WN0. Argo date and time: all date and time have to be given either in Universal Time (UTC) or in float’s time.</p>
+<p>Argo data format is an implementation of NetCDF format developed by UCAR/Unidata (https://doi.org/10.5065/D6H70CW6). NetCDF (Network Common Data Form) is an interface for array-oriented data access and a library that provides an implementation of the interface. The NetCDF library also defines a machine-independent format for representing scientific data. Together, the interface, library, and format support the creation, access, and sharing of scientific data. The NetCDF software was developed at the Unidata Program Centre in Boulder, Colorado.</p>
+<p>Argo formats are divided in 4 sections:</p>
+<ul>
+<li>Dimensions and definitions</li>
+<li>General information</li>
+<li>Data section</li>
+<li>History section</li>
+</ul>
+<p>Argo data comply with NetCDF Climate and Forecast (CF) Metadata Conventions:</p>
+<ul>
+<li>https://cfconventions.org/</li>
+</ul>
+<p>Argo data uses the UDUNITS convention when applicable to populate the variable attribute “unit” in the Data section. The UDUNITS standard, database and supporting information is available from - https://doi.org/10.5065/D6KD1WN0.</p>
+<p>Argo date and time: all date and time have to be given either in Universal Time (UTC) or in float’s time.</p>
 </section>
 <section id="core-argo-profile-format-version-3.1" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="core-argo-profile-format-version-3.1"><span class="header-section-number">3.2</span> Core-Argo profile format version 3.1</h2>
 <p>An Argo single-cycle profile file contains a set of profiles from a single cycle. The minimum number is one profile per cycle. There is no defined maximum number of profiles per cycle. Core-Argo profile contains the CTD sensor parameters (pressure, temperature, salinity, conductivity) that are measured with the same vertical sampling scheme and at the same location and time. Additional parameters from other sensors are stored in a B-Argo profile file. The B-profile file is very similar to core-Argo profile file; its additional features are listed in §2.6 Some specialty floats collect additional profiles per cycle. These specialty profiles contain parameters measured at pressure levels that are different from the CTD levels, and can be at locations and time that are different from the primary profile. When multiple profiles exist in a single cycle, users are urged to check the information associated with each profile in order to determine their spatial and temporal relations. Some examples of speciality profiles with different vertical sampling schemes are: Bouncing profiles: a series of shallow profiles performed during one cycle. High resolution near-surface observations: higher resolution vertical sampling near the surface from unpumped CTD. For single-cycle profile file naming conventions, see §4.1.</p>
 <section id="global-attributes" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="global-attributes"><span class="header-section-number">3.2.1</span> Global attributes</h3>
-<p>The global attributes section is used for data discovery. The following global attributes should appear in the global section: // global attributes: :title = “Argo float vertical profile”; :institution = “CSIRO”; :source = “Argo float”; :history = “2011-04-22T06:00:00Z creation”; :references = “http://www.argodatamgt.org/Documentation”; :id = “https://doi.org/10.17882/42182”; :comment = “free text”; :user_manual_version = “3.4”; :Conventions = “Argo-3.1 CF-1.6”; :featureType = “trajectoryProfile”;</p>
+<p>The global attributes section is used for data discovery. The following global attributes should appear in the global section:</p>
+<p>// global attributes:<br> :title = “Argo float vertical profile”;<br> :institution = “CSIRO”;<br> :source = “Argo float”;<br> :history = “2011-04-22T06:00:00Z creation”;<br> :references = “http://www.argodatamgt.org/Documentation”;<br> :id = “https://doi.org/10.17882/42182”;<br> :comment = “free text”;<br> :user_manual_version = “3.4”;<br> :Conventions = “Argo-3.1 CF-1.6”;<br> :featureType = “trajectoryProfile”;<br></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 4%">
-<col style="width: 95%">
+<col style="width: 38%">
+<col style="width: 61%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -349,22 +363,22 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td>N_PROF</td>
-<td>N_PROF = <int value="">;</int></td>
+<td>N_PROF = &lt;int value&gt;;</td>
 <td>Number of profiles contained in the file.<br>This dimension depends on the data set.<br>A file contains at least one profile.<br>There is no defined limit on the maximum number of profiles in a file.<br>Example&nbsp;: N_PROF = 100</td>
 </tr>
 <tr class="even">
 <td>N_PARAM</td>
-<td>N_PARAM = <int value="">;</int></td>
+<td>N_PARAM = &lt;int value&gt;;</td>
 <td>Maximum number of parameters measured or calculated for a pressure sample.<br>This dimension depends on the data set.<br>Examples&nbsp;:<br>(pressure, temperature)&nbsp;: N_PARAM = 2<br>(pressure, temperature, salinity)&nbsp;: N_PARAM = 3<br>(pressure, temperature, conductivity, salinity)&nbsp;: N_PARAM = 4 <br></td>
 </tr>
 <tr class="odd">
 <td>N_LEVELS</td>
-<td>N_LEVELS = <int value="">;</int></td>
+<td>N_LEVELS = &lt;int value&gt;;</td>
 <td>Maximum number of pressure levels contained in a profile.<br>This dimension depends on the data set.<br>Example&nbsp;: N_LEVELS = 100</td>
 </tr>
 <tr class="even">
 <td>N_CALIB</td>
-<td>N_CALIB = <int value="">;</int></td>
+<td>N_CALIB = &lt;int value&gt;;</td>
 <td>Maximum number of calibrations performed on a profile.<br>This dimension depends on the data set.<br>Example&nbsp;: N_CALIB = 10</td>
 </tr>
 <tr class="odd">
@@ -379,11 +393,6 @@ window.Quarto = {
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="general-information-on-the-profile-file"><span class="header-section-number">3.2.3</span> General information on the profile file</h3>
 <p>This section contains information about the whole file.</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 4%">
-<col style="width: 43%">
-<col style="width: 51%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Name</th>
@@ -394,13 +403,16 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td>DATA_TYPE</td>
-<td>char DATA_TYPE(STRING16);</td>
+<td>char DATA_TYPE(STRING16);<br>DATA_TYPE:long_name = “Data type”;<br>DATA_TYPE:conventions = “Argo reference table 1”;<br>DATA_TYPE:_FillValue = ” “;<br></td>
+<td>This field contains the type of data contained in the file.<br>The list of acceptable data types is in the reference table 1 (<a href="https://vocab.nerc.ac.uk/collection/R01/">https://vocab.nerc.ac.uk/collection/R01/</a>).<br>Example&nbsp;: Argo profile</td>
+</tr>
+<tr class="even">
+<td>FORMAT_VERSION</td>
+<td>char FORMAT_VERSION(STRING4);</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p>DATA_TYPE:long_name = “Data type”; DATA_TYPE:conventions = “Argo reference table 1”; DATA_TYPE:_FillValue = ” “; | This field contains the type of data contained in the file. The list of acceptable data types is in the reference table 1 (<a href="https://vocab.nerc.ac.uk/collection/R01/">https://vocab.nerc.ac.uk/collection/R01/</a>). Example&nbsp;: Argo profile |</p>
-<div class="line-block">FORMAT_VERSION | char FORMAT_VERSION(STRING4);</div>
 <p>FORMAT_VERSION:long_name = “File format version”;</p>
 <p>FORMAT_VERSION:_FillValue = ” “; | File format version</p>
 <p>Example : “3.1” | | HANDBOOK_VERSION | char HANDBOOK_VERSION(STRING4);</p>
