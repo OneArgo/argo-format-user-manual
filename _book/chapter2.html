@@ -408,34 +408,12 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td>FORMAT_VERSION</td>
-<td>char FORMAT_VERSION(STRING4);</td>
+<td>char FORMAT_VERSION(STRING4);<br></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p>FORMAT_VERSION:long_name = “File format version”;</p>
-<p>FORMAT_VERSION:_FillValue = ” “; | File format version</p>
-<p>Example : “3.1” | | HANDBOOK_VERSION | char HANDBOOK_VERSION(STRING4);</p>
-<p>HANDBOOK_VERSION:long_name = “Data handbook version”;</p>
-<p>HANDBOOK_VERSION:_FillValue = ” “; | Version number of the data handbook.</p>
-<p>This field indicates that the data contained in this file are managed according to the policy described in the Argo data management handbook.</p>
-<p>Example : “1.0” | | REFERENCE_DATE_TIME | char REFERENCE_DATE_TIME(DATE_TIME);</p>
-<p>REFERENCE_DATE_TIME:long_name = “Date of reference for Julian days”;</p>
-<p>REFERENCE_DATE_TIME:conventions = “YYYYMMDDHHMISS”;</p>
-<p>REFERENCE_DATE_TIME:_FillValue = ” “; | Date of reference for Julian days.</p>
-<p>The recommended reference date time is “19500101000000”&nbsp;: January 1st 1950 00:00:00 | | DATE_CREATION | char DATE_CREATION(DATE_TIME);</p>
-<p>DATE_CREATION:long_name = “Date of file creation”;</p>
-<p>DATE_CREATION:conventions = “YYYYMMDDHHMISS”;</p>
-<p>DATE_CREATION:_FillValue = ” “; | Date and time (UTC) of creation of this file.</p>
-<p>Format&nbsp;: YYYYMMDDHHMISS</p>
-<p>Example&nbsp;:</p>
-<p>20011229161700&nbsp;: December 29th 2001 16&nbsp;:17&nbsp;:00 | | DATE_UPDATE | char DATE_UPDATE(DATE_TIME);</p>
-<p>DATE_UPDATE:long_name = “Date of update of this file”;</p>
-<p>DATE_UPDATE:conventions = “YYYYMMDDHHMISS”;</p>
-<p>DATE_UPDATE:_FillValue = ” “; | Date and time (UTC) of update of this file.</p>
-<p>Format&nbsp;: YYYYMMDDHHMISS</p>
-<p>Example&nbsp;:</p>
-<p>20011230090500&nbsp;: December 30th 2001 09&nbsp;:05&nbsp;:00 |</p>
+<p>FORMAT_VERSION:long_name = “File format version”;<br> FORMAT_VERSION:_FillValue = ” “; | File format version<br>Example : “3.1” | | HANDBOOK_VERSION | char HANDBOOK_VERSION(STRING4);<br> HANDBOOK_VERSION:long_name = “Data handbook version”;<br> HANDBOOK_VERSION:_FillValue = ” “;<br> | Version number of the data handbook. This field indicates that the data contained in this file are managed according to the policy described in the Argo data management handbook. Example : “1.0” | | REFERENCE_DATE_TIME | char REFERENCE_DATE_TIME(DATE_TIME);<br> REFERENCE_DATE_TIME:long_name = “Date of reference for Julian days”;<br> REFERENCE_DATE_TIME:conventions = “YYYYMMDDHHMISS”;<br> REFERENCE_DATE_TIME:_FillValue = ” “; | Date of reference for Julian days.<br> The recommended reference date time is “19500101000000”&nbsp;: January 1st 1950 00:00:00 | | DATE_CREATION | char DATE_CREATION(DATE_TIME);<br> DATE_CREATION:long_name = “Date of file creation”;<br> DATE_CREATION:conventions = “YYYYMMDDHHMISS”;<br> DATE_CREATION:_FillValue = ” “; | Date and time (UTC) of creation of this file.<br> Format&nbsp;: YYYYMMDDHHMISS<br> Example:<br> 20011229161700&nbsp;: December 29th 2001 16&nbsp;:17&nbsp;:00 | | DATE_UPDATE | char DATE_UPDATE(DATE_TIME);<br> DATE_UPDATE:long_name =”Date of update of this file”;<br> DATE_UPDATE:conventions = “YYYYMMDDHHMISS”;<br> DATE_UPDATE:_FillValue = ” “; | Date and time (UTC) of update of this file.<br> Format&nbsp;: YYYYMMDDHHMISS<br> Example&nbsp;:<br> 20011230090500&nbsp;: December 30th 2001 09&nbsp;:05&nbsp;:00 |</p>
 <p>Name Definition Comment DATA_TYPE char DATA_TYPE(STRING16); DATA_TYPE:long_name = “Data type”; DATA_TYPE:conventions = “Argo reference table 1”; DATA_TYPE:_FillValue = ” “; This field contains the type of data contained in the file. The list of acceptable data types is in the reference table 1 (https://vocab.nerc.ac.uk/collection/R01/). Example : Argo profile FORMAT_VERSION char FORMAT_VERSION(STRING4); FORMAT_VERSION:long_name =”File format version”; FORMAT_VERSION:_FillValue = ” “; File format version Example : “3.1” HANDBOOK_VERSION char HANDBOOK_VERSION(STRING4); HANDBOOK_VERSION:long_name = “Data handbook version”; HANDBOOK_VERSION:_FillValue = ” “; Version number of the data handbook. This field indicates that the data contained in this file are managed according to the policy described in the Argo data management handbook. Example : “1.0” REFERENCE_DATE_TIME char REFERENCE_DATE_TIME(DATE_TIME); REFERENCE_DATE_TIME:long_name = “Date of reference for Julian days”; REFERENCE_DATE_TIME:conventions = “YYYYMMDDHHMISS”; REFERENCE_DATE_TIME:_FillValue = ” “; Date of reference for Julian days. The recommended reference date time is “19500101000000” : January 1st 1950 00:00:00 DATE_CREATION char DATE_CREATION(DATE_TIME); DATE_CREATION:long_name = “Date of file creation”; DATE_CREATION:conventions = “YYYYMMDDHHMISS”; DATE_CREATION:_FillValue = ” “; Date and time (UTC) of creation of this file. Format : YYYYMMDDHHMISS Example : 20011229161700 : December 29th 2001 16 :17 :00 DATE_UPDATE char DATE_UPDATE(DATE_TIME); DATE_UPDATE:long_name =”Date of update of this file”; DATE_UPDATE:conventions = “YYYYMMDDHHMISS”; DATE_UPDATE:_FillValue = ” “; Date and time (UTC) of update of this file. Format : YYYYMMDDHHMISS Example : 20011230090500 : December 30th 2001 09 :05 :00</p>
 </section>
 <section id="general-information-for-each-profile" class="level3" data-number="3.2.4">

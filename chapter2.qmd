@@ -78,60 +78,36 @@ The global attributes section is used for data discovery. The following global a
 ### General information on the profile file
 This section contains information about the whole file.
 
-| Name                | Definition  | Comment                                                                                                                                                                                                                                    |
-| ------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Name                | Definition  | Comment  |
+| ------------------- | ------------ | ------------------- |
 | DATA_TYPE     | char DATA_TYPE(STRING16);<br>DATA_TYPE:long_name = "Data type";<br>DATA_TYPE:conventions = "Argo reference table 1";<br>DATA_TYPE:_FillValue = " ";<br>| This field contains the type of data contained in the file.<br>The list of acceptable data types is in the reference table 1 ([https://vocab.nerc.ac.uk/collection/R01/](https://vocab.nerc.ac.uk/collection/R01/)).<br>Example : Argo profile |
-| FORMAT_VERSION | char FORMAT_VERSION(STRING4);
-
-FORMAT_VERSION:long_name = "File format version";
-
-FORMAT_VERSION:_FillValue = " ";                                                                                     | File format version
-
-Example : “3.1”                                                                                                                                                                                                       |
-| HANDBOOK_VERSION    | char HANDBOOK_VERSION(STRING4);
-
-HANDBOOK_VERSION:long_name = "Data handbook version";
-
-HANDBOOK_VERSION:_FillValue = " ";                                                                             | Version number of the data handbook.
-
+| FORMAT_VERSION | char FORMAT_VERSION(STRING4);<br>
+FORMAT_VERSION:long_name = "File format version";<br>
+FORMAT_VERSION:_FillValue = " ";  | File format version<br>Example : “3.1” |
+| HANDBOOK_VERSION    | char HANDBOOK_VERSION(STRING4);<br>
+HANDBOOK_VERSION:long_name = "Data handbook version";<br>
+HANDBOOK_VERSION:_FillValue = " ";<br> | Version number of the data handbook.
 This field indicates that the data contained in this file are managed according to the policy described in the Argo data management handbook.
-
-Example : “1.0”                                       |
-| REFERENCE_DATE_TIME | char REFERENCE_DATE_TIME(DATE_TIME);
-
-REFERENCE_DATE_TIME:long_name = "Date of reference for Julian days";
-
-REFERENCE_DATE_TIME:conventions = "YYYYMMDDHHMISS";
-
-REFERENCE_DATE_TIME:_FillValue = " "; | Date of reference for Julian days.
-
-The recommended reference date time is “19500101000000” : January 1st 1950 00:00:00                                                                                                                    |
-| DATE_CREATION       | char DATE_CREATION(DATE_TIME);
-
-DATE_CREATION:long_name = "Date of file creation";
-
-DATE_CREATION:conventions = "YYYYMMDDHHMISS";
-
-DATE_CREATION:_FillValue = " ";                                     | Date and time (UTC) of creation of this file.
-
-Format : YYYYMMDDHHMISS
-
-Example :
-
-20011229161700 : December 29th 2001 16 :17 :00                                                                                                          |
-| DATE_UPDATE         | char DATE_UPDATE(DATE_TIME);
-
-DATE_UPDATE:long_name = "Date of update of this file";
-
-DATE_UPDATE:conventions = "YYYYMMDDHHMISS";
-
-DATE_UPDATE:_FillValue = " ";                                       | Date and time (UTC) of update of this file.
-
-Format : YYYYMMDDHHMISS
-
-Example :
-
-20011230090500 : December 30th 2001 09 :05 :00                                                                                                            |
+Example : “1.0”  |
+| REFERENCE_DATE_TIME | char REFERENCE_DATE_TIME(DATE_TIME);<br>
+REFERENCE_DATE_TIME:long_name = "Date of reference for Julian days";<br>
+REFERENCE_DATE_TIME:conventions = "YYYYMMDDHHMISS";<br>
+REFERENCE_DATE_TIME:_FillValue = " "; | Date of reference for Julian days.<br>
+The recommended reference date time is “19500101000000” : January 1st 1950 00:00:00 |
+| DATE_CREATION       | char DATE_CREATION(DATE_TIME);<br>
+DATE_CREATION:long_name = "Date of file creation";<br>
+DATE_CREATION:conventions = "YYYYMMDDHHMISS";<br>
+DATE_CREATION:_FillValue = " "; | Date and time (UTC) of creation of this file.<br>
+Format : YYYYMMDDHHMISS<br>
+Example:<br>
+20011229161700 : December 29th 2001 16 :17 :00  |
+| DATE_UPDATE         | char DATE_UPDATE(DATE_TIME);<br>
+DATE_UPDATE:long_name = "Date of update of this file";<br>
+DATE_UPDATE:conventions = "YYYYMMDDHHMISS";<br>
+DATE_UPDATE:_FillValue = " "; | Date and time (UTC) of update of this file.<br>
+Format : YYYYMMDDHHMISS<br>
+Example :<br>
+20011230090500 : December 30th 2001 09 :05 :00 |
 
 
 Name
