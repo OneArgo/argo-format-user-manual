@@ -1,0 +1,5 @@
+
+| Name                | Definition  | Comment  |
+| ------------------- | ------------ | ------------------- |
+| REFERENCE_DATE_TIME | char REFERENCE_DATE_TIME(DATE_TIME);<br>REFERENCE_DATE_TIME:long_name = "Date of reference for Julian days";<br>REFERENCE_DATE_TIME:conventions = "YYYYMMDDHHMISS";<br>REFERENCE_DATE_TIME:_FillValue = " "; | Date of reference for Julian days.<br>The recommended reference date time is “19500101000000” : January 1st 1950 00:00:00 |
+| DATE_CREATION       | char DATE_CREATION(DATE_TIME);<br>DATE_CREATION:long_name = "Date of file creation";<br>DATE_CREATION:conventions = "YYYYMMDDHHMISS";<br>DATE_CREATION:_FillValue = " "; | Date and time (UTC) of creation of this file.<br>Format : YYYYMMDDHHMISS<br>Example:<br>20011229161700 : December 29th 2001 16 :17 :00  |
