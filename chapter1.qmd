@@ -6,7 +6,7 @@ This document is the Argo data user’s manual.
 It contains the description of the formats and files produced by the Argo DACs.
 
 ## Notice on file format change transition
-This version of the "User's manual" is adjusting the file formats to the growing variety of floats and user needs. It introduces a complete revision of metadata and technical files. To cope with this radical change, during a transition period the version 2.2 and 3.1 of the technical and metadata file will be valid in the Argo data system. 
+This version of the "User's manual" is adjusting the file formats to the growing variety of floats and user needs. It introduces a complete revision of metadata and technical files. To cope with this radical change, during a transition period the version 2.2 and 3.1 of the technical and metadata file will be valid in the Argo data system.  
 
 ## User Obligations
 A user of Argo data is expected to read and understand this manual and the documentation about the data contained in the “attributes” of the NetCDF data files, as these contain essential information about data quality and accuracy.
