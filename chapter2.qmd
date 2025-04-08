@@ -18,7 +18,7 @@ Argo data comply with NetCDF Climate and Forecast (CF) Metadata Conventions:
 - https://cfconventions.org/ 
 
 Argo data uses the UDUNITS convention when applicable to populate the variable attribute "unit" in the Data section.  The UDUNITS standard, database and supporting information is available from
-- https://doi.org/10.5065/D6KD1WN0.
+- https://doi.org/10.5065/D6KD1WN0
 
 Argo date and time: all date and time have to be given either in Universal Time (UTC) or in float’s time.
 
