@@ -173,12 +173,17 @@ PRES:axis = "Z";
 The resolution of a parameter is reported in “resolution” attribute.
 For specific floats, the resolution of a parameter may depend on the profile level.
 How to keep the information in the file?
-add a "comment_on_resolution" attribute on the variable to inform the user,
-2.2.6 Calibration information for each profile
+add a "comment_on_resolution" attribute on the variable to inform the user
+
+### Calibration information for each profile
 Calibrations are applied to parameters to create adjusted parameters. Different calibration methods will be used by groups processing Argo data. When a method is applied, its description is stored in the following fields.
 This section contains calibration information for each parameter of each profile. 
 Each item of this section has a N_PROF (number of profiles), N_CALIB (number of calibrations), N_PARAM (number of parameters) dimension.
 If no calibration is available, N_CALIB is set to 1, PARAMETER is filled with the list of parameter names, and all values of the calibration section are set to fill values. 
+
+
+
+
 Name
 Definition
 Comment
