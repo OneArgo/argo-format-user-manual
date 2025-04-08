@@ -593,6 +593,1757 @@ The usage of history section is described in §5 "Using the History section of t
 
 
 
+2.4 Metadata format version 3.1 
+
+The format version 3.1 of Argo metadata will replace versions 2.2 and 2.4 gradually. During the transition period, all formats will be valid. However, when a Data Assembly Center (DAC) produces metadata files with the new 3.1 format, all its metadata files must be provided in version 3.1. 
+
+An Argo metadata file contains descriptive information about an Argo float.  
+
+For file naming conventions, see §4.1. 
+
+2.4.1 Global attributes
+
+The global attributes section is used for data discovery. It complies with NetCDF Climate and Forecast (CF) Metadata Conventions (version 1.6).
+
+http\://cfconventions.org/ 
+
+The following global attributes should appear in the global section: 
+
+// global attributes:
+
+:title = "Argo float metadata file";
+
+:institution = "CSIRO";
+
+:source = "Argo float";
+
+:history = "2011-04-22T06:00:00Z creation";
+
+:references = "http\://www\.argodatamgt.org/Documentation";
+
+:comment = "free text";
+
+:user\_manual\_version = "3.4";
+
+:Conventions = “Argo-3.1 CF-1.6";
+
+Global attribute name
+
+Definition
+
+title
+
+A succinct description of what is in the dataset.
+
+institution
+
+Specifies where the original data was produced.
+
+source
+
+The method of production of the original data. If it was model-generated, source should name the model and its version, as specifically as could be useful. If it is observational, source should characterize it (e.g., "surface observation" or "radiosonde").
+
+history
+
+Provides an audit trail for modifications to the original data. Well-behaved generic NetCDF filters will automatically append their name and the parameters with which they were invoked to the global history attribute of an input NetCDF file. We recommend that each line begins with a timestamp indicating the date and time of day that the program was executed.
+
+references
+
+Published or web-based references that describe the data or methods used to produce it.
+
+comment
+
+Miscellaneous information about the data or methods used to produce it.
+
+user\_manual\_version
+
+The version number of the user manual
+
+Conventions
+
+The conventions supported by this file, blank separated
+
+2.4.2 Dimensions and definitions 
+
+Name 
+
+Definition 
+
+Comment 
+
+DATE\_TIME 
+
+DATE\_TIME = 14; 
+
+This dimension is the length of an ASCII date and time value. 
+
+Date\_time convention is : YYYYMMDDHHMISS 
+
+YYYY : year 
+
+MM : month 
+
+DD : day 
+
+HH : hour of the day 
+
+MI : minutes 
+
+SS : seconds 
+
+Date and time values are always in universal time coordinates (UTC). 
+
+Examples : 20010105172834 : January 5th 2001 17:28:34 19971217000000 : December 17th 1997 00:00:00
+
+STRING1024
+
+STRING256
+
+STRING128
+
+STRING64
+
+STRING32 
+
+STRING17
+
+STRING16 
+
+STRING8 
+
+STRING4 
+
+STRING2
+
+STRING1024 = 1024;
+
+STRING256 = 256; 
+
+STRING128 = 128;  
+
+STRING64 = 64; 
+
+STRING32 = 32; 
+
+STRING17 = 17; 
+
+STRING16 = 16; 
+
+STRING8 = 8; 
+
+STRING4 = 4; 
+
+STRING2 = 2;
+
+String dimensions from 2 to 1024. 
+
+N\_PARAM 
+
+N\_PARAM = \<int value>; 
+
+Number of parameters measured or calculated for a pressure sample. 
+
+Examples :
+
+(pressure, temperature) : N\_PARAM = 2 
+
+(pressure, temperature, salinity) : N\_PARAM = 3 (pressure, temperature, conductivity, salinity) : N\_PARAM = 4
+
+N\_SENSOR
+
+N\_SENSOR = \<int value>;
+
+Number of sensors mounted on the float and used to measure the parameters.
+
+N\_CONFIG\_PARAM 
+
+N\_CONFIG\_PARAM=\<int value>;
+
+Number of configuration parameters. 
+
+N\_LAUNCH\_CONFIG\_PARAM
+
+N\_LAUNCH\_CONFIG\_PARAM=\<int value>;
+
+Number of pre-deployment or launch configuration parameters.
+
+N\_MISSIONS
+
+N\_MISSIONS=\<unlimited>;
+
+Number of missions.
+
+N\_POSITIONING\_SYSTEM
+
+N\_POSITIONING\_SYSTEM=\<int value>;
+
+Number of positioning systems.
+
+N\_TRANS\_SYSTEM
+
+N\_TRANS\_SYSTEM=\<int value>;
+
+Number of transmission systems.
+
+2.4.3 General information on the metadata file 
+
+This section contains information about the whole file. 
+
+Name 
+
+Definition 
+
+Comment 
+
+DATA\_TYPE 
+
+char DATA\_TYPE(STRING16);
+
+DATA\_TYPE:long\_name = "Data type";
+
+DATA\_TYPE:conventions = "Argo reference table 1";
+
+DATA\_TYPE:\_FillValue = " "; 
+
+This field contains the type of data contained in the file.
+
+The list of acceptable data types is in thereference table 1 (https\://vocab.nerc.ac.uk/collection/R01/).
+
+Example : Argo meta-data 
+
+FORMAT\_VERSION 
+
+char FORMAT\_VERSION(STRING4); 
+
+FORMAT\_VERSION:long\_name =  "File format version";
+
+FORMAT\_VERSION:\_FillValue = " "; 
+
+File format version.
+
+Example : «3.1» 
+
+HANDBOOK\_VERSION 
+
+char HANDBOOK\_VERSION(STRING4);
+
+HANDBOOK\_VERSION:long\_name = "Data handbook version";
+
+HANDBOOK\_VERSION:\_FillValue = " "; 
+
+Version number of the data handbook. This field indicates that the data contained in this file are managed according to the policy described in the Argo data management handbook. Example : «1.0» 
+
+DATE\_CREATION 
+
+char DATE\_CREATION(DATE\_TIME);
+
+DATE\_CREATION:long\_name = "Date of file creation";
+
+DATE\_CREATION:conventions = "YYYYMMDDHHMISS";
+
+DATE\_CREATION:\_FillValue = " "; 
+
+Date and time (UTC) of creation of this file.
+
+Format : YYYYMMDDHHMISS
+
+Example : 20011229161700 : December 29th 2001 16:17:00 
+
+DATE\_UPDATE
+
+char DATE\_UPDATE(DATE\_TIME);
+
+DATE\_UPDATE:long\_name = "Date of update of this file";
+
+DATE\_UPDATE:conventions = "YYYYMMDDHHMISS";
+
+DATE\_UPDATE:\_FillValue = " "; 
+
+Date and time (UTC) of update of this file.
+
+Format : YYYYMMDDHHMISS
+
+Example : 20011230090500 : December 30th 2001 09:05:00 
+
+2.4.4 Float characteristics 
+
+This section contains the main characteristics of the float. 
+
+Name 
+
+Definition 
+
+Comment 
+
+PLATFORM\_NUMBER 
+
+char PLATFORM\_NUMBER(STRING8);
+
+PLATFORM\_NUMBER:long\_name = "Float unique identifier";
+
+PLATFORM\_NUMBER:conventions = "WMO float identifier : A9IIIII";
+
+ PLATFORM\_NUMBER:\_FillValue = " "; 
+
+WMO float identifier. WMO is the World Meteorological Organization. This platform number is unique.
+
+Example : 6900045 
+
+PLATFORM\_WIGOS\_ID 
+
+char PLATFORM\_WIGOS\_ID(STRING17);
+
+PLATFORM\_WIGOS\_ID:long\_name = "Float unique identifier";
+
+PLATFORM\_WIGOS\_ID:conventions = "WMO WIGOS float identifier: 0-22000-0-A9IIIII";
+
+ PLATFORM\_WIGOS\_ID:\_FillValue = " "; 
+
+WMO WIGOS float identifier. WMO is the World Meteorological Organization. This platform number is unique.
+
+Example : 0-22000-0-6900045 
+
+“0-22000-0-” is the Argo floats prefix
+
+PTT 
+
+char PTT(STRING256);
+
+PTT:long\_name = "Transmission identifier (ARGOS, ORBCOMM, etc.)";
+
+PTT:\_FillValue = " "; 
+
+Transmission identifier of the float. Comma separated list for multi-beacon transmission.
+
+Example :
+
+“22507”: the float is equipped with one ARGOS beacon.
+
+“22598, 22768” : the float is equipped with 2 ARGOS beacons. 
+
+TRANS\_SYSTEM 
+
+char TRANS\_SYSTEM(N\_TRANS\_SYSTEM, STRING16);
+
+TRANS\_SYSTEM:long\_name = "Telecommunication system used"; 
+
+TRANS\_SYSTEM:\_FillValue = " "; 
+
+Name of the telecommunication system from reference table 10 (https\://vocab.nerc.ac.uk/collection/R10/). Example : ARGOS 
+
+TRANS\_SYSTEM\_ID 
+
+char TRANS\_SYSTEM\_ID(N\_TRANS\_SYSTEM, STRING32);
+
+TRANS\_SYSTEM\_ID:long\_name = ”Program identifier used by the transmission system”;
+
+TRANS\_SYSTEM\_ID:\_FillValue = " "; 
+
+Program identifier of the telecommunication subscription. DACs can use N/A or alternative of their choice when not applicable (e.g. : Iridium or Orbcomm)
+
+Example: 38511 is a program number for all the beacons of an ARGOS customer.
+
+TRANS\_FREQUENCY 
+
+char TRANS\_FREQUENCY(N\_TRANS\_SYSTEM, STRING16);
+
+TRANS\_FREQUENCY:long\_name = "Frequency of transmission from the float";
+
+TRANS\_FREQUENCY:units = "hertz";
+
+TRANS\_FREQUENCY:\_FillValue = “ ”; 
+
+Frequency of transmission from the float.
+
+Unit : hertz
+
+Example : 1/44 
+
+POSITIONING\_SYSTEM 
+
+char POSITIONING\_SYSTEM(N\_POSITIONING\_SYSTEM, STRING8);
+
+POSITIONING\_SYSTEM:long\_name = "Positioning system";
+
+POSITIONING\_SYSTEM:\_FillValue = " "; 
+
+Position system from reference table 9 (https\://vocab.nerc.ac.uk/collection/R09/). ARGOS or GPS are 2 positioning systems.
+
+Example : ARGOS 
+
+PLATFORM\_FAMILY
+
+char PLATFORM\_FAMILY(STRING256);
+
+PLATFORM\_FAMILY:long\_name = "Category of instrument";
+
+PLATFORM\_FAMILY:conventions = "Argo reference table 22";
+
+PLATFORM\_FAMILY:\_FillValue = " ";
+
+Category of instrument.
+
+See Argo reference table 22
+
+Example: FLOAT, ICE\_TETHERED\_PROFILER, FLOAT\_DEEP. 
+
+PLATFORM\_TYPE
+
+char PLATFORM\_TYPE(STRING32);
+
+PLATFORM\_TYPE:long\_name = "Type of float";
+
+PLATFORM\_TYPE:conventions = "Argo reference table 23";
+
+PLATFORM\_TYPE:\_FillValue = " "; 
+
+Type of float.
+
+See Argo reference table 23 (https\://vocab.nerc.ac.uk/collection/R23/).
+
+Example: SOLO, APEX, PROVOR, ARVOR, NINJA
+
+PLATFORM\_MAKER 
+
+char PLATFORM\_MAKER(STRING256);
+
+PLATFORM\_MAKER:long\_name = "Name of the manufacturer";
+
+PLATFORM\_MAKER:conventions = "Argo reference table 24";
+
+PLATFORM\_MAKER:\_FillValue = " "; 
+
+Name of the manufacturer.
+
+Example: MARTEC, MRV, TWR.
+
+See Argo reference table 24 (https\://vocab.nerc.ac.uk/collection/R24/).
+
+FIRMWARE\_VERSION
+
+char FIRMWARE\_VERSION(STRING64);
+
+FIRMWARE\_VERSION:long\_name = “Firmware version for the float”;
+
+FIRMWARE\_VERSION:\_FillValue = " ";
+
+The firmware version. This is specified as per the format on the manufacturer’s manual.
+
+Example: 072804
+
+The dimension STRING32 instead of STRING64 remains accepted.
+
+MANUAL\_VERSION
+
+char MANUAL\_VERSION(STRING16);
+
+MANUAL\_VERSION:long\_name = “Manual version for the float”;
+
+MANUAL\_VERSION:\_FillValue = " ";
+
+The version date or number for the manual for each float.
+
+Example 110610 or 004 
+
+FLOAT\_SERIAL\_NO
+
+char FLOAT\_SERIAL\_NO(STRING32);
+
+FLOAT\_SERIAL\_NO:long\_name = "Serial number of the float";
+
+FLOAT\_SERIAL\_NO:\_FillValue = " ";
+
+This field should contain only the serial number of the float.
+
+Example 1679
+
+STANDARD\_FORMAT\_ID
+
+char STANDARD\_FORMAT\_ID(STRING16);
+
+STANDARD\_FORMAT\_ID:long\_name = "Standard format number to describe the data format type for each float";
+
+STANDARD\_FORMAT\_ID:\_FillValue = " ";
+
+Standardized format number as described in the online reference table: https\://docs.google.com/spreadsheets/d/16iTji2i9tLh2PfiiMItfhaQybQB1NLAhj4s0mDML5yY/edit#gid=9  
+
+This table cross references to individual DAC format numbers.
+
+Example: 1010151
+
+DAC\_FORMAT\_ID
+
+char DAC\_FORMAT\_ID(STRING16);
+
+DAC\_FORMAT\_ID:long\_name = "Format number used by the DAC to describe the data format type for each float";
+
+DAC\_FORMAT\_ID:\_FillValue = " ";
+
+Format numbers used by individual DACs to describe each float type.
+
+This is cross-referenced to a standard format id as outlined in the online reference table: https\://docs.google.com/spreadsheets/d/16iTji2i9tLh2PfiiMItfhaQybQB1NLAhj4s0mDML5yY/edit#gid=9
+
+Example: A9.
+
+WMO\_INST\_TYPE 
+
+char WMO\_INST\_TYPE(STRING4);
+
+WMO\_INST\_TYPE:long\_name = "Coded instrument type”; 
+
+WMO\_INST\_TYPE:conventions = "Argo reference table 8";
+
+WMO\_INST\_TYPE:\_FillValue = " ";
+
+Instrument type from WMO code table 1770. A subset of WMO table 1770 is documented in the reference table 8 (https\://vocab.nerc.ac.uk/collection/R08/).
+
+Example : 846 : Webb Research float, Seabird sensor 
+
+PROJECT\_NAME
+
+char PROJECT\_NAME(STRING64);
+
+PROJECT\_NAME:long\_name = "Program under which the float was deployed”; PROJECT\_NAME:\_FillValue = " ";
+
+Name of the project which operates the profiling float that performed the profile.
+
+Example : GYROSCOPE (EU project for Argo program) 
+
+DATA\_CENTRE
+
+char DATA\_CENTRE(STRING2);
+
+DATA\_CENTRE:long\_name = "Data centre in charge of float real-time processing";
+
+DATA\_CENTRE:conventions = "Argo reference table 4";
+
+DATA\_CENTRE:\_FillValue = " ";
+
+Code of the data centre in charge of the float data management. The data centre codes are described in the reference table 4 (https\://vocab.nerc.ac.uk/collection/R04/).
+
+Example: ME for MEDS 
+
+PI\_NAME 
+
+char PI\_NAME (STRING64);
+
+PI\_NAME:long\_name = "Name of the principal investigator";
+
+PI\_NAME:\_FillValue = " ";
+
+Name of the principal investigator responsible for the profiling float. Example: “Julia UITZ”.
+
+Valid PI names are listed in reference table 40 ( https\://vocab.nerc.ac.uk/collection/R40/).  Multiple names can be concatenated, separated by commas.
+
+ANOMALY
+
+char ANOMALY(STRING256);
+
+ANOMALY:long\_name = "Describe any anomalies or problems the float may have had";
+
+ANOMALY:\_FillValue = " ";
+
+This field describes any anomaly or problem the float may have had.
+
+Example: “the immersion drift is not stable.” 
+
+BATTERY\_TYPE
+
+char BATTERY\_TYPE(STRING64);
+
+BATTERY\_TYPE:long\_name = “Type of battery packs in the float”;
+
+BATTERY\_TYPE:\_FillValue = " ";
+
+Describes the type of battery packs in the float.
+
+BATTERY\_TYPE  = “Manufacturer Alkaline x V”  or “Manufacturer Lithium x V + Manufacturer Alkaline x V”
+
+Example: “ELECTROCHEM Lithium 12 V”
+
+Use reference table 29 (not in the NVS)
+
+BATTERY\_PACKS
+
+char BATTERY\_PACKS(STRING64);
+
+BATTERY\_PACKS:long\_name = “Configuration of battery packs in the float”;
+
+BATTERY\_PACKS:\_FillValue = " ";
+
+Describes the configuration of battery packs in the float, number and type.
+
+Example: “4DD Li + 1C Alk”
+
+Use reference table 30 (not in the NVS)
+
+CONTROLLER\_BOARD\_TYPE\_PRIMARY
+
+char CONTROLLER\_BOARD\_TYPE\_PRIMARY(STRING32);
+
+CONTROLLER\_BOARD\_TYPE\_PRIMARY:long\_name = “Type of primary controller board”;
+
+CONTROLLER\_BOARD\_TYPE\_PRIMARY:\_FillValue = " ";
+
+Describes the type of controller board.
+
+first part of string: see reference table 28 (https\://vocab.nerc.ac.uk/collection/R28/). Remainder of string free text and contained in square brackets 
+
+Example:  “APF9 \[iridium version xyz]”
+
+Use reference table 28
+
+CONTROLLER\_BOARD\_TYPE\_SECONDARY
+
+char CONTROLLER\_BOARD\_TYPE\_SECONDARY(STRING32);
+
+CONTROLLER\_BOARD\_TYPE\_SECONDARY:long\_name = “Type of secondary controller board”;
+
+CONTROLLER\_BOARD\_TYPE\_SECONDARY:\_FillValue = " ";
+
+This is an optional variable.
+
+Only applicable if there is more than one controller board in the float. Describes the second type of controller board.
+
+first part of string: see reference table 28 (https\://vocab.nerc.ac.uk/collection/R28/). Remainder of string free text and contained in square brackets 
+
+Example:  “APF9 \[iridium version xyz]”
+
+Use reference table 28
+
+CONTROLLER\_BOARD\_SERIAL\_NO\_PRIMARY
+
+char CONTROLLER\_BOARD\_SERIAL\_NO\_PRIMARY(STRING32);
+
+CONTROLLER\_BOARD\_SERIAL\_NO\_PRIMARY:long\_name = “Serial number of the primary controller board”;
+
+CONTROLLER\_BOARD\_SERIAL\_NO\_PRIMARY:\_FillValue = " ";
+
+The serial number for the primary controller board.
+
+Example: 4567
+
+CONTROLLER\_BOARD\_SERIAL\_NO\_SECONDARY
+
+char CONTROLLER\_BOARD\_SERIAL\_NO\_SECONDARY(STRING32);
+
+CONTROLLER\_BOARD\_SERIAL\_NO\_SECONDARY:long\_name = “Serial number of the secondary controller board”;
+
+CONTROLLER\_BOARD\_SERIAL\_NO\_SECONDARY:\_FillValue = " ";
+
+This is an optional variable.
+
+Only applicable if there is more than one controller board in the float. The serial number for the secondary controller board.
+
+Example: 4571
+
+SPECIAL\_FEATURES
+
+char SPECIAL\_FEATURES(STRING1024);
+
+SPECIAL\_FEATURES:long\_name = "Extra features of the float (algorithms, compressee etc.)";
+
+SPECIAL\_FEATURES:\_FillValue = " ";
+
+Additional float features can be specified here such as algorithms used by the float.
+
+Example: Ice Sensing Algorithm, Interim Storage Algorithm, grounding avoidance or additional hardware such as a compressee (buoyancy compensator).
+
+See reference table 32 (not in the NVS)
+
+FLOAT\_OWNER
+
+char FLOAT\_OWNER (STRING64);
+
+FLOAT\_OWNER:long\_name = "Float owner";
+
+FLOAT\_OWNER:\_FillValue = " ";
+
+The owner of the float (may be different from the data centre and operating institution).
+
+Example: Joe Blogg
+
+OPERATING\_INSTITUTION
+
+char OPERATING\_INSTITUTION(STRING64);
+
+OPERATING\_INSTITUTION:long\_name = "Operating institution of the float";
+
+OPERATING\_INSTITUTION:\_FillValue = " ";
+
+The operating institution of the float (may be different from the float owner and data centre).
+
+Example: ACE CRC
+
+CUSTOMISATION
+
+char CUSTOMISATION(STRING1024);
+
+CUSTOMISATION:long\_name = "Float customisation, i.e. (institution and modifications)";
+
+CUSTOMISATION:\_FillValue = " ";
+
+Free form field to record changes made to the float after manufacture and before deployment, i.e. this could be the customisation institution plus a list of modifications.
+
+Example: Float stability collar removed for deployment in ice.
+
+2.4.5 Float deployment and mission information 
+
+Name 
+
+Definition 
+
+Comment 
+
+LAUNCH\_DATE
+
+char LAUNCH\_DATE(DATE\_TIME);
+
+LAUNCH\_DATE:long\_name = "Date (UTC) of the deployment"; 
+
+LAUNCH\_DATE:conventions = "YYYYMMDDHHMISS";
+
+LAUNCH\_DATE:\_FillValue = " "; 
+
+Date and time (UTC) of launch of the float.
+
+Format : YYYYMMDDHHMISS 
+
+Example : 20011230090500 : December 30th 2001 03:05:00 
+
+LAUNCH\_LATITUDE 
+
+double LAUNCH\_LATITUDE;
+
+LAUNCH\_LATITUDE:long\_name = "Latitude of the float when deployed";
+
+LAUNCH\_LATITUDE:units = "degree\_north";
+
+LAUNCH\_LATITUDE:\_FillValue = 99999.; 
+
+LAUNCH\_LATITUDE:valid\_min = -90.;
+
+LAUNCH\_LATITUDE:valid\_max = 90.;
+
+Latitude of the launch.
+
+Unit : degree north.
+
+Example : 44.4991 : 44° 29’ 56.76’’ N
+
+LAUNCH\_LONGITUDE
+
+double LAUNCH\_LONGITUDE;
+
+LAUNCH\_LONGITUDE:long\_name = "Longitude of the float when deployed";
+
+LAUNCH\_LONGITUDE:units = "degree\_east"; LAUNCH\_LONGITUDE:\_FillValue = 99999.; 
+
+LAUNCH\_LONGITUDE:valid\_min = -180.; 
+
+LAUNCH\_LONGITUDE:valid\_max = 180.;
+
+Longitude of the launch.
+
+Unit : degree east.
+
+Example : 16.7222 : 16° 43’ 19.92’’ E 
+
+LAUNCH\_QC
+
+char LAUNCH\_QC;
+
+LAUNCH\_QC:long\_name = "Quality on launch date, time and location";
+
+LAUNCH\_QC:conventions = "Argo reference table 2"; 
+
+LAUNCH\_QC:\_FillValue = " ";
+
+Quality flag on launch date, time and location.
+
+The flag scale is described in the reference tables 2 (https\://vocab.nerc.ac.uk/collection/RR2/ for real time and https\://vocab.nerc.ac.uk/collection/RD2/ for delayed mode).
+
+Example :
+
+‘1’ : launch location seems correct.
+
+START\_DATE 
+
+char START\_DATE(DATE\_TIME);
+
+START\_DATE:long\_name = "Date (UTC) of the first 
+
+descent of the float"; 
+
+START\_DATE:conventions = "YYYYMMDDHHMISS"; START\_DATE:\_FillValue = " ";
+
+Date and time (UTC) of the first descent of the float.
+
+Format : YYYYMMDDHHMISS 
+
+Example : 20011230090500 : December 30th 2001 
+
+06 :05 :00
+
+START\_DATE\_QC 
+
+char START\_DATE\_QC;
+
+START\_DATE\_QC:long\_name = "Quality on start date"; 
+
+START\_DATE\_QC:conventions = "Argo reference table 2"; 
+
+START\_DATE\_QC:\_FillValue = " ";
+
+Quality flag on start date. The flag scale is described in the reference tables 2 (https\://vocab.nerc.ac.uk/collection/RR2/ for real time and https\://vocab.nerc.ac.uk/collection/RD2/ for delayed mode). Example : 
+
+‘1’ : start date seems correct.
+
+STARTUP\_DATE
+
+char STARTUP\_DATE(DATE\_TIME);
+
+STARTUP\_DATE:long\_name = "Date (UTC) of the activation of the float"; 
+
+STARTUP\_DATE:conventions = "YYYYMMDDHHMISS"; STARTUP\_DATE:\_FillValue = " ";
+
+Date and time (UTC) of the activation of the float before or just after deployment. This may include automatic startup during pressure activation.
+
+Format : YYYYMMDDHHMISS 
+
+Example : 20011230090500 : December 30th 2001 
+
+06 :05 :00
+
+STARTUP\_DATE\_QC 
+
+char STARTUP\_DATE\_QC;
+
+STARTUP\_DATE\_QC:long\_name = "Quality on startup date"; 
+
+STARTUP\_DATE\_QC:conventions = "Argo reference table 2"; 
+
+STARTUP\_DATE\_QC:\_FillValue = " ";
+
+Quality flag on startup date. The flag scale is described in the reference tables 2 (https\://vocab.nerc.ac.uk/collection/RR2/ for real time and https\://vocab.nerc.ac.uk/collection/RD2/ for delayed mode). Example : 
+
+‘1’ : start date seems correct.
+
+DEPLOYMENT\_PLATFORM 
+
+char DEPLOYMENT\_PLATFORM(STRING128);
+
+DEPLOYMENT\_PLATFORM:long\_name = "Identifier of the deployment platform"; 
+
+DEPLOYMENT\_PLATFORM:\_FillValue = " ";
+
+Identifier of the deployment platform, i.e. vessel or ship name.
+
+Example : “Ronald H. Brown uri:http\://vocab.nerc.ac.uk/collection/C17/current/33RO/"
+
+char DEPLOYMENT\_PLATFORM(STRING32) is also accepted.
+
+DEPLOYMENT\_CRUISE\_ID
+
+char DEPLOYMENT\_CRUISE\_ID(STRING32);
+
+DEPLOYMENT\_CRUISE\_ID:long\_name = "Identification number or reference number of the cruise used to deploy the float”;
+
+DEPLOYMENT\_CRUISE\_ID:\_FillValue = " ";
+
+Identification number or reference number of the cruise used to deploy the platform.
+
+Example : POMME2
+
+DEPLOYMENT\_REFERENCE\_STATION\_ID
+
+char DEPLOYMENT\_REFERENCE\_STATION\_ID(STRING256);
+
+DEPLOYMENT\_REFERENCE\_STATION\_ID:long\_name = "Identifier or reference number of co-located stations used to verify the first profile";
+
+DEPLOYMENT\_REFERENCE\_STATION\_ID:\_FillValue = " ";
+
+Identifier or reference number of co-located CTD or XBT stations used to verify the first profile.
+
+Example : 58776, 58777
+
+END\_MISSION\_DATE 
+
+char END\_MISSION\_DATE(DATE\_TIME);
+
+END\_MISSION\_DATE:long\_name = "Date (UTC) of the 
+
+end of mission of the float"; 
+
+END\_MISSION\_DATE:conventions = "YYYYMMDDHHMISS"; 
+
+END\_MISSION\_DATE:\_FillValue = " ";
+
+Date (UTC) of the float’s deployment.  
+
+Format : YYYYMMDDHHMISS 
+
+Example : 20011230090500 : December 30th 2001 03:05:00
+
+END\_MISSION\_STATUS 
+
+char END\_MISSION\_STATUS;
+
+END\_MISSION\_STATUS:long\_name = "Status of the end of mission of the float"; 
+
+END\_MISSION\_STATUS:conventions = "T:No more transmission received, R:Retrieved"; 
+
+END\_MISSION\_STATUS:\_FillValue = " ";
+
+Status of the end of the float’s deployment.
+
+‘T’:No more 
+
+transmission received, 
+
+‘R’:Retrieved
+
+2.4.6 Configuration parameters 
+
+This section describes the configuration parameters for a float. It is important to note that configuration parameters are float settings selected by the PI, not measurements reported by the float.
+
+Configuration parameters may or may not be reported by a float.
+
+Configuration parameter names are identified by the “CONFIG” prefix.
+
+For each configuration parameter, the name of the parameter and the value of the 
+
+parameter are recorded.
+
+Name 
+
+Definition 
+
+Comment 
+
+LAUNCH\_CONFIG\_PARAMETER\_NAME 
+
+char LAUNCH\_CONFIG\_PARAMETER\_NAME(N\_LAUNCH\_CONFIG\_PARAM, STRING128)
+
+LAUNCH\_CONFIG\_PARAMETER\_NAME:long\_name = ”Name of configuration parameter at launch”; 
+
+LAUNCH\_CONFIG\_PARAMETER\_NAME:\_FillValue = " "; 
+
+Name of the configuration parameter; pre-deployment or launch settings.
+
+See reference tables 18a and 18b (https\://vocab.nerc.ac.uk/collection/R18/) for standard configuration parameter names.
+
+Example : 
+
+“CONFIG\_ParkPressure\_dbar”
+
+LAUNCH\_CONFIG\_PARAMETER\_VALUE 
+
+float (for standard Argo floats) or can use double if applicable (e.g. BGC-Argo float)  LAUNCH\_CONFIG\_PARAMETER\_VALUE(N\_LAUNCH\_CONFIG\_PARAM)
+
+LAUNCH\_CONFIG\_ PARAMETER\_VALUE:long\_name = ”Value of configuration parameter at launch”;
+
+LAUNCH\_CONFIG\_ PARAMETER\_VALUE:\_FillValue = 99999.f; 
+
+Value of the configuration parameter; either pre-deployment or launch settings.
+
+Example : 1500 
+
+CONFIG\_PARAMETER\_NAME 
+
+char CONFIG\_PARAMETER\_NAME(N\_CONFIG\_PARAM, STRING128)
+
+CONFIG\_PARAMETER\_NAME:long\_name = ”Name of configuration parameter”; 
+
+CONFIG\_PARAMETER\_NAME:\_FillValue = " "; 
+
+Name of the configuration parameter; mission settings.
+
+See reference tables 18a and 18b (https\://vocab.nerc.ac.uk/collection/R18/) for standard configuration parameter names.
+
+Example : 
+
+“CONFIG\_ParkPressure\_dbar” 
+
+CONFIG\_PARAMETER\_VALUE 
+
+float (for standard Argo floats) or can use double if applicable (e.g. BGC-Argo float) CONFIG\_PARAMETER\_VALUE(N\_MISSIONS, N\_CONFIG\_PARAM)
+
+CONFIG\_ PARAMETER\_VALUE:long\_name = ”Value of configuration parameter”;
+
+CONFIG\_ PARAMETER\_VALUE:\_FillValue = 99999.f; 
+
+Value of the configuration parameter; mission settings.
+
+Example : 1500 
+
+CONFIG\_MISSION\_NUMBER 
+
+int CONFIG\_MISSION\_NUMBER(N\_MISSIONS);
+
+CONFIG\_MISSION\_NUMBER:long\_name = "Unique number denoting the missions performed by the float";
+
+CONFIG\_MISSION\_NUMBER:conventions = "1...N, 1 : first complete mission";
+
+CONFIG\_MISSION\_NUMBER:\_FillValue = 99999; 
+
+Unique number of the mission to which this profile belongs.
+
+See note on floats with multiple configurations §2.4.6.1.
+
+The number 0 (zero) can be used to denote the float’s mission prelude, if it exists.
+
+CONFIG\_MISSION\_COMMENT 
+
+char CONFIG\_MISSION\_COMMENT(N\_MISSIONS, STRING256)
+
+CONFIG\_MISSION\_COMMENT:long\_name = ”Comment on configuration”;
+
+CONFIG\_MISSION\_COMMENT:\_FillValue = " ";
+
+Comment on this configuration mission.
+
+Example : “This mission follows a 1000 dbar meddie during parking” 
+
+The mission settings or parameter values are recorded as numbers. In this scheme, strings will need to be converted to numbers and will require measurement codes for the relevant parameters. The numeric codes for the affected parameters are defined in the “Explanation” section of the Configuration parameter names table (please see reference tables 18a and 18b - https\://vocab.nerc.ac.uk/collection/R18/). Only a few existing parameters are affected. If new floats with new configuration parameters (as strings) are introduced, then equivalent numeric flags must also be added to the table by the proposer of the new configuration parameter. 
+
+All parameter names are standardized and are available in the online reference tables 18a and 18b: http\://www\.argodatamgt.org/Documentation
+
+There are two configuration tables: one for Core Argo configuration parameters (reference table 18a) and one for floats with BGC-Argo sensors (reference table 18b). If you are a new user or have only standard Argo floats you should first check table 18a which has the basic set of configuration parameters that caters for most of the standard float types. If your float carries additional BGC-Argo sensors you will also need to refer to table 18b. Please send requests for new configuration parameter names for Core Argo floats to John Gilson (jgilson\@ucsd.edu). Requests for configuration parameter names for BGC-Argo variables should be sent to Catherine Schmechtig (catherine.schmechtig\@imev-mer.fr).
+
+The mission is used to record information that changes from cycle to cycle, for instance when a float changes its mission from 3 shallow profiles to 1 deep profile. The shallow and deep profiles will have different mission numbers. The value of the mission number is recorded in CONFIG\_MISSION\_NUMBER.
+
+Configuration parameters are separated into two types. 
+
+1\). Pre-deployment or launch configuration parameters that are the ‘configured’ start settings of the float and the initial mission configuration parameters for the first cycle. These parameters with the dimension N\_LAUNCH\_CONFIG\_PARAM, are stored in LAUNCH\_CONFIG\_PARAMETER\_NAME and LAUNCH\_CONFIG\_PARAMETER\_VALUE.
+
+2\). After deployment,configuration parameters define float behavior for each mission, including all applicable mandatory and highly-desirable parameters and any other parameters that change during the life of the float are reported as mission settings. These parameters with the dimension N\_CONFIG\_PARAM, need to be reported in the CONFIG\_PARAMETER\_NAME and CONFIG\_PARAMETER\_VALUE variables. The mission parameters for the first cycle must also be reported in the launch section. 
+
+The parameter CONFIG\_MISSION \_COMMENT can be used to store information about the mission or whether the mission was set pre-deployment or transmitted by the float (free form field). 
+
+2.4.6.1 Note on floats with multiple missions
+
+Typically, an Argo float configuration is valid for the whole life of the float. Each cycle is repeated with the same behavior (one configuration). 
+
+However, some floats may be configured to change their behavior from cycle to cycle (multiple configurations). 
+
+When there is only one configuration, CONFIG\_MISSION\_NUMBER is set to 1: all the cycles are programmed to be the same. Note that in this case; floats will still have a set of pre-deployment/launch configuration information that contains all the start settings for the float. So for a float with one basic mission, it will have launch configuration parameters and mission 1 configuration parameters (typically just the mission critical subset).
+
+When there are multiple configurations, the configuration from the first cycle has CONFIG\_MISSION\_NUMBER set to 1. Each subsequent configuration change will be recorded as additional entries in CONFIG\_MISSION\_NUMBER, with the value increased sequentially by the integer one. All variables from mission 1 must be repeated in subsequent missions. Floats with multiple configurations still record pre-deployment or launch information in: LAUNCH\_CONFIG\_PARAMETER\_NAME and LAUNCH\_CONFIG\_PARAMETER\_VALUE.  
+
+Argo best practice, and our recommendation to users, is a minimum of configuration missions.  If there is a change to one or more of the configuration parameters that does not repeat a previous configuration then a new mission number must be used. If the configuration parameters change, but mirror a previous mission then that mission number should be re-used. In extremely complex cases where mission changes are unclear, then a new mission number can be used for each cycle. Users should be aware that the metafile will need to be rewritten each time a new mission number is added.
+
+Some floats conduct a pressure-activated test mission after deployment (i.e. some SOLO floats) where they essentially ‘wake-up’ at depth and return to the surface. This is not a normal mission in any way, and the floats do not use their configuration parameters in this first ‘test’ cycle. In this case you would assign a fill value to CONFIG\_MISSION\_NUMBER.
+
+2.4.6.2 Determining which mission applies to a particular float cycle
+
+Users are able to determine which mission applies to each cycle by looking at the CONFIG\_MISSION\_NUMBER(N\_CYCLE) variable in the trajectory files, and the CONFIG\_MISSION\_NUMBER(N\_PROF) variable in the profile files.
+
+See section “§2.2.4 General information for each profile” and “§2.3.6 N\_CYCLE dimension variable group”).
+
+Example
+
+In the above example, there are 3 different float behaviors to record, (with park depth varying between 1500, 2000 and 1700 db). Each of these new behaviors requires a new mission number. This is in addition to the pre-deployment or launch information: 
+
+CONFIG\_PARAMETER\_NAME = “CONFIG\_ParkPressure\_dbar” 
+
+CONFIG\_PARAMETER\_VALUE = "1500" 
+
+CONFIG\_MISSION\_NUMBER = 1 
+
+CONFIG\_PARAMETER\_NAME = “CONFIG\_ParkPressure\_dbar” 
+
+CONFIG\_PARAMETER\_VALUE = "2000" 
+
+CONFIG\_MISSION\_NUMBER = 2 
+
+CONFIG\_PARAMETER\_NAME = “CONFIG \_ParkPressure\_dbar” 
+
+CONFIG\_PARAMETER\_VALUE = "1700" 
+
+CONFIG\_MISSION\_NUMBER = 3 
+
+A further example for a float with multiple missions and changes to multiple configuration parameters is shown below. 
+
+In this example there are 11 pre-deployment/launch configuration parameters for this float which are set before launch. Of this set, the last four are mission critical parameters that change and control float behavior; these  are reported in subsequent missions (missions 1 to n). For this float, the depth at which the float parks, changes in missions 2 and 3 (with changes in two configuration parameters). For mission 4, the park depth stays the same as for mission 3 but now the park sampling period has changed. For mission 5, the park sampling period changes again. All configuration parameters from mission 1 must still be reported for each subsequent mission, even those that do not change.
+
+ 
+
+Configuration parameter names from reference table 18a or 18b
+
+LAUNCH\_CONFIG\_PARAMETER\_NAME(N\_LAUNCH\_CONFIG\_PARAM,STRING128)
+
+\* N\_LAUNCH\_CONFIG\_PARAM = int value  
+
+Pre-deployment or launch configuration settings
+
+LAUNCH\_CONFIG\_PARAMETER\_VALUE(N\_LAUNCH\_CONFIG\_PARAM)
+
+\* float or double depending on data type 
+
+CONFIG\_PistonPositionPressureActivation\_COUNT 
+
+100 
+
+CONFIG\_Direction\_NUMBER 
+
+1\* 
+
+CONFIG\_AscentToSurfaceTimeout\_hours 
+
+3 
+
+CONFIG\_MissionPreludeTime\_hours 
+
+3 
+
+CONFIG\_MeasureBattery\_LOGICAL 
+
+0\*\* 
+
+CONFIG\_IceDetection\_DegC 
+
+-1.78 
+
+CONFIG\_CycleTime\_hours 
+
+240 
+
+CONFIG\_ParkPressure\_dbar 
+
+1000 
+
+CONFIG\_ProfilePressure\_dbar 
+
+2000 
+
+CONFIG\_ParkSamplingPeriod\_hours 
+
+10 
+
+CONFIG\_PistonPark\_COUNT 
+
+111 
+
+… 
+
+… 
+
+ (\*): 1 = Ascending, 2 = Descending
+
+(\*\*): 0 = No, 1 = Yes
+
+Configuration parameter names (from reference table 18a or 18b)
+
+CONFIG\_PARAMETER\_NAME(N\_CONFIG\_PARAM,STRING128)
+
+Mission configuration settings at sea
+
+CONFIG\_PARAMETER\_VALUE(N\_MISSIONS,N\_CONFIG\_PARAM)
+
+CONFIG\_MISSION\_NUMBER 
+
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+… 
+
+CONFIG\_ParkPressure\_dbar 
+
+1000 
+
+1500 
+
+1700 
+
+1700 
+
+1000 
+
+… 
+
+CONFIG\_ProfilePressure\_dbar
+
+2000 
+
+2000 
+
+2000 
+
+2000 
+
+2000 
+
+… 
+
+CONFIG\_ParkSamplingPeriod\_hours 
+
+10
+
+10 
+
+10 
+
+15 
+
+17
+
+… 
+
+CONFIG\_PistonPark\_COUNT 
+
+111 
+
+75 
+
+53 
+
+53 
+
+45 
+
+… 
+
+...
+
+…
+
+…
+
+...
+
+…
+
+…
+
+…
+
+2.4.6.3 Highly desirable configuration parameters
+
+Highly desirable configuration parameters should be correctly filled according to the following table.
+
+Highly desirable configuration parameter 
+
+Format 
+
+Example 
+
+CONFIG\_CycleTime\_hours
+
+CONFIG\_CycleTime\_days
+
+Duration of a cycle
+
+240
+
+CONFIG\_ParkPressure\_dbar
+
+Park pressure
+
+1900
+
+CONFIG\_ProfilePressure\_dbar
+
+Profile pressure
+
+2000
+
+2.4.7 Float sensor and parameter information 
+
+A sensor is a device used to measure a physical parameter. Sensor outputs are provided in parameter counts and need to be converted into parameter physical units using a calibration equation. This conversion can be done onboard the float or during the decoding process.
+
+A parameter is a measurement of a physical phenomenon; it can be provided by a sensor (in sensor counts or in physical units) or computed (derived) from other parameters.
+
+A sensor can measure 1 to N parameter(s). A parameter can be measured by 1 or N sensor(s).
+
+2.4.7.1 Float sensor information 
+
+This section contains information about the sensors of the profiler.
+
+A list of standardized Argo sensor names is given in reference table 25 (https\://vocab.nerc.ac.uk/collection/R25/). 
+
+Each ocean state variable to be recorded in an Argo profile or trajectory file, must be considered its own sensor in this context.  This is necessary to record the sensor serial numbers, etc.  Thus a CTD which records PRES, TEMP, and PSAL should be considered 3 separate sensors (CTD\_PRES, CTD\_TEMP, CTD\_CNDC respectively), as all 3 parameters are reported in the Argo profile and trajectory files.  In comparison, an OPTODE only has DOXY reported in Argo NetCDF files, thus it should be considered a single sensor (OXYGEN\_OPTODE or OXYGEN\_ELECTROCHEMICAL) even though the sensor also reports TEMP\_DOXY.  All intermediate variables that do not appear in the core Argo files, even though they may appear in the 'raw' form (i.e. in the BGC-Argo B-file), do not have to be listed as a separate sensor.  This is especially true if there is not a unique serial number for the sensor.
+
+Name 
+
+Definition 
+
+Comment 
+
+SENSOR 
+
+char SENSOR(N\_SENSOR, STRING32);
+
+SENSOR:long\_name = "Name of the sensor mounted on the float";
+
+SENSOR:conventions = "Argo reference table 25";
+
+SENSOR:\_FillValue = " "; 
+
+Names of the sensors mounted on the float
+
+Example: CTD\_PRES, CTD\_TEMP, CTD\_CNDC, OXYGEN\_OPTODE.
+
+Valid SENSOR are listed in reference table R25 (https\://vocab.nerc.ac.uk/collection/R25/).
+
+SENSOR\_MAKER
+
+char SENSOR\_MAKER(N\_SENSOR, STRING256);
+
+SENSOR\_MAKER:long\_name = "Name of the sensor manufacturer";
+
+SENSOR\_MAKER:conventions = "Argo reference table 26";
+
+SENSOR\_MAKER:\_FillValue = " ";
+
+Name of the manufacturer of the sensor.
+
+Example : DRUCK, SBE, AANDERAA.
+
+Valid SENSOR\_MAKER are listed in reference table R26 (https\://vocab.nerc.ac.uk/collection/R26/).
+
+SENSOR\_MODEL 
+
+char SENSOR\_MODEL(N\_SENSOR, STRING256);
+
+SENSOR\_MODEL:long\_name = "Type of sensor";
+
+SENSOR\_MODEL:conventions = "Argo reference table 27";
+
+SENSOR\_MODEL:\_FillValue = " "; 
+
+Model of sensor.
+
+Example: DRUCK, SBE41CP, AANDERAA\_OPTODE\_3930.
+
+Valid SENSOR\_MODEL are listed in reference table R27 (https\://vocab.nerc.ac.uk/collection/R27/)  
+
+SENSOR\_SERIAL\_NO 
+
+char SENSOR\_SERIAL\_NO(N\_SENSOR, STRING16);
+
+SENSOR\_SERIAL\_NO:long\_name = "Serial number of the sensor";
+
+SENSOR\_SERIAL\_NO:\_FillValue = " "; 
+
+Serial number of the sensor.
+
+Example : 2646 036 073
+
+SENSOR\_FIRMWARE\_VERSION
+
+char SENSOR\_FIRMWARE\_VERSION (N\_SENSOR, STRING32)
+
+SENSOR\_FIRMWARE\_VERSION :long\_name = "Firmware version of the sensor";
+
+SENSOR\_FIRMWARE\_VERSION :\_FillValue = " ";
+
+This is an optional variable.
+
+Firmware version of the sensor.
+
+Example: 1.141
+
+2.4.7.1.1 Float sensor status within Argo program
+
+A sensor can have an “operational Argo” status, an “Argo pilot” status, or be designated as “experimental”.
+
+If the sensor is an “operational Argo”, it must be registered in the R25 sensor table, and its data must be processed according to the cookbook and QC manual for sensor-derived parameters.
+
+If the sensor is an Argo pilot, it must be registered in the R25 sensor table. As a pilot, its parameters have not yet been described in a cookbook or QC manual. Its data is distributed through the regular data system.
+
+If the sensor is experimental: no R25 declaration, no cookbook, no manual. The sensor should be declared in the SPECIAL\_FEATURES variable of the metadata file.
+
+Example of the experimental RAMSES TRIOS hyperspectral radiometry: 7900563\_meta.nc
+
+SPECIAL\_FEATURES = "THIS FLOAT HAS AUXILIARY SENSORS FOR HYPERSPECTRAL RADIOMETRIC MEASUREMENT."
+
+2.4.7.2 Float parameter information 
+
+This section contains information about the parameters measured by the profiler or derived from profiler measurements.
+
+Name 
+
+Definition 
+
+Comment 
+
+PARAMETER 
+
+char PARAMETER(N\_PARAM, STRING64);
+
+PARAMETER:long\_name = "Name of parameter computed from float measurements”;
+
+PARAMETER:conventions = "Argo reference table 3";
+
+PARAMETER:\_FillValue = " ";
+
+Names of the parameters measured by float sensors or derived from float measurements.
+
+The parameter names are listed in reference table 3 (https\://vocab.nerc.ac.uk/collection/R03/).
+
+Examples :
+
+TEMP, PSAL, CNDC
+
+TEMP : temperature in Celsius
+
+PSAL : practical salinity in psu
+
+CNDC : conductivity in mhos/m 
+
+PARAMETER\_SENSOR
+
+char PARAMETER\_SENSOR(N\_PARAM, STRING128);
+
+PARAMETER:long\_name = "Name of the sensor that measures this parameter”;
+
+PARAMETER:conventions = "Argo reference table 25";
+
+PARAMETER:\_FillValue = " ";
+
+Names of the sensors that measured the float parameters.
+
+See Argo reference table 25 (https\://vocab.nerc.ac.uk/collection/R25/).
+
+Example: CTD\_PRES, CTD\_TEMP, CTD\_CNDC, OXYGEN\_OPTODE.
+
+PARAMETER\_UNITS
+
+char PARAMETER\_UNITS(N\_PARAM, STRING32);
+
+PARAMETER\_UNITS:long\_name = "Units of accuracy and resolution of the parameter";
+
+PARAMETER\_UNITS:\_FillValue = " ";
+
+Units of accuracy and resolution of the parameter.
+
+Example : psu 
+
+PARAMETER\_ACCURACY 
+
+char PARAMETER\_ACCURACY(N\_PARAM, STRING32);
+
+PARAMETER\_ACCURACY:long\_name = "Accuracy of the parameter";
+
+PARAMETER\_ACCURACY:\_FillValue = " ";
+
+Accuracy of the parameter.
+
+Example: "8 micromole/l or 5%"
+
+PARAMETER\_RESOLUTION 
+
+char PARAMETER\_RESOLUTION(N\_PARAM, STRING32);
+
+PARAMETER\_RESOLUTION:long\_name = "Resolution of the parameter";
+
+PARAMETER\_RESOLUTION:\_FillValue =" ";
+
+Resolution of the parameter returned by the sensor (note that this is not necessarily equivalent to the resolution of the parameter returned by the float through telemetry).
+
+Example : 0.001 micromole/l 
+
+2.4.8 Float calibration information 
+
+This section contains information about the calibration of the profiler. The calibration described in this section is an instrumental calibration. The delayed mode calibration, based on a data analysis, is described in the profile format.
+
+The PREDEPLOYMENT\_CALIB\_\* parameters in the table below link to the PARAMETER variable listed in 1.1.7.2. It is critical that these are ordered in the same way so that calibration information is assigned to the correct parameter. 
+
+Name 
+
+Definition 
+
+Comment 
+
+PREDEPLOYMENT\_CALIB \_EQUATION 
+
+char PREDEPLOYMENT\_CALIB\_EQUATION(N\_PARAM, STRING1024);
+
+PREDEPLOYMENT\_CALIB\_EQUATION:long\_name = "Calibration equation for this parameter";
+
+PREDEPLOYMENT\_CALIB\_EQUATION:\_FillValue = " ";
+
+Calibration equation for this parameter.
+
+Example : 
+
+Tc = a1 \* T + a0
+
+PREDEPLOYMENT\_CALIB\_COEFFICIENT 
+
+char PREDEPLOYMENT\_CALIB\_COEFFICIENT(N\_PARAM, STRING1024); 
+
+PREDEPLOYMENT\_CALIB\_COEFFICIENT:long\_name = "Calibration coefficients for this equation";
+
+PREDEPLOYMENT\_CALIB\_COEFFICIENT:\_FillValue = " ";
+
+Calibration coefficients for this equation. 
+
+Example : 
+
+a1=0.99997 , a0=0.0021
+
+PREDEPLOYMENT\_CALIB\_COMMENT
+
+char PREDEPLOYMENT\_CALIB\_COMMENT(N\_PARAM, STRING1024);
+
+PREDEPLOYMENT\_CALIB\_COMMENT:long\_name = "Comment applying to this parameter calibration"; 
+
+PREDEPLOYMENT\_CALIB\_COMMENT:\_FillValue = " ";
+
+Comments applying to this parameter calibration. 
+
+2.4.9 Mandatory metadata parameters
+
+Part of the highly desirable metadata were made mandatory and are listed under this section.
+
+Mandatory metadata 
+
+Mandatory format 
+
+Example 
+
+BATTERY\_TYPE
+
+Manufacturer from reference table 29 (not yet on the NVS). Type to include “Alkaline” or “Lithium” or “Hybrid” and total voltage 
+
+BATTERY\_TYPE  = “Manufacturer Alkaline x V”  or “Manufacturer Lithium x V + Manufacturer Alkaline x V”;
+
+CONTROLLER\_BOARD\_SERIAL\_NO\_PRIMARY
+
+not empty
+
+CONTROLLER\_BOARD\_SERIAL\_NO\_PRIMARY = “4567”
+
+CONTROLLER\_BOARD\_TYPE\_PRIMARY
+
+first part of string: see reference table 28 (https\://vocab.nerc.ac.uk/collection/R28/). Remainder of string free text and contained in square brackets \[].
+
+CONTROLLER\_BOARD\_TYPE\_PRIMARY = “APF9 \[iridium version xyz]”;
+
+DAC\_FORMAT\_ID
+
+not empty
+
+DAC\_FORMAT\_ID = "11”;
+
+DATA\_CENTRE 
+
+see reference table 4 (https\://vocab.nerc.ac.uk/collection/R04/).
+
+DATA\_CENTRE = "AO”; 
+
+DATA\_TYPE 
+
+"Argo meta-data"; 
+
+DATA\_TYPE = "Argo meta-data"; 
+
+DATE\_CREATION  
+
+YYYYMMDDHHMISS 
+
+DATE\_CREATION = "20040210124422"; 
+
+DATE\_UPDATE  
+
+YYYYMMDDHHMISS 
+
+DATE\_UPDATE = "20040210124422"; 
+
+FIRMWARE\_VERSION
+
+if exists then not empty otherwise default value = "n/a"
+
+FIRMWARE\_ VERSION = “042606”;
+
+FLOAT\_SERIAL\_NO
+
+not empty
+
+FLOAT\_SERIAL\_NO = “1679”
+
+FORMAT\_VERSION
+
+"2.2"; 
+
+FORMAT\_VERSION = "2.2"; 
+
+HANDBOOK\_VERSION 
+
+"1.2"; 
+
+HANDBOOK\_VERSION = "1.2"; 
+
+LAUNCH\_DATE  
+
+YYYYMMDDHHMISS 
+
+LAUNCH\_DATE = "20010717000100"; 
+
+LAUNCH\_LATITUDE 
+
+not empty, -90 <= real <= 90 
+
+LAUNCH\_LATITUDE = -7.91400003433228; 
+
+LAUNCH\_LONGITUDE 
+
+not empty, -180 <= real <= 180 
+
+LAUNCH\_LONGITUDE = -179.828338623047; 
+
+LAUNCH\_QC 
+
+see reference table 2 (https\://vocab.nerc.ac.uk/collection/RR2/, https\://vocab.nerc.ac.uk/collection/RD2/).
+
+LAUNCH\_QC = "1"; 
+
+MANUAL\_ VERSION
+
+if exists then not empty otherwise default value = "n/a"
+
+MANUAL\_ VERSION = “004” or “041708”
+
+PI\_NAME
+
+not empty
+
+PI\_NAME = “Julia UITZ”;
+
+PLATFORM\_FAMILY
+
+see reference table 22 (https\://vocab.nerc.ac.uk/collection/R22/).
+
+PLATFORM\_FAMILY = “subsurface profiling float”, “ITP”, “POPS”;
+
+PLATFORM\_MAKER
+
+see reference table 24 (https\://vocab.nerc.ac.uk/collection/R24/). 
+
+PLATFORM\_MAKER = “Optimare”;
+
+PLATFORM\_NUMBER
+
+IIIII or A9IIIII
+
+PLATFORM\_NUMBER = "5900077";
+
+PLATFORM\_TYPE
+
+see reference table 23 (https\://vocab.nerc.ac.uk/collection/R23/).
+
+PLATFORM\_TYPE = “SOLO” or “APEX” or “PROVOR”; 
+
+POSITIONING\_SYSTEM 
+
+see reference table 9 (https\://vocab.nerc.ac.uk/collection/R09/).
+
+POSITIONING\_SYSTEM = "ARGOS"; 
+
+PREDEPLOYMENT\_CALIB\_COEFFICIENT
+
+if exists then not empty otherwise default value = "n/a"
+
+PREDEPLOYMENT\_CALIB\_COEFFICIENT  = “ser# = 3016 temperature coeffs: A0 =  -0.0000 A1 =   0.0003 A2 =  -0.0000 A3 =   0.0000”;
+
+PREDEPLOYMENT\_CALIB\_EQUATION
+
+if exists then not empty otherwise default value = "n/a"
+
+PREDEPLOYMENT\_CALIB\_EQUATION = “Temperature ITS-90 = 1/ { a0 + a1\[lambda nu (n)] + a2 \[lambda nu^2 (n)] + a3 \[lambda nu^3 (n)]} - 273.15 (deg C)”;
+
+PTT 
+
+if exists then not empty otherwise default value = "n/a"
+
+PTT = "23978"; 
+
+SENSOR
+
+see reference table 25 (https\://vocab.nerc.ac.uk/collection/R25/).
+
+SENSOR = “CTD\_TEMP”, “CTD\_PRES”, “CTD\_CNDC”, “OXYGEN\_OPTODE”;
+
+SENSOR\_MAKER
+
+see reference table 26 (https\://vocab.nerc.ac.uk/collection/R26/).
+
+SENSOR\_MAKER = “SEABIRD”;
+
+SENSOR\_MODEL
+
+see reference table 27 (https\://vocab.nerc.ac.uk/collection/R27/).
+
+SENSOR\_MODEL = “SBE41”
+
+SENSOR\_SERIAL\_NO
+
+not empty
+
+SENSOR\_SERIAL\_NO = “6785”;
+
+PARAMETER
+
+not empty, see reference table 3  (https\://vocab.nerc.ac.uk/collection/R03/).
+
+PARAMETER = “TEMP”, “PRES”, ”CNDC”;
+
+PARAMETER\_UNITS
+
+not empty
+
+PARAMETER \_UNITS = “degree\_Celsius”, “decibar”, “mhos/m”;
+
+PARAMETER\_SENSOR
+
+not empty
+
+PARAMETER\_SENSOR = “CTD\_TEMP”, “OXYGEN\_OPTODE”;
+
+STANDARD\_FORMAT\_ID
+
+reference table available online https\://docs.google.com/spreadsheets/d/16iTji2i9tLh2PfiiMItfhaQybQB1NLAhj4s0mDML5yY/edit#gid=9
+
+STANDARD\_FORMAT\_ID = “1010151”;
+
+TRANS\_FREQUENCY
+
+if exists then not empty otherwise default value = "n/a"
+
+TRANS\_FREQUENCY = “1/44”;
+
+TRANS\_SYSTEM 
+
+see reference table 10 (https\://vocab.nerc.ac.uk/collection/R10/).
+
+TRANS\_SYSTEM = "ARGOS"; 
+
+TRANS\_SYSTEM\_ID 
+
+If exists not empty, otherwise = “n/a”
+
+TRANS\_SYSTEM\_ID = "14281"; 
+
+WMO\_INST\_TYPE
+
+not empty
+
+WMO\_INST\_TYPE = “846”;
+
+
+
+
+
+
 
 ## Argo trajectory format version 3.2
 Argo trajectory files contain all received Argos and GPS locations of Argo floats. The trajectory file also contains cycle timing information important for making velocity calculations. These times may come directly from the float in real time, from calculations based on float information in real time, from the satellite system in real time, or from estimations done in delayed mode.
