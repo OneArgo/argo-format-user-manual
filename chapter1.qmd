@@ -26,7 +26,7 @@ Argo welcomes users to ask questions and report problems to the contact addresse
 Argo data are continuously managed; the user should be aware that after he downloaded data, those data may have been updated on the Argo data server.
 
 ## Further information sources and contact information
-Argo website: http://www.argo.net/ 
+Argo website: https://argo.ucsd.edu 
 If you detect any problem in the Argo dataset, please give us your feedback via support@argo.net
 
 ## Argo program, data management context
