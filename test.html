@@ -46,8 +46,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>aaa</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 40%">
+<col style="width: 34%">
+</colgroup>
 <thead>
 <tr class="header">
 <th><strong>Name</strong></th>
@@ -57,139 +61,24 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td>PLATFORM_NUMBER</td>
-<td>char PLATFORM_NUMBER(N_PROF, STRING8);<br>PLATFORM_NUMBER:long_name = “Float unique identifier”;<br>PLATFORM_NUMBER:conventions = “WMO float identifier : A9IIIII”;<br>PLATFORM_NUMBER:_FillValue = ” “;<br></td>
-<td>WMO float identifier.WMO is the World Meteorological Organization.This platform number is unique.Example&nbsp;: 6900045</td>
+<td>JULD_CALIB_EQUATION</td>
+<td>char JULD_CALIB_EQUATION(N_CALIB_JULD, STRING256);<br>JULD_CALIB_EQUATION:long_name = “Calibration equation for JULD”;<br>JULD_CALIB_EQUATION:_FillValue = ” “;<br></td>
+<td>Calibration equation applied to JULD. Example: JULD_ADJUSTED = a1*JULD + a0</td>
 </tr>
 <tr class="even">
-<td>PROJECT_NAME</td>
-<td>char PROJECT_NAME(N_PROF, STRING64);<br>PROJECT_NAME:long_name = “Name of the project”;<br>PROJECT_NAME:_FillValue = ” “;<br></td>
-<td>Name of the project which operates the profiling float that performed the profile.Example&nbsp;: “GYROSCOPE” (EU project for ARGO program)</td>
+<td>JULD_CALIB_COEFFICIENT</td>
+<td>char JULD_CALIB_COEFFICIENT(N_CALIB_JULD, STRING256);<br>JULD_CALIB_COEFFICIENT:long_name = “Calibration coefficients for JULD equation”;<br>JULD_CALIB_COEFFICIENT:_FillValue = ” “;<br></td>
+<td>Calibration coefficients for this equation. Example: a1=0.99997, a0=0.0021</td>
 </tr>
 <tr class="odd">
-<td>PI_NAME</td>
-<td>char PI_NAME (N_PROF, STRING64);<br>PI_NAME:long_name = “Name of the principal investigator”;<br>PI_NAME:_FillValue = ” “;<br></td>
-<td>Name of the principal investigator responsible for the profiling float. Example: “Julia UITZ”.Valid PI names are listed in reference table R40 ( <a href="https://vocab.nerc.ac.uk/collectionsearch_nvs/R40/">https://vocab.nerc.ac.uk/collection/R40/</a>). Multiple names can be concatenated, separated by commas.</td>
+<td>JULD_CALIB_COMMENT</td>
+<td>char JULD_CALIB_COMMENT(N_CALIB_JULD, STRING256);<br>JULD_CALIB_COMMENT:long_name = “Comment applying to JULD calibration”;<br>JULD_CALIB_COMMENT:_FillValue = ” “;<br></td>
+<td>Comment about this calibration. Example: “Float times have been linearly corrected from float clock offset (reported in CLOCK_OFFSET(N_CYCLE)).”</td>
 </tr>
 <tr class="even">
-<td>STATION_PARAMETERS</td>
-<td>char STATION_PARAMETERS(N_PROF, N_PARAM, STRING16);<br>STATION_PARAMETERS:long_name = “List of available parameters for the station”;<br>STATION_PARAMETERS:conventions = “Argo reference table 3”;<br>STATION_PARAMETERS:_FillValue = ” “;<br></td>
-<td>List of parameters contained in this profile.The parameter names are listed in reference table 3 (https://vocab.nerc.ac.uk/collection/R03/).Examples&nbsp;: TEMP, PSAL, CNDCTEMP&nbsp;: temperaturePSAL&nbsp;: practical salinityCNDC&nbsp;: conductivity</td>
-</tr>
-<tr class="odd">
-<td>CYCLE_NUMBER</td>
-<td>int CYCLE_NUMBER(N_PROF);<br>CYCLE_NUMBER:long_name = “Float cycle number”;<br>CYCLE_NUMBER:conventions = “0…N, 0 : launch cycle (if exists), 1 : first complete cycle”;<br>CYCLE_NUMBER:_FillValue = 99999;<br></td>
-<td>Float cycle number.See §1.6: float cycle definition.</td>
-</tr>
-<tr class="even">
-<td>DIRECTION</td>
-<td>char DIRECTION(N_PROF);<br>DIRECTION:long_name = “Direction of the station profiles”;<br>DIRECTION:conventions = “A: ascending profiles, D: descending profiles”;<br>DIRECTION:_FillValue = ” “;<br></td>
-<td>Type of profile on which measurement occurs.A&nbsp;: ascending profileD&nbsp;: descending profile</td>
-</tr>
-<tr class="odd">
-<td>DATA_CENTRE</td>
-<td>char DATA_CENTRE(N_PROF, STRING2);<br>DATA_CENTRE:long_name = “Data centre in charge of float data processing”;<br>DATA_CENTRE:conventions = “Argo reference table 4”;<br>DATA_CENTRE:_FillValue = ” “;<br></td>
-<td>Code for the data centre in charge of the float data management.The data centre codes are described in the reference table 4 (https://vocab.nerc.ac.uk/collection/R04/).Example&nbsp;: “ME” for MEDS</td>
-</tr>
-<tr class="even">
-<td>DC_REFERENCE</td>
-<td>char DC_REFERENCE(N_PROF, STRING32);<br>DC_REFERENCE:long_name = “Station unique identifier in data centre”;<br>DC_REFERENCE:conventions = “Data centre convention”;<br>DC_REFERENCE:_FillValue = ” “;<br></td>
-<td>Unique identifier of the profile in the data centre.Data centres may have different identifier schemes.DC_REFERENCE is therefore not unique across data centres.</td>
-</tr>
-<tr class="odd">
-<td>DATA_STATE_INDICATOR</td>
-<td>char DATA_STATE_INDICATOR(N_PROF, STRING4);<br>DATA_STATE_INDICATOR:long_name = “Degree of processing the data have passed through”;<br>DATA_STATE_INDICATOR:conventions = “Argo reference table 6”;<br>DATA_STATE_INDICATOR:_FillValue = ” “;<br></td>
-<td>Degree of processing the data has passed through.The data state indicator is described in the reference table 6 (https://vocab.nerc.ac.uk/collection/R06/).</td>
-</tr>
-<tr class="even">
-<td>DATA_MODE</td>
-<td>char DATA_MODE(N_PROF);<br>DATA_MODE:long_name = “Delayed mode or real time data”;<br>DATA_MODE:conventions = “R : real time;<br> D : delayed mode;<br> A : real time with adjustment”;<br>DATA_MODE:_FillValue = ” “;<br></td>
-<td>Indicates if the profile contains real time, delayed mode or adjusted data.R&nbsp;: real time dataD&nbsp;: delayed mode dataA : real time data with adjusted values</td>
-</tr>
-<tr class="odd">
-<td>PLATFORM_TYPE</td>
-<td>char PLATFORM_TYPE(N_PROF, STRING32);<br>PLATFORM_TYPE:long_name = “Type of float”;<br>PLATFORM_TYPE:conventions = “Argo reference table 23”;<br>PLATFORM_TYPE:_FillValue = ” “;<br>&nbsp;</td>
-<td>Type of float listed in reference table 23 (https://vocab.nerc.ac.uk/collection/R23/).Example: SOLO, APEX, PROVOR, ARVOR, NINJA</td>
-</tr>
-<tr class="even">
-<td>FLOAT_SERIAL_NO</td>
-<td>char FLOAT_SERIAL_NO(N_PROF, STRING32);<br>FLOAT_SERIAL_NO:long_name = “Serial number of the float”;<br>FLOAT_SERIAL_NO:_FillValue = ” “;<br></td>
-<td>Serial number of the float.Example 1679</td>
-</tr>
-<tr class="odd">
-<td>FIRMWARE_VERSION</td>
-<td>char FIRMWARE_VERSION(N_PROF, STRING64);<br>FIRMWARE_VERSION:long_name = “Instrument firmware version”;<br>FIRMWARE_VERSION:_FillValue = ” “;<br></td>
-<td>Firmware version of the float.Example : “013108”The dimension STRING32 instead of STRING64 remains accepted.</td>
-</tr>
-<tr class="even">
-<td>WMO_INST_TYPE</td>
-<td>char WMO_INST_TYPE(N_PROF, STRING4);<br>WMO_INST_TYPE:long_name = “Coded instrument type”;<br>WMO_INST_TYPE:conventions = “Argo reference table 8”;<br>WMO_INST_TYPE:_FillValue = ” “;<br></td>
-<td>Instrument type from WMO code table 1770.A subset of WMO table 1770 is documented in the reference table 8 (https://vocab.nerc.ac.uk/collection/R08/).Example&nbsp;:&nbsp;846 : Webb Research float, Seabird sensor</td>
-</tr>
-<tr class="odd">
-<td>JULD</td>
-<td>double JULD(N_PROF);<br>JULD:long_name = “Julian day (UTC) of the station relative to REFERENCE_DATE_TIME”;<br>JULD:standard_name = “time”;<br>JULD:units = “days since 1950-01-01 00:00:00 UTC”;<br>JULD:conventions = “Relative julian days with decimal part (as parts of day)”;<br>JULD:resolution = X;<br>JULD:_FillValue = 999999.;<br>JULD:axis = “T”;<br></td>
-<td>Julian day of the profile.The integer part represents the day, the decimal part represents the time of the profile.Date and time are in Universal Time.The Julian day is relative to REFERENCE_DATE_TIME.Example&nbsp;:18833.8013889885&nbsp;: July 25 2001 19:14:00</td>
-</tr>
-<tr class="even">
-<td>JULD_QC</td>
-<td>char JULD_QC(N_PROF);<br>JULD_QC:long_name = “Quality on date and time”;<br>JULD_QC:conventions = “Argo reference table 2”;<br>JULD_QC:_FillValue = ” “;<br></td>
-<td>Quality flag on JULD date and time.The flag scale is described in the reference tables 2 (https://vocab.nerc.ac.uk/collection/RR2/ for real time and https://vocab.nerc.ac.uk/collection/RD2/ for delayed mode).Example&nbsp;:1: the date and time seems correct.</td>
-</tr>
-<tr class="odd">
-<td>JULD_LOCATION</td>
-<td>double JULD_LOCATION(N_PROF);<br>JULD_LOCATION:long_name = “Julian day (UTC) of the location relative to REFERENCE_DATE_TIME”;<br>JULD_LOCATION:units = “days since 1950-01-01 00:00:00 UTC”;<br>JULD_LOCATION:conventions = “Relative julian days with decimal part (as parts of day)”;<br>JULD_LOCATION:resolution = X;<br>JULD_LOCATION:_FillValue = 999999.;<br></td>
-<td>Julian day of the location of the profile.The integer part represents the day, the decimal part represents the time of the profile.Date and time are in Universal Time.The Julian day is relative to REFERENCE_DATE_TIME.Example&nbsp;:18833.8013889885&nbsp;: July 25 2001 19:14:00</td>
-</tr>
-<tr class="even">
-<td>LATITUDE</td>
-<td>double LATITUDE(N_PROF);<br>LATITUDE:long_name = “Latitude of the station, best estimate”;<br>LATITUDE:standard_name = “latitude”;<br>LATITUDE:units = “degree_north”;<br>LATITUDE:_FillValue = 99999.;<br>LATITUDE:valid_min = -90.;<br>LATITUDE:valid_max = 90.;<br>LATITUDE:axis = “Y”;<br></td>
-<td>Latitude of the profile.Unit&nbsp;: degree northThis field contains the best estimated latitude.The latitude value may be improved in delayed mode.The measured locations of the float are located in the trajectory file.Example&nbsp;: 44.4991&nbsp;: 44° 29’ 56.76’’ N</td>
-</tr>
-<tr class="odd">
-<td>LONGITUDE</td>
-<td>double LONGITUDE(N_PROF);<br>LONGITUDE:long_name = “Longitude of the station, best estimate”;<br>LONGITUDE:standard_name = “longitude”;<br>LONGITUDE:units = “degree_east”;<br>LONGITUDE:_FillValue = 99999.;<br>LONGITUDE:valid_min = -180.;<br>LONGITUDE:valid_max = 180.;<br>LONGITUDE:axis = “X”;<br></td>
-<td>Longitude of the profile.Unit&nbsp;: degree eastThis field contains the best estimated longitude.The longitude value may be improved in delayed mode.The measured locations of the float are located in the trajectory file.Example&nbsp;: 16.7222&nbsp;: 16° 43’ 19.92’’ E</td>
-</tr>
-<tr class="even">
-<td>POSITION_QC</td>
-<td>char POSITION_QC(N_PROF);<br>POSITION_QC:long_name = “Quality on position (latitude and longitude)”;<br>POSITION_QC:conventions = “Argo reference table 2”;<br>POSITION_QC:_FillValue = ” “;<br></td>
-<td>Quality flag on position.The flag on position is set according to (LATITUDE, LONGITUDE) quality.The flag scale is described in the reference tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2/" class="uri">https://vocab.nerc.ac.uk/collection/RR2/</a> for real time and <a href="https://vocab.nerc.ac.uk/collection/RD2/" class="uri">https://vocab.nerc.ac.uk/collection/RD2/</a> for delayed mode).Example: 1: position seems correct.</td>
-</tr>
-<tr class="odd">
-<td>POSITIONING_SYSTEM</td>
-<td>char POSITIONING_SYSTEM(N_PROF, STRING8);<br>POSITIONING_SYSTEM:long_name = “Positioning system”;<br>POSITIONING_SYSTEM:_FillValue = ” “;<br></td>
-<td>Name of the system in charge of positioning the float locations from reference table 9 (<a href="https://vocab.nerc.ac.uk/collection/R09/" class="uri">https://vocab.nerc.ac.uk/collection/R09/</a>).Examples&nbsp;: ARGOS</td>
-</tr>
-<tr class="even">
-<td>POSITION_ERROR_REPORTED</td>
-<td>float POSITION_ERROR_REPORTED(N_PROF);<br>POSITION_ERROR_REPORTED:long_name = “Position error reported by the positioning system”;<br>POSITION_ERROR_REPORTED:units = “meters”;<br>POSITION_ERROR_REPORTED:_FillValue = 99999.;<br></td>
-<td><strong>This is an optional variable.</strong>Position error reported by the positioning system.</td>
-</tr>
-<tr class="odd">
-<td>POSITION_ERROR_ESTIMATED</td>
-<td>float POSITION_ERROR_ESTIMATED(N_PROF);<br>POSITION_ERROR_ESTIMATED:long_name = “Position error estimated by the real-time or delayed-mode process”;<br>POSITION_ERROR_ESTIMATED:units = “meters”;<br>POSITION_ERROR_ESTIMATED:_FillValue = 99999.;<br></td>
-<td><strong>This is an optional variable.</strong> Position error estimated&nbsp; by the real-time or delayed-mode process.&nbsp;</td>
-</tr>
-<tr class="even">
-<td>POSITION_ERROR_ESTIMATED_COMMENT</td>
-<td>char POSITION_ERROR_ESTIMATED_COMMENT(N_PROF, STRING1024);<br>POSITION_ERROR_ESTIMATED_COMMENT:long_name = “Comment on the method used to determine POSITION_ERROR_ESTIMATED”;<br>POSITION_ERROR_ESTIMATED_COMMENT:_FillValue = ” “;<br></td>
-<td><strong>This is an optional variable.</strong>Comment on the method used to determine POSITION_ERROR_ESTIMATED.</td>
-</tr>
-<tr class="odd">
-<td>PROFILE_&lt;PARAM&gt;_QC</td>
-<td>char PROFILE_&lt;PARAM&gt;_QC(N_PROF);<br>PROFILE_&lt;PARAM&gt;_QC:long_name = “Global quality flag of &lt;PARAM&gt; profile”;<br>PROFILE_&lt;PARAM&gt;_QC:conventions = “Argo reference table 2a”;<br>PROFILE_&lt;PARAM&gt;_QC:_FillValue = ” “;<br></td>
-<td>Global quality flag on the PARAM profile.PARAM is among the STATION_PARAMETERS.The overall flag is set to indicate the percentage of good data in the profile as described in reference table 2a (<a href="https://vocab.nerc.ac.uk/collection/RP2/" class="uri">https://vocab.nerc.ac.uk/collection/RP2/</a>).Example&nbsp;:PROFILE_TEMP_QC = A : the temperature profile contains only good valuesPROFILE_PSAL_QC = C : the salinity profile contains 50% to 75% good values</td>
-</tr>
-<tr class="even">
-<td>VERTICAL_SAMPLING_SCHEME</td>
-<td>char VERTICAL_SAMPLING_SCHEME(N_PROF, STRING256);<br>VERTICAL_SAMPLING_SCHEME:long_name = “Vertical sampling scheme”;<br>VERTICAL_SAMPLING_SCHEME:conventions = “Argo reference table 16”;<br>VERTICAL_SAMPLING_SCHEME:_FillValue = ” “;<br></td>
-<td>Use the vertical sampling scheme to differentiate and identify profiles from a single-cycle with different vertical sampling schemes.See reference table 16 (<a href="https://vocab.nerc.ac.uk/collection/R16/" class="uri">https://vocab.nerc.ac.uk/collection/R16/</a>).</td>
-</tr>
-<tr class="odd">
-<td>CONFIG_MISSION_NUMBER</td>
-<td>int CONFIG_MISSION_NUMBER(N_PROF);<br>CONFIG_MISSION_NUMBER:long_name = ” Unique number denoting the missions performed by the float”;<br>CONFIG_MISSION_NUMBER:conventions = “1…N, 1 : first complete mission”;<br>CONFIG_MISSION_NUMBER:_FillValue = 99999;<br></td>
-<td>Unique number of the mission to which this profile belongs.See note on floats with multiple configurations §2.4.6.1.The number 0 (zero) can be used to denote the float’s mission prelude, if it exists.</td>
+<td>JULD_CALIB_DATE</td>
+<td>char JULD_CALIB_DATE(N_CALIB_JULD, DATE_TIME);<br>JULD_CALIB_DATE:long_name = “Date of JULD calibration”;<br>JULD_CALIB_DATE:conventions = “YYYYMMDDHHMISS”;<br>JULD_CALIB_DATE:_FillValue = ” “;<br></td>
+<td>Date of the calibration. Example: 20011217161700</td>
 </tr>
 </tbody>
 </table>
