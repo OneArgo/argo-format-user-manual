@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>test</title>
+<title>technical</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,16 +23,16 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="test_files/libs/clipboard/clipboard.min.js"></script>
-<script src="test_files/libs/quarto-html/quarto.js"></script>
-<script src="test_files/libs/quarto-html/popper.min.js"></script>
-<script src="test_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="test_files/libs/quarto-html/anchor.min.js"></script>
-<link href="test_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="test_files/libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="test_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="test_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="test_files/libs/bootstrap/bootstrap-5bdc1ec511977dd36301403cf8f4f68d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="technical_files/libs/clipboard/clipboard.min.js"></script>
+<script src="technical_files/libs/quarto-html/quarto.js"></script>
+<script src="technical_files/libs/quarto-html/popper.min.js"></script>
+<script src="technical_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="technical_files/libs/quarto-html/anchor.min.js"></script>
+<link href="technical_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="technical_files/libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="technical_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="technical_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="technical_files/libs/bootstrap/bootstrap-5bdc1ec511977dd36301403cf8f4f68d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -46,14 +46,62 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="b-argo-profile-format-additional-features" class="level2">
-<h2 class="anchored" data-anchor-id="b-argo-profile-format-additional-features">B-Argo profile format additional features</h2>
-<p>A B-Argo profile/trajectory file contains all the parameters from a float, except the core-Argo parameters temperature, salinity, conductivity (TEMP, PSAL, CNDC).<br>A float that performs only CTD measurements does not have B-Argo data files.To accommodate non-core parameters, a series of optional additions to core-Argo profile/trajectory formats are listed here.</p>
-<section id="pressure-axis-management-in-core-argo-and-b-argo-profile-files" class="level3">
-<h3 class="anchored" data-anchor-id="pressure-axis-management-in-core-argo-and-b-argo-profile-files">Pressure axis management in core-Argo and b-Argo profile files</h3>
-<p>This section contains information on pressure axis management for core-Argo and b-Argo profile and trajectory files.<br>The vertical pressure levels PRES is the simple and unambiguous link between the parameters in the core- and b- profiles.<br>The same PRES is recorded in the core-Argo and b-Argo profile files.PRES is the only parameter in Reference Table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/" class="uri">https://vocab.nerc.ac.uk/collection/R03/</a>) duplicated in core-Argo and b-Argo profile files.The adjusted pressure parameter PRES_ADJUSTED is only available in the core-Argo profile files.<br>
-The variables PROFILE_PRES_QC, PRES_QC, PRES_ADJUSTED and PRES_ADJUSTED_ERROR are not duplicated in the b-Argo profile files.Some single-cycle profile files will contain multiple profiles with different vertical sampling schemes (N_PROF &gt; 1).<br>In these cases, all parameters in the core-Argo and the b-Argo profile files will have the same N_PROF dimension, listed in the same order.<br>The same set of vertical pressure levels (PRES with N_PROF &gt; 1) is duplicated in the core-Argo and b-Argo profile files.<br>Other parameters (e.g.<br>TEMP, PSAL) that are not measured in all vertical sampling schemes will be filled with FillValue in the respective N_PROF dimension.Users are reminded that the profile with N_PROF = 1 is required to be the Primary sampling profile.<br>Please refer to Table 16 (<a href="https://vocab.nerc.ac.uk/collection/R16/" class="uri">https://vocab.nerc.ac.uk/collection/R16/</a>) for detailed descriptions of the various vertical sampling schemes.<br><strong>Example</strong>Suppose a hypothetical float carries a high-resolution CTD sensor and a low-resolution nitrate sensor.<br>In each single-cycle, this hypothetical float is configured to return a 2-dbar bin-averaged CTD profile to 1000 dbar with no corresponding nitrate measurements, and a discrete 250-dbar interval nitrate profile to 1000 dbar with no corresponding temperature and salinity measurements.<br>The parameters in the resulting core-Argo and b-Argo profile files are formatted as follows for the two profiles in each cycle:In the core-Argo profile file, <br> N_PROF = 2, N_LEVELS = 500.<br> PRES = [2, 4, 6, …………………………………1000];<br> = [250, 500, 750, 1000, FillValue, …………].<br> TEMP = [T2, T4, T6, ……………………….T1000];<br> = [FillValue, ………………………………..].<br> PSAL = [S2, S4, S6, ………………………..S1000];<br> = [FillValue, ………………………………..].<br> In the b-Argo profile file, <br> N_PROF = 2, N_LEVELS = 500.<br> PRES = [2, 4, 6, …………………………………1000];<br> = [250, 500, 750, 1000, FillValue, ………….].<br> NITRATE = [FillValue, ………………………………..];<br> = [N250, N500, N750, N1000, FillValue, …].<br> Other intermediate nitrate variables in the b-file are omitted in this example.</p>
+<section id="management-of-multi-dimensional-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="management-of-multi-dimensional-parameters">Management of multi-dimensional parameters</h3>
+<p>Observations are usually one dimension variables, such as temperature or salinity.<br>However, some sensors provide multi-dimensional variables.<br>
+For example, an optical sensor for Nitrate reports a spectrum of up to 41 values for each measurement, one per wavelength.<br><strong>When needed</strong>, an additional dimension is added to report the N sub-levels of spectrum observation performed on each level.<br>The associated PARAM_QC dimension remains as (N_PROF, N_LEVELS).* float &lt;PARAM&gt;(N_PROF, N_LEVELS, N_VALUES);<br></p>
+<ul>
+<li><p>char &lt;PARAM&gt;_QC(N_PROF, N_LEVELS);<br>Example of 60 measurements of “RAW_DOWNWELLING_IRRADIANCE” parameter performed at each 41 wavelengths of an individual profile.* NPROF = 1</p></li>
+<li><p>N_LEVELS = 60</p></li>
+<li><p>N_VALUES41 = 41The N_VALUES## dimension is used only when it is necessary: if there is more than one value for each level (N_VALUES &gt; 1) and the ## equals the number of values present for a given variable.<br>You can add more than one of these, with each variable referencing a different N_VALUES## if required.</p></li>
+</ul>
+<div class="line-block">– | – |<br>
+N_VALUES41 | N_VALUES41 = &lt;int value&gt;&nbsp;;<br> | Maximum number of parameter measurements sampled at a given pressure level.This dimension depends on the data set.Example&nbsp;: N_VALUES41 = 41 |</div>
+<p>To describe wavelengths of the sensor (41 in the example), an attribute of the variable called wave_length_nanometer provides the list&nbsp;double RAW_DOWNWELLING_IRRADIANCE(N_PROF, N_LEVELS, N_VALUES41) ;<br>RAW_DOWNWELLING_IRRADIANCE:long_name = “IRRADIANCE COUNTS FROM OCR SENSOR” ;<br>RAW_DOWNWELLING_IRRADIANCE:standard_name = “TBD” ;<br>RAW_DOWNWELLING_IRRADIANCE:_FillValue = 99999.<br>;<br>RAW_DOWNWELLING_IRRADIANCE:units = “counts” ;<br>RAW_DOWNWELLING_IRRADIANCE:valid_min = “TBD” ;<br>RAW_DOWNWELLING_IRRADIANCE:valid_max = “TBD” ;<br>RAW_DOWNWELLING_IRRADIANCE:C_format = “%10.0f” ;<br>RAW_DOWNWELLING_IRRADIANCE:FORTRAN_format = “F10.0” ;<br>RAW_DOWNWELLING_IRRADIANCE:resolution = 1.<br>;<br>RAW_DOWNWELLING_IRRADIANCE:wave_length_nanometer = “115 132 149 166 183 200 217 234 251 268 285 302 319 336 353 370 387 404 421 438 455 472 489 506 523 540 557 574 591 608 625 642 659 676 693 710 727 744 761 778 795” ;<br></p>
 </section>
+<section id="parameter-variable-type" class="level3">
+<h3 class="anchored" data-anchor-id="parameter-variable-type">Parameter variable type</h3>
+<p>Parameter values may be float or double.<br>Some sensors provide values that cannot be stored as float, but have to be stored as double.<br>In that case, a variable with the type “double” needs to be used instead of a “float” variable.<br>These parameters are precursors to calculated parameters.<br>They will not be adjusted or quality controlled (no record in history or calibration sections).<strong>Concerned variables</strong>Concerned variables can occur in profile and trajectory files are: &lt;PARAM&gt; and HISTORY_PREVIOUS_VALUE.Example: MTIME: Fractional day of the individual measurement relative to JULD of the station.</p>
+</section>
+<section id="parameter_data_mode" class="level3">
+<h3 class="anchored" data-anchor-id="parameter_data_mode">PARAMETER_DATA_MODE</h3>
+<p>In both the core- and b- profile files, the variable DATA_MODE(N_PROF) is not related to a specific parameter.<br>The value of DATA_MODE(N_PROF) is set to ‘D’ when adjusted values for one or more PARAM in each N_PROF become available.In b-Argo profile files, there are additional biogeochemical parameters which can receive delayed-mode adjustments at different times.<br>Therefore the variable PARAMETER_DATA_MODE(N_PROF, N_PARAM) is added to b-Argo profile files to indicate the data mode of each PARAM in each N_PROF.The adjusted section (&lt;PARAM&gt;_ADJUSTED, &lt;PARAM&gt;_ADJUSTED_QC and &lt;PARAM&gt;_ADJUSTED_ERROR) for each PARAM in each N_PROF should then be filled independently according to its PARAMETER_DATA_MODE.* For example, in a b-Argo profile file with DOXY and NITRATE, it is possible that PARAMETER_DATA_MODE = ’D’ for DOXY, and</p>
+<ul>
+<li><p>PARAMETER_DATA_MODE = ’R’ for NITRATE.In this case:* the adjusted section for DOXY should be filled with their adjusted values;<br></p></li>
+<li><p>the adjusted section for NITRATE should be filled with FillValues.</p></li>
+</ul>
+<div class="line-block">— | — |<br>
+PARAMETER_DATA_MODE | char PARAMETER_DATA_MODE(N_ PROF, N_PARAM);<br>PARAMETER_DATA_MODE:long_name = “Delayed mode or real time data”;<br>PARAMETER_DATA_MODE:conventions = “R : real time;<br> D : delayed mode;<br> A : real time with adjustment”;<br>PARAMETER_DATA_MODE:_FillValue = ” “;<br> | Describe the data mode of the individual parameter :R&nbsp;: real time dataD&nbsp;: delayed mode dataA : real time data with adjusted values |</div>
+</section>
+<section id="n_param-management-in-b-argo-profile-files" class="level3">
+<h3 class="anchored" data-anchor-id="n_param-management-in-b-argo-profile-files">N_PARAM management in b-Argo profile files</h3>
+<p>For floats that measure multiple biogeochemical parameters (N_PARAM &gt; 1) with multiple vertical sampling schemes (N_PROF &gt; 1), users are reminded that N_PARAM in the b-Argo profile files does not necessarily equal to the total count of all unique parameters in a single cycle.The definition of N_PARAM is the “Maximum number of parameters measured or calculated for a pressure sample.”The same definition applies when N_PROF &gt; 1.For example, a single-cycle b-Argo profile file has 3 vertical sampling schemes:* at N_PROF = 1, STATION_PARAMETERS = [PRES]: N_PARAM1 = 1;<br></p>
+<ul>
+<li><p>at N_PROF = 2, STATION_PARAMETERS = [PRES, DOXY, NITRATE]: N_PARAM2 = 3;<br></p></li>
+<li><p>at N_PROF = 3, STATION_PARAMETERS = [PRES, CHLA, BBP700, CDOM]: N_PARAM3 = 4.In this example, there are 6 unique parameters (PRES, DOXY, NITRATE, CHLA, BBP700, CDOM), but:* N_PARAM = maximum of (N_PARAM1, N_PARAM2, N_PARAM3) = 4.</p></li>
+</ul>
+</section>
+<section id="qc-and-adjusted-variables-in-b-argo-profile-files" class="level3">
+<h3 class="anchored" data-anchor-id="qc-and-adjusted-variables-in-b-argo-profile-files">QC and ADJUSTED variables in b-Argo profile files</h3>
+<p>In core-Argo profile files, where PARAM = PRES, TEMP, PSAL (and sometimes CNDC), each PARAM has 5 associated variables in qc and adjusted variables that are used to record real-time qc test results and delayed-mode adjustment information:PARAM_QC, PROFILE_PARAM_QC, PARAM_ADJUSTED, PARAM_ADJUSTED_QC, and PARAM_ADJUSTED_ERROR.In b-Argo profile files, PARAM can be classified into 3 groups:* (a).<br>B-Argo PARAM: these are the ocean state biogeochemical variables that will receive real-time qc tests and delayed-mode adjustments.<br>They are stored in both the b-files and the GDAC merged files.</p>
+<ul>
+<li><p>(b).<br>I-Argo PARAM: these are the intermediate biogeochemical variables that are only stored in the b-files.</p></li>
+<li><p>(c).<br>PRES: this is the stand-alone vertical index that links the core- and b-files.The following are some clarification on what qc and adjusted variables to include in the b-files:* (a).<br>B-Argo PARAM: All 5 associated qc and adjusted variables are mandatory for B-Argo PARAM in the b-files.</p></li>
+<li><p>(b).<br>I-Argo PARAM: PARAM_QC and PROFILE_PARAM_QC are mandatory for I-Argo PARAM.<br>PARAM_ADJUSTED, PARAM_ADJUSTED_QC and PARAM_ADJUSTED_ERROR are optional as a group;<br> they must either all be present or all be absent.</p></li>
+<li><p>(c).<br>PRES: the b-files do not contain any qc or adjusted variables for PRES.<br>(See Section 2.6.1.)</p></li>
+</ul>
+</section>
+<section id="parameter-and-parameter_sensor-need-expansion" class="level3">
+<h3 class="anchored" data-anchor-id="parameter-and-parameter_sensor-need-expansion">PARAMETER and PARAMETER_SENSOR need expansion</h3>
+<p>In B-Argo files text strings for PARAMETER and PARAMETER_SENSOR are extended from 16 to 64 or 128 characters to allow for more explicit names.<strong>Applicable variables</strong>In profile files: STATION_PARAMETERS, PARAMETER, HISTORY_PARAMETERIn trajectory files: TRAJECTORY_PARAMETERS, HISTORY_PARAMETERIn metadata files: PARAMETER size is set to 64, PARAMETER_SENSOR size is set to 128</p>
+</section>
+<section id="data_type-dimension-extended-from-16-to-32-characters" class="level3">
+<h3 class="anchored" data-anchor-id="data_type-dimension-extended-from-16-to-32-characters">DATA_TYPE dimension extended from 16 to 32 characters</h3>
+<p>B-Argo and Merged files DATA_TYPE dimension are extended from 16 to 32 characters.</p>
+</section>
+<section id="predeployment-calibration-variable-dimension" class="level3">
+<h3 class="anchored" data-anchor-id="predeployment-calibration-variable-dimension">Predeployment calibration variable dimension</h3>
+<p>The PREDEPLOYMENT_CALIB_EQUATION,&nbsp; PREDEPLOYMENT_CALIB_COEFFICIENT, PREDEPLOYMENT_CALIB_COMMENT string lengths are by default set to STRING1024.When necessary (such as for the Nitrate sensor), the string length is set to 4096.</p>
 </section>
 
 </main>

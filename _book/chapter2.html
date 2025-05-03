@@ -191,6 +191,12 @@ window.Quarto = {
   <li><a href="#juld-calibration-section" id="toc-juld-calibration-section" class="nav-link" data-scroll-target="#juld-calibration-section"><span class="header-section-number">3.3.8</span> JULD calibration section</a></li>
   <li><a href="#history-information" id="toc-history-information" class="nav-link" data-scroll-target="#history-information"><span class="header-section-number">3.3.9</span> History information</a></li>
   </ul></li>
+  <li><a href="#metadata-format-version-3.1" id="toc-metadata-format-version-3.1" class="nav-link" data-scroll-target="#metadata-format-version-3.1"><span class="header-section-number">3.4</span> Metadata format version 3.1</a>
+  <ul class="collapse">
+  <li><a href="#global-attributes-2" id="toc-global-attributes-2" class="nav-link" data-scroll-target="#global-attributes-2"><span class="header-section-number">3.4.1</span> Global attributes</a></li>
+  <li><a href="#dimensions-and-definitions-1" id="toc-dimensions-and-definitions-1" class="nav-link" data-scroll-target="#dimensions-and-definitions-1"><span class="header-section-number">3.4.2</span> Dimensions and definitions</a></li>
+  <li><a href="#float-characteristics" id="toc-float-characteristics" class="nav-link" data-scroll-target="#float-characteristics"><span class="header-section-number">3.4.3</span> Float characteristics</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1319,11 +1325,42 @@ JULD_DATA_MODE | char JULD_DATA_MODE(N_MEASUREMENT);<br>JULD_DATA_MODE:long_name
 <section id="juld-calibration-section" class="level3" data-number="3.3.8">
 <h3 data-number="3.3.8" class="anchored" data-anchor-id="juld-calibration-section"><span class="header-section-number">3.3.8</span> JULD calibration section</h3>
 <p>The JULD CALIBRATION section in the V3.2 traj files stores information of JULD calibration.</p>
-<div class="line-block"><strong>Name</strong> | <strong>Definition</strong> | <strong>Comment</strong> |<br>
-JULD_CALIB_EQUATION | char JULD_CALIB_EQUATION(N_CALIB_JULD, STRING256);<br>JULD_CALIB_EQUATION:long_name = “Calibration equation for JULD”;<br>JULD_CALIB_EQUATION:_FillValue = ” “;<br> | Calibration equation applied to JULD. Example: JULD_ADJUSTED = a1*JULD + a0 |<br>
-JULD_CALIB_COEFFICIENT | char JULD_CALIB_COEFFICIENT(N_CALIB_JULD, STRING256);<br>JULD_CALIB_COEFFICIENT:long_name = “Calibration coefficients for JULD equation”;<br>JULD_CALIB_COEFFICIENT:_FillValue = ” “;<br> | Calibration coefficients for this equation. Example: a1=0.99997, a0=0.0021 |<br>
-JULD_CALIB_COMMENT | char JULD_CALIB_COMMENT(N_CALIB_JULD, STRING256);<br>JULD_CALIB_COMMENT:long_name = “Comment applying to JULD calibration”;<br>JULD_CALIB_COMMENT:_FillValue = ” “;<br> | Comment about this calibration. Example:”Float times have been linearly corrected from float clock offset (reported in CLOCK_OFFSET(N_CYCLE)).” |<br>
-JULD_CALIB_DATE | char JULD_CALIB_DATE(N_CALIB_JULD, DATE_TIME);<br>JULD_CALIB_DATE:long_name = “Date of JULD calibration”;<br>JULD_CALIB_DATE:conventions = “YYYYMMDDHHMISS”;<br>JULD_CALIB_DATE:_FillValue = ” “;<br> | Date of the calibration. Example: 20011217161700 |</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 40%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Name</strong></th>
+<th><strong>Definition</strong></th>
+<th><strong>Comment</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>JULD_CALIB_EQUATION</td>
+<td>char JULD_CALIB_EQUATION(N_CALIB_JULD, STRING256);<br>JULD_CALIB_EQUATION:long_name = “Calibration equation for JULD”;<br>JULD_CALIB_EQUATION:_FillValue = ” “;<br></td>
+<td>Calibration equation applied to JULD. Example: JULD_ADJUSTED = a1*JULD + a0</td>
+</tr>
+<tr class="even">
+<td>JULD_CALIB_COEFFICIENT</td>
+<td>char JULD_CALIB_COEFFICIENT(N_CALIB_JULD, STRING256);<br>JULD_CALIB_COEFFICIENT:long_name = “Calibration coefficients for JULD equation”;<br>JULD_CALIB_COEFFICIENT:_FillValue = ” “;<br></td>
+<td>Calibration coefficients for this equation. Example: a1=0.99997, a0=0.0021</td>
+</tr>
+<tr class="odd">
+<td>JULD_CALIB_COMMENT</td>
+<td>char JULD_CALIB_COMMENT(N_CALIB_JULD, STRING256);<br>JULD_CALIB_COMMENT:long_name = “Comment applying to JULD calibration”;<br>JULD_CALIB_COMMENT:_FillValue = ” “;<br></td>
+<td>Comment about this calibration. Example: “Float times have been linearly corrected from float clock offset (reported in CLOCK_OFFSET(N_CYCLE)).”</td>
+</tr>
+<tr class="even">
+<td>JULD_CALIB_DATE</td>
+<td>char JULD_CALIB_DATE(N_CALIB_JULD, DATE_TIME);<br>JULD_CALIB_DATE:long_name = “Date of JULD calibration”;<br>JULD_CALIB_DATE:conventions = “YYYYMMDDHHMISS”;<br>JULD_CALIB_DATE:_FillValue = ” “;<br></td>
+<td>Date of the calibration. Example: 20011217161700</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="history-information" class="level3" data-number="3.3.9">
 <h3 data-number="3.3.9" class="anchored" data-anchor-id="history-information"><span class="header-section-number">3.3.9</span> History information</h3>
@@ -1382,6 +1419,290 @@ JULD_CALIB_DATE | char JULD_CALIB_DATE(N_CALIB_JULD, DATE_TIME);<br>JULD_CALIB_D
 </tbody>
 </table>
 <p>The usage of history section is described in §5 “Using the History section of the Argo netCDF Structure”.</p>
+</section>
+</section>
+<section id="metadata-format-version-3.1" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="metadata-format-version-3.1"><span class="header-section-number">3.4</span> Metadata format version 3.1</h2>
+<p>The format version 3.1 of Argo metadata will replace versions 2.2 and 2.4 gradually.<br>During the transition period, all formats will be valid.<br>However, when a Data Assembly Center (DAC) produces metadata files with the new 3.1 format, all its metadata files must be provided in version 3.1.&nbsp;An Argo metadata file contains descriptive information about an Argo float.&nbsp;&nbsp;For file naming conventions, see §4.1.&nbsp;</p>
+<section id="global-attributes-2" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="global-attributes-2"><span class="header-section-number">3.4.1</span> Global attributes</h3>
+<p>The global attributes section is used for data discovery.<br>It complies with NetCDF Climate and Forecast (CF) Metadata Conventions (version 1.6). - https://cfconventions.org/</p>
+<p>The following global attributes should appear in the global section: // global attributes: :title = “Argo float metadata file”;<br> :institution = “CSIRO”;<br> :source = “Argo float”;<br> :history = “2011-04-22T06:00:00Z creation”;<br> :references = “http://www.argodatamgt.org/Documentation”;<br> :comment = “free text”;<br>:user_manual_version = “3.4”;<br> :Conventions = “Argo-3.1 CF-1.6”;<br></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 64%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Global attribute name</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>title</td>
+<td>A succinct description of what is in the dataset.<br></td>
+</tr>
+<tr class="even">
+<td>institution</td>
+<td>Specifies where the original data was produced.<br></td>
+</tr>
+<tr class="odd">
+<td>source</td>
+<td>The method of production of the original data.<br>If it was model-generated, source should name the model and its version, as specifically as could be useful.<br>If it is observational, source should characterize it (e.g., “surface observation” or “radiosonde”).<br></td>
+</tr>
+<tr class="even">
+<td>history</td>
+<td>Provides an audit trail for modifications to the original data.<br>Well-behaved generic NetCDF filters will automatically append their name and the parameters with which they were invoked to the global history attribute of an input NetCDF file.<br>We recommend that each line begins with a timestamp indicating the date and time of day that the program was executed.<br></td>
+</tr>
+<tr class="odd">
+<td>references</td>
+<td>Published or web-based references that describe the data or methods used to produce it.<br></td>
+</tr>
+<tr class="even">
+<td>comment</td>
+<td>Miscellaneous information about the data or methods used to produce it.<br></td>
+</tr>
+<tr class="odd">
+<td>user_manual_version</td>
+<td>The version number of the user manual</td>
+</tr>
+<tr class="even">
+<td>Conventions</td>
+<td>The conventions supported by this file, blank separated</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dimensions-and-definitions-1" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="dimensions-and-definitions-1"><span class="header-section-number">3.4.2</span> Dimensions and definitions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 41%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Name</strong>&nbsp;</th>
+<th><strong>Definition</strong>&nbsp;</th>
+<th><strong>Comment</strong>&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DATE_TIME&nbsp;</td>
+<td>DATE_TIME = 14;<br>&nbsp;</td>
+<td>This dimension is the length of an ASCII date and time value.&nbsp;Date_time convention is : YYYYMMDDHHMISS&nbsp;YYYY : year&nbsp;MM : month&nbsp;DD : day&nbsp;HH : hour of the day&nbsp;MI : minutes&nbsp;SS : seconds&nbsp;Date and time values are always in universal time coordinates (UTC).&nbsp;Examples : 20010105172834 : January 5th 2001 17:28:34 19971217000000 : December 17th 1997 00:00:00</td>
+</tr>
+<tr class="even">
+<td>STRING1024<br>STRING256<br>STRING128<br>STRING64<br>STRING32<br>STRING17<br>STRING16<br>STRING8<br>STRING4<br>STRING2</td>
+<td>STRING1024 = 1024;<br>STRING256 = 256;<br>&nbsp;STRING128 = 128;<br>&nbsp;&nbsp;STRING64 = 64;<br>&nbsp;STRING32 = 32;<br>&nbsp;STRING17 = 17;<br>&nbsp;STRING16 = 16;<br>&nbsp;STRING8 = 8;<br>&nbsp;STRING4 = 4;<br>&nbsp;STRING2 = 2;<br></td>
+<td>String dimensions from 2 to 1024.&nbsp;</td>
+</tr>
+<tr class="odd">
+<td>N_PARAM&nbsp;</td>
+<td>N_PARAM = &lt;int value&gt;;<br>&nbsp;</td>
+<td>Number of parameters measured or calculated for a pressure sample.&nbsp;Examples :(pressure, temperature) : N_PARAM = 2&nbsp;(pressure, temperature, salinity) : N_PARAM = 3 (pressure, temperature, conductivity, salinity) : N_PARAM = 4</td>
+</tr>
+<tr class="even">
+<td>N_SENSOR</td>
+<td>N_SENSOR = &lt;int value&gt;;<br></td>
+<td>Number of sensors mounted on the float and used to measure the parameters.<br></td>
+</tr>
+<tr class="odd">
+<td>N_CONFIG_PARAM&nbsp;</td>
+<td>N_CONFIG_PARAM=&lt;int value&gt;;<br></td>
+<td>Number of configuration parameters.&nbsp;</td>
+</tr>
+<tr class="even">
+<td>N_LAUNCH_CONFIG_PARAM</td>
+<td>N_LAUNCH_CONFIG_PARAM=&lt;int value&gt;;<br></td>
+<td>Number of pre-deployment or launch configuration parameters.<br></td>
+</tr>
+<tr class="odd">
+<td>N_MISSIONS</td>
+<td>N_MISSIONS=&lt;unlimited&gt;;<br></td>
+<td>Number of missions.<br></td>
+</tr>
+<tr class="even">
+<td>N_POSITIONING_SYSTEM</td>
+<td>N_POSITIONING_SYSTEM=&lt;int value&gt;;<br></td>
+<td>Number of positioning systems.<br></td>
+</tr>
+<tr class="odd">
+<td>N_TRANS_SYSTEM</td>
+<td>N_TRANS_SYSTEM=&lt;int value&gt;;<br></td>
+<td>Number of transmission systems.<br></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="float-characteristics" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="float-characteristics"><span class="header-section-number">3.4.3</span> Float characteristics</h3>
+<p>This section contains the main characteristics of the float.&nbsp;</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Name</strong></th>
+<th><strong>Definition</strong>&nbsp;</th>
+<th><strong>Comment</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PLATFORM_NUMBER&nbsp;</td>
+<td>char PLATFORM_NUMBER(STRING8)<br>PLATFORM_NUMBER:long_name = “Float unique identifier”<br>PLATFORM_NUMBER:conventions = “WMO float identifier : A9IIIII”<br>&nbsp;PLATFORM_NUMBER:_FillValue = ” “<br>&nbsp;</td>
+<td>WMO float identifier. WMO is the World Meteorological Organization. This platform number is unique.Example : 6900045&nbsp;</td>
+</tr>
+<tr class="even">
+<td>PLATFORM_WIGOS_ID&nbsp;</td>
+<td>char PLATFORM_WIGOS_ID(STRING17)<br>PLATFORM_WIGOS_ID:long_name = “Float unique identifier”<br>PLATFORM_WIGOS_ID:conventions = “WMO WIGOS float identifier: 0-22000-0-A9IIIII”<br>&nbsp;PLATFORM_WIGOS_ID:_FillValue = ” “<br>&nbsp;</td>
+<td>WMO WIGOS float identifier. WMO is the World Meteorological Organization. This platform number is unique.Example : 0-22000-0-6900045&nbsp;“0-22000-0-” is the Argo floats prefix</td>
+</tr>
+<tr class="odd">
+<td>PTT&nbsp;</td>
+<td>char PTT(STRING256)<br>PTT:long_name = “Transmission identifier (ARGOS, ORBCOMM, etc.)”<br>PTT:_FillValue = ” “<br>&nbsp;</td>
+<td>Transmission identifier of the float. Comma separated list for multi-beacon transmission.Example :“22507”: the float is equipped with one ARGOS beacon.“22598, 22768” : the float is equipped with 2 ARGOS beacons.&nbsp;</td>
+</tr>
+<tr class="even">
+<td>TRANS_SYSTEM&nbsp;</td>
+<td>char TRANS_SYSTEM(N_TRANS_SYSTEM, STRING16)<br>TRANS_SYSTEM:long_name = “Telecommunication system used”<br>&nbsp;TRANS_SYSTEM:_FillValue = ” “<br>&nbsp;</td>
+<td>Name of the telecommunication system from reference table 10 (<a href="https://vocab.nerc.ac.uk/collection/R10/" class="uri">https://vocab.nerc.ac.uk/collection/R10/</a>). Example : ARGOS&nbsp;</td>
+</tr>
+<tr class="odd">
+<td>TRANS_SYSTEM_ID&nbsp;</td>
+<td>char TRANS_SYSTEM_ID(N_TRANS_SYSTEM, STRING32)<br>TRANS_SYSTEM_ID:long_name = ”Program identifier used by the transmission system”<br>TRANS_SYSTEM_ID:_FillValue = ” “<br>&nbsp;</td>
+<td>Program identifier of the telecommunication subscription. DACs can use N/A or alternative of their choice when not applicable (e.g.&nbsp;: Iridium or Orbcomm)Example: 38511 is a program number for all the beacons of an ARGOS customer.</td>
+</tr>
+<tr class="even">
+<td>TRANS_FREQUENCY&nbsp;</td>
+<td>char TRANS_FREQUENCY(N_TRANS_SYSTEM, STRING16)<br>TRANS_FREQUENCY:long_name = “Frequency of transmission from the float”<br>TRANS_FREQUENCY:units = “hertz”<br>TRANS_FREQUENCY:_FillValue = “ ”<br>&nbsp;</td>
+<td>Frequency of transmission from the float.Unit : hertzExample : 1/44&nbsp;</td>
+</tr>
+<tr class="odd">
+<td>POSITIONING_SYSTEM&nbsp;</td>
+<td>char POSITIONING_SYSTEM(N_POSITIONING_SYSTEM, STRING8)<br>POSITIONING_SYSTEM:long_name = “Positioning system”<br>POSITIONING_SYSTEM:_FillValue = ” “<br>&nbsp;</td>
+<td>Position system from reference table 9 (<a href="https://vocab.nerc.ac.uk/collection/R09/" class="uri">https://vocab.nerc.ac.uk/collection/R09/</a>). ARGOS or GPS are 2 positioning systems.Example : ARGOS&nbsp;</td>
+</tr>
+<tr class="even">
+<td>PLATFORM_FAMILY</td>
+<td>char PLATFORM_FAMILY(STRING256)<br>PLATFORM_FAMILY:long_name = “Category of instrument”<br>PLATFORM_FAMILY:conventions = “Argo reference table 22”<br>PLATFORM_FAMILY:_FillValue = ” “<br></td>
+<td>Category of instrument.See Argo reference table 22Example: FLOAT, ICE_TETHERED_PROFILER, FLOAT_DEEP.&nbsp;</td>
+</tr>
+<tr class="odd">
+<td>PLATFORM_TYPE</td>
+<td>char PLATFORM_TYPE(STRING32)<br>PLATFORM_TYPE:long_name = “Type of float”<br>PLATFORM_TYPE:conventions = “Argo reference table 23”<br>PLATFORM_TYPE:_FillValue = ” “<br>&nbsp;</td>
+<td>Type of float.See Argo reference table 23 (<a href="https://vocab.nerc.ac.uk/collection/R23/" class="uri">https://vocab.nerc.ac.uk/collection/R23/</a>).Example: SOLO, APEX, PROVOR, ARVOR, NINJA</td>
+</tr>
+<tr class="even">
+<td>PLATFORM_MAKER&nbsp;</td>
+<td>char PLATFORM_MAKER(STRING256)<br>PLATFORM_MAKER:long_name = “Name of the manufacturer”<br>PLATFORM_MAKER:conventions = “Argo reference table 24”<br>PLATFORM_MAKER:_FillValue = ” “<br>&nbsp;</td>
+<td>Name of the manufacturer.Example: MARTEC, MRV, TWR.See Argo reference table 24 (<a href="https://vocab.nerc.ac.uk/collection/R24/" class="uri">https://vocab.nerc.ac.uk/collection/R24/</a>).</td>
+</tr>
+<tr class="odd">
+<td>FIRMWARE_VERSION</td>
+<td>char FIRMWARE_VERSION(STRING64)<br>FIRMWARE_VERSION:long_name = “Firmware version for the float”<br>FIRMWARE_VERSION:_FillValue = ” “<br></td>
+<td>The firmware version. This is specified as per the format on the manufacturer’s manual.Example: 072804The dimension STRING32 instead of STRING64 remains accepted.</td>
+</tr>
+<tr class="even">
+<td>MANUAL_VERSION</td>
+<td>char MANUAL_VERSION(STRING16)<br>MANUAL_VERSION:long_name = “Manual version for the float”<br>MANUAL_VERSION:_FillValue = ” “<br></td>
+<td>The version date or number for the manual for each float.Example 110610 or 004&nbsp;</td>
+</tr>
+<tr class="odd">
+<td>FLOAT_SERIAL_NO</td>
+<td>char FLOAT_SERIAL_NO(STRING32)<br>FLOAT_SERIAL_NO:long_name = “Serial number of the float”<br>FLOAT_SERIAL_NO:_FillValue = ” “<br></td>
+<td>This field should contain only the serial number of the float.Example 1679</td>
+</tr>
+<tr class="even">
+<td>STANDARD_FORMAT_ID</td>
+<td>char STANDARD_FORMAT_ID(STRING16)<br>STANDARD_FORMAT_ID:long_name = “Standard format number to describe the data format type for each float”<br>STANDARD_FORMAT_ID:_FillValue = ” “<br></td>
+<td>Standardized format number as described in the online reference table: <a href="http://tinyurl.com/qy7fdqc">https://docs.google.com/spreadsheets/d/16iTji2i9tLh2PfiiMItfhaQybQB1NLAhj4s0mDML5yY/edit#gid=9</a>&nbsp;&nbsp;This table cross references to individual DAC format numbers.Example: 1010151</td>
+</tr>
+<tr class="odd">
+<td>DAC_FORMAT_ID</td>
+<td>char DAC_FORMAT_ID(STRING16)<br>DAC_FORMAT_ID:long_name = “Format number used by the DAC to describe the data format type for each float”<br>DAC_FORMAT_ID:_FillValue = ” “<br></td>
+<td>Format numbers used by individual DACs to describe each float type.This is cross-referenced to a standard format id as outlined in the online reference table: <a href="http://tinyurl.com/qy7fdqc">https://docs.google.com/spreadsheets/d/16iTji2i9tLh2PfiiMItfhaQybQB1NLAhj4s0mDML5yY/edit#gid=9</a>Example: A9.</td>
+</tr>
+<tr class="even">
+<td>WMO_INST_TYPE&nbsp;</td>
+<td>char WMO_INST_TYPE(STRING4)<br>WMO_INST_TYPE:long_name = “Coded instrument type”<br>&nbsp;WMO_INST_TYPE:conventions = “Argo reference table 8”<br>WMO_INST_TYPE:_FillValue = ” “<br></td>
+<td>Instrument type from WMO code table 1770. A subset of WMO table 1770 is documented in the reference table 8 (<a href="https://vocab.nerc.ac.uk/collection/R08/" class="uri">https://vocab.nerc.ac.uk/collection/R08/</a>).Example : 846 : Webb Research float, Seabird sensor&nbsp;</td>
+</tr>
+<tr class="odd">
+<td>PROJECT_NAME</td>
+<td>char PROJECT_NAME(STRING64)<br>PROJECT_NAME:long_name = “Program under which the float was deployed”<br> PROJECT_NAME:_FillValue = ” “<br></td>
+<td>Name of the project which operates the profiling float that performed the profile.Example : GYROSCOPE (EU project for Argo program)&nbsp;</td>
+</tr>
+<tr class="even">
+<td>DATA_CENTRE</td>
+<td>char DATA_CENTRE(STRING2)<br>DATA_CENTRE:long_name = “Data centre in charge of float real-time processing”<br>DATA_CENTRE:conventions = “Argo reference table 4”<br>DATA_CENTRE:_FillValue = ” “<br></td>
+<td>Code of the data centre in charge of the float data management. The data centre codes are described in the reference table 4 (<a href="https://vocab.nerc.ac.uk/collection/R04/" class="uri">https://vocab.nerc.ac.uk/collection/R04/</a>).Example: ME for MEDS&nbsp;</td>
+</tr>
+<tr class="odd">
+<td>PI_NAME&nbsp;</td>
+<td>char PI_NAME (STRING64)<br>PI_NAME:long_name = “Name of the principal investigator”<br>PI_NAME:_FillValue = ” “<br></td>
+<td>Name of the principal investigator responsible for the profiling float. Example: “Julia UITZ”.Valid PI names are listed in reference table 40 ( <a href="https://vocab.nerc.ac.uk/collection/R40/" class="uri">https://vocab.nerc.ac.uk/collection/R40/</a>).&nbsp; Multiple names can be concatenated, separated by commas.</td>
+</tr>
+<tr class="even">
+<td>ANOMALY</td>
+<td>char ANOMALY(STRING256)<br>ANOMALY:long_name = “Describe any anomalies or problems the float may have had”<br>ANOMALY:_FillValue = ” “<br></td>
+<td>This field describes any anomaly or problem the float may have had.Example: “the immersion drift is not stable.”&nbsp;</td>
+</tr>
+<tr class="odd">
+<td>BATTERY_TYPE</td>
+<td>char BATTERY_TYPE(STRING64)<br>BATTERY_TYPE:long_name = “Type of battery packs in the float”<br>BATTERY_TYPE:_FillValue = ” “<br></td>
+<td>Describes the type of battery packs in the float.BATTERY_TYPE&nbsp; = “<em>Manufacturer</em> Alkaline x V”&nbsp; or “<em>Manufacturer</em> Lithium x V + <em>Manufacturer</em> Alkaline x V”Example: “ELECTROCHEM Lithium 12 V” Use reference table 29 (not in the NVS)</td>
+</tr>
+<tr class="even">
+<td>BATTERY_PACKS</td>
+<td>char BATTERY_PACKS(STRING64)<br>BATTERY_PACKS:long_name = “Configuration of battery packs in the float”<br>BATTERY_PACKS:_FillValue = ” “<br></td>
+<td>Describes the configuration of battery packs in the float, number and type.Example: “4DD Li + 1C Alk”Use reference table 30 (not in the NVS)</td>
+</tr>
+<tr class="odd">
+<td>CONTROLLER_BOARD _TYPE_PRIMARY</td>
+<td>char CONTROLLER_BOARD_TYPE_PRIMARY(STRING32)<br>CONTROLLER_BOARD_TYPE_PRIMARY:long_name = “Type of primary controller board”<br>CONTROLLER_BOARD_TYPE_PRIMARY:_FillValue = ” “<br></td>
+<td>Describes the type of controller board.first part of string: see reference table 28 (<a href="https://vocab.nerc.ac.uk/collection/R28/" class="uri">https://vocab.nerc.ac.uk/collection/R28/</a>). Remainder of string free text and contained in square brackets&nbsp;Example:&nbsp; “APF9 [iridium version xyz]”Use reference table 28</td>
+</tr>
+<tr class="even">
+<td>CONTROLLER_BOARD _TYPE_SECONDARY</td>
+<td>char CONTROLLER_BOARD_TYPE_SECONDARY(STRING32)<br>CONTROLLER_BOARD_TYPE_SECONDARY:long_name = “Type of secondary controller board”<br>CONTROLLER_BOARD_TYPE_SECONDARY:_FillValue = ” “<br></td>
+<td><strong>This is an optional variable.</strong>Only applicable if there is more than one controller board in the float. Describes the second type of controller board.first part of string: see reference table 28 (<a href="https://vocab.nerc.ac.uk/collection/R28/" class="uri">https://vocab.nerc.ac.uk/collection/R28/</a>). Remainder of string free text and contained in square brackets&nbsp;Example:&nbsp; “APF9 [iridium version xyz]”Use reference table 28</td>
+</tr>
+<tr class="odd">
+<td>CONTROLLER_BOARD _SERIAL_NO_PRIMARY</td>
+<td>char CONTROLLER_BOARD_SERIAL_NO_PRIMARY(STRING32)<br>CONTROLLER_BOARD_SERIAL_NO_PRIMARY:long_name = “Serial number of the primary controller board”<br>CONTROLLER_BOARD_SERIAL_NO_PRIMARY:_FillValue = ” “<br></td>
+<td>The serial number for the primary controller board.Example: 4567</td>
+</tr>
+<tr class="even">
+<td>CONTROLLER_BOARD _SERIAL_NO_SECONDARY</td>
+<td>char CONTROLLER_BOARD_SERIAL_NO_SECONDARY(STRING32)<br>CONTROLLER_BOARD_SERIAL_NO_SECONDARY:long_name = “Serial number of the secondary controller board”<br>CONTROLLER_BOARD_SERIAL_NO_SECONDARY:_FillValue = ” “<br></td>
+<td><strong>This is an optional variable.</strong>Only applicable if there is more than one controller board in the float. The serial number for the secondary controller board.Example: 4571</td>
+</tr>
+<tr class="odd">
+<td>SPECIAL_FEATURES</td>
+<td>char SPECIAL_FEATURES(STRING1024)<br>SPECIAL_FEATURES:long_name = “Extra features of the float (algorithms, compressee etc.)”<br>SPECIAL_FEATURES:_FillValue = ” “<br></td>
+<td>Additional float features can be specified here such as algorithms used by the float.Example: Ice Sensing Algorithm, Interim Storage Algorithm, grounding avoidance or additional hardware such as a compressee (buoyancy compensator).See reference table 32 (not in the NVS)</td>
+</tr>
+<tr class="even">
+<td>FLOAT_OWNER</td>
+<td>char FLOAT_OWNER (STRING64)<br>FLOAT_OWNER:long_name = “Float owner”<br>FLOAT_OWNER:_FillValue = ” “<br></td>
+<td>The owner of the float (may be different from the data centre and operating institution).Example: Joe Blogg</td>
+</tr>
+<tr class="odd">
+<td>OPERATING_INSTITUTION</td>
+<td>char OPERATING_INSTITUTION(STRING64)<br>OPERATING_INSTITUTION:long_name = “Operating institution of the float”<br>OPERATING_INSTITUTION:_FillValue = ” “<br></td>
+<td>The operating institution of the float (may be different from the float owner and data centre).Example: ACE CRC</td>
+</tr>
+<tr class="even">
+<td>CUSTOMISATION</td>
+<td>char CUSTOMISATION(STRING1024)<br>CUSTOMISATION:long_name = “Float customisation, i.e.&nbsp;(institution and modifications)”<br>CUSTOMISATION:_FillValue = ” “<br></td>
+<td>Free form field to record changes made to the float after manufacture and before deployment, i.e.&nbsp;this could be the customisation institution plus a list of modifications.Example: Float stability collar removed for deployment in ice.</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
