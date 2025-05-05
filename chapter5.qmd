@@ -1,0 +1,128 @@
+# Using the History section of the Argo netCDF Structure
+
+Within the netCDF format are a number of fields that are used to track the progression of the data through the data system. This section records the processing stages, results of actions that may have altered the original values and information about QC tests performed and failed. The purpose of this document is to describe how to use this section of the format.The creation of entries in the history section is the same for both profile and trajectory data. The next sections provide examples of what is expected. The information shown in the column labeled "Example" is what would be written into the associated "Field" name in the netCDF format.
+
+## Recording information about the Delayed Mode QC process
+
+The process of carrying out delayed mode QC may result in adjustments being made to observed variables. The table below shows how to record that the delayed mode QC has been done. Note that the fields HISTORY\_SOFTWARE, HISTORY\_SOFTWARE\_RELEASE and HISTORY\_REFERENCE are used together to document the name and version of software used to carry out the delayed QC, and the reference database used in the process. The contents of these three fields are defined locally by the person carrying out the QC.Example: History entry to record that delayed mode QC has been carried out
+
+|                            |                |                    |
+| -------------------------- | -------------- | --------------------------------------------------------------------------------------------------- |
+| **Field**                  | **Example**    | **Explanation**    |
+| HISTORY\_INSTITUTION       | CI             | Selected from the list in reference table 4 (<https://vocab.nerc.ac.uk/collection/R04/>)            |
+| HISTORY\_STEP              | ARSQ           | Selected from the list in reference table 12 (<https://vocab.nerc.ac.uk/collection/R12/>).          |
+| HISTORY\_SOFTWARE          | WJO            | This is a locally defined name for the delayed mode QC process employed.                            |
+| HISTORY\_SOFTWARE\_RELEASE | 1              | This is a locally defined indicator that identifies what version of the QC software is being used.  |
+| HISTORY\_REFERENCE         | WOD2001        | This is a locally defined name for the reference database used for the delayed mode QC process.     |
+| HISTORY\_DATE              | 20030805000000 | The year, month, day, hour, minute, second that the process ran                                     |
+| HISTORY\_ACTION            | IP             | Selected from the list in reference table 7 (<https://vocab.nerc.ac.uk/collection/R07/>).           |
+| HISTORY\_PARAMETER         | FillValue      | This field does not apply (1)                                                                       |
+| HISTORY\_START\_PRES       | FillValue      | This field does not apply                                                                           |
+| HISTORY\_STOP\_PRES        | FillValue      | This field does not apply                                                                           |
+| HISTORY\_PREVIOUS\_VALUE   | FillValue      | This field does not apply                                                                           |
+| HISTORY\_QCTEST            | FillValue      | This field does not apply                                                                           |**Note**(1) The present version of delayed mode QC only tests salinity and as such it is tempting to place “PSAL” in the \_PARAMETER field. In future, delayed mode QC tests may include tests for temperature, pressure and perhaps other parameters. For this reason, simply addressing the software and version number will tell users what parameters have been tested.
+
+## Recording processing stages
+
+Each entry to record the processing stages has a similar form. An example is provided to show how this is done. Note that reference table 12 contains the present list of processing stages and there should be at least one entry for each of these through which the data have passed. If data pass through one of these steps more than once, an entry for each passage should be written and the variable N\_HISTORY updated appropriately.Some institutions may wish to record more details of what they do. In this case, adding additional “local” entries to table 12 is permissible as long as the meaning is documented and is readily available. These individual additions can be recommended to the wider community for international adoption.
+
+**Example**: History entry to record decoding of the data.
+
+|                            |                |           |
+| -------------------------- | -------------- | ------------------------------------------------------------------------------------------ |
+| **Field**                  | **Example**    | **Explanation**                                                                            |
+| HISTORY\_INSTITUTION       | ME             | Selected from the list in reference table 4 (<https://vocab.nerc.ac.uk/collection/R04/>).  |
+| HISTORY\_STEP              | ARFM           | Selected from the list in reference table 12 (<https://vocab.nerc.ac.uk/collection/R12/>). |
+| HISTORY\_SOFTWARE          | FillValue      | This field does not apply                                                                  |
+| HISTORY\_SOFTWARE\_RELEASE | FillValue      | This field does not apply                                                                  |
+| HISTORY\_REFERENCE         | FillValue      | This field does not apply                                                                  |
+| HISTORY\_DATE              | 20030805000000 | The year, month, day, hour, minute, second that the process ran                            |
+| HISTORY\_ACTION            | IP             | Selected from the list in reference table 7 (<https://vocab.nerc.ac.uk/collection/R07/>).  |
+| HISTORY\_PARAMETER         | FillValue      | This field does not apply                                                                  |
+| HISTORY\_START\_PRES       | FillValue      | This field does not apply                                                                  |
+| HISTORY\_STOP\_PRES        | FillValue      | This field does not apply                                                                  |
+| HISTORY\_PREVIOUS\_VALUE   | FillValue      | This field does not apply                                                                  |
+| HISTORY\_QCTEST            | FillValue      | This field does not apply                                                                  |
+
+## Recording QC Tests Performed and Failed
+
+The delayed mode QC process is recorded separately from the other QC tests that are performed because of the unique nature of the process and the requirement to record other information about the reference database used. When other tests are performed, such as the automated real-time QC, a group of tests are applied all at once. In this case, instead of recording that each individual test was performed and whether or not the test was failed, it is possible to document all of this in two history records.The first documents what suite of tests was performed, and the second documents which tests in the suite were failed. A test is failed if the value is considered to be something other than good (i.e. the resulting QC flag is set to anything other than “1”). An example of each is provided. If data pass through QC more than once, an entry for each passage should be written and the variable N\_HISTORY updated appropriately.Example: QC tests performed and failed.The example shown here records that the data have passed through real-time QC and that two tests failed. The encoding of tests performed is done by adding the ID numbers provided in reference table 11 for all tests performed, then translating this to a hexadecimal number and recording this result.
+
+**Record 1**: Documenting the tests performed
+
+|                            |                |                           |
+| -------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Field**                  | **Example**    | **Explanation**           |
+| HISTORY\_INSTITUTION       | ME             | Selected from the list in reference table 4<br> (<https://vocab.nerc.ac.uk/collection/R04/>).                                                        |
+| HISTORY\_STEP              | ARGQ           | Selected from the list in reference table 12<br> (<https://vocab.nerc.ac.uk/collection/R12/>).                                                       |
+| HISTORY\_SOFTWARE          | FillValue      | This field does not apply |
+| HISTORY\_SOFTWARE\_RELEASE | FillValue      | This field does not apply |
+| HISTORY\_REFERENCE         | FillValue      | This field does not apply |
+| HISTORY\_DATE              | 20030805000000 | The year, month, day, hour, minute, second<br> that the process ran |
+| HISTORY\_ACTION            | QCP$           | Selected from the list in reference table 7<br> (<https://vocab.nerc.ac.uk/collection/R07/>).                                                        |
+| HISTORY\_PARAMETER         | FillValue      | This field does not apply |
+| HISTORY\_START\_PRES       | FillValue      | This field does not apply |
+| HISTORY\_STOP\_PRES        | FillValue      | This field does not apply |
+| HISTORY\_PREVIOUS\_VALUE   | FillValue      | This field does not apply |
+| HISTORY\_QCTEST            | 1BE            | This is the result of all tests with IDs from 2 to 256<br> having been applied. See reference table 11 <br>(<https://vocab.nerc.ac.uk/collection/R11/>). |**Record 2**: Documenting the tests that failed|                            |                |                 |
+| -------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **Field**                  | **Example**    | **Explanation** |
+| HISTORY\_INSTITUTION       | ME             | Selected from the list in reference table 4 <br>(<https://vocab.nerc.ac.uk/collection/R04/>).                                              |
+| HISTORY\_STEP              | ARGQ           | Selected from the list in reference table 12 <br>(<https://vocab.nerc.ac.uk/collection/R12/>).                                             |
+| HISTORY\_SOFTWARE          | FillValue      | This field does not apply                             |
+| HISTORY\_SOFTWARE\_RELEASE | FillValue      | This field does not apply                             |
+| HISTORY\_REFERENCE         | FillValue      | This field does not apply                             |
+| HISTORY\_DATE              | 20030805000000 | The year, month, day, hour, minute, second that the process ran                                                                        |
+| HISTORY\_ACTION            | QCF$           | Selected from the list in reference table 7 <br>(<https://vocab.nerc.ac.uk/collection/R07/>).                                              |
+| HISTORY\_PARAMETER         | FillValue      | This field does not apply                             |
+| HISTORY\_START\_PRES       | FillValue      | This field does not apply                             |
+| HISTORY\_STOP\_PRES        | FillValue      | This field does not apply                             |
+| HISTORY\_PREVIOUS\_VALUE   | FillValue      | This field does not apply                             |
+| HISTORY\_QCTEST            | A0             | This is the result when data fail tests with IDs of 32 and 128.<br>See reference table 11 <br>(<https://vocab.nerc.ac.uk/collection/R11/>). |
+
+## Recording changes in values
+
+The PIs have the final word on the content of the data files in the Argo data system. In comparing their data to others there may arise occasions when changes may be required in the data.We will use the example of recomputation of where the float first surfaced as an example. This computation process can be carried out once all of the messages from a float have been received. Not all real-time processing centres make this computation, but it can be made later on and added to the delayed mode data. If this is the case, we would insert the new position of the profile into the latitude and longitude fields in the profile and we would record the previous values in two history entries. Recording these allows us to return to the original value if we have made an error in the newly computed position. The two history entries would look as follows.
+
+**Example**: Changed latitude
+
+|                            |                |                                       |
+| -------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Field**                  | **Example**    | **Explanation**                       |
+| HISTORY\_INSTITUTION       | CI             | Selected from the list in reference table 4 (<https://vocab.nerc.ac.uk/collection/R04/>).                                                                    |
+| HISTORY\_STEP              | ARGQ           | Selected from the list in reference table 12 (<https://vocab.nerc.ac.uk/collection/R12/>).                                                                   |
+| HISTORY\_SOFTWARE          | FillValue      | This field does not apply             |
+| HISTORY\_SOFTWARE\_RELEASE | FillValue      | This field does not apply             |
+| HISTORY\_REFERENCE         | FillValue      | This field does not apply             |
+| HISTORY\_DATE              | 20030805000000 | The year, month, day, hour, minute, second that the process ran             |
+| HISTORY\_ACTION            | CV             | Selected from the list in reference table 7 (<https://vocab.nerc.ac.uk/collection/R07/>).                                                                    |
+| HISTORY\_PARAMETER         | LAT$           | A new entry for reference table 3 (<https://vocab.nerc.ac.uk/collection/R03/>) created by institution CI to indicate changes have been made in the latitude. |
+| HISTORY\_START\_PRES       | FillValue      | This field does not apply             |
+| HISTORY\_STOP\_PRES        | FillValue      | This field does not apply             |
+| HISTORY\_PREVIOUS\_VALUE   | 23.456         | This is the value of the latitude before the change was made.               |
+| HISTORY\_QCTEST            | FillValue      | This field does not apply             |
+
+**Notes**
+1) Be sure that the new value is recorded in the latitude and longitude of the profile section.
+
+2) Be sure that the POSITION\_QC flag is set to “5” to indicate to a user that the value now in the position has been changed from the original one that was there.
+
+3) Be sure to record the previous value in history entries.It is also sometimes desirable to record changes in quality flags that may arise from reprocessing data through some QC procedures. In this example, assume that whereas prior to the analysis, all temperature values from 75 to 105 dbar were considered correct, after the analysis, they are considered wrong. The history entry to record this would look as follows.Example: Changed flags
+
+|                            |                |           |
+| -------------------------- | -------------- | ------------------------------------------------------------------------------------------ |
+| **Field**                  | **Example**    | **Explanation**                                                                            |
+| HISTORY\_INSTITUTION       | CI             | Selected from the list in reference table 4 (<https://vocab.nerc.ac.uk/collection/R04/>).  |
+| HISTORY\_STEP              | ARGQ           | Selected from the list in reference table 12 (<https://vocab.nerc.ac.uk/collection/R12/>). |
+| HISTORY\_SOFTWARE          | FillValue      | This field does not apply                                                                  |
+| HISTORY\_SOFTWARE\_RELEASE | FillValue      | This field does not apply                                                                  |
+| HISTORY\_REFERENCE         | FillValue      | This field does not apply                                                                  |
+| HISTORY\_DATE              | 20030805000000 | The year, month, day, hour, minute, second that the process ran                            |
+| HISTORY\_ACTION            | CF             | Selected from the list in reference table 7 (<https://vocab.nerc.ac.uk/collection/R07/>).  |
+| HISTORY\_PARAMETER         | TEMP           | Selected from the list in reference table 3 (<https://vocab.nerc.ac.uk/collection/R03/>).  |
+| HISTORY\_START\_PRES       | 75             | Shallowest pressure of action.                                                             |
+| HISTORY\_STOP\_PRES        | 105            | Deepest pressure of action.                                                                |
+| HISTORY\_PREVIOUS\_VALUE   | 1              | This is the value of the quality flag on temperature readings before the change was made.  |
+| HISTORY\_QCTEST            | FillValue      | This field does not apply                                                                  |
+
+**Notes**1. The new QC flag of “4” (to indicate wrong values) would appear in the \<param>\_QC field.

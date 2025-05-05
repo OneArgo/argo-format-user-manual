@@ -1,0 +1,37 @@
+# Glossary, definitions
+
+This chapter gives a definition for the items described in this manual.
+
+## Float
+
+An autonomous platform deployed in the sea that performs environmental monitoring.
+
+## Sensor
+
+A sensor is a device used to measure a physical parameter. Sensor outputs are provided in parameter counts and need to be converted into parameter physical units using a calibration equation. This conversion can be done onboard the float or during the decoding process.
+
+## Parameter measured by the sensor
+
+A parameter is a measurement of a physical phenomenon; it can be provided by a sensor (in sensor counts or in physical units) or computed (derived) from other parameters.
+
+## Calibration of the parameter measured by the sensor
+
+Verification of any operation measurement against independent measurements to derive a corrected value or a new parameter.
+
+## Principal Investigator (PI)
+
+The **Principal Investigator (PI)**, typically a scientist at a research institution, maintains the observing platform and the sensors that deliver the data. He or she is responsible for providing the data and all auxiliary information to a **Data Assembly Center (DAC)**. 
+
+## Global Data Assembly Centre (GDAC)
+
+The **GDAC** distributes the best copy of the data files. When a higher quality data file (e.g. calibrated data) is available, it replaces the previous version of the data file.
+
+## Data Assembly Centre (DAC)
+
+The **DAC** assembles Argo files and delivers these to the two **Global Data Assembly Centers (GDACs)**.
+
+## GTS
+
+WMO's Global Telecommunication System (GTS) is the communications and data management component that allows the World Weather Watch (WWW) to operate through the collection and distribution of information critical to its processes.
+
+WMO : World Meteorological Organization

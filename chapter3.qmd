@@ -1,0 +1,268 @@
+# Reference tables
+
+The Argo reference tables are managed on Argo Vocabulary Server hosted on Nerc Vocabulary server (NVS). The Argo tables are prefixed with “R”:* <https://vocab.nerc.ac.uk/collection>
+
+## Reference table 1: data type
+
+<https://vocab.nerc.ac.uk/collection/R01/current> This table contains the list of acceptable values for the DATA\_TYPE field.
+
+
+## Reference table 2: Argo quality control flag scale
+
+### Reference table 2: quality control flag scale
+
+<https://vocab.nerc.ac.uk/collection/RR2/current> \
+<https://vocab.nerc.ac.uk/collection/RD2/current>  A quality flag indicates the quality of an observation.The flags are assigned in real-time or delayed mode according to the Argo quality control manual available at:*  <http://www.argodatamgt.org/Documentation>
+
+| **n**  | **Meaning**                                       | **Real-time comment****(applicable to \<PARAM>\_QC in 'R' mode and \<PARAM>\_ADJUSTED\_QC in 'A' mode)**                                                                                                                                  | **Delayed-mode comment****(applicable to \<PARAM>\_ADJUSTED\_QC in 'D' mode)**                                                                         |
+| -- | -- | -- | -- |
+| 0      | No QC is performed                                | No QC is performed.                                                                                                                                                                                                                       | No QC is performed.                                                                                                                                    |
+| 1      | Good data                                         | Good data. All Argo real-time QC tests passed. These measurements are good within the limits of the Argo real-time QC tests.                                                                                                              | Good data. No adjustment is needed, or the adjusted value is statistically consistent with good quality reference data. An error estimate is supplied. |
+| 2      | Probably good data                                | Probably good data. These measurements are to be used with caution.                                                                                                                                                                       | Probably good data. Delayed-mode evaluation is based on insufficient information. An error estimate is supplied.                                       |
+| 3      | Probably bad data that are potentially adjustable | Probably bad data. These measurements are not to be used without scientific adjustment, e.g. data affected by sensor drift but may be adjusted in delayed-mode.                                                                           | Probably bad data. An adjustment may (or may not) have been applied, but the value may still be bad. An error estimate is supplied.                    |
+| 4      | Bad data                                          | Bad data. These measurements are not to be used. A flag '4' indicates that a relevant real-time qc test has failed. A flag '4' may also be assigned for bad measurements that are known to be not adjustable, e.g. due to sensor failure. | Bad data. Not adjustable. Adjusted data are replaced by FillValue.                                                                                     |
+| 5      | Value changed                                     | Value changed                                                                                                                                                                                                                             | Value changed                                                                                                                                          |
+| 6      | Not used                                          | Not used                                                                                                                                                                                                                                  | Not used                                                                                                                                               |
+| 7      | Not used                                          | Not used                                                                                                                                                                                                                                  | Not used                                                                                                                                               |
+| 8      | Estimated value                                   | Estimated value (interpolated, extrapolated or other estimation).                                                                                                                                                                         | Estimated value (interpolated, extrapolated or other estimation).                                                                                      |
+| 9      | Missing value                                     | Missing value. Data parameter will record FillValue.                                                                                                                                                                                      | Missing value. Data parameter will record FillValue.                                                                                                   |
+| ‘ ‘    | FillValue                                         | Empty space in NetCDF file.                                                                                                                                                                                                               | Empty space in NetCDF file\*.                                                                                                                          |\*) this case can occur, e.g., in aggregated {wmo}\_prof.nc and {wmo}\_Sprof.nc files when N\_LEVELS (max of level number from single cycles) is not reached by a cycle, in synthetic single cycle files for levels not concerning a specific sensor, in BGC B\* files for sampling schemes not concerning a sensor, etc.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### Reference table 2a: overall profile quality flag
+
+<https://vocab.nerc.ac.uk/collection/RP2/current> **_N_** is defined as the percentage of levels with good data where:* QC flag values of 1, 2, 5, 8 (only used in S-files) are GOOD data
+
+* QC flag values of 0 (no QC), 9 (missing) or “ “ (FillValue) are NOT USED in the computation
+
+* QC flag values of 3, 4 are BAD dataThe computation should be taken from \<PARAM\_ADJUSTED>\_QC if available and from \<PARAM>\_QC otherwise.
+
+|        |                                                         |
+| ------ | ------------------------------------------------------- |
+| **n**  | **Meaning**                                             |
+| “ “    | No QC is performed or no usable flag values are present |
+| A      | **_N_** = 100%; All profile levels contain good data.   |
+| B      | 75% <= **_N_** < 100%                                   |
+| C      | 50% <= **_N_** < 75%                                    |
+| D      | 25% <= **_N_** < 50%                                    |
+| E      | 0% < **_N_** < 25%                                      |
+| F      | **_N_** = 0%; No profile levels have good data.         |Example: a TEMP profile has 60 levels (3 levels contain missing values).* 45 levels are flagged as 1
+
+* 5 levels are flagged as 2
+
+* 7 levels are flagged as 4
+
+* 3 levels are flagged as 9 (missing)Percentage of good levels =  ( (45 + 5) / 57) \* 100 = 87.7%PROFILE\_TEMP\_QC = “B”;
+
+## **3.3 Reference table 3: parameter code table** 
+
+<https://vocab.nerc.ac.uk/collection/R03/current>  The following table describes the parameter codes used for Argo data management. The detailed parameter codes tables is available on Argo data-management web site:* <http://www.argodatamgt.org/Documentation> **Parameter attributes*** The Fill\_value attribute is set to 99999.f
+
+* The C\_Format, Fortran\_Format and Format\_resolution attributes are float/sensor dependents. They are set by the DAC (Data Assembly Centre).If new parameters are required, they have to be added to this table before they will be accepted.\
+A request for new parameters can be sent for approval and inclusion.**Note on resolution**For each parameter, the resolution attribute is mandatory. However, the resolution value is sensor dependent.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### Parameters from duplicate sensors
+
+Some floats are equipped with 2 different sensors, measuring the same physical parameter. In that case, add the integer "2" at the end of the code of the duplicate parameter (e.g. DOXY2).If more sensors that measure the same physical parameter are added, then the integer will simply increase by 1 (i.e. DOXY3, DOXY4, and so on).**Example**If a float has one Optode and one SBE oxygen sensor:* Use DOXY and TEMP\_DOXY for Optode
+
+* Use DOXY2 for SBEIf a float has two Optode oxygen sensors:* Use DOXY and TEMP\_DOXY, and DOXY2 and TEMP\_DOXY2If a float has two SBE oxygen sensors:* Use DOXY and DOXY2
+
+### Oxygen related parameters
+
+Some Argo floats perform Oxygen observation from different types of sensors, such as the Aanderaa Optode or the Seabird SBE 43/IDO.To provide homogeneous observations from heterogeneous sensors, oxygen measurement should be converted and reported as DOXY.* DOXY is the dissolved oxygen concentration estimated from the telemetered, calibrations coefficients and CTD values: PRES, TEMP (or TEMP\_DOXY) and PSAL.\
+  Pressure and salinity compensations (e.g. Optode) are taken into account.
+
+* DOXY unit: micromole/kg
+
+* DOXY\_ADJUSTED is the dissolved oxygen concentration corrected for any sensor drift and offset. DOXY\_ADJUSTED is calculated from the other “ADJUSTED” fields.Calibration coefficients, equations and references used to convert the telemetered variables in DOXY must be carefully documented in the metadata.The Argo oxygen data management is described at:* <http://www.argodatamgt.org/Documentation> , Cookbook documents, "Processing Argo oxygen data at the DAC level"
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Reference table 4: data centres and institutions codes
+
+<https://vocab.nerc.ac.uk/collection/R04/current> 
+
+## Reference table 5: location classes
+
+<https://vocab.nerc.ac.uk/collection/R05/current> 
+
+## Reference table 6: data state indicators
+
+<https://vocab.nerc.ac.uk/collection/R06/current> **Data state indicator recommended use** The following table describes the processing stage of data and the value to be assigned the data state indicator (DS Indicator). It is the concatenation of level and class described above.|                                                                                                                                                                                                                                                                                                                  |                  |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| **Processing Stage**                                                                                                                                                                                                                                                                                             | **DS Indicator** |
+| 1. Data pass through a communications system and arrive at a processing centre. The data resolution is the highest permitted by the technical constraints of the floats and communications system.                                                                                                               | 0A (note 1)      |
+| 2. The national centre assembles all of the raw information into a complete profile located in space and time.                                                                                                                                                                                                   | 1A (note 2)      |
+| 3. The national centre passes the data through automated QC procedures and prepares the data for distribution on the GTS, to global servers and to PIs.                                                                                                                                                          | 2B               |
+| 4. Real-time data are received at global data centres that apply QC including visual inspection of the data. These are then distributed to users in near real-time                                                                                                                                               | 2B+ (note 3)     |
+| 5. Data are reviewed by PIs and returned to processing centres. The processing centres forward the data to the global Argo servers.                                                                                                                                                                              | 2C               |
+| 6. Scientists accept data from various sources, combine them as they see fit with other data and generate a product. Results of the scientific analysis may be returned to regional centres or global servers. Incorporation of these results improves the quality of the data.                                  | 2C+              |
+| 7. Scientists working as part of GODAE generate fields of gridded products delivered in near real-time for distribution from the global servers. Generally, these products mostly will be based on data having passed through automated QC procedures.                                                           | 3B (note 4)      |
+| 8. Scientists working as part of GODAE generate fields of gridded products delivered with some time delay for distribution from the global servers. Generally, these products mostly will be based on data having passed through manual or more sophisticated QC procedures than employed on the real-time data. | 3C               |**Notes**1) We need to have a pragmatic approach to what constitutes "original" or "raw" data. Despite the fact that an instrument may be capable of high sampling rates, what is reported from the instrument defines what is considered "raw". For example, Argo floats can certainly sample at finer scales than every 10 db, but because of communications, all we see for now is data at that (or worse) vertical resolution. Therefore the data "coming from the instrument" is "raw" output at 10dbar resolution.
+
+2) The conversion of the raw data stream from the communications system into profiles of variables causes the data state indicator to switch from level 0 to 1.
+
+3) Even though the data at global data centres use manual or semi-automated QC procedures, there is often not the intercomparisons to larger data collections and fields that would qualify the data state indicator to be set to class C. This is generally only provided by scientific scrutiny of the data.
+
+4) The transition from class 2 to 3 occurs when assumptions of scales of variability are applied. During the course of normal data processing it is common to carry out some averaging and sub-sampling. This is usually done to exploit oversampling by the instrument, and to ensure good measurements are achieved. These are considered to be part of the geospatial and temporal referencing process.
+
+## Reference table 7: history action codes
+
+<https://vocab.nerc.ac.uk/collection/R07/current> 
+
+## Reference table 8: instrument types
+
+<https://vocab.nerc.ac.uk/collection/R08/current> The instrument type codes come from WMO table 1770.
+
+## Reference table 9: positioning system
+
+<https://vocab.nerc.ac.uk/collection/R09/current> 
+
+## Reference table 10: transmission system
+
+[https://vocab.nerc.ac.uk/collection/R10/current](https://vocab.nerc.ac.uk/collection/R03/current) 
+
+## Reference table 11: QC test binary IDs
+
+<https://vocab.nerc.ac.uk/collection/R11/current> This table is used to record the result of the quality control tests in the history section.The binary IDs of the QC tests are used to define the history variable HISTORY\_QCTEST, whose value is computed by adding the binary ID together, then translating to a hexadecimal number. An example is given on §5.The test numbers and the test names are listed in the Argo Quality Control Manual:* §2.1 “Argo Real-Time Quality Control Test Procedures on Vertical Profiles”, and
+
+* §2.2 “Argo Real-Time Quality Control Test Procedures on Trajectories”See <http://www.argodatamgt.org/Documentation> .
+
+## 3.12 Reference table 12: history steps codes
+
+<https://vocab.nerc.ac.uk/collection/R12/current> If individual centres wish to record other codes, they may add to this list as they feel is appropriate.
+
+## **3.13 Reference table 13: ocean codes** 
+
+<https://vocab.nerc.ac.uk/collection/R13/current> The ocean codes are used in the GDAC ftp directory files. The ocean code is not used in Argo NetCDF files. \
+![argo\_oceans](https://lh7-rt.googleusercontent.com/docsz/AD_4nXdBp7L4iIqX9Bpn20kGHJZ6ejEdaSm79uoYpHMPMAO1ht023HYy5pZ5vy9dAEw2FtKp9sF7xdZjT-fJi_VWaRrOcV5Ed2q4BM0HzOKDOsVSlftiaUf1vg1jAmX5Kz8PvgrVtQQrW0URpNyzL2HwmSYcXP5pOr656gyn64M?key=urriIMPgWYQSkBDhh4E5jQ)* The Pacific/Atlantic boundary is 70°W.
+
+* The Pacific/Indian boundary is 145°E.
+
+* The Atlantic/Indian boundary is 20°E.
+---------------------------------------
+
+## **3.14 Reference table 14: technical parameter names**
+
+## <https://vocab.nerc.ac.uk/collection/R14/current> All  technical parameter names are standardized. The list of technical parameter names (14a) is available at:* <http://www.argodatamgt.org/Media/Argo-Data-Management/Argo-Documentation/General-documentation/Data-format/Argo-technical-parameter-names>The naming convention for technical parameters (14b) is available at:* <http://www.argodatamgt.org/Media/Argo-Data-Management/Argo-Documentation/General-documentation/Data-format/Technical-parameter-naming-convention>  If new names are required as new variables are reported by a float, they must be added to this table before they will be accepted. Requests for new names can be sent for approval and inclusion.Older style files will be accepted for a short time and then all technical files must use approved names for standardized variables
+
+## **3.15 Reference Table 15: codes of trajectory measurements performed within a cycle**
+
+## <https://vocab.nerc.ac.uk/collection/R15/current> ![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXd0FkLiyJxn0ZsWaaOhLhn9DNmFzv4mFHnE85Qq1yk3XxQm8K28GxvKp4g4GQU-k82GbnBaL04ZiN_Ux5r59q-uP91uJe0fIDkiZoAcQKPeFtuonJTpA1kxy4-4HSWkpYPhnq5Pv4maSvIcBfa6gA38sUE?key=urriIMPgWYQSkBDhh4E5jQ)Figure 1:  Figure showing float cycle and the cycle timing variables.  Floats can profile either on descent or ascent.  Most floats profile on ascent.  Their float path is shown with a solid black line.  Some floats profile on descent.  One such float, the new SOLO-II Deep float, has a cycle as shown by the dashed line.  Floats that profile on ascent would have the following mandatory cycle timings:* DST, DET,PET, DDET, AST, AET and all surface timesFloats that profile on descent might have the following cycle timings:* DST, DDET, DAST, DET, PET, AST, AET, and all surface times  ******General Measurement Code Table Key**|                                                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Measurement code type**                                                                                                                                                                                                                                                                                                                                                                              | **Definition**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Any code evenly divisible by 100 (e.g. 100, 200, 300, etc.)                                                                                                                                                                                                                                                                                                                                            | **Primary Measurement Codes (MC).** Each marks a mandatory-to-fill cycle timing variable. These are very important for determining trajectory estimates. All are found in both the N\_MEASUREMENT and N\_CYCLE data arrays.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Any code evenly divisible by 50 but not evenly divisible by 100 (e.g. 150, 250, 450, et)                                                                                                                                                                                                                                                                                                               | **Secondary Measurement Codes (MC).** Each marks a suggested-to-fill cycle timing variable. Secondary MC are not always applicable to all floats, but are very useful in determining trajectory estimates.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Any code that falls in between any Primary or Secondary Measurement Code (span of 50 values). These codes describe data that are important cycle timing information but are not as important as the primary or secondary timing variables.The value span is subdivided into two halves. Measurement codes in this section will be described relative to the values of the Primary and Secondary codes. | **Relative Generic Codes.** Values spanning from MC minus 24 to MC minus 1: Measurement codes that have lower value and within 24 of a Primary or Secondary Measurement Code. These code definitions are phrased generally, so can be attached to data from many different floats. These code values (MC minus 24 to MC minus 1) are assigned when a float records a measurement while transitioning TOWARDS the MC. The definitions of the MC from MC minus 24 to MC minus 1 are repeated for all Primary and Secondary MC. An example, most floats record pressure/temperature/salinity during drift. The float is transitioning towards PET (MC=300) during this period. Thus the pressure/temperature/salinity measurements will have an MC between MC minus 24 and MC minus 1 where MC=300 (thus between MC=276 and MC=299). Which value is chosen is determined by the measurement itself (See table below).**Relative Specific Codes.** Values spanning from MC plus 1 to MC plus 25: These are specific measurements that are generally NOT recorded by multiple float types. They are believed to be valuable enough in trajectory estimation that they are defined here, and not within the generically defined MC minus 24 to MC minus 1 span. MC codes in this span will be specific to the MC code, and will NOT be repeated for other Primary and Secondary MCs. An example, APEX floats report the “Down-time end date”, which is important in determining the start of ascent (MC=500). The MC for “Down-time end date” is recorded with MC plus 1 (MC=501). |**Relative Generic Code Table Key (from MC minus 24 to MC minus 1)**This table pertains to any measurement code that has lower value and within 24 of a Primary or Secondary Measurement Code (see below). These definitions apply relative to every Primary and Secondary code. For example, AST (time of ascent start, MC=500) and AET (time of ascent end, MC=600) are both Primary MCs. There exists a measurement code MC minus 4 for both AST and AET which is assigned to any averaged measurement that is taken while transitioning towards the MC. If an averaged measurement is recorded while transitioning towards AST, the correct MC=496. If an averaged measurement is recorded while transitioning towards AET, the correct MC=596.
+
+## **3.16 Reference table 16: vertical sampling schemes**
+
+<https://vocab.nerc.ac.uk/collection/R16/current> This variable differentiates the various vertical sampling schemes for multiple profiles from a single cycle. This variable can vary between cycles to accommodate floats with two-way communication capabilities. The profile with N\_PROF=1 is required to be the Primary sampling profile. Other profiles will have N\_PROF > 1 in any order. There can be only one Primary sampling profile, while other vertical sampling schemes can have more than one profile.|                                                                                                                                                                                                                                                                                                       |             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Code (STRING256)****FORMAT →  name: nominal measurement type \[full description]****\[ ] indicates optional**                                                                                                                                                                                       | **N\_PROF** | **Code Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Primary sampling: averaged \[description]or Primary sampling: discrete \[description]orPrimary sampling: mixed \[description]                                                                                                                                                                         | 1           | Primary CTD measurements and measurements from auxiliary sensors that are taken at the same pressure levels and with the same sampling method as the Primary CTD profile. For auxiliary sensor measurements it is not required that all pressure levels contain data.                                                                                                                                                                                                                                                                                      |
+| Secondary sampling: averaged \[description]orSecondary sampling: discrete \[description]orSecondary sampling: mixed \[description]                                                                                                                                                                    | >1          | Excluding “Primary sampling”, this profile includes measurements that are taken at pressure levels different from the Primary CTD profile, or with sampling methods different from the Primary CTD profile. Measurements can be taken by the Primary CTD or by auxiliary sensors.                                                                                                                                                                                                                                                                          |
+| Near-surface sampling: averaged,pumped/unpumped \[description]orNear-surface sampling: discrete,pumped/unpumped \[description]orNear-surface sampling: mixed,pumped/unpumped \[description]                                                                                                           | >1          | This profile includes near-surface measurements that are focused on the top 5dbar of the sea surface. (For the purpose of cross-calibration, this profile can extend deeper than the top 5dbar so as to overlap with the Primary sampling profile.) These measurements are taken at pressure levels different from the Primary CTD profile, or with sampling methods different from the Primary CTD profile. If the Primary sampling profile measures above 5dbar in the same manner as deeper data, there is no need to place the near-surface data here. |
+| Bounce sampling: averaged \[description]orBounce sampling: discrete \[description]orBounce sampling: mixed \[description]                                                                                                                                                                             | >1          | This scheme contains profiles that are collected on multiple rises/falls during a single cycle. The profiles are temporally offset from each other and/or the Primary sampling profile. They can be sampled with the Primary CTD or with auxiliary sensors.                                                                                                                                                                                                                                                                                                |
+| Use the term 'averaged' if the data in the profile are pressure binned averages using multiple data measurements (pollings) from a sensor. Use the term 'discrete' if the data in the profile are from a single polling from a sensor. If both methods are used in the profile, use the term 'mixed'. |             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |**Example for a SOLOII V1.2 float**N\_PROF=1: "Primary sampling: averaged \[nominal 2 dbar binned data sampled at 0.5 Hz from a SBE41CP]"N\_PROF=2: "Near-surface sampling: discrete, pumped \[shallowest polling of a SBE41CP]"Note: In this example, by adding a single data point in N\_PROF=2, the size of the profile file will double.**Example for a Provor bio 5.0 float**This float is equipped with a Seabird CTD and a Wetlab Satrover optical sensor.CTD sampling scheme:* The threshold between deep sampling and upper sampling is 200 decibars.
+
+* Upper sampling: 10 decibars slice thickness, 10 seconds sampling rate.
+
+* Deep sampling: 25 decibars slice thickness, 10 seconds sampling rate.Chlorophyll (optical) sampling scheme:* The threshold between deep sampling and upper sampling is 300 decibars.
+
+* Upper sampling: 1 decibar slice thickness, 1 seconds sampling rate.
+
+* Deep sampling: 10 decibars slice thickness, 10 seconds sampling rate.
+
+* Deepest sampling: 1000 decibars.Description of the 2 vertical sampling schemes: N\_PROF=1: "Primary sampling: averaged \[10 seconds sampling, 25 decibars average from bottom to 200 decibars, 10 seconds sampling, 10 decibars average from 200 decibars to surface]"N\_PROF=2: "Secondary sampling: averaged \[10 seconds sampling, 10 decibars average from 1000 decibars to 300 decibars, 1 second sampling, 1 decibar average from 300 decibars to surface]"**Example for an APEX Iridium float with an Optode oxygen sensor and an auxiliary CTD for near-surface measurements**N\_PROF=1: "Primary sampling: averaged \[2-dbar bin average]"N\_PROF=2: "Secondary sampling: discrete \[1.1 Hz CTD data, discrete DOXY]"N\_PROF=3: "Near-surface sampling: discrete, unpumped \[auxiliary CTD]"
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## **3.17 Reference table 17: obsolete**
+
+## This table has been removed.
+
+## **3.18 Reference table 18: metadata configuration parameter names**
+
+## <https://vocab.nerc.ac.uk/collection/R18/current> All metadata variable names and configuration parameter names are standardized. The list of metadata variable names (18a) is available at:* <http://www.argodatamgt.org/Documentation>  under “Argo Metadata Files”, “Metadata variable names”The list of configuration parameter names (18b) is available at:* <http://www.argodatamgt.org/Documentation>  under “Argo Metadata Files”, “Configuration parameter names” If new names are required as new variables are reported by a float, they must be added to this table before they will be accepted. Please note that in this scheme, configuration parameter values are stored as numerals and therefore any parameters with logical or string input will require an equivalent numeric code to be added to the “Explanation” section of the Configuration parameter names table. Requests for new names can be sent for approval and inclusion.
+
+## **3.19 Reference table 19: STATUS flags**
+
+## <https://vocab.nerc.ac.uk/collection/R19/current> 
+
+## **3.20 Reference table 20: GROUNDED flags**
+
+## <https://vocab.nerc.ac.uk/collection/R20/current> 
+
+## **3.21 Reference table 21: REPRESENTATIVE\_PARK\_PRESSURE\_STATUS**
+
+## <https://vocab.nerc.ac.uk/collection/R21/current> 
+
+## **3.22 Reference table 22: PLATFORM\_FAMILY**
+
+## <https://vocab.nerc.ac.uk/collection/R22/current> Please note that this reference table is frequently updated to include new sensor and float models. 
+
+## **3.23 Reference table 23: PLATFORM\_TYPE**
+
+## <https://vocab.nerc.ac.uk/collection/R23/current> Please note that this reference table is frequently updated to include new sensor and float models.
+
+## **3.24 Reference table 24:  PLATFORM\_MAKER**
+
+## <https://vocab.nerc.ac.uk/collection/R24/current> Please note that this reference table is frequently updated to include new sensor and float models.3.25 Reference table 25: SENSOR<https://vocab.nerc.ac.uk/collection/R25/current> Please note that this reference table is frequently updated to include new sensor and float models. You can 
+
+## **3.26 Reference table 26:  SENSOR\_MAKER**
+
+## <https://vocab.nerc.ac.uk/collection/R26/current> Please note that this reference table is frequently updated to include new sensor and float models. 
+
+## **3.27 Reference table 27: SENSOR\_MODEL**
+
+## <https://vocab.nerc.ac.uk/collection/R27/current> The SENSOR\_MODEL variable is standardised, i.e. we expect the manufacturer followed by the standard model number, i.e. SBE41CP or AANDERAA\_3830. If there is a version number for a particular model then this is mentioned in the SENSOR\_FIRMWARE\_VERSION field. **\*** Note that some biogeochemical sensors have different configurations, i.e. they are either in the pumped stream or not in the pumped stream. Sensor readings from those in the pumped vs unpumped stream can be very different. Some manufacturers do not distinguish this in the sensor model name. In order to capture this information there is a configuration parameter that specifies this, i.e. CONFIG\_SensorInPumpedStream\_LOGICAL, (Yes =1, No = 0). For the relevant sensors this configuration parameter should be filled in the metadata file for the launch configuration settings. 
+
+## **3.28 Reference table 28: CONTROLLER\_BOARD\_TYPE\_PRIMARY**
+
+## <https://vocab.nerc.ac.uk/collection/R28/current> The first part of the CONTROLLER\_BOARD\_TYPE\_PRIMARY variable should contain one of the strings in the below table. The remainder of the string is free text and may contain more information on the controller board type to suit the float model. The free text should be delimited by square brackets ‘\[]’. For example: “APF9 \[iridium version xyz]”. Please note that this reference table is sometimes updated to include new sensor and float models. 
+
+## **3.29 Reference table 29: BATTERY\_TYPE**
+
+This table has not been transferred to the NVS yet.The BATTERY\_TYPE should be coded with the following frame:\
+<_manufacturer_> <_battery\_type_> <_voltage_> V \[+<_manufacturer_> <_battery\_type_> <_voltage_> V]Where:\
+<_manufacturer_> should be one of the following controlled list of battery manufacturers:|                                   |
+| --------------------------------- |
+| **List of battery manufacturers** |
+| ELECTROCHEM                       |
+| TADIRAN                           |
+| SAFT                              | < _battery\_type_ > should be one of the following controlled list of battery types:|                           |
+| ------------------------- |
+| **List of battery types** |
+| Alkaline                  |
+| Lithium                   |
+| Hybrid                    | <_voltage_> stands for the initial battery voltage. Examples:|                                                    |
+| -------------------------------------------------- |
+| ELECTROCHEM Alkaline 12 V                          |
+| TADIRAN Lithium 24 V                               |
+| TADIRAN Alkaline 12 V + TADIRAN Lithium 12 V       |
+| ELECTROCHEM Lithium 24 V + ELECTROCHEM Hybrid 24 V |
+------------------------------------------------------
+
+## **3.30 Reference table 30: BATTERY\_PACKS (optional field)**
+
+## This table has not been transferred to the NVS yet.Although the BATTERY\_PACKS variable is not mandatory, it is controlled. The format of the field should be as shown in the table below, where x indicates the number of packs (not the number of batteries in a pack). ‘Li’, ‘Alk’ or ‘Hyb’ abbreviations should be used.Examples:|                                                              |
+| ------------------------------------------------------------ |
+| xDD y (x = number of packs, y = Li or Alk or Hyb)            |
+| xC y (x = number of packs, y = Li or Alk or Hyb)             |
+| xD y (x = number of packs, y = Li or Alk or Hyb)             |
+| Any combination of above with + to join (eg 4DD Li + 1C Alk) |
+| U (Unknown)                                                  |
+
+## **3.31 Reference table 31: ENDING\_CAUSE and ENDING\_CAUSE\_CATEGORY**
+
+## This table has not been transferred to the NVS yet.This vocabulary captures all the possible reasons why a float may have died.The “ending cause category” and “ending cause” for a float are stored in the “ANOMALY” variable of its meta-data file. They are reported with a “key0:value0,key1:value1” syntax where:* key0 = “ending\_cause\_category”
+
+* key1 = “ending\_cause”The “ANOMALY” variable describes any anomalies or problems the float may have had. Anomalies or problems are comma separated statements. **Example*** ANOMALY = "from cycle 107 the immersion drift is not stable,ending\_cause\_category:hardware,ending\_cause:ballast"Before registration in the Argo vocabulary server, the “ending cause category” and “ending cause” terms are managed in the [ArgoVocab-FloatsEndingCauses](https://docs.google.com/document/d/1W1GpAei-Pz5WE-LC5VREFhKGJsenkDPV0GqPG6nimGU/edit?usp=sharing) document.
+
+## **3.32 Reference table 32: SPECIAL\_FEATURE**
+
+## This table has not been transferred to the NVS yet.This vocabulary captures the possible SPECIAL\_FEATURES in a float’s characteristics.Additional float features can be specified here such as algorithms used by the float.The SPECIAL\_FEATURES variable in a float metadata file must be filled by the DAC, to indicate there are AUX data files (see <https://argo.ucsd.edu/data/auxiliary-directory>).
+
+## **3.33 Reference table 40 : PI\_NAME**
+
+## [https://vocab.nerc.ac.uk/collection/R40](https://vocab.nerc.ac.uk/collection/R40/)  This table captures the possible PI\_NAME. Preferred label is composed in most cases by the first name in lower cases and the family name in upper cases. When there are several Principal Investigators, their names should be separated by commas.
