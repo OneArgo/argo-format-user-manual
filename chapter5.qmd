@@ -9,18 +9,20 @@ The process of carrying out delayed mode QC may result in adjustments being made
 |                            |                |                    |
 | -------------------------- | -------------- | --------------------------------------------------------------------------------------------------- |
 | **Field**                  | **Example**    | **Explanation**    |
-| HISTORY\_INSTITUTION       | CI             | Selected from the list in reference table 4 (<https://vocab.nerc.ac.uk/collection/R04/>)            |
-| HISTORY\_STEP              | ARSQ           | Selected from the list in reference table 12 (<https://vocab.nerc.ac.uk/collection/R12/>).          |
+| HISTORY\_INSTITUTION       | CI             | Selected from the list in reference table 4 <https://vocab.nerc.ac.uk/collection/R04>            |
+| HISTORY\_STEP              | ARSQ           | Selected from the list in reference table 12 <https://vocab.nerc.ac.uk/collection/R12>.          |
 | HISTORY\_SOFTWARE          | WJO            | This is a locally defined name for the delayed mode QC process employed.                            |
 | HISTORY\_SOFTWARE\_RELEASE | 1              | This is a locally defined indicator that identifies what version of the QC software is being used.  |
 | HISTORY\_REFERENCE         | WOD2001        | This is a locally defined name for the reference database used for the delayed mode QC process.     |
 | HISTORY\_DATE              | 20030805000000 | The year, month, day, hour, minute, second that the process ran                                     |
-| HISTORY\_ACTION            | IP             | Selected from the list in reference table 7 (<https://vocab.nerc.ac.uk/collection/R07/>).           |
+| HISTORY\_ACTION            | IP             | Selected from the list in reference table 7 <https://vocab.nerc.ac.uk/collection/R07>.           |
 | HISTORY\_PARAMETER         | FillValue      | This field does not apply (1)                                                                       |
 | HISTORY\_START\_PRES       | FillValue      | This field does not apply                                                                           |
 | HISTORY\_STOP\_PRES        | FillValue      | This field does not apply                                                                           |
 | HISTORY\_PREVIOUS\_VALUE   | FillValue      | This field does not apply                                                                           |
-| HISTORY\_QCTEST            | FillValue      | This field does not apply                                                                           |**Note**(1) The present version of delayed mode QC only tests salinity and as such it is tempting to place “PSAL” in the \_PARAMETER field. In future, delayed mode QC tests may include tests for temperature, pressure and perhaps other parameters. For this reason, simply addressing the software and version number will tell users what parameters have been tested.
+| HISTORY\_QCTEST            | FillValue      | This field does not apply                                                                           |
+
+**Note**(1) The present version of delayed mode QC only tests salinity and as such it is tempting to place “PSAL” in the \_PARAMETER field. In future, delayed mode QC tests may include tests for temperature, pressure and perhaps other parameters. For this reason, simply addressing the software and version number will tell users what parameters have been tested.
 
 ## Recording processing stages
 
@@ -31,13 +33,13 @@ Each entry to record the processing stages has a similar form. An example is pro
 |                            |                |           |
 | -------------------------- | -------------- | ------------------------------------------------------------------------------------------ |
 | **Field**                  | **Example**    | **Explanation**                                                                            |
-| HISTORY\_INSTITUTION       | ME             | Selected from the list in reference table 4 (<https://vocab.nerc.ac.uk/collection/R04/>).  |
-| HISTORY\_STEP              | ARFM           | Selected from the list in reference table 12 (<https://vocab.nerc.ac.uk/collection/R12/>). |
+| HISTORY\_INSTITUTION       | ME             | Selected from the list in reference table 4 <https://vocab.nerc.ac.uk/collection/R04>.  |
+| HISTORY\_STEP              | ARFM           | Selected from the list in reference table 12 <https://vocab.nerc.ac.uk/collection/R12>. |
 | HISTORY\_SOFTWARE          | FillValue      | This field does not apply                                                                  |
 | HISTORY\_SOFTWARE\_RELEASE | FillValue      | This field does not apply                                                                  |
 | HISTORY\_REFERENCE         | FillValue      | This field does not apply                                                                  |
 | HISTORY\_DATE              | 20030805000000 | The year, month, day, hour, minute, second that the process ran                            |
-| HISTORY\_ACTION            | IP             | Selected from the list in reference table 7 (<https://vocab.nerc.ac.uk/collection/R07/>).  |
+| HISTORY\_ACTION            | IP             | Selected from the list in reference table 7 <https://vocab.nerc.ac.uk/collection/R07>.  |
 | HISTORY\_PARAMETER         | FillValue      | This field does not apply                                                                  |
 | HISTORY\_START\_PRES       | FillValue      | This field does not apply                                                                  |
 | HISTORY\_STOP\_PRES        | FillValue      | This field does not apply                                                                  |
@@ -64,21 +66,24 @@ The delayed mode QC process is recorded separately from the other QC tests that 
 | HISTORY\_START\_PRES       | FillValue      | This field does not apply |
 | HISTORY\_STOP\_PRES        | FillValue      | This field does not apply |
 | HISTORY\_PREVIOUS\_VALUE   | FillValue      | This field does not apply |
-| HISTORY\_QCTEST            | 1BE            | This is the result of all tests with IDs from 2 to 256<br> having been applied. See reference table 11 <br>(<https://vocab.nerc.ac.uk/collection/R11/>). |**Record 2**: Documenting the tests that failed|                            |                |                 |
-| -------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| HISTORY\_QCTEST            | 1BE            | This is the result of all tests with IDs from 2 to 256<br> having been applied. See reference table 11 <br><https://vocab.nerc.ac.uk/collection/R11>. |
+
+**Record 2**: Documenting the tests that failed
+
 | **Field**                  | **Example**    | **Explanation** |
-| HISTORY\_INSTITUTION       | ME             | Selected from the list in reference table 4 <br>(<https://vocab.nerc.ac.uk/collection/R04/>).                                              |
-| HISTORY\_STEP              | ARGQ           | Selected from the list in reference table 12 <br>(<https://vocab.nerc.ac.uk/collection/R12/>).                                             |
+| -------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| HISTORY\_INSTITUTION       | ME             | Selected from the list in reference table 4 <br><https://vocab.nerc.ac.uk/collection/R04>.                                              |
+| HISTORY\_STEP              | ARGQ           | Selected from the list in reference table 12 <br><https://vocab.nerc.ac.uk/collection/R12>.                                             |
 | HISTORY\_SOFTWARE          | FillValue      | This field does not apply                             |
 | HISTORY\_SOFTWARE\_RELEASE | FillValue      | This field does not apply                             |
 | HISTORY\_REFERENCE         | FillValue      | This field does not apply                             |
 | HISTORY\_DATE              | 20030805000000 | The year, month, day, hour, minute, second that the process ran                                                                        |
-| HISTORY\_ACTION            | QCF$           | Selected from the list in reference table 7 <br>(<https://vocab.nerc.ac.uk/collection/R07/>).                                              |
+| HISTORY\_ACTION            | QCF$           | Selected from the list in reference table 7 <br><https://vocab.nerc.ac.uk/collection/R07>.                                              |
 | HISTORY\_PARAMETER         | FillValue      | This field does not apply                             |
 | HISTORY\_START\_PRES       | FillValue      | This field does not apply                             |
 | HISTORY\_STOP\_PRES        | FillValue      | This field does not apply                             |
 | HISTORY\_PREVIOUS\_VALUE   | FillValue      | This field does not apply                             |
-| HISTORY\_QCTEST            | A0             | This is the result when data fail tests with IDs of 32 and 128.<br>See reference table 11 <br>(<https://vocab.nerc.ac.uk/collection/R11/>). |
+| HISTORY\_QCTEST            | A0             | This is the result when data fail tests with IDs of 32 and 128.<br>See reference table 11 <br><https://vocab.nerc.ac.uk/collection/R11>. |
 
 ## Recording changes in values
 
@@ -86,43 +91,46 @@ The PIs have the final word on the content of the data files in the Argo data sy
 
 **Example**: Changed latitude
 
-|                            |                |                                       |
-| -------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Field**                  | **Example**    | **Explanation**                       |
-| HISTORY\_INSTITUTION       | CI             | Selected from the list in reference table 4 (<https://vocab.nerc.ac.uk/collection/R04/>).                                                                    |
-| HISTORY\_STEP              | ARGQ           | Selected from the list in reference table 12 (<https://vocab.nerc.ac.uk/collection/R12/>).                                                                   |
+| -------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| HISTORY\_INSTITUTION       | CI             | Selected from the list in reference table 4 <https://vocab.nerc.ac.uk/collection/R04>.                                                                    |
+| HISTORY\_STEP              | ARGQ           | Selected from the list in reference table 12 <https://vocab.nerc.ac.uk/collection/R12>.                                                                   |
 | HISTORY\_SOFTWARE          | FillValue      | This field does not apply             |
 | HISTORY\_SOFTWARE\_RELEASE | FillValue      | This field does not apply             |
 | HISTORY\_REFERENCE         | FillValue      | This field does not apply             |
 | HISTORY\_DATE              | 20030805000000 | The year, month, day, hour, minute, second that the process ran             |
-| HISTORY\_ACTION            | CV             | Selected from the list in reference table 7 (<https://vocab.nerc.ac.uk/collection/R07/>).                                                                    |
-| HISTORY\_PARAMETER         | LAT$           | A new entry for reference table 3 (<https://vocab.nerc.ac.uk/collection/R03/>) created by institution CI to indicate changes have been made in the latitude. |
+| HISTORY\_ACTION            | CV             | Selected from the list in reference table 7 <https://vocab.nerc.ac.uk/collection/R07>.                                                                    |
+| HISTORY\_PARAMETER         | LAT$           | A new entry for reference table 3 <https://vocab.nerc.ac.uk/collection/R03> created by institution CI to indicate changes have been made in the latitude. |
 | HISTORY\_START\_PRES       | FillValue      | This field does not apply             |
 | HISTORY\_STOP\_PRES        | FillValue      | This field does not apply             |
 | HISTORY\_PREVIOUS\_VALUE   | 23.456         | This is the value of the latitude before the change was made.               |
 | HISTORY\_QCTEST            | FillValue      | This field does not apply             |
 
 **Notes**
+
 1) Be sure that the new value is recorded in the latitude and longitude of the profile section.
 
 2) Be sure that the POSITION\_QC flag is set to “5” to indicate to a user that the value now in the position has been changed from the original one that was there.
 
-3) Be sure to record the previous value in history entries.It is also sometimes desirable to record changes in quality flags that may arise from reprocessing data through some QC procedures. In this example, assume that whereas prior to the analysis, all temperature values from 75 to 105 dbar were considered correct, after the analysis, they are considered wrong. The history entry to record this would look as follows.Example: Changed flags
+3) Be sure to record the previous value in history entries.It is also sometimes desirable to record changes in quality flags that may arise from reprocessing data through some QC procedures. In this example, assume that whereas prior to the analysis, all temperature values from 75 to 105 dbar were considered correct, after the analysis, they are considered wrong. The history entry to record this would look as follows.
+
+Example: Changed flags
 
 |                            |                |           |
 | -------------------------- | -------------- | ------------------------------------------------------------------------------------------ |
 | **Field**                  | **Example**    | **Explanation**                                                                            |
-| HISTORY\_INSTITUTION       | CI             | Selected from the list in reference table 4 (<https://vocab.nerc.ac.uk/collection/R04/>).  |
-| HISTORY\_STEP              | ARGQ           | Selected from the list in reference table 12 (<https://vocab.nerc.ac.uk/collection/R12/>). |
+| HISTORY\_INSTITUTION       | CI             | Selected from the list in reference table 4 <https://vocab.nerc.ac.uk/collection/R04>.  |
+| HISTORY\_STEP              | ARGQ           | Selected from the list in reference table 12 <https://vocab.nerc.ac.uk/collection/R12>. |
 | HISTORY\_SOFTWARE          | FillValue      | This field does not apply                                                                  |
 | HISTORY\_SOFTWARE\_RELEASE | FillValue      | This field does not apply                                                                  |
 | HISTORY\_REFERENCE         | FillValue      | This field does not apply                                                                  |
 | HISTORY\_DATE              | 20030805000000 | The year, month, day, hour, minute, second that the process ran                            |
-| HISTORY\_ACTION            | CF             | Selected from the list in reference table 7 (<https://vocab.nerc.ac.uk/collection/R07/>).  |
-| HISTORY\_PARAMETER         | TEMP           | Selected from the list in reference table 3 (<https://vocab.nerc.ac.uk/collection/R03/>).  |
+| HISTORY\_ACTION            | CF             | Selected from the list in reference table 7 <https://vocab.nerc.ac.uk/collection/R07>.  |
+| HISTORY\_PARAMETER         | TEMP           | Selected from the list in reference table 3 <https://vocab.nerc.ac.uk/collection/R03>.  |
 | HISTORY\_START\_PRES       | 75             | Shallowest pressure of action.                                                             |
 | HISTORY\_STOP\_PRES        | 105            | Deepest pressure of action.                                                                |
 | HISTORY\_PREVIOUS\_VALUE   | 1              | This is the value of the quality flag on temperature readings before the change was made.  |
 | HISTORY\_QCTEST            | FillValue      | This field does not apply                                                                  |
 
-**Notes**1. The new QC flag of “4” (to indicate wrong values) would appear in the \<param>\_QC field.
+**Notes**
+The new QC flag of “4” (to indicate wrong values) would appear in the \<param>\_QC field.

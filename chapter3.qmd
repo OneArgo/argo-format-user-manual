@@ -87,10 +87,8 @@ If a float has two SBE oxygen sensors:* Use DOXY and DOXY2
 Some Argo floats perform Oxygen observation from different types of sensors, such as the Aanderaa Optode or the Seabird SBE 43/IDO.To provide homogeneous observations from heterogeneous sensors, oxygen measurement should be converted and reported as DOXY.* DOXY is the dissolved oxygen concentration estimated from the telemetered, calibrations coefficients and CTD values: PRES, TEMP (or TEMP\_DOXY) and PSAL.\
   Pressure and salinity compensations (e.g. Optode) are taken into account.
 
-* DOXY unit: micromole/kg
-
-* DOXY\_ADJUSTED is the dissolved oxygen concentration corrected for any sensor drift and offset. DOXY\_ADJUSTED is calculated from the other “ADJUSTED” fields.Calibration coefficients, equations and references used to convert the telemetered variables in DOXY must be carefully documented in the metadata.The Argo oxygen data management is described at:* <http://www.argodatamgt.org/Documentation> , Cookbook documents, "Processing Argo oxygen data at the DAC level"
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- DOXY unit: micromole/kg
+- DOXY\_ADJUSTED is the dissolved oxygen concentration corrected for any sensor drift and offset. DOXY\_ADJUSTED is calculated from the other “ADJUSTED” fields.Calibration coefficients, equations and references used to convert the telemetered variables in DOXY must be carefully documented in the metadata.The Argo oxygen data management is described at:* <http://www.argodatamgt.org/Documentation> , Cookbook documents, "Processing Argo oxygen data at the DAC level"
 
 ## Reference table 4: data centres and institutions codes
 
@@ -102,7 +100,9 @@ Some Argo floats perform Oxygen observation from different types of sensors, suc
 
 ## Reference table 6: data state indicators
 
-<https://vocab.nerc.ac.uk/collection/R06/current> **Data state indicator recommended use** The following table describes the processing stage of data and the value to be assigned the data state indicator (DS Indicator). It is the concatenation of level and class described above.|                                                                                                                                                                                                                                                                                                                  |                  |
+<https://vocab.nerc.ac.uk/collection/R06/current> **Data state indicator recommended use** The following table describes the processing stage of data and the value to be assigned the data state indicator (DS Indicator). It is the concatenation of level and class described above.
+
+|                                                                                                                                                                                                                                                                                                                  |                  |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
 | **Processing Stage**                                                                                                                                                                                                                                                                                             | **DS Indicator** |
 | 1. Data pass through a communications system and arrive at a processing centre. The data resolution is the highest permitted by the technical constraints of the floats and communications system.                                                                                                               | 0A (note 1)      |
@@ -148,8 +148,9 @@ Some Argo floats perform Oxygen observation from different types of sensors, suc
 
 ## Reference table 13: ocean codes
 
-<https://vocab.nerc.ac.uk/collection/R13/current> The ocean codes are used in the GDAC ftp directory files. The ocean code is not used in Argo NetCDF files. \
-![argo\_oceans](https://lh7-rt.googleusercontent.com/docsz/AD_4nXdBp7L4iIqX9Bpn20kGHJZ6ejEdaSm79uoYpHMPMAO1ht023HYy5pZ5vy9dAEw2FtKp9sF7xdZjT-fJi_VWaRrOcV5Ed2q4BM0HzOKDOsVSlftiaUf1vg1jAmX5Kz8PvgrVtQQrW0URpNyzL2HwmSYcXP5pOr656gyn64M?key=urriIMPgWYQSkBDhh4E5jQ)* The Pacific/Atlantic boundary is 70°W.
+<https://vocab.nerc.ac.uk/collection/R13/current> The ocean codes are used in the GDAC ftp directory files. The ocean code is not used in Argo NetCDF files. 
+XXX
+* The Pacific/Atlantic boundary is 70°W.
 
 * The Pacific/Indian boundary is 145°E.
 
@@ -162,7 +163,14 @@ Some Argo floats perform Oxygen observation from different types of sensors, suc
 
 ## Reference Table 15: codes of trajectory measurements performed within a cycle
 
-<https://vocab.nerc.ac.uk/collection/R15/current> ![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXd0FkLiyJxn0ZsWaaOhLhn9DNmFzv4mFHnE85Qq1yk3XxQm8K28GxvKp4g4GQU-k82GbnBaL04ZiN_Ux5r59q-uP91uJe0fIDkiZoAcQKPeFtuonJTpA1kxy4-4HSWkpYPhnq5Pv4maSvIcBfa6gA38sUE?key=urriIMPgWYQSkBDhh4E5jQ)Figure 1:  Figure showing float cycle and the cycle timing variables.  Floats can profile either on descent or ascent.  Most floats profile on ascent.  Their float path is shown with a solid black line.  Some floats profile on descent.  One such float, the new SOLO-II Deep float, has a cycle as shown by the dashed line.  Floats that profile on ascent would have the following mandatory cycle timings:* DST, DET,PET, DDET, AST, AET and all surface timesFloats that profile on descent might have the following cycle timings:* DST, DDET, DAST, DET, PET, AST, AET, and all surface times  ******General Measurement Code Table Key**|                                                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+<https://vocab.nerc.ac.uk/collection/R15/current> 
+
+XXX
+Figure 1:  Figure showing float cycle and the cycle timing variables.  Floats can profile either on descent or ascent.  Most floats profile on ascent.  Their float path is shown with a solid black line.  Some floats profile on descent.  One such float, the new SOLO-II Deep float, has a cycle as shown by the dashed line.  Floats that profile on ascent would have the following mandatory cycle timings:* DST, DET,PET, DDET, AST, AET and all surface timesFloats that profile on descent might have the following cycle timings:* DST, DDET, DAST, DET, PET, AST, AET, and all surface times
+
+*General Measurement Code Table Key*
+
+|                                                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Measurement code type**                                                                                                                                                                                                                                                                                                                                                                              | **Definition**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | Any code evenly divisible by 100 (e.g. 100, 200, 300, etc.)                                                                                                                                                                                                                                                                                                                                            | **Primary Measurement Codes (MC).** Each marks a mandatory-to-fill cycle timing variable. These are very important for determining trajectory estimates. All are found in both the N\_MEASUREMENT and N\_CYCLE data arrays.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -171,7 +179,11 @@ Some Argo floats perform Oxygen observation from different types of sensors, suc
 
 ## Reference table 16: vertical sampling schemes
 
-<https://vocab.nerc.ac.uk/collection/R16/current> This variable differentiates the various vertical sampling schemes for multiple profiles from a single cycle. This variable can vary between cycles to accommodate floats with two-way communication capabilities. The profile with N\_PROF=1 is required to be the Primary sampling profile. Other profiles will have N\_PROF > 1 in any order. There can be only one Primary sampling profile, while other vertical sampling schemes can have more than one profile.|                                                                                                                                                                                                                                                                                                       |             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+<https://vocab.nerc.ac.uk/collection/R16/current>
+
+This variable differentiates the various vertical sampling schemes for multiple profiles from a single cycle. This variable can vary between cycles to accommodate floats with two-way communication capabilities. The profile with N\_PROF=1 is required to be the Primary sampling profile. Other profiles will have N\_PROF > 1 in any order. There can be only one Primary sampling profile, while other vertical sampling schemes can have more than one profile.
+
+|                                                                                                                                                                                                                                                                                                       |             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Code (STRING256)****FORMAT →  name: nominal measurement type \[full description]****\[ ] indicates optional**                                                                                                                                                                                       | **N\_PROF** | **Code Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Primary sampling: averaged \[description]or Primary sampling: discrete \[description]orPrimary sampling: mixed \[description]                                                                                                                                                                         | 1           | Primary CTD measurements and measurements from auxiliary sensors that are taken at the same pressure levels and with the same sampling method as the Primary CTD profile. For auxiliary sensor measurements it is not required that all pressure levels contain data.                                                                                                                                                                                                                                                                                      |
@@ -188,8 +200,14 @@ Some Argo floats perform Oxygen observation from different types of sensors, suc
 
 * Deep sampling: 10 decibars slice thickness, 10 seconds sampling rate.
 
-* Deepest sampling: 1000 decibars.Description of the 2 vertical sampling schemes: N\_PROF=1: "Primary sampling: averaged \[10 seconds sampling, 25 decibars average from bottom to 200 decibars, 10 seconds sampling, 10 decibars average from 200 decibars to surface]"N\_PROF=2: "Secondary sampling: averaged \[10 seconds sampling, 10 decibars average from 1000 decibars to 300 decibars, 1 second sampling, 1 decibar average from 300 decibars to surface]"**Example for an APEX Iridium float with an Optode oxygen sensor and an auxiliary CTD for near-surface measurements**N\_PROF=1: "Primary sampling: averaged \[2-dbar bin average]"N\_PROF=2: "Secondary sampling: discrete \[1.1 Hz CTD data, discrete DOXY]"N\_PROF=3: "Near-surface sampling: discrete, unpumped \[auxiliary CTD]"
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* Deepest sampling: 1000 decibars.
+
+Description of the 2 vertical sampling schemes: 
+N\_PROF=1: "Primary sampling: averaged \[10 seconds sampling, 25 decibars average from bottom to 200 decibars, 10 seconds sampling, 10 decibars average from 200 decibars to surface]"N\_PROF=2: "Secondary sampling: averaged \[10 seconds sampling, 10 decibars average from 1000 decibars to 300 decibars, 1 second sampling, 1 decibar average from 300 decibars to surface]"
+
+**Example for an APEX Iridium float with an Optode oxygen sensor and an auxiliary CTD for near-surface measurements**
+N\_PROF=1: "Primary sampling: averaged \[2-dbar bin average]"N\_PROF=2: "Secondary sampling: discrete \[1.1 Hz CTD data, discrete DOXY]"N\_PROF=3: "Near-surface sampling: discrete, unpumped \[auxiliary CTD]"
+
 
 ## Reference table 17: obsolete
 
@@ -197,7 +215,15 @@ This table has been removed.
 
 ## Reference table 18: metadata configuration parameter names
 
-<https://vocab.nerc.ac.uk/collection/R18/current> All metadata variable names and configuration parameter names are standardized. The list of metadata variable names (18a) is available at:* <http://www.argodatamgt.org/Documentation>  under “Argo Metadata Files”, “Metadata variable names”The list of configuration parameter names (18b) is available at:* <http://www.argodatamgt.org/Documentation>  under “Argo Metadata Files”, “Configuration parameter names” If new names are required as new variables are reported by a float, they must be added to this table before they will be accepted. Please note that in this scheme, configuration parameter values are stored as numerals and therefore any parameters with logical or string input will require an equivalent numeric code to be added to the “Explanation” section of the Configuration parameter names table. Requests for new names can be sent for approval and inclusion.
+<https://vocab.nerc.ac.uk/collection/R18/current> 
+
+All metadata variable names and configuration parameter names are standardized. The list of metadata variable names (18a) is available at:
+
+- <http://www.argodatamgt.org/Documentation>  under “Argo Metadata Files”, “Metadata variable names”
+
+The list of configuration parameter names (18b) is available at:
+
+- <http://www.argodatamgt.org/Documentation> under “Argo Metadata Files”, “Configuration parameter names” If new names are required as new variables are reported by a float, they must be added to this table before they will be accepted. Please note that in this scheme, configuration parameter values are stored as numerals and therefore any parameters with logical or string input will require an equivalent numeric code to be added to the “Explanation” section of the Configuration parameter names table. Requests for new names can be sent for approval and inclusion.
 
 ## Reference table 19: STATUS flags
 
@@ -237,29 +263,43 @@ This table has been removed.
 
 ## Reference table 29: BATTERY\_TYPE
 
-This table has not been transferred to the NVS yet.The BATTERY\_TYPE should be coded with the following frame:\
-<_manufacturer_> <_battery\_type_> <_voltage_> V \[+<_manufacturer_> <_battery\_type_> <_voltage_> V]Where:\
-<_manufacturer_> should be one of the following controlled list of battery manufacturers:|                                   |
-| --------------------------------- |
+This table has not been transferred to the NVS yet.
+The BATTERY\_TYPE should be coded with the following frame:
+\<_manufacturer_> <_battery\_type_> <_voltage_> V \[+<_manufacturer_> <_battery\_type_> <_voltage_> V]
+
+Where: \<_manufacturer_> should be one of the following controlled list of battery manufacturers:
+
 | **List of battery manufacturers** |
+| --------------------------------- |
 | ELECTROCHEM                       |
 | TADIRAN                           |
-| SAFT                              | < _battery\_type_ > should be one of the following controlled list of battery types:|                           |
-| ------------------------- |
+| SAFT                              | 
+
+< _battery\_type_ > should be one of the following controlled list of battery types:
+
 | **List of battery types** |
+| ------------------------- |
 | Alkaline                  |
 | Lithium                   |
-| Hybrid                    | <_voltage_> stands for the initial battery voltage. Examples:|                                                    |
+| Hybrid                    | 
+
+<_voltage_> stands for the initial battery voltage.
+
+Examples:
+
+|                                                    |
 | -------------------------------------------------- |
 | ELECTROCHEM Alkaline 12 V                          |
 | TADIRAN Lithium 24 V                               |
 | TADIRAN Alkaline 12 V + TADIRAN Lithium 12 V       |
 | ELECTROCHEM Lithium 24 V + ELECTROCHEM Hybrid 24 V |
-------------------------------------------------------
 
 ## Reference table 30: BATTERY\_PACKS (optional field)
 
-This table has not been transferred to the NVS yet.Although the BATTERY\_PACKS variable is not mandatory, it is controlled. The format of the field should be as shown in the table below, where x indicates the number of packs (not the number of batteries in a pack). ‘Li’, ‘Alk’ or ‘Hyb’ abbreviations should be used.Examples:|                                                              |
+This table has not been transferred to the NVS yet.
+Although the BATTERY\_PACKS variable is not mandatory, it is controlled. The format of the field should be as shown in the table below, where x indicates the number of packs (not the number of batteries in a pack). ‘Li’, ‘Alk’ or ‘Hyb’ abbreviations should be used.Examples:
+
+|                                                              |
 | ------------------------------------------------------------ |
 | xDD y (x = number of packs, y = Li or Alk or Hyb)            |
 | xC y (x = number of packs, y = Li or Alk or Hyb)             |
@@ -269,9 +309,19 @@ This table has not been transferred to the NVS yet.Although the BATTERY\_PACKS v
 
 ## Reference table 31: ENDING\_CAUSE and ENDING\_CAUSE\_CATEGORY
 
-This table has not been transferred to the NVS yet.This vocabulary captures all the possible reasons why a float may have died.The “ending cause category” and “ending cause” for a float are stored in the “ANOMALY” variable of its meta-data file. They are reported with a “key0:value0,key1:value1” syntax where:* key0 = “ending\_cause\_category”
+This table has not been transferred to the NVS yet.
+This vocabulary captures all the possible reasons why a float may have died.
+The “ending cause category” and “ending cause” for a float are stored in the “ANOMALY” variable of its meta-data file. They are reported with a “key0:value0,key1:value1” syntax where:
 
-* key1 = “ending\_cause”The “ANOMALY” variable describes any anomalies or problems the float may have had. Anomalies or problems are comma separated statements. **Example*** ANOMALY = "from cycle 107 the immersion drift is not stable,ending\_cause\_category:hardware,ending\_cause:ballast"Before registration in the Argo vocabulary server, the “ending cause category” and “ending cause” terms are managed in the [ArgoVocab-FloatsEndingCauses](https://docs.google.com/document/d/1W1GpAei-Pz5WE-LC5VREFhKGJsenkDPV0GqPG6nimGU/edit?usp=sharing) document.
+* key0 = “ending\_cause\_category”
+
+* key1 = “ending\_cause”The “ANOMALY” variable describes any anomalies or problems the float may have had. Anomalies or problems are comma separated statements.
+
+**Example** 
+
+ANOMALY = "from cycle 107 the immersion drift is not stable,ending\_cause\_category:hardware,ending\_cause:ballast"
+
+Before registration in the Argo vocabulary server, the “ending cause category” and “ending cause” terms are managed in the [ArgoVocab-FloatsEndingCauses](https://docs.google.com/document/d/1W1GpAei-Pz5WE-LC5VREFhKGJsenkDPV0GqPG6nimGU/edit?usp=sharing) document.
 
 ## Reference table 32: SPECIAL\_FEATURE
 

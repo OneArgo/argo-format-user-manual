@@ -201,32 +201,40 @@ ul.task-list li input[type="checkbox"] {
 <p>This chapter describes the data management organization between Argo DACs and GDACS.</p>
 <section id="file-submission-from-dac-to-gdacs" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="file-submission-from-dac-to-gdacs"><span class="header-section-number">7.1</span> File submission from DAC to GDACs</h2>
-<p>Each DAC regularly submits all its new files to both USGODAE and Coriolis GDACs.On both GDACs, each DAC has an ftp account with:* a submit directory to submit files;</p>
+<p>Each DAC regularly submits all its new files to both USGODAE and Coriolis GDACs.On both GDACs, each DAC has an ftp account with:</p>
 <ul>
-<li><p>a reject directory that contains the submitted files that were rejected by GDACs files format checker.Seven types of files are accepted on GDAC:* A float metadata file</p></li>
+<li><p>a submit directory to submit files</p></li>
+<li><p>a reject directory that contains the submitted files that were rejected by GDACs files format checker.</p></li>
+</ul>
+<p>Seven types of files are accepted on GDAC:</p>
+<ul>
+<li><p>A float metadata file</p></li>
 <li><p>A float trajectory file</p></li>
 <li><p>A float technical data file</p></li>
 <li><p>A float’s cycle file</p></li>
 <li><p>The DAC’s geylist</p></li>
 <li><p>A removal file</p></li>
-<li><p>A compressed file containing a series of above filesEach GDAC checks the file format. If agreed, the file is pushed on the GDAC ftp server or processed. Otherwise, the file is moved in the reject directory, an error message is sent to the DAC contact point. Rejected files are kept in the reject directory for one month at least.</p></li>
+<li><p>A compressed file containing a series of above files</p></li>
 </ul>
+<p>Each GDAC checks the file format. If agreed, the file is pushed on the GDAC ftp server or processed. Otherwise, the file is moved in the reject directory, an error message is sent to the DAC contact point. Rejected files are kept in the reject directory for one month at least.</p>
 </section>
 <section id="archived-doi-datasets" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="archived-doi-datasets"><span class="header-section-number">7.2</span> Archived DOI datasets</h2>
 <p>Once a month, a snapshot of the whole Argo dataset is archived. This snapshot is added to the collection of monthly snapshots available with Argo GDAC DOI:</p>
 <ul>
-<li><em>Argo float data and metadata from Global Data Assembly Centre (Argo GDAC)</em> <a href="https://doi.org/10.17882/42182"><strong>https://doi.org/10.17882/42182</strong></a>&nbsp;__</li>
+<li>Argo float data and metadata from Global Data Assembly Centre (Argo GDAC) <a href="https://doi.org/10.17882/42182">https://doi.org/10.17882/42182</a></li>
 </ul>
-<p>A digital object identifier (DOI) is a unique identifier for an electronic document or a dataset. Argo data-management assigns DOIs to its documents and datasets for two main objectives:* Citation: in a publication the DOI is efficiently tracked by bibliographic surveys</p>
+<p>A digital object identifier (DOI) is a unique identifier for an electronic document or a dataset. Argo data-management assigns DOIs to its documents and datasets for two main objectives:</p>
 <ul>
-<li>Traceability: the DOI is a direct and permanent link to the document or data set used in a publication</li>
+<li><p>Citation: in a publication the DOI is efficiently tracked by bibliographic surveys</p></li>
+<li><p>Traceability: the DOI is a direct and permanent link to the document or data set used in a publication</p></li>
 </ul>
-<p><strong>Monthly snapshot file naming convention and content</strong> YYYYMM-ArgoData.tar.gz</p>
+<p><strong>Monthly snapshot file naming convention and content</strong></p>
+<p>YYYYMM-ArgoData.tar.gz</p>
 <ul>
 <li>YYYYMM year and month</li>
 </ul>
-<p>Example : 201906-ArgoData.tar.gz is the June 2019 snapshot of Argo data.The snapshot file has to be unzipped (gunzip file.tar.gz) and untared (tar xvf file.tar) in two directories: dac and geo.</p>
+<p>Example : 201906-ArgoData.tar.gz is the June 2019 snapshot of Argo data. The snapshot file has to be unzipped (gunzip file.tar.gz) and untared (tar xvf file.tar) in two directories: dac and geo.</p>
 <ul>
 <li><p>dac directory : content of the GDAC “dac” branch</p>
 <ul>
@@ -248,9 +256,10 @@ One compressed file per day and per ocean</p></li>
 </section>
 <section id="compressed-files-data-submission" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="compressed-files-data-submission"><span class="header-section-number">7.3</span> Compressed files data submission</h2>
-<p>A DAC can push to GDAC a compressed file containing a series of files. The GDAC will process all its content. This is useful to submit an important batch of files (example : delayed mode data).The compressed file is a tar-ed file or directory compressed with gzip.</p>
+<p>A DAC can push to GDAC a compressed file containing a series of files. The GDAC will process all its content. This is useful to submit an important batch of files (example : delayed mode data). The compressed file is a tar-ed file or directory compressed with gzip.</p>
 <p><strong>Compressed file naming convention</strong></p>
-<p>XXX.tar.gz* XXX : the compressed file name, with no specific requirement</p>
+<p>XXX.tar.gz*</p>
+<p>XXX : the compressed file name, with no specific requirement</p>
 <ul>
 <li><p>tar : tar suffix</p></li>
 <li><p>gz : gzip suffixExample: coriolis-201210-DelayedMode.tar.gz</p></li>

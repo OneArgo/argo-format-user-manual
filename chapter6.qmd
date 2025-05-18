@@ -4,9 +4,15 @@ This chapter describes the data management organization between Argo DACs and GD
 
 ## File submission from DAC to GDACs
 
-Each DAC regularly submits all its new files to both USGODAE and Coriolis GDACs.On both GDACs, each DAC has an ftp account with:* a submit directory to submit files;
+Each DAC regularly submits all its new files to both USGODAE and Coriolis GDACs.On both GDACs, each DAC has an ftp account with:
 
-* a reject directory that contains the submitted files that were rejected by GDACs files format checker.Seven types of files are accepted on GDAC:* A float metadata file
+* a submit directory to submit files
+
+* a reject directory that contains the submitted files that were rejected by GDACs files format checker.
+
+Seven types of files are accepted on GDAC:
+
+* A float metadata file
 
 * A float trajectory file
 
@@ -18,23 +24,30 @@ Each DAC regularly submits all its new files to both USGODAE and Coriolis GDACs.
 
 * A removal file
 
-* A compressed file containing a series of above filesEach GDAC checks the file format. If agreed, the file is pushed on the GDAC ftp server or processed. Otherwise, the file is moved in the reject directory, an error message is sent to the DAC contact point. Rejected files are kept in the reject directory for one month at least.
+* A compressed file containing a series of above files
+
+Each GDAC checks the file format. If agreed, the file is pushed on the GDAC ftp server or processed. Otherwise, the file is moved in the reject directory, an error message is sent to the DAC contact point. Rejected files are kept in the reject directory for one month at least.
 
 ## Archived DOI datasets
 
 Once a month, a snapshot of the whole Argo dataset is archived. This snapshot is added to the collection of monthly snapshots available with Argo GDAC DOI:
 
-* _Argo float data and metadata from Global Data Assembly Centre (Argo GDAC)_ [__https://doi.org/10.17882/42182__](https://doi.org/10.17882/42182) __
+* Argo float data and metadata from Global Data Assembly Centre (Argo GDAC) [https://doi.org/10.17882/42182](https://doi.org/10.17882/42182)
 
-A digital object identifier (DOI) is a unique identifier for an electronic document or a dataset. Argo data-management assigns DOIs to its documents and datasets for two main objectives:* Citation: in a publication the DOI is efficiently tracked by bibliographic surveys
+A digital object identifier (DOI) is a unique identifier for an electronic document or a dataset. Argo data-management assigns DOIs to its documents and datasets for two main objectives:
+
+* Citation: in a publication the DOI is efficiently tracked by bibliographic surveys
 
 * Traceability: the DOI is a direct and permanent link to the document or data set used in a publication
 
-**Monthly snapshot file naming convention and content** YYYYMM-ArgoData.tar.gz
+**Monthly snapshot file naming convention and content** 
+
+YYYYMM-ArgoData.tar.gz
 
 * YYYYMM year and month
 
-Example : 201906-ArgoData.tar.gz is the June 2019 snapshot of Argo data.The snapshot file has to be unzipped (gunzip file.tar.gz) and untared (tar xvf file.tar) in two directories: dac and geo.
+Example : 201906-ArgoData.tar.gz is the June 2019 snapshot of Argo data.
+The snapshot file has to be unzipped (gunzip file.tar.gz) and untared (tar xvf file.tar) in two directories: dac and geo.
 
 * dac directory : content of the GDAC “dac” branch
 
@@ -66,12 +79,17 @@ Example : 201906-ArgoData.tar.gz is the June 2019 snapshot of Argo data.The snap
 
 ## Compressed files data submission
 
-A DAC can push to GDAC a compressed file containing a series of files. The GDAC will process all its content. This is useful to submit an important batch of files (example : delayed mode data).The compressed file is a tar-ed file or directory compressed with gzip.
+A DAC can push to GDAC a compressed file containing a series of files. The GDAC will process all its content. This is useful to submit an important batch of files (example : delayed mode data).
+The compressed file is a tar-ed file or directory compressed with gzip.
 
 **Compressed file naming convention**
 
-XXX.tar.gz* XXX : the compressed file name, with no specific requirement
+XXX.tar.gz* 
+
+XXX : the compressed file name, with no specific requirement
 
 * tar : tar suffix
 
-* gz : gzip suffixExample: coriolis-201210-DelayedMode.tar.gz
+* gz : gzip suffix
+
+Example: coriolis-201210-DelayedMode.tar.gz
