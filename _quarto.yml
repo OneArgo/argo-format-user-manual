@@ -5,7 +5,7 @@ book:
   title: "Argo User's manual"
   subtitle: "Version 3.42.0"
   author: "Argo data management team"
-  date: 03/28/2025
+  date: 05/26/2025
   doi: 10.13155/29825
   chapters:
     - index.qmd
