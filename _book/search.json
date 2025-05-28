@@ -404,7 +404,7 @@
     "href": "chapter3.html#reference-table-27-sensor_model",
     "title": "4  Reference tables",
     "section": "4.27 Reference table 27: SENSOR_MODEL",
-    "text": "4.27 Reference table 27: SENSOR_MODEL\nhttps://vocab.nerc.ac.uk/collection/R27/current The SENSOR_MODEL variable is standardised, i.e. we expect the manufacturer followed by the standard model number, i.e. SBE41CP or AANDERAA_3830. If there is a version number for a particular model then this is mentioned in the SENSOR_FIRMWARE_VERSION field. * Note that some biogeochemical sensors have different configurations, i.e. they are either in the pumped stream or not in the pumped stream. Sensor readings from those in the pumped vs unpumped stream can be very different. Some manufacturers do not distinguish this in the sensor model name. In order to capture this information there is a configuration parameter that specifies this, i.e. CONFIG_SensorInPumpedStream_LOGICAL, (Yes =1, No = 0). For the relevant sensors this configuration parameter should be filled in the metadata file for the launch configuration settings.",
+    "text": "4.27 Reference table 27: SENSOR_MODEL\nhttps://vocab.nerc.ac.uk/collection/R27/current The SENSOR_MODEL variable is standardised, i.e. we expect the manufacturer followed by the standard model number, i.e. SBE41CP or AANDERAA_3830. If there is a version number for a particular model then this is mentioned in the SENSOR_FIRMWARE_VERSION field.\nNote that some biogeochemical sensors have different configurations, i.e. they are either in the pumped stream or not in the pumped stream. Sensor readings from those in the pumped vs unpumped stream can be very different. Some manufacturers do not distinguish this in the sensor model name. In order to capture this information there is a configuration parameter that specifies this, i.e. CONFIG_SensorInPumpedStream_LOGICAL, (Yes =1, No = 0). For the relevant sensors this configuration parameter should be filled in the metadata file for the launch configuration settings.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reference tables</span>"
     ]
@@ -414,7 +414,7 @@
     "href": "chapter3.html#reference-table-28-controller_board_type_primary",
     "title": "4  Reference tables",
     "section": "4.28 Reference table 28: CONTROLLER_BOARD_TYPE_PRIMARY",
-    "text": "4.28 Reference table 28: CONTROLLER_BOARD_TYPE_PRIMARY\nhttps://vocab.nerc.ac.uk/collection/R28/current The first part of the CONTROLLER_BOARD_TYPE_PRIMARY variable should contain one of the strings in the below table. The remainder of the string is free text and may contain more information on the controller board type to suit the float model. The free text should be delimited by square brackets ‘[]’. For example: “APF9 [iridium version xyz]”. Please note that this reference table is sometimes updated to include new sensor and float models.",
+    "text": "4.28 Reference table 28: CONTROLLER_BOARD_TYPE_PRIMARY\nhttps://vocab.nerc.ac.uk/collection/R28/current The first part of the CONTROLLER_BOARD_TYPE_PRIMARY variable should contain one of the strings in the below table. The remainder of the string is free text and may contain more information on the controller board type to suit the float model. The free text should be delimited by square brackets ‘[]’. For example: “APF9 [iridium version xyz]”.\nPlease note that this reference table is sometimes updated to include new sensor and float models.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reference tables</span>"
     ]
@@ -584,7 +584,7 @@
     "href": "chapter6.html#compressed-files-data-submission",
     "title": "7  DAC-GDAC data-management",
     "section": "7.3 Compressed files data submission",
-    "text": "7.3 Compressed files data submission\nA DAC can push to GDAC a compressed file containing a series of files. The GDAC will process all its content. This is useful to submit an important batch of files (example : delayed mode data). The compressed file is a tar-ed file or directory compressed with gzip.\nCompressed file naming convention\nXXX.tar.gz*\nXXX : the compressed file name, with no specific requirement\n\ntar : tar suffix\ngz : gzip suffixExample: coriolis-201210-DelayedMode.tar.gz",
+    "text": "7.3 Compressed files data submission\nA DAC can push to GDAC a compressed file containing a series of files. The GDAC will process all its content. This is useful to submit an important batch of files (example : delayed mode data). The compressed file is a tar-ed file or directory compressed with gzip.\nCompressed file naming convention\nXXX.tar.gz*\nXXX : the compressed file name, with no specific requirement\n\ntar : tar suffix\ngz : gzip suffix\n\nExample: coriolis-201210-DelayedMode.tar.gz",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>DAC-GDAC data-management</span>"
     ]
