@@ -255,11 +255,15 @@ The list of configuration parameter names (18b) is available at:
 
 ## Reference table 27: SENSOR\_MODEL
 
-<https://vocab.nerc.ac.uk/collection/R27/current> The SENSOR\_MODEL variable is standardised, i.e. we expect the manufacturer followed by the standard model number, i.e. SBE41CP or AANDERAA\_3830. If there is a version number for a particular model then this is mentioned in the SENSOR\_FIRMWARE\_VERSION field. **\*** Note that some biogeochemical sensors have different configurations, i.e. they are either in the pumped stream or not in the pumped stream. Sensor readings from those in the pumped vs unpumped stream can be very different. Some manufacturers do not distinguish this in the sensor model name. In order to capture this information there is a configuration parameter that specifies this, i.e. CONFIG\_SensorInPumpedStream\_LOGICAL, (Yes =1, No = 0). For the relevant sensors this configuration parameter should be filled in the metadata file for the launch configuration settings. 
+<https://vocab.nerc.ac.uk/collection/R27/current> The SENSOR\_MODEL variable is standardised, i.e. we expect the manufacturer followed by the standard model number, i.e. SBE41CP or AANDERAA\_3830. If there is a version number for a particular model then this is mentioned in the SENSOR\_FIRMWARE\_VERSION field.
+
+**Note** that some biogeochemical sensors have different configurations, i.e. they are either in the pumped stream or not in the pumped stream. Sensor readings from those in the pumped vs unpumped stream can be very different. Some manufacturers do not distinguish this in the sensor model name. In order to capture this information there is a configuration parameter that specifies this, i.e. CONFIG\_SensorInPumpedStream\_LOGICAL, (Yes =1, No = 0). For the relevant sensors this configuration parameter should be filled in the metadata file for the launch configuration settings. 
 
 ## Reference table 28: CONTROLLER\_BOARD\_TYPE\_PRIMARY
 
-<https://vocab.nerc.ac.uk/collection/R28/current> The first part of the CONTROLLER\_BOARD\_TYPE\_PRIMARY variable should contain one of the strings in the below table. The remainder of the string is free text and may contain more information on the controller board type to suit the float model. The free text should be delimited by square brackets ‘\[]’. For example: “APF9 \[iridium version xyz]”. Please note that this reference table is sometimes updated to include new sensor and float models. 
+<https://vocab.nerc.ac.uk/collection/R28/current> The first part of the CONTROLLER\_BOARD\_TYPE\_PRIMARY variable should contain one of the strings in the below table. The remainder of the string is free text and may contain more information on the controller board type to suit the float model. The free text should be delimited by square brackets ‘\[]’. For example: “APF9 \[iridium version xyz]”.
+
+Please **note** that this reference table is sometimes updated to include new sensor and float models. 
 
 ## Reference table 29: BATTERY\_TYPE
 

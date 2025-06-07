@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.32">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,12 +37,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-6561bbde787c299e21493071c8edc6ff.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fdfa20662017c4660d53ed4ae2a36bf3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-c22f74f4c0eea731362da53e6cd12198.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-fdf964b8551a4c1da979a829183e41b0.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -642,11 +642,13 @@ Pressure and salinity compensations (e.g.&nbsp;Optode) are taken into account.</
 </section>
 <section id="reference-table-27-sensor_model" class="level2" data-number="4.27">
 <h2 data-number="4.27" class="anchored" data-anchor-id="reference-table-27-sensor_model"><span class="header-section-number">4.27</span> Reference table 27: SENSOR_MODEL</h2>
-<p><a href="https://vocab.nerc.ac.uk/collection/R27/current" class="uri">https://vocab.nerc.ac.uk/collection/R27/current</a>&nbsp;The SENSOR_MODEL variable is standardised, i.e.&nbsp;we expect the manufacturer followed by the standard model number, i.e.&nbsp;SBE41CP or AANDERAA_3830. If there is a version number for a particular model then this is mentioned in the SENSOR_FIRMWARE_VERSION field.&nbsp;<strong>*</strong> Note that some biogeochemical sensors have different configurations, i.e.&nbsp;they are either in the pumped stream or not in the pumped stream. Sensor readings from those in the pumped vs unpumped stream can be very different. Some manufacturers do not distinguish this in the sensor model name. In order to capture this information there is a configuration parameter that specifies this, i.e.&nbsp;CONFIG_SensorInPumpedStream_LOGICAL, (Yes =1, No = 0). For the relevant sensors this configuration parameter should be filled in the metadata file for the launch configuration settings.&nbsp;</p>
+<p><a href="https://vocab.nerc.ac.uk/collection/R27/current" class="uri">https://vocab.nerc.ac.uk/collection/R27/current</a>&nbsp;The SENSOR_MODEL variable is standardised, i.e.&nbsp;we expect the manufacturer followed by the standard model number, i.e.&nbsp;SBE41CP or AANDERAA_3830. If there is a version number for a particular model then this is mentioned in the SENSOR_FIRMWARE_VERSION field.</p>
+<p><strong>Note</strong> that some biogeochemical sensors have different configurations, i.e.&nbsp;they are either in the pumped stream or not in the pumped stream. Sensor readings from those in the pumped vs unpumped stream can be very different. Some manufacturers do not distinguish this in the sensor model name. In order to capture this information there is a configuration parameter that specifies this, i.e.&nbsp;CONFIG_SensorInPumpedStream_LOGICAL, (Yes =1, No = 0). For the relevant sensors this configuration parameter should be filled in the metadata file for the launch configuration settings.&nbsp;</p>
 </section>
 <section id="reference-table-28-controller_board_type_primary" class="level2" data-number="4.28">
 <h2 data-number="4.28" class="anchored" data-anchor-id="reference-table-28-controller_board_type_primary"><span class="header-section-number">4.28</span> Reference table 28: CONTROLLER_BOARD_TYPE_PRIMARY</h2>
-<p><a href="https://vocab.nerc.ac.uk/collection/R28/current" class="uri">https://vocab.nerc.ac.uk/collection/R28/current</a>&nbsp;The first part of the CONTROLLER_BOARD_TYPE_PRIMARY variable should contain one of the strings in the below table. The remainder of the string is free text and may contain more information on the controller board type to suit the float model. The free text should be delimited by square brackets ‘[]’. For example: “APF9 [iridium version xyz]”. Please note that this reference table is sometimes updated to include new sensor and float models.&nbsp;</p>
+<p><a href="https://vocab.nerc.ac.uk/collection/R28/current" class="uri">https://vocab.nerc.ac.uk/collection/R28/current</a>&nbsp;The first part of the CONTROLLER_BOARD_TYPE_PRIMARY variable should contain one of the strings in the below table. The remainder of the string is free text and may contain more information on the controller board type to suit the float model. The free text should be delimited by square brackets ‘[]’. For example: “APF9 [iridium version xyz]”.</p>
+<p>Please <strong>note</strong> that this reference table is sometimes updated to include new sensor and float models.&nbsp;</p>
 </section>
 <section id="reference-table-29-battery_type" class="level2" data-number="4.29">
 <h2 data-number="4.29" class="anchored" data-anchor-id="reference-table-29-battery_type"><span class="header-section-number">4.29</span> Reference table 29: BATTERY_TYPE</h2>
@@ -996,8 +998,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1108,7 +1108,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
