@@ -2,12 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Argo data management team">
+<meta name="dcterms.date" content="2025-05-26">
 
-<title>7&nbsp; DAC-GDAC data-management – Argo User's manual</title>
+<title>Argo User’s manual</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,19 +32,18 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./chapter7.html" rel="next">
-<link href="./chapter5.html" rel="prev">
+<link href="./chapter1.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-6561bbde787c299e21493071c8edc6ff.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c22f74f4c0eea731362da53e6cd12198.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-fdf964b8551a4c1da979a829183e41b0.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fdfa20662017c4660d53ed4ae2a36bf3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -84,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter6.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DAC-GDAC data-management</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argo User’s manual</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -114,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argo User’s manual</span></span></a>
   </div>
 </li>
@@ -150,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter6.html" class="sidebar-item-text sidebar-link active">
+  <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DAC-GDAC data-management</span></span></a>
   </div>
 </li>
@@ -165,32 +166,45 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#file-submission-from-dac-to-gdacs" id="toc-file-submission-from-dac-to-gdacs" class="nav-link active" data-scroll-target="#file-submission-from-dac-to-gdacs"><span class="header-section-number">7.1</span> File submission from DAC to GDACs</a></li>
-  <li><a href="#archived-doi-datasets" id="toc-archived-doi-datasets" class="nav-link" data-scroll-target="#archived-doi-datasets"><span class="header-section-number">7.2</span> Archived DOI datasets</a></li>
-  <li><a href="#compressed-files-data-submission" id="toc-compressed-files-data-submission" class="nav-link" data-scroll-target="#compressed-files-data-submission"><span class="header-section-number">7.3</span> Compressed files data submission</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DAC-GDAC data-management</span></h1>
+<h1 class="title">Argo User’s manual</h1>
+<p class="subtitle lead">Version 3.42.0</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Argo data management team </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 26, 2025</p>
+    </div>
+  </div>
   
     
+    <div>
+    <div class="quarto-title-meta-heading">Doi</div>
+    <div class="quarto-title-meta-contents">
+      <p class="doi">
+        <a href="https://doi.org/10.13155/29825">10.13155/29825</a>
+      </p>
+    </div>
+  </div>
   </div>
   
 
@@ -198,76 +212,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This chapter describes the data management organization between Argo DACs and GDACS.</p>
-<section id="file-submission-from-dac-to-gdacs" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="file-submission-from-dac-to-gdacs"><span class="header-section-number">7.1</span> File submission from DAC to GDACs</h2>
-<p>Each DAC regularly submits all its new files to both USGODAE and Coriolis GDACs.On both GDACs, each DAC has an ftp account with:</p>
-<ul>
-<li><p>a submit directory to submit files</p></li>
-<li><p>a reject directory that contains the submitted files that were rejected by GDACs files format checker.</p></li>
-</ul>
-<p>Seven types of files are accepted on GDAC:</p>
-<ul>
-<li><p>A float metadata file</p></li>
-<li><p>A float trajectory file</p></li>
-<li><p>A float technical data file</p></li>
-<li><p>A float’s cycle file</p></li>
-<li><p>The DAC’s geylist</p></li>
-<li><p>A removal file</p></li>
-<li><p>A compressed file containing a series of above files</p></li>
-</ul>
-<p>Each GDAC checks the file format. If agreed, the file is pushed on the GDAC ftp server or processed. Otherwise, the file is moved in the reject directory, an error message is sent to the DAC contact point. Rejected files are kept in the reject directory for one month at least.</p>
-</section>
-<section id="archived-doi-datasets" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="archived-doi-datasets"><span class="header-section-number">7.2</span> Archived DOI datasets</h2>
-<p>Once a month, a snapshot of the whole Argo dataset is archived. This snapshot is added to the collection of monthly snapshots available with Argo GDAC DOI:</p>
-<ul>
-<li>Argo float data and metadata from Global Data Assembly Centre (Argo GDAC) <a href="https://doi.org/10.17882/42182">https://doi.org/10.17882/42182</a></li>
-</ul>
-<p>A digital object identifier (DOI) is a unique identifier for an electronic document or a dataset. Argo data-management assigns DOIs to its documents and datasets for two main objectives:</p>
-<ul>
-<li><p>Citation: in a publication the DOI is efficiently tracked by bibliographic surveys</p></li>
-<li><p>Traceability: the DOI is a direct and permanent link to the document or data set used in a publication</p></li>
-</ul>
-<p><strong>Monthly snapshot file naming convention and content</strong></p>
-<p>YYYYMM-ArgoData.tar.gz</p>
-<ul>
-<li>YYYYMM year and month</li>
-</ul>
-<p>Example : 201906-ArgoData.tar.gz is the June 2019 snapshot of Argo data. The snapshot file has to be unzipped (gunzip file.tar.gz) and untared (tar xvf file.tar) in two directories: dac and geo.</p>
-<ul>
-<li><p>dac directory : content of the GDAC “dac” branch</p>
-<ul>
-<li><p>xxx_core.tar.gz xxx dac core Argo files</p></li>
-<li><p>xxx_bgc.tar.gz xxx dac bgc-Argo files</p></li>
-<li><p>argo_bio-profile_index.txt.gz bgc Argo profiles index file</p></li>
-<li><p>argo_bio-traj_index.txt.gz bgc Argo trajectories file</p></li>
-<li><p>argo_merge-profile_index.txt.gz merged Argo profiles index</p></li>
-<li><p>argo_profile_detailled_index.txt.gz Argo profiles detailed index</p></li>
-<li><p>argo_synthetic-profile_index.txt.gz Synthetic Argo profile files</p></li>
-<li><p>ar_index_global_meta.txt.gz Index of metadata files</p></li>
-<li><p>ar_index_global_prof.txt.gz Index of profile files</p></li>
-<li><p>ar_index_global_tech.txt.gz Index of technical files</p></li>
-<li><p>ar_index_global_traj.txt.gz Index of trajectories</p></li>
-</ul></li>
-<li><p>geo directory: content of the GDAC “geo” branch<br>
-One compressed file per day and per ocean</p></li>
-</ul>
-</section>
-<section id="compressed-files-data-submission" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="compressed-files-data-submission"><span class="header-section-number">7.3</span> Compressed files data submission</h2>
-<p>A DAC can push to GDAC a compressed file containing a series of files. The GDAC will process all its content. This is useful to submit an important batch of files (example : delayed mode data). The compressed file is a tar-ed file or directory compressed with gzip.</p>
-<p><strong>Compressed file naming convention</strong></p>
-<p>XXX.tar.gz*</p>
-<p>XXX : the compressed file name, with no specific requirement</p>
-<ul>
-<li><p>tar : tar suffix</p></li>
-<li><p>gz : gzip suffix</p></li>
-</ul>
-<p>Example: coriolis-201210-DelayedMode.tar.gz</p>
+<p>This document is the Argo data user’s manual. It contains the description of the formats and files produced by the Argo Data Assembly Centres (DACs). These files are distributed by Argo Global Data Assembly Centre (GDAC).</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script>
@@ -512,6 +459,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -622,6 +571,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -849,13 +799,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chapter5.html" class="pagination-link" aria-label="Using the History section of the Argo netCDF Structure">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Using the History section of the Argo netCDF Structure</span></span>
-      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapter7.html" class="pagination-link" aria-label="Glossary, definitions">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Glossary, definitions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapter1.html" class="pagination-link" aria-label="Introduction">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

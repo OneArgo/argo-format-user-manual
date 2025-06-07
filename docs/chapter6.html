@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Using the History section of the Argo netCDF Structure – Argo User's manual</title>
+<title>7&nbsp; DAC-GDAC data-management – Argo User's manual</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,19 +30,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./chapter6.html" rel="next">
-<link href="./chapter4.html" rel="prev">
+<link href="./chapter7.html" rel="next">
+<link href="./chapter5.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-6561bbde787c299e21493071c8edc6ff.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c22f74f4c0eea731362da53e6cd12198.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-fdf964b8551a4c1da979a829183e41b0.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fdfa20662017c4660d53ed4ae2a36bf3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -84,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter5.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Using the History section of the Argo netCDF Structure</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter6.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DAC-GDAC data-management</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -144,13 +144,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter5.html" class="sidebar-item-text sidebar-link active">
+  <a href="./chapter5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Using the History section of the Argo netCDF Structure</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
+  <a href="./chapter6.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DAC-GDAC data-management</span></span></a>
   </div>
 </li>
@@ -170,10 +170,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#recording-information-about-the-delayed-mode-qc-process" id="toc-recording-information-about-the-delayed-mode-qc-process" class="nav-link active" data-scroll-target="#recording-information-about-the-delayed-mode-qc-process"><span class="header-section-number">6.1</span> Recording information about the Delayed Mode QC process</a></li>
-  <li><a href="#recording-processing-stages" id="toc-recording-processing-stages" class="nav-link" data-scroll-target="#recording-processing-stages"><span class="header-section-number">6.2</span> Recording processing stages</a></li>
-  <li><a href="#recording-qc-tests-performed-and-failed" id="toc-recording-qc-tests-performed-and-failed" class="nav-link" data-scroll-target="#recording-qc-tests-performed-and-failed"><span class="header-section-number">6.3</span> Recording QC Tests Performed and Failed</a></li>
-  <li><a href="#recording-changes-in-values" id="toc-recording-changes-in-values" class="nav-link" data-scroll-target="#recording-changes-in-values"><span class="header-section-number">6.4</span> Recording changes in values</a></li>
+  <li><a href="#file-submission-from-dac-to-gdacs" id="toc-file-submission-from-dac-to-gdacs" class="nav-link active" data-scroll-target="#file-submission-from-dac-to-gdacs"><span class="header-section-number">7.1</span> File submission from DAC to GDACs</a></li>
+  <li><a href="#archived-doi-datasets" id="toc-archived-doi-datasets" class="nav-link" data-scroll-target="#archived-doi-datasets"><span class="header-section-number">7.2</span> Archived DOI datasets</a></li>
+  <li><a href="#compressed-files-data-submission" id="toc-compressed-files-data-submission" class="nav-link" data-scroll-target="#compressed-files-data-submission"><span class="header-section-number">7.3</span> Compressed files data submission</a></li>
   </ul>
 </nav>
     </div>
@@ -182,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Using the History section of the Argo netCDF Structure</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DAC-GDAC data-management</span></h1>
 </div>
 
 
@@ -199,453 +198,73 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Within the netCDF format are a number of fields that are used to track the progression of the data through the data system. This section records the processing stages, results of actions that may have altered the original values and information about QC tests performed and failed. The purpose of this document is to describe how to use this section of the format.The creation of entries in the history section is the same for both profile and trajectory data. The next sections provide examples of what is expected. The information shown in the column labeled “Example” is what would be written into the associated “Field” name in the netCDF format.</p>
-<section id="recording-information-about-the-delayed-mode-qc-process" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="recording-information-about-the-delayed-mode-qc-process"><span class="header-section-number">6.1</span> Recording information about the Delayed Mode QC process</h2>
-<p>The process of carrying out delayed mode QC may result in adjustments being made to observed variables. The table below shows how to record that the delayed mode QC has been done. Note that the fields HISTORY_SOFTWARE, HISTORY_SOFTWARE_RELEASE and HISTORY_REFERENCE are used together to document the name and version of software used to carry out the delayed QC, and the reference database used in the process. The contents of these three fields are defined locally by the person carrying out the QC.Example: History entry to record that delayed mode QC has been carried out</p>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><strong>Field</strong></td>
-<td><strong>Example</strong></td>
-<td><strong>Explanation</strong></td>
-</tr>
-<tr class="even">
-<td>HISTORY_INSTITUTION</td>
-<td>CI</td>
-<td>Selected from the list in reference table 4 <a href="https://vocab.nerc.ac.uk/collection/R04" class="uri">https://vocab.nerc.ac.uk/collection/R04</a></td>
-</tr>
-<tr class="odd">
-<td>HISTORY_STEP</td>
-<td>ARSQ</td>
-<td>Selected from the list in reference table 12 <a href="https://vocab.nerc.ac.uk/collection/R12" class="uri">https://vocab.nerc.ac.uk/collection/R12</a>.</td>
-</tr>
-<tr class="even">
-<td>HISTORY_SOFTWARE</td>
-<td>WJO</td>
-<td>This is a locally defined name for the delayed mode QC process employed.&nbsp;</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_SOFTWARE_RELEASE</td>
-<td>1</td>
-<td>This is a locally defined indicator that identifies what version of the QC software is being used.&nbsp;</td>
-</tr>
-<tr class="even">
-<td>HISTORY_REFERENCE</td>
-<td>WOD2001</td>
-<td>This is a locally defined name for the reference database used for the delayed mode QC process.</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_DATE</td>
-<td>20030805000000</td>
-<td>The year, month, day, hour, minute, second that the process ran</td>
-</tr>
-<tr class="even">
-<td>HISTORY_ACTION</td>
-<td>IP</td>
-<td>Selected from the list in reference table 7 <a href="https://vocab.nerc.ac.uk/collection/R07" class="uri">https://vocab.nerc.ac.uk/collection/R07</a>.</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_PARAMETER</td>
-<td>FillValue</td>
-<td>This field does not apply (1)</td>
-</tr>
-<tr class="even">
-<td>HISTORY_START_PRES</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_STOP_PRES</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_PREVIOUS_VALUE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_QCTEST</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Note</strong>(1) The present version of delayed mode QC only tests salinity and as such it is tempting to place “PSAL” in the _PARAMETER field. In future, delayed mode QC tests may include tests for temperature, pressure and perhaps other parameters. For this reason, simply addressing the software and version number will tell users what parameters have been tested.</p>
+<p>This chapter describes the data management organization between Argo DACs and GDACS.</p>
+<section id="file-submission-from-dac-to-gdacs" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="file-submission-from-dac-to-gdacs"><span class="header-section-number">7.1</span> File submission from DAC to GDACs</h2>
+<p>Each DAC regularly submits all its new files to both USGODAE and Coriolis GDACs.On both GDACs, each DAC has an ftp account with:</p>
+<ul>
+<li><p>a submit directory to submit files</p></li>
+<li><p>a reject directory that contains the submitted files that were rejected by GDACs files format checker.</p></li>
+</ul>
+<p>Seven types of files are accepted on GDAC:</p>
+<ul>
+<li><p>A float metadata file</p></li>
+<li><p>A float trajectory file</p></li>
+<li><p>A float technical data file</p></li>
+<li><p>A float’s cycle file</p></li>
+<li><p>The DAC’s geylist</p></li>
+<li><p>A removal file</p></li>
+<li><p>A compressed file containing a series of above files</p></li>
+</ul>
+<p>Each GDAC checks the file format. If agreed, the file is pushed on the GDAC ftp server or processed. Otherwise, the file is moved in the reject directory, an error message is sent to the DAC contact point. Rejected files are kept in the reject directory for one month at least.</p>
 </section>
-<section id="recording-processing-stages" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="recording-processing-stages"><span class="header-section-number">6.2</span> Recording processing stages</h2>
-<p>Each entry to record the processing stages has a similar form. An example is provided to show how this is done. Note that reference table 12 contains the present list of processing stages and there should be at least one entry for each of these through which the data have passed. If data pass through one of these steps more than once, an entry for each passage should be written and the variable N_HISTORY updated appropriately.Some institutions may wish to record more details of what they do. In this case, adding additional “local” entries to table 12 is permissible as long as the meaning is documented and is readily available. These individual additions can be recommended to the wider community for international adoption.</p>
-<p><strong>Example</strong>: History entry to record decoding of the data.</p>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><strong>Field</strong></td>
-<td><strong>Example</strong></td>
-<td><strong>Explanation</strong></td>
-</tr>
-<tr class="even">
-<td>HISTORY_INSTITUTION</td>
-<td>ME</td>
-<td>Selected from the list in reference table 4 <a href="https://vocab.nerc.ac.uk/collection/R04" class="uri">https://vocab.nerc.ac.uk/collection/R04</a>.</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_STEP</td>
-<td>ARFM</td>
-<td>Selected from the list in reference table 12 <a href="https://vocab.nerc.ac.uk/collection/R12" class="uri">https://vocab.nerc.ac.uk/collection/R12</a>.</td>
-</tr>
-<tr class="even">
-<td>HISTORY_SOFTWARE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_SOFTWARE_RELEASE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_REFERENCE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_DATE</td>
-<td>20030805000000</td>
-<td>The year, month, day, hour, minute, second that the process ran</td>
-</tr>
-<tr class="even">
-<td>HISTORY_ACTION</td>
-<td>IP</td>
-<td>Selected from the list in reference table 7 <a href="https://vocab.nerc.ac.uk/collection/R07" class="uri">https://vocab.nerc.ac.uk/collection/R07</a>.</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_PARAMETER</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_START_PRES</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_STOP_PRES</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_PREVIOUS_VALUE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_QCTEST</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-</tbody>
-</table>
+<section id="archived-doi-datasets" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="archived-doi-datasets"><span class="header-section-number">7.2</span> Archived DOI datasets</h2>
+<p>Once a month, a snapshot of the whole Argo dataset is archived. This snapshot is added to the collection of monthly snapshots available with Argo GDAC DOI:</p>
+<ul>
+<li>Argo float data and metadata from Global Data Assembly Centre (Argo GDAC) <a href="https://doi.org/10.17882/42182">https://doi.org/10.17882/42182</a></li>
+</ul>
+<p>A digital object identifier (DOI) is a unique identifier for an electronic document or a dataset. Argo data-management assigns DOIs to its documents and datasets for two main objectives:</p>
+<ul>
+<li><p>Citation: in a publication the DOI is efficiently tracked by bibliographic surveys</p></li>
+<li><p>Traceability: the DOI is a direct and permanent link to the document or data set used in a publication</p></li>
+</ul>
+<p><strong>Monthly snapshot file naming convention and content</strong></p>
+<p>YYYYMM-ArgoData.tar.gz</p>
+<ul>
+<li>YYYYMM year and month</li>
+</ul>
+<p>Example : 201906-ArgoData.tar.gz is the June 2019 snapshot of Argo data. The snapshot file has to be unzipped (gunzip file.tar.gz) and untared (tar xvf file.tar) in two directories: dac and geo.</p>
+<ul>
+<li><p>dac directory : content of the GDAC “dac” branch</p>
+<ul>
+<li><p>xxx_core.tar.gz xxx dac core Argo files</p></li>
+<li><p>xxx_bgc.tar.gz xxx dac bgc-Argo files</p></li>
+<li><p>argo_bio-profile_index.txt.gz bgc Argo profiles index file</p></li>
+<li><p>argo_bio-traj_index.txt.gz bgc Argo trajectories file</p></li>
+<li><p>argo_merge-profile_index.txt.gz merged Argo profiles index</p></li>
+<li><p>argo_profile_detailled_index.txt.gz Argo profiles detailed index</p></li>
+<li><p>argo_synthetic-profile_index.txt.gz Synthetic Argo profile files</p></li>
+<li><p>ar_index_global_meta.txt.gz Index of metadata files</p></li>
+<li><p>ar_index_global_prof.txt.gz Index of profile files</p></li>
+<li><p>ar_index_global_tech.txt.gz Index of technical files</p></li>
+<li><p>ar_index_global_traj.txt.gz Index of trajectories</p></li>
+</ul></li>
+<li><p>geo directory: content of the GDAC “geo” branch<br>
+One compressed file per day and per ocean</p></li>
+</ul>
 </section>
-<section id="recording-qc-tests-performed-and-failed" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="recording-qc-tests-performed-and-failed"><span class="header-section-number">6.3</span> Recording QC Tests Performed and Failed</h2>
-<p>The delayed mode QC process is recorded separately from the other QC tests that are performed because of the unique nature of the process and the requirement to record other information about the reference database used. When other tests are performed, such as the automated real-time QC, a group of tests are applied all at once. In this case, instead of recording that each individual test was performed and whether or not the test was failed, it is possible to document all of this in two history records.The first documents what suite of tests was performed, and the second documents which tests in the suite were failed. A test is failed if the value is considered to be something other than good (i.e.&nbsp;the resulting QC flag is set to anything other than “1”). An example of each is provided. If data pass through QC more than once, an entry for each passage should be written and the variable N_HISTORY updated appropriately.Example: QC tests performed and failed.The example shown here records that the data have passed through real-time QC and that two tests failed. The encoding of tests performed is done by adding the ID numbers provided in reference table 11 for all tests performed, then translating this to a hexadecimal number and recording this result.</p>
-<p><strong>Record 1</strong>: Documenting the tests performed</p>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><strong>Field</strong></td>
-<td><strong>Example</strong></td>
-<td><strong>Explanation</strong></td>
-</tr>
-<tr class="even">
-<td>HISTORY_INSTITUTION</td>
-<td>ME</td>
-<td>Selected from the list in reference table 4<br> (<a href="https://vocab.nerc.ac.uk/collection/R04/" class="uri">https://vocab.nerc.ac.uk/collection/R04/</a>).</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_STEP</td>
-<td>ARGQ</td>
-<td>Selected from the list in reference table 12<br> (<a href="https://vocab.nerc.ac.uk/collection/R12/" class="uri">https://vocab.nerc.ac.uk/collection/R12/</a>).</td>
-</tr>
-<tr class="even">
-<td>HISTORY_SOFTWARE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_SOFTWARE_RELEASE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_REFERENCE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_DATE</td>
-<td>20030805000000</td>
-<td>The year, month, day, hour, minute, second<br> that the process ran</td>
-</tr>
-<tr class="even">
-<td>HISTORY_ACTION</td>
-<td>QCP$</td>
-<td>Selected from the list in reference table 7<br> (<a href="https://vocab.nerc.ac.uk/collection/R07/" class="uri">https://vocab.nerc.ac.uk/collection/R07/</a>).</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_PARAMETER</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_START_PRES</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_STOP_PRES</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_PREVIOUS_VALUE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_QCTEST</td>
-<td>1BE</td>
-<td>This is the result of all tests with IDs from 2 to 256<br> having been applied. See reference table 11 <br><a href="https://vocab.nerc.ac.uk/collection/R11" class="uri">https://vocab.nerc.ac.uk/collection/R11</a>.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Record 2</strong>: Documenting the tests that failed</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Field</strong></th>
-<th><strong>Example</strong></th>
-<th><strong>Explanation</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>HISTORY_INSTITUTION</td>
-<td>ME</td>
-<td>Selected from the list in reference table 4 <br><a href="https://vocab.nerc.ac.uk/collection/R04" class="uri">https://vocab.nerc.ac.uk/collection/R04</a>.</td>
-</tr>
-<tr class="even">
-<td>HISTORY_STEP</td>
-<td>ARGQ</td>
-<td>Selected from the list in reference table 12 <br><a href="https://vocab.nerc.ac.uk/collection/R12" class="uri">https://vocab.nerc.ac.uk/collection/R12</a>.</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_SOFTWARE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_SOFTWARE_RELEASE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_REFERENCE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_DATE</td>
-<td>20030805000000</td>
-<td>The year, month, day, hour, minute, second that the process ran</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_ACTION</td>
-<td>QCF$</td>
-<td>Selected from the list in reference table 7 <br><a href="https://vocab.nerc.ac.uk/collection/R07" class="uri">https://vocab.nerc.ac.uk/collection/R07</a>.</td>
-</tr>
-<tr class="even">
-<td>HISTORY_PARAMETER</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_START_PRES</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_STOP_PRES</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_PREVIOUS_VALUE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_QCTEST</td>
-<td>A0</td>
-<td>This is the result when data fail tests with IDs of 32 and 128.<br>See reference table 11 <br><a href="https://vocab.nerc.ac.uk/collection/R11" class="uri">https://vocab.nerc.ac.uk/collection/R11</a>.</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="recording-changes-in-values" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="recording-changes-in-values"><span class="header-section-number">6.4</span> Recording changes in values</h2>
-<p>The PIs have the final word on the content of the data files in the Argo data system. In comparing their data to others there may arise occasions when changes may be required in the data.We will use the example of recomputation of where the float first surfaced as an example. This computation process can be carried out once all of the messages from a float have been received. Not all real-time processing centres make this computation, but it can be made later on and added to the delayed mode data. If this is the case, we would insert the new position of the profile into the latitude and longitude fields in the profile and we would record the previous values in two history entries. Recording these allows us to return to the original value if we have made an error in the newly computed position. The two history entries would look as follows.</p>
-<p><strong>Example</strong>: Changed latitude</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Field</strong></th>
-<th><strong>Example</strong></th>
-<th><strong>Explanation</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>HISTORY_INSTITUTION</td>
-<td>CI</td>
-<td>Selected from the list in reference table 4 <a href="https://vocab.nerc.ac.uk/collection/R04" class="uri">https://vocab.nerc.ac.uk/collection/R04</a>.</td>
-</tr>
-<tr class="even">
-<td>HISTORY_STEP</td>
-<td>ARGQ</td>
-<td>Selected from the list in reference table 12 <a href="https://vocab.nerc.ac.uk/collection/R12" class="uri">https://vocab.nerc.ac.uk/collection/R12</a>.&nbsp;</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_SOFTWARE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_SOFTWARE_RELEASE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_REFERENCE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_DATE</td>
-<td>20030805000000</td>
-<td>The year, month, day, hour, minute, second that the process ran</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_ACTION</td>
-<td>CV</td>
-<td>Selected from the list in reference table 7 <a href="https://vocab.nerc.ac.uk/collection/R07" class="uri">https://vocab.nerc.ac.uk/collection/R07</a>.</td>
-</tr>
-<tr class="even">
-<td>HISTORY_PARAMETER</td>
-<td>LAT$</td>
-<td>A new entry for reference table 3 <a href="https://vocab.nerc.ac.uk/collection/R03" class="uri">https://vocab.nerc.ac.uk/collection/R03</a> created by institution CI to indicate changes have been made in the latitude.</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_START_PRES</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_STOP_PRES</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_PREVIOUS_VALUE</td>
-<td>23.456</td>
-<td>This is the value of the latitude before the change was made.</td>
-</tr>
-<tr class="even">
-<td>HISTORY_QCTEST</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong></p>
-<ol type="1">
-<li><p>Be sure that the new value is recorded in the latitude and longitude of the profile section.</p></li>
-<li><p>Be sure that the POSITION_QC flag is set to “5” to indicate to a user that the value now in the position has been changed from the original one that was there.</p></li>
-<li><p>Be sure to record the previous value in history entries.It is also sometimes desirable to record changes in quality flags that may arise from reprocessing data through some QC procedures. In this example, assume that whereas prior to the analysis, all temperature values from 75 to 105 dbar were considered correct, after the analysis, they are considered wrong. The history entry to record this would look as follows.</p></li>
-</ol>
-<p>Example: Changed flags</p>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><strong>Field</strong></td>
-<td><strong>Example</strong></td>
-<td><strong>Explanation</strong></td>
-</tr>
-<tr class="even">
-<td>HISTORY_INSTITUTION</td>
-<td>CI</td>
-<td>Selected from the list in reference table 4 <a href="https://vocab.nerc.ac.uk/collection/R04" class="uri">https://vocab.nerc.ac.uk/collection/R04</a>.</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_STEP</td>
-<td>ARGQ</td>
-<td>Selected from the list in reference table 12 <a href="https://vocab.nerc.ac.uk/collection/R12" class="uri">https://vocab.nerc.ac.uk/collection/R12</a>.</td>
-</tr>
-<tr class="even">
-<td>HISTORY_SOFTWARE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_SOFTWARE_RELEASE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="even">
-<td>HISTORY_REFERENCE</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_DATE</td>
-<td>20030805000000</td>
-<td>The year, month, day, hour, minute, second that the process ran</td>
-</tr>
-<tr class="even">
-<td>HISTORY_ACTION</td>
-<td>CF</td>
-<td>Selected from the list in reference table 7 <a href="https://vocab.nerc.ac.uk/collection/R07" class="uri">https://vocab.nerc.ac.uk/collection/R07</a>.</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_PARAMETER</td>
-<td>TEMP</td>
-<td>Selected from the list in reference table 3 <a href="https://vocab.nerc.ac.uk/collection/R03" class="uri">https://vocab.nerc.ac.uk/collection/R03</a>.</td>
-</tr>
-<tr class="even">
-<td>HISTORY_START_PRES</td>
-<td>75</td>
-<td>Shallowest pressure of action.</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_STOP_PRES</td>
-<td>105</td>
-<td>Deepest pressure of action.</td>
-</tr>
-<tr class="even">
-<td>HISTORY_PREVIOUS_VALUE</td>
-<td>1</td>
-<td>This is the value of the quality flag on temperature readings before the change was made.</td>
-</tr>
-<tr class="odd">
-<td>HISTORY_QCTEST</td>
-<td>FillValue</td>
-<td>This field does not apply</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notes</strong> The new QC flag of “4” (to indicate wrong values) would appear in the &lt;param&gt;_QC field.</p>
+<section id="compressed-files-data-submission" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="compressed-files-data-submission"><span class="header-section-number">7.3</span> Compressed files data submission</h2>
+<p>A DAC can push to GDAC a compressed file containing a series of files. The GDAC will process all its content. This is useful to submit an important batch of files (example : delayed mode data). The compressed file is a tar-ed file or directory compressed with gzip.</p>
+<p><strong>Compressed file naming convention</strong></p>
+<p>XXX.tar.gz*</p>
+<p>XXX : the compressed file name, with no specific requirement</p>
+<ul>
+<li><p>tar : tar suffix</p></li>
+<li><p>gz : gzip suffix</p></li>
+</ul>
+<p>Example: coriolis-201210-DelayedMode.tar.gz</p>
 
 
 </section>
@@ -893,6 +512,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1003,6 +624,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -1230,13 +852,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chapter4.html" class="pagination-link" aria-label="Data access">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data access</span></span>
+      <a href="./chapter5.html" class="pagination-link" aria-label="Using the History section of the Argo netCDF Structure">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Using the History section of the Argo netCDF Structure</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapter6.html" class="pagination-link" aria-label="DAC-GDAC data-management">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DAC-GDAC data-management</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapter7.html" class="pagination-link" aria-label="Glossary, definitions">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Glossary, definitions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
