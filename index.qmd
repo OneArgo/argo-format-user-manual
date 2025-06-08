@@ -3,6 +3,3 @@ title: Argo User's manual
 ---
 This document is the Argo data user’s manual. It contains the description of the formats and files produced by the Argo Data Assembly Centres (DACs).
 These files are distributed by Argo Global Data Assembly Centre (GDAC).
-
-
-
