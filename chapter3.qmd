@@ -56,31 +56,41 @@ The Argo reference tables are managed on Argo Vocabulary Server hosted on Nerc V
 
 ## Reference table 3: parameter code table
 
-<https://vocab.nerc.ac.uk/collection/R03/current>  The following table describes the parameter codes used for Argo data management. The detailed parameter codes tables is available on Argo data-management web site:* <http://www.argodatamgt.org/Documentation> 
+<https://vocab.nerc.ac.uk/collection/R03/current>  
+The following table describes the parameter codes used for Argo data management. The detailed parameter codes tables is available on Argo data-management web site:
+- <http://www.argodatamgt.org/Documentation> 
 
 **Parameter attributes**
 
-* The Fill\_value attribute is set to 99999.f
+* The C\_Format, Fortran\_Format and Format\_resolution attributes are float/sensor dependents. They are set by the DAC (Data Assembly Centre).
 
-* The C\_Format, Fortran\_Format and Format\_resolution attributes are float/sensor dependents. They are set by the DAC (Data Assembly Centre).If new parameters are required, they have to be added to this table before they will be accepted.\
+If new parameters are required, they have to be added to this table before they will be accepted.\
 A request for new parameters can be sent for approval and inclusion.
 
 **Note on resolution**
 
 For each parameter, the resolution attribute is mandatory. However, the resolution value is sensor dependent.
 
-### Parameters from duplicate sensors
+### How to indicate multiple sensors for the same parameter
 
-Some floats are equipped with 2 different sensors, measuring the same physical parameter. In that case, add the integer "2" at the end of the code of the duplicate parameter (e.g. DOXY2).If more sensors that measure the same physical parameter are added, then the integer will simply increase by 1 (i.e. DOXY3, DOXY4, and so on).
+Some floats are equipped with multiple sensors, measuring the same physical parameter. In that case, add the integer with an underscore "\_n" at the end of the code of the parameter.\
+The integer “\_n” starts with “\_2” and increases by 1 when there are more than two sensors measuring the same physical parameter.
 
 **Example**
-If a float has one Optode and one SBE oxygen sensor:* Use DOXY and TEMP\_DOXY for Optode
 
-* Use DOXY2 for SBE
+If a float has one Optode and one SBE oxygen sensor:
 
-If a float has two Optode oxygen sensors:* Use DOXY and TEMP\_DOXY, and DOXY2 and TEMP\_DOXY2
+- Use DOXY and TEMP\_DOXY for Optode
 
-If a float has two SBE oxygen sensors:* Use DOXY and DOXY2
+- Use DOXY\_2 for SBE
+
+If a float has two Optode oxygen sensors:
+
+- Use DOXY and TEMP\_DOXY, and DOXY\_2 and TEMP\_DOXY\_2
+
+If a float has four SBE oxygen sensors:
+
+- Use DOXY, DOXY\_2, DOXY\_3, DOXY\_4
 
 ### Oxygen related parameters
 
