@@ -392,7 +392,7 @@ CYCLE\_NUMBER always corresponds to the profile cycle number. To look for the cy
 
 \<PARAM> contains the uncorrected real-time data transmitted by the floats. 
 
-The values in \<PARAM> should never be altered.  \<PARAM>\_QC contains QC flags that pertain to the values in \<PARAM>. Values in \<PARAM>\_QC are set initially in real time by the automatic real-time tests. 
+The values in \<PARAM> should never be altered. \<PARAM>\_QC contains QC flags that pertain to the values in \<PARAM>. Values in \<PARAM>\_QC are set initially in real time by the automatic real-time tests. 
 
 They are later modified in 'D' mode at levels where the QC flags are set incorrectly by the real-time procedures, and where erroneous data are not detected by the real-time procedures. 
 
@@ -403,18 +403,16 @@ A file A-mode processing contains adjusted sections with fill values (\<PARAM>\_
 When no parameter is measured along the trajectory, N\_PARAM (number of parameters) and any fields relative to parameter are not in the file : \<PARAM>, \<PARAM>\_QC, \<PARAM>\_ADJUSTED, \<PARAM>\_ADJUSTED\_QC, \<PARAM>\_ADJUSTED\_ERROR and TRAJECTORY\_PARAMETERS.
 
 
-**Iridium and estimated positions:**
+**Iridium and estimated positions**
+Iridium-based or estimated positions are included if no GPS fix could be obtained that is considered good in real-time. POSITIONING\_SYSTEM is used to indicate that multiple positioning systems are present in the trajectory file (see reference table 9 - <https://vocab.nerc.ac.uk/collection/R09/>). Used are "I" (for Iridium) or "U" (for estimated) in POSITION\_ACCURACY (Table 5 - <https://vocab.nerc.ac.uk/collection/R05/>). If both AXES\_ERROR\_ELLIPSE\_MAJOR and AXES\_ERROR\_ELLIPSE\_MINOR values are the same AXES\_ERROR\_ELLIPSE\_ANGLE is not needed (set to FillValue).  
 
-Iridium-based or estimated positions are included if no GPS fix could be obtained that is considered good in real-time. POSITIONING\_SYSTEM is used to indicate that multiple positioning systems are present in the trajectory file (see reference table 9 - <https://vocab.nerc.ac.uk/collection/R09/>). Used are "I" (for Iridium) or "U" (for estimated) in POSITION\_ACCURACY (Table 5 - <https://vocab.nerc.ac.uk/collection/R05/>). If both AXES\_ERROR\_ELLIPSE\_MAJOR and AXES\_ERROR\_ELLIPSE\_MINOR values are the same AXES\_ERROR\_ELLIPSE\_ANGLE is not needed (set to FillValue).     &#x20;
-
-**RAFOS positions:**
-
+**RAFOS positions**
 A similar approach is used storing the error and indicating that the position comes from RAFOS estimates. POSITIONING\_SYSTEM remains filled with the primary system, i.e. GPS or Argos rather than RAFOS.  POSITION\_ACCURACY becomes ‘R’ and the MEASUREMENT\_CODE for positions and associated times during drift is 275.
 
 Details on how the RAFOS positions were derived can not be stored in the traj.nc file. These will be in a traj\_aux file.
 
-
 | **Name** | **definition** | **comment** |
+|----------|----------------|-------------|
 | JULD | double JULD(N\_MEASUREMENT);<br>JULD:long\_name = "Julian day (UTC) of each measurement relative to REFERENCE\_DATE\_TIME";<br>JULD:standard\_name = "time";<br>JULD:units = "days since 1950-01-01 00:00:00 UTC";<br>JULD:conventions = "Relative julian days with decimal part (as parts of day)";<br>JULD:resolution = X;<br>JULD:\_FillValue = 999999.;<br>JULD:axis = "T";<br> | Julian day of the location (or measurement).The integer part represents the day, the decimal part represents the time of the measurement.Date and time are in universal time coordinates.The Julian day is relative to REFERENCE\_DATE\_TIME.<br>Example :18833.8013889885 : July 25 2001 19:14:00 |
 | JULD\_STATUS | char JULD\_STATUS(N\_MEASUREMENT);<br>JULD\_STATUS:long\_name=”Status of the date and time”JULD\_STATUS:conventions = “Argo reference table 19";<br>JULD\_STATUS:\_FillValue = " ";<br> | Status flag on JULD date and time.  The flag scale is described in reference table 19 (<https://vocab.nerc.ac.uk/collection/R19/>).<br>Example:2 : Value is transmitted by the float  |
 | JULD\_QC | char JULD\_QC(N\_MEASUREMENT);<br>JULD\_QC:long\_name = "Quality on date and time";<br>JULD\_QC:conventions = "Argo reference table 2";<br>JULD\_QC:\_FillValue = " ";<br> | Quality flag on JULD date and time.The flag scale is described in the reference tables 2 ([https://vocab.nerc.ac.uk/collection/RR2/](https://vocab.nerc.ac.uk/collection/RR2) for real-time and <https://vocab.nerc.ac.uk/collection/RD2/> for delayed-mode).<br>Example :1: The date and time seem correct. |
@@ -439,9 +437,6 @@ Details on how the RAFOS positions were derived can not be stored in the traj.nc
 | SATELLITE\_NAME | char SATELLITE\_NAME(N\_MEASUREMENT);<br>SATELLITE\_NAME.long\_name = “Satellite name from positioning system”;<br>SATELLITE\_NAME.FillValue = ”  “;<br> | Satellite name from positioning system.SATELLITE\_NAME is only used for Argos position |
 | TRAJECTORY\_PARAMETER\_DATA\_MODE | char TRAJECTORY\_PARAMETER\_DATA\_MODE(N\_MEASUREMENT, N\_PARAM);<br>TRAJECTORY\_PARAMETER\_DATA\_MODE:long\_name = "Delayed mode or real time data";<br>TRAJECTORY\_PARAMETER\_DATA\_MODE:conventions = "R : real time;<br> D : delayed mode;<br> A : real time with adjustment";<br>TRAJECTORY\_PARAMETER\_DATA\_MODE:\_FillValue = " ";<br> | Indicates the availability of adjustment of each TRAJECTORY\_PARAMETERS. ‘R’ = no adjusted value is available. ‘A’ = real-time adjusted value is available. ‘D’ = delayed-mode adjusted value is available. |
 | JULD\_DATA\_MODE | char JULD\_DATA\_MODE(N\_MEASUREMENT);<br>JULD\_DATA\_MODE:long\_name = "Delayed mode or real time data";<br>JULD\_DATA\_MODE:conventions "R : real time;<br> D : delayed mode;<br> A : real time with adjustment";<br>JULD\_DATA\_MODE:-FillValue = " ";<br> | Indicates the availability of adjustment/estimation of the Julian day of the measurement, which is stored in JULD\_ADJUSTED. The raw parameter JULD stores the original telemetered value, or FillValue (if not available). If JULD\_DATA\_MODE = ‘R’, JULD\_ADJUSTED = FillValue. If JULD\_DATA\_MODE = ‘A’, JULD\_ADJUSTED = real-time adjusted/estimated value. If JULD\_DATA\_MODE = ‘D’, JULD\_ADJUSTED = delayed-mode adjusted/estimated value. |
-| ~~\<PARAM>\_MED~~                 | ~~float \<PARAM>\_MED(N\_MEASUREMENT);<br>~~~~\<PARAM>\_MED:long\_name = "Median value of the set of measurements used to compute \<PARAM>(N\_MEASUREMENT) averaged value";<br>~~~~\<PARAM>\_MED:\_FillValue = \<X>;<br>~~~~\<PARAM>\_MED:units = \<X>;<br>~~~~\<PARAM>\_MED:valid\_min = \<X>;<br>~~~~\<PARAM>\_MED:valid\_max = \<X>;<br>~~~~\<PARAM>\_MED:comment = "\<X>";<br>~~~~\<PARAM>\_MED:C\_format = "\<X>";<br>~~~~\<PARAM>\_MED:FORTRAN\_format = "\<X>";<br>~~~~\<PARAM>\_MED:resolution = \<X>;<br>~~ | ~~Optional variable used to store statistical information (median value) of the set of measurements used to compute the averaged values in \<PARAM>. This statistical information is provided by some floats, e.g. PROVOR CTS4 and CTS5.~~~~\<PARAM> and \<X> are specified in Reference Table 3.~~~~N\_MEASUREMENT is not replaced by its integer value.~~                                                                                                            |
-| ~~\<PARAM>\_STD~~                 | ~~float \<PARAM>\_STD(N\_MEASUREMENT);<br>~~~~\<PARAM>\_STD:long\_name = "Standard deviation of the set of measurements used to compute \<PARAM>(N\_MEASUREMENT) averaged value";<br>~~~~\<PARAM>\_STD:\_FillValue = \<X>;<br>~~~~\<PARAM>\_STD:units = \<X>;<br>~~~~\<PARAM>\_STD:comment = "\<X>";<br>~~~~\<PARAM>\_STD:C\_format = "\<X>";<br>~~~~\<PARAM>\_STD:FORTRAN\_format = "\<X>";<br>~~~~\<PARAM>\_STD:resolution = \<X>;<br>~~                                                                   | ~~Optional variable used to store statistical information (standard deviation) of the set of measurements used to compute the averaged values in \<PARAM>. This statistical information is provided by some floats, e.g. PROVOR CTS4 and CTS5.~~~~\<PARAM> and \<X> are specified in Reference Table 3.~~~~N\_MEASUREMENT is not replaced by its integer value.~~                                                                                                      |
-
 
 #### How to report unusual Pressure resolutions in the N\_MEASUREMENT variable group of the TRAJ file
 
