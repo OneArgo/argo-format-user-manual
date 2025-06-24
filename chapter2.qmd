@@ -413,7 +413,7 @@ Details on how the RAFOS positions were derived can not be stored in the traj.nc
 
 | **Name** | **definition** | **comment** |
 |----------|----------------|-------------|
-| JULD | double JULD(N\_MEASUREMENT);<br>JULD:long\_name = "Julian day (UTC) of each measurement relative to REFERENCE\_DATE\_TIME";<br>JULD:standard\_name = "time";<br>JULD:units = "days since 1950-01-01 00:00:00 UTC";<br>JULD:conventions = "Relative julian days with decimal part (as parts of day)";<br>JULD:resolution = X;<br>JULD:\_FillValue = 999999.;<br>JULD:axis = "T";<br> | Julian day of the location (or measurement).The integer part represents the day, the decimal part represents the time of the measurement.Date and time are in universal time coordinates.The Julian day is relative to REFERENCE\_DATE\_TIME.<br>Example :18833.8013889885 : July 25 2001 19:14:00 |
+| JULD | double JULD(N\_MEASUREMENT);<br>JULD:long\_name = "Julian day (UTC) of each measurement relative to REFERENCE\_DATE\_TIME";<br>JULD:standard\_name = "time";<br>JULD:units = "days since 1950-01-01 00:00:00 UTC";<br>JULD:conventions = "Relative julian days with decimal part (as parts of day)";<br>JULD:resolution = X;<br>JULD:\_FillValue = 999999.;<br>JULD:axis = "T";| Julian day of the location (or measurement).The integer part represents the day, the decimal part represents the time of the measurement.Date and time are in universal time coordinates.The Julian day is relative to REFERENCE\_DATE\_TIME.<br>Example :18833.8013889885 : July 25 2001 19:14:00 |
 | JULD\_STATUS | char JULD\_STATUS(N\_MEASUREMENT);<br>JULD\_STATUS:long\_name=”Status of the date and time”JULD\_STATUS:conventions = “Argo reference table 19";<br>JULD\_STATUS:\_FillValue = " ";<br> | Status flag on JULD date and time.  The flag scale is described in reference table 19 (<https://vocab.nerc.ac.uk/collection/R19/>).<br>Example:2 : Value is transmitted by the float  |
 | JULD\_QC | char JULD\_QC(N\_MEASUREMENT);<br>JULD\_QC:long\_name = "Quality on date and time";<br>JULD\_QC:conventions = "Argo reference table 2";<br>JULD\_QC:\_FillValue = " ";<br> | Quality flag on JULD date and time.The flag scale is described in the reference tables 2 ([https://vocab.nerc.ac.uk/collection/RR2/](https://vocab.nerc.ac.uk/collection/RR2) for real-time and <https://vocab.nerc.ac.uk/collection/RD2/> for delayed-mode).<br>Example :1: The date and time seem correct. |
 | JULD\_ADJUSTED | double JULD\_ADJUSTED(N\_MEASUREMENT);<br>JULD\_ADJUSTED:long\_name = "Adjusted julian day (UTC) of each measurement relative to REFERENCE\_DATE\_TIME";<br>JULD\_ADJUSTED:standard\_name = "time";<br>JULD\_ADJUSTED:units = "days since 1950-01-01 00:00:00 UTC";<br>JULD\_ADJUSTED:conventions = "Relative julian days with decimal part (as parts of day)";<br>JULD\_ADJUSTED:resolution = X;<br>JULD\_ADJUSTED:\_FillValue = 999999.;<br>JULD:axis = "T";<br> | Adjusted Julian day of the location (or measurement).The integer part represents the day, the decimal part represents the time of the measurement.Date and time are in universal time coordinates.The Julian day is relative to REFERENCE\_DATE\_TIME.The date may be adjusted due to float clock drift or expert review\.<br>Example :18833.8013889885 : July 25 2001 19:14:00 |
@@ -717,14 +717,30 @@ Typically, an Argo float configuration is valid for the whole life of the float.
 #### Determining which mission applies to a particular float cycle
 
 Users are able to determine which mission applies to each cycle by looking at the CONFIG\_MISSION\_NUMBER(N\_CYCLE) variable in the trajectory files, and the CONFIG\_MISSION\_NUMBER(N\_PROF) variable in the profile files.\
-See section “§2.2.4 General information for each profile” and “§2.3.6 N\_CYCLE dimension variable group”).<br>
-**Example**![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXcnaEOcjUj69qwsajudvD7PYto5l0lHkbGLE6sUFoejPj-1d05umy_mQhGbUo_SgNxxA_RnGSiV33XMv4g45YKVXr8DlwFPkPjfneidriet-etWbfXPMga8b1hSJz1To8P--KVHKu30PfYUA50U2qZrqSt8eJ7Fc2dvkg?key=urriIMPgWYQSkBDhh4E5jQ)In the above example, there are 3 different float behaviors to record, (with park depth varying between 1500, 2000 and 1700 db).<br>Each of these new behaviors requires a new mission number.<br>This is in addition to the pre-deployment or launch information: CONFIG\_PARAMETER\_NAME = “CONFIG\_ParkPressure\_dbar”\
-CONFIG\_PARAMETER\_VALUE = "1500"\
-CONFIG\_MISSION\_NUMBER = 1CONFIG\_PARAMETER\_NAME = “CONFIG\_ParkPressure\_dbar”\
+See section “§2.2.4 General information for each profile” and “§2.3.6 N\_CYCLE dimension variable group”).  
+**Example**
+![](assets/images/float-cycle-mission.png)
+
+In the above example, there are 3 different float behaviors to record, (with park depth varying between 1500, 2000 and 1700 db).<br>Each of these new behaviors requires a new mission number.  
+This is in addition to the pre-deployment or launch information:  
+CONFIG\_PARAMETER\_NAME = “CONFIG\_ParkPressure\_dbar”\  
+CONFIG\_PARAMETER\_VALUE = "1500"\  
+CONFIG\_MISSION\_NUMBER = 1  
+
+CONFIG\_PARAMETER\_NAME = “CONFIG\_ParkPressure\_dbar”\
 CONFIG\_PARAMETER\_VALUE = "2000"\
-CONFIG\_MISSION\_NUMBER = 2CONFIG\_PARAMETER\_NAME = “CONFIG \_ParkPressure\_dbar”\
+CONFIG\_MISSION\_NUMBER = 2  
+
+CONFIG\_PARAMETER\_NAME = “CONFIG \_ParkPressure\_dbar”\
 CONFIG\_PARAMETER\_VALUE = "1700"\
-CONFIG\_MISSION\_NUMBER = 3A further example for a float with multiple missions and changes to multiple configuration parameters is shown below. In this example there are 11 pre-deployment/launch configuration parameters for this float which are set before launch.<br>Of this set, the last four are mission critical parameters that change and control float behavior;<br> these  are reported in subsequent missions (missions 1 to n).<br>For this float, the depth at which the float parks, changes in missions 2 and 3 (with changes in two configuration parameters).<br>For mission 4, the park depth stays the same as for mission 3 but now the park sampling period has changed.<br>For mission 5, the park sampling period changes again.<br>All configuration parameters from mission 1 must still be reported for each subsequent mission, even those that do not change.
+CONFIG\_MISSION\_NUMBER = 3  
+
+A further example for a float with multiple missions and changes to multiple configuration parameters is shown below. In this example there are 11 pre-deployment/launch configuration parameters for this float which are set before launch.  
+Of this set, the last four are mission critical parameters that change and control float behavior; these  are reported in subsequent missions (missions 1 to n).  
+For this float, the depth at which the float parks, changes in missions 2 and 3 (with changes in two configuration parameters).  
+For mission 4, the park depth stays the same as for mission 3 but now the park sampling period has changed.  
+For mission 5, the park sampling period changes again.  
+All configuration parameters from mission 1 must still be reported for each subsequent mission, even those that do not change.
 
 | **Configuration parameter names from reference table 18a or 18b****LAUNCH\_CONFIG\_PARAMETER\_NAME(N\_LAUNCH\_CONFIG\_PARAM,STRING128)****\* N\_LAUNCH\_CONFIG\_PARAM = int value**   | **Pre-deployment or launch configuration settings****LAUNCH\_CONFIG\_PARAMETER\_VALUE(N\_LAUNCH\_CONFIG\_PARAM) \* float or double depending on data type**  |
 | ---- | --- |
@@ -805,7 +821,7 @@ This section contains information about the calibration of the profiler.<br>The 
 
 ### Mandatory metadata parameters
 
-Part of the highly desirable metadata were made mandatory and are listed under this section.| | | |
+Part of the highly desirable metadata were made mandatory and are listed under this section.
 
 | **Mandatory metadata**  | **Mandatory format**  | **Example**  |
 | -------- | -------------- | ----------- |
@@ -822,14 +838,13 @@ Part of the highly desirable metadata were made mandatory and are listed under t
 | FORMAT\_VERSION | "2.2";<br>  | FORMAT\_VERSION = "2.2";<br>  |
 | HANDBOOK\_VERSION  | "1.2";<br>  | HANDBOOK\_VERSION = "1.2";<br>  |
 | LAUNCH\_DATE   | YYYYMMDDHHMISS  | LAUNCH\_DATE = "20010717000100";<br>  |
-| LAUNCH\_LATITUDE  | not empty, -90 <= real <= 90  | LAUNCH\_LATITUDE = -7.91400003433228;<br>  |
-| LAUNCH\_LONGITUDE  | not empty, -180 <= real <= 180  | LAUNCH\_LONGITUDE = -179.828338623047;<br>  |
+| LAUNCH\_LATITUDE  | not empty, -90 <= real <= 90  | LAUNCH\_LATITUDE = -7.91400003433228;|
+| LAUNCH\_LONGITUDE  | not empty, -180 <= real <= 180  | LAUNCH\_LONGITUDE = -179.828338623047;|
 | LAUNCH\_QC  | see reference table 2 (<https://vocab.nerc.ac.uk/collection/RR2/>, <https://vocab.nerc.ac.uk/collection/RD2/>).<br>| LAUNCH\_QC = "1";<br>  |
 | MANUAL\_ VERSION | if exists then not empty otherwise default value = "n/a" | MANUAL\_ VERSION = “004” or “041708” |
-| | | |
 | PI\_NAME | not empty | PI\_NAME = “Julia UITZ”;<br> |
 | PLATFORM\_FAMILY | see reference table 22 (<https://vocab.nerc.ac.uk/collection/R22/>).<br>| PLATFORM\_FAMILY = “subsurface profiling float”, “ITP”, “POPS”;<br> |
-| PLATFORM\_MAKER | see reference table 24 (<https://vocab.nerc.ac.uk/collection/R24/>).  | PLATFORM\_MAKER = “Optimare”;<br> |
+| PLATFORM\_MAKER | see reference table 24 (<https://vocab.nerc.ac.uk/collection/R24/>).  | PLATFORM\_MAKER = “Optimare”; |
 | PLATFORM\_NUMBER | IIIII or A9IIIII | PLATFORM\_NUMBER = "5900077";<br> |
 | PLATFORM\_TYPE | see reference table 23 (<https://vocab.nerc.ac.uk/collection/R23/>).<br>| PLATFORM\_TYPE = “SOLO” or “APEX” or “PROVOR”;<br>  |
 | POSITIONING\_SYSTEM  | see reference table 9 (<https://vocab.nerc.ac.uk/collection/R09/>).<br>| POSITIONING\_SYSTEM = "ARGOS";<br>  |
