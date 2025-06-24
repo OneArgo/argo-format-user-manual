@@ -227,7 +227,7 @@ window.Quarto = {
   <li><a href="#global-attributes-2" id="toc-global-attributes-2" class="nav-link" data-scroll-target="#global-attributes-2"><span class="header-section-number">3.4.1</span> Global attributes</a></li>
   <li><a href="#dimensions-and-definitions-1" id="toc-dimensions-and-definitions-1" class="nav-link" data-scroll-target="#dimensions-and-definitions-1"><span class="header-section-number">3.4.2</span> Dimensions and definitions</a></li>
   <li><a href="#float-characteristics" id="toc-float-characteristics" class="nav-link" data-scroll-target="#float-characteristics"><span class="header-section-number">3.4.3</span> Float characteristics</a></li>
-  <li><a href="#float-deployment-and-mission-information" id="toc-float-deployment-and-mission-information" class="nav-link" data-scroll-target="#float-deployment-and-mission-information"><span class="header-section-number">3.4.4</span> 2.4.5 Float deployment and mission information</a></li>
+  <li><a href="#float-deployment-and-mission-information" id="toc-float-deployment-and-mission-information" class="nav-link" data-scroll-target="#float-deployment-and-mission-information"><span class="header-section-number">3.4.4</span> Float deployment and mission information</a></li>
   <li><a href="#configuration-parameters" id="toc-configuration-parameters" class="nav-link" data-scroll-target="#configuration-parameters"><span class="header-section-number">3.4.5</span> Configuration parameters*</a></li>
   <li><a href="#float-sensor-and-parameter-information" id="toc-float-sensor-and-parameter-information" class="nav-link" data-scroll-target="#float-sensor-and-parameter-information"><span class="header-section-number">3.4.6</span> Float sensor and parameter information</a></li>
   <li><a href="#float-calibration-information" id="toc-float-calibration-information" class="nav-link" data-scroll-target="#float-calibration-information"><span class="header-section-number">3.4.7</span> Float calibration information</a></li>
@@ -691,12 +691,42 @@ window.Quarto = {
 <section id="calibration-information-for-each-profile" class="level3" data-number="3.2.6">
 <h3 data-number="3.2.6" class="anchored" data-anchor-id="calibration-information-for-each-profile"><span class="header-section-number">3.2.6</span> Calibration information for each profile</h3>
 <p>Calibrations are applied to parameters to create adjusted parameters. Different calibration methods will be used by groups processing Argo data. When a method is applied, its description is stored in the following fields. This section contains calibration information for each parameter of each profile. Each item of this section has a N_PROF (number of profiles), N_CALIB (number of calibrations), N_PARAM (number of parameters) dimension. If no calibration is available, N_CALIB is set to 1, PARAMETER is filled with the list of parameter names, and all values of the calibration section are set to fill values.</p>
-<div class="line-block"><strong>Name</strong> | <strong>Definition</strong> | <strong>Comment</strong> |<br>
-PARAMETER | char PARAMETER(N_PROF, N_CALIB, N_PARAM, STRING16);<br>PARAMETER:long_name = “List of parameters with calibration information”;<br>PARAMETER:conventions = “Argo reference table 3”;<br>PARAMETER:_FillValue = ” “;<br> | Name of the calibrated parameter. The list of parameters is&nbsp; in reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/" class="uri">https://vocab.nerc.ac.uk/collection/R03/</a>).Example&nbsp;: PSAL |<br>
-SCIENTIFIC_CALIB_EQUATION | char SCIENTIFIC_CALIB_EQUATION(N_PROF, N_CALIB, N_PARAM, STRING256);<br>SCIENTIFIC_CALIB_EQUATION:long_name = “Calibration equation for this parameter”;<br>SCIENTIFIC_CALIB_EQUATION:_FillValue = ” “;<br> | Calibration equation applied to the parameter.&nbsp;Example&nbsp;:Tc = a1 * T + a0 |<br>
-SCIENTIFIC_CALIB_COEFFICIENT | char SCIENTIFIC_CALIB_COEFFICIENT(N_PROF, N_CALIB, N_PARAM, STRING256);<br>SCIENTIFIC_CALIB_COEFFICIENT:long_name = “Calibration coefficients for this equation”;<br>SCIENTIFIC_CALIB_COEFFICIENT:_FillValue = ” “;<br> | Calibration coefficients for this equation.Example&nbsp;:a1=0.99997 , a0=0.0021 |<br>
-SCIENTIFIC_CALIB_COMMENT | char SCIENTIFIC_CALIB_COMMENT(N_PROF, N_CALIB, N_PARAM, STRING256);<br>SCIENTIFIC_CALIB_COMMENT:long_name = “Comment applying to this parameter calibration”;<br>SCIENTIFIC_CALIB_COMMENT:_FillValue = ” “;<br> | Comment about this calibrationExample&nbsp;:The sensor is not stable |<br>
-SCIENTIFIC_CALIB_DATE | char SCIENTIFIC_CALIB_DATE (N_PROF N_CALIB, N_PARAM, DATE_TIME)SCIENTIFIC_CALIB_DATE:long_name = “Date of calibration”;<br>SCIENTIFIC_CALIB_DATE:conventions = “YYYYMMDDHHMISS”;<br>SCIENTIFIC_CALIB_DATE:_FillValue = ” “;<br> | Date of the calibration.Example&nbsp;: 20011217161700 |</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Name</strong></th>
+<th><strong>Definition</strong></th>
+<th><strong>Comment</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PARAMETER</td>
+<td>char PARAMETER(N_PROF, N_CALIB, N_PARAM, STRING16);<br>PARAMETER:long_name = “List of parameters with calibration information”;<br>PARAMETER:conventions = “Argo reference table 3”;<br>PARAMETER:_FillValue = ” “;</td>
+<td>Name of the calibrated parameter. The list of parameters is&nbsp; in reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/" class="uri">https://vocab.nerc.ac.uk/collection/R03/</a>).<br>Example&nbsp;: PSAL</td>
+</tr>
+<tr class="even">
+<td>SCIENTIFIC_CALIB_EQUATION</td>
+<td>char SCIENTIFIC_CALIB_EQUATION(N_PROF, N_CALIB, N_PARAM, STRING256);<br>SCIENTIFIC_CALIB_EQUATION:long_name = “Calibration equation for this parameter”;<br>SCIENTIFIC_CALIB_EQUATION:_FillValue = ” “;<br></td>
+<td>Calibration equation applied to the parameter.<br>Example&nbsp;:Tc = a1 * T + a0</td>
+</tr>
+<tr class="odd">
+<td>SCIENTIFIC_CALIB_COEFFICIENT</td>
+<td>char SCIENTIFIC_CALIB_COEFFICIENT(N_PROF, N_CALIB, N_PARAM, STRING256);<br>SCIENTIFIC_CALIB_COEFFICIENT:long_name = “Calibration coefficients for this equation”;<br>SCIENTIFIC_CALIB_COEFFICIENT:_FillValue = ” “;</td>
+<td>Calibration coefficients for this equation.<br>Example&nbsp;:a1=0.99997 , a0=0.0021</td>
+</tr>
+<tr class="even">
+<td>SCIENTIFIC_CALIB_COMMENT</td>
+<td>char SCIENTIFIC_CALIB_COMMENT(N_PROF, N_CALIB, N_PARAM, STRING256);<br>SCIENTIFIC_CALIB_COMMENT:long_name = “Comment applying to this parameter calibration”;<br>SCIENTIFIC_CALIB_COMMENT:_FillValue = ” “;</td>
+<td>Comment about this calibration<br>Example&nbsp;:The sensor is not stable</td>
+</tr>
+<tr class="odd">
+<td>SCIENTIFIC_CALIB_DATE</td>
+<td>char SCIENTIFIC_CALIB_DATE (N_PROF N_CALIB, N_PARAM, DATE_TIME)SCIENTIFIC_CALIB_DATE:long_name = “Date of calibration”;<br>SCIENTIFIC_CALIB_DATE:conventions = “YYYYMMDDHHMISS”;<br>SCIENTIFIC_CALIB_DATE:_FillValue = ” “;</td>
+<td>Date of the calibration.<br>Example&nbsp;: 20011217161700</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="history-information-for-each-profile" class="level3" data-number="3.2.7">
 <h3 data-number="3.2.7" class="anchored" data-anchor-id="history-information-for-each-profile"><span class="header-section-number">3.2.7</span> History information for each profile</h3>
@@ -1791,7 +1821,7 @@ JULD_DATA_MODE | char JULD_DATA_MODE(N_MEASUREMENT);<br>JULD_DATA_MODE:long_name
 </table>
 </section>
 <section id="float-deployment-and-mission-information" class="level3" data-number="3.4.4">
-<h3 data-number="3.4.4" class="anchored" data-anchor-id="float-deployment-and-mission-information"><span class="header-section-number">3.4.4</span> 2.4.5 Float deployment and mission information</h3>
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="float-deployment-and-mission-information"><span class="header-section-number">3.4.4</span> Float deployment and mission information</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1913,7 +1943,24 @@ JULD_DATA_MODE | char JULD_DATA_MODE(N_MEASUREMENT);<br>JULD_DATA_MODE:long_name
 </tr>
 </tbody>
 </table>
-<p>The mission settings or parameter values are recorded as numbers.<br>In this scheme, strings will need to be converted to numbers and will require measurement codes for the relevant parameters.<br>The numeric codes for the affected parameters are defined in the “Explanation” section of the Configuration parameter names table (please see reference tables 18a and 18b - <a href="https://vocab.nerc.ac.uk/collection/R18/" class="uri">https://vocab.nerc.ac.uk/collection/R18/</a>).<br>Only a few existing parameters are affected.<br>If new floats with new configuration parameters (as strings) are introduced, then equivalent numeric flags must also be added to the table by the proposer of the new configuration parameter.&nbsp;All parameter names are standardized and are available in the online reference tables 18a and 18b: <a href="http://www.argodatamgt.org/Documentation" class="uri">http://www.argodatamgt.org/Documentation</a>There are two configuration tables: one for Core Argo configuration parameters (reference table 18a) and one for floats with BGC-Argo sensors (reference table 18b).<br>If you are a new user or have only standard Argo floats you should first check table 18a which has the basic set of configuration parameters that caters for most of the standard float types.<br>If your float carries additional BGC-Argo sensors you will also need to refer to table 18b.<br>Please send requests for new configuration parameter names for Core Argo floats to John Gilson (jgilson@ucsd.edu).<br>Requests for configuration parameter names for BGC-Argo variables should be sent to Catherine Schmechtig (catherine.schmechtig@imev-mer.fr).The mission is used to record information that changes from cycle to cycle, for instance when a float changes its mission from 3 shallow profiles to 1 deep profile.<br>The shallow and deep profiles will have different mission numbers.<br>The value of the mission number is recorded in CONFIG_MISSION_NUMBER.Configuration parameters are separated into two types.&nbsp;1).<br>Pre-deployment or launch configuration parameters that are the ‘configured’ start settings of the float and the initial mission configuration parameters for the first cycle.<br>These parameters with the dimension N_LAUNCH_CONFIG_PARAM, are stored in LAUNCH_CONFIG_PARAMETER_NAME and LAUNCH_CONFIG_PARAMETER_VALUE.2).<br>After deployment,configuration parameters define float behavior for each mission, including all applicable mandatory and highly-desirable parameters and any other parameters that change during the life of the float are reported as mission settings.<br>These parameters with the dimension N_CONFIG_PARAM, need to be reported in the CONFIG_PARAMETER_NAME and CONFIG_PARAMETER_VALUE variables.<br>The mission parameters for the first cycle must also be reported in the launch section.&nbsp;The parameter CONFIG_MISSION _COMMENT can be used to store information about the mission or whether the mission was set pre-deployment or transmitted by the float (free form field).&nbsp;</p>
+<p>The mission settings or parameter values are recorded as numbers.<br>
+In this scheme, strings will need to be converted to numbers and will require measurement codes for the relevant parameters.<br>
+The numeric codes for the affected parameters are defined in the “Explanation” section of the Configuration parameter names table (please see reference tables 18a and 18b - <a href="https://vocab.nerc.ac.uk/collection/R18/" class="uri">https://vocab.nerc.ac.uk/collection/R18/</a>).<br>
+Only a few existing parameters are affected.<br>If new floats with new configuration parameters (as strings) are introduced, then equivalent numeric flags must also be added to the table by the proposer of the new configuration parameter.&nbsp;All parameter names are standardized and are available in the online reference tables 18a and 18b: <a href="http://www.argodatamgt.org/Documentation" class="uri">http://www.argodatamgt.org/Documentation</a><br>
+There are two configuration tables: one for Core Argo configuration parameters (reference table 18a) and one for floats with BGC-Argo sensors (reference table 18b).<br>
+If you are a new user or have only standard Argo floats you should first check table 18a which has the basic set of configuration parameters that caters for most of the standard float types.<br>
+If your float carries additional BGC-Argo sensors you will also need to refer to table 18b.<br>
+Please send requests for new configuration parameter names for Core Argo floats to John Gilson (jgilson@ucsd.edu).<br>
+Requests for configuration parameter names for BGC-Argo variables should be sent to Catherine Schmechtig (catherine.schmechtig@imev-mer.fr).<br>
+The mission is used to record information that changes from cycle to cycle, for instance when a float changes its mission from 3 shallow profiles to 1 deep profile.<br>
+The shallow and deep profiles will have different mission numbers.<br>
+The value of the mission number is recorded in CONFIG_MISSION_NUMBER.<br>
+Configuration parameters are separated into two types.&nbsp;</p>
+<ol type="1">
+<li>Pre-deployment or launch configuration parameters that are the ‘configured’ start settings of the float and the initial mission configuration parameters for the first cycle.<br>These parameters with the dimension N_LAUNCH_CONFIG_PARAM, are stored in LAUNCH_CONFIG_PARAMETER_NAME and LAUNCH_CONFIG_PARAMETER_VALUE.</li>
+<li>After deployment,configuration parameters define float behavior for each mission, including all applicable mandatory and highly-desirable parameters and any other parameters that change during the life of the float are reported as mission settings.<br>These parameters with the dimension N_CONFIG_PARAM, need to be reported in the CONFIG_PARAMETER_NAME and CONFIG_PARAMETER_VALUE variables.<br>The mission parameters for the first cycle must also be reported in the launch section.&nbsp;</li>
+</ol>
+<p>The parameter CONFIG_MISSION _COMMENT can be used to store information about the mission or whether the mission was set pre-deployment or transmitted by the float (free form field).&nbsp;</p>
 <section id="note-on-floats-with-multiple-missions" class="level4" data-number="3.4.5.1">
 <h4 data-number="3.4.5.1" class="anchored" data-anchor-id="note-on-floats-with-multiple-missions"><span class="header-section-number">3.4.5.1</span> Note on floats with multiple missions</h4>
 <p>Typically, an Argo float configuration is valid for the whole life of the float.<br>Each cycle is repeated with the same behavior (one configuration).&nbsp;However, some floats may be configured to change their behavior from cycle to cycle (multiple configurations).&nbsp;When there is only one configuration, CONFIG_MISSION_NUMBER is set to 1: all the cycles are programmed to be the same.<br>Note that in this case;<br> floats will still have a set of pre-deployment/launch configuration information that contains all the start settings for the float.<br>So for a float with one basic mission, it will have launch configuration parameters and mission 1 configuration parameters (typically just the mission critical subset).When there are multiple configurations, the configuration from the first cycle has CONFIG_MISSION_NUMBER set to 1.<br>Each subsequent configuration change will be recorded as additional entries in CONFIG_MISSION_NUMBER, with the value increased sequentially by the integer one.<br>All variables from mission 1 must be repeated in subsequent missions.<br>Floats with multiple configurations still record pre-deployment or launch information in: LAUNCH_CONFIG_PARAMETER_NAME and LAUNCH_CONFIG_PARAMETER_VALUE.&nbsp;&nbsp;Argo best practice, and our recommendation to users, is a minimum of configuration missions.&nbsp; If there is a change to one or more of the configuration parameters that does not repeat a previous configuration then a new mission number must be used.<br>If the configuration parameters change, but mirror a previous mission then that mission number should be re-used.<br>In extremely complex cases where mission changes are unclear, then a new mission number can be used for each cycle.<br>Users should be aware that the metafile will need to be rewritten each time a new mission number is added.Some floats conduct a pressure-activated test mission after deployment (i.e.<br>some SOLO floats) where they essentially ‘wake-up’ at depth and return to the surface.<br>This is not a normal mission in any way, and the floats do not use their configuration parameters in this first ‘test’ cycle.<br>In this case you would assign a fill value to CONFIG_MISSION_NUMBER.</p>
