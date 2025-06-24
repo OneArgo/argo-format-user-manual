@@ -251,10 +251,13 @@ window.Quarto = {
   <li><a href="#parameter-and-parameter_sensor-need-expansion" id="toc-parameter-and-parameter_sensor-need-expansion" class="nav-link" data-scroll-target="#parameter-and-parameter_sensor-need-expansion"><span class="header-section-number">3.6.7</span> PARAMETER and PARAMETER_SENSOR need expansion</a></li>
   <li><a href="#data_type-dimension-extended-from-16-to-32-characters" id="toc-data_type-dimension-extended-from-16-to-32-characters" class="nav-link" data-scroll-target="#data_type-dimension-extended-from-16-to-32-characters"><span class="header-section-number">3.6.8</span> DATA_TYPE dimension extended from 16 to 32 characters</a></li>
   <li><a href="#predeployment-calibration-variable-dimension" id="toc-predeployment-calibration-variable-dimension" class="nav-link" data-scroll-target="#predeployment-calibration-variable-dimension"><span class="header-section-number">3.6.9</span> Predeployment calibration variable dimension</a></li>
-  <li><a href="#profile-directory-file-format" id="toc-profile-directory-file-format" class="nav-link" data-scroll-target="#profile-directory-file-format"><span class="header-section-number">3.6.10</span> Profile directory file format</a></li>
-  <li><a href="#profile-directory-file-format-version-2.1" id="toc-profile-directory-file-format-version-2.1" class="nav-link" data-scroll-target="#profile-directory-file-format-version-2.1"><span class="header-section-number">3.6.11</span> <strong>2.7.2 Profile directory file format version 2.1</strong>&nbsp;</a></li>
-  <li><a href="#trajectory-index-file-format-2.0" id="toc-trajectory-index-file-format-2.0" class="nav-link" data-scroll-target="#trajectory-index-file-format-2.0"><span class="header-section-number">3.6.12</span> Trajectory index file format 2.0</a></li>
-  <li><a href="#metadata-directory-file-format-2.0" id="toc-metadata-directory-file-format-2.0" class="nav-link" data-scroll-target="#metadata-directory-file-format-2.0"><span class="header-section-number">3.6.13</span> metadata directory file format 2.0</a></li>
+  </ul></li>
+  <li><a href="#gdac-ftp-directory-file-format" id="toc-gdac-ftp-directory-file-format" class="nav-link" data-scroll-target="#gdac-ftp-directory-file-format"><span class="header-section-number">3.7</span> GDAC FTP directory file format</a>
+  <ul class="collapse">
+  <li><a href="#profile-directory-file-format-2.0" id="toc-profile-directory-file-format-2.0" class="nav-link" data-scroll-target="#profile-directory-file-format-2.0"><span class="header-section-number">3.7.1</span> Profile directory file format 2.0</a></li>
+  <li><a href="#profile-directory-file-format-version-2.1" id="toc-profile-directory-file-format-version-2.1" class="nav-link" data-scroll-target="#profile-directory-file-format-version-2.1"><span class="header-section-number">3.7.2</span> Profile directory file format version 2.1**&nbsp;</a></li>
+  <li><a href="#trajectory-index-file-format-2.0" id="toc-trajectory-index-file-format-2.0" class="nav-link" data-scroll-target="#trajectory-index-file-format-2.0"><span class="header-section-number">3.7.3</span> Trajectory index file format 2.0</a></li>
+  <li><a href="#metadata-directory-file-format-2.0" id="toc-metadata-directory-file-format-2.0" class="nav-link" data-scroll-target="#metadata-directory-file-format-2.0"><span class="header-section-number">3.7.4</span> Metadata directory file format 2.0</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -483,12 +486,12 @@ window.Quarto = {
 <tr class="even">
 <td>PROJECT_NAME</td>
 <td>char PROJECT_NAME(N_PROF, STRING64);<br>PROJECT_NAME:long_name = “Name of the project”;<br>PROJECT_NAME:_FillValue = ” “;<br></td>
-<td>Name of the project which operates the profiling float that performed the profile.Example&nbsp;: “GYROSCOPE” (EU project for ARGO program)</td>
+<td>Name of the project that operates the float.<br>Multiple projects can be separated by commas.<br>Example: “GYROSCOPE, GMMC”</td>
 </tr>
 <tr class="odd">
 <td>PI_NAME</td>
 <td>char PI_NAME (N_PROF, STRING64);<br>PI_NAME:long_name = “Name of the principal investigator”;<br>PI_NAME:_FillValue = ” “;<br></td>
-<td>Name of the principal investigator responsible for the profiling float. Example: “Julia UITZ”.Valid PI names are listed in reference table R40 ( <a href="https://vocab.nerc.ac.uk/collectionsearch_nvs/R40/">https://vocab.nerc.ac.uk/collection/R40/</a>). Multiple names can be concatenated, separated by commas.</td>
+<td>Name of the principal investigator responsible for the profiling float. Example: “Julia UITZ”.<br>Valid PI names are listed in reference table R40 <a href="https://vocab.nerc.ac.uk/collectionsearch_nvs/R40/" target="_blank">https://vocab.nerc.ac.uk/collection/R40/</a>.<br>Multiple names can be concatenated, separated by commas.</td>
 </tr>
 <tr class="even">
 <td>STATION_PARAMETERS</td>
@@ -983,7 +986,7 @@ SCIENTIFIC_CALIB_DATE | char SCIENTIFIC_CALIB_DATE (N_PROF N_CALIB, N_PARAM, DAT
 <tr class="even">
 <td>PROJECT_NAME</td>
 <td>char PROJECT_NAME(STRING64);<br>PROJECT_NAME:long_name = “Name of the project”;<br>PROJECT_NAME:_FillValue = ” “;<br></td>
-<td>Name of the project which operates the float that performed the trajectory.Example&nbsp;: “GYROSCOPE” (EU project for ARGO program)</td>
+<td>Name of the project that operates the float.<br>Multiple projects can be separated by commas.<br>Example: “GYROSCOPE, GMMC”</td>
 </tr>
 <tr class="odd">
 <td>PI_NAME</td>
@@ -1691,9 +1694,9 @@ JULD_DATA_MODE | char JULD_DATA_MODE(N_MEASUREMENT);<br>JULD_DATA_MODE:long_name
 <td>Instrument type from WMO code table 1770. A subset of WMO table 1770 is documented in the reference table 8 (<a href="https://vocab.nerc.ac.uk/collection/R08/" class="uri">https://vocab.nerc.ac.uk/collection/R08/</a>).Example : 846 : Webb Research float, Seabird sensor&nbsp;</td>
 </tr>
 <tr class="odd">
-<td>PROJECT_NAME</td>
-<td>char PROJECT_NAME(STRING64)<br>PROJECT_NAME:long_name = “Program under which the float was deployed”<br> PROJECT_NAME:_FillValue = ” “<br></td>
-<td>Name of the project which operates the profiling float that performed the profile.Example : GYROSCOPE (EU project for Argo program)&nbsp;</td>
+<td>PROGRAM_NAME</td>
+<td>char PROGRAM_NAME(STRING64)<br>PROJECT_NAME:long_name = “Name of the program”<br> PROGRAM_NAME:_FillValue = ” ”</td>
+<td>This is an optional variable.<br>The overarching program(s) of which the float is a part.<br>A program consists of a set of related and possibly interdependent projects (PROJECT_NAME) that meet an overarching objective.<br>A program defines a group of floats managed by the same lead agency. It materializes the implementing, operating, and responsible team.<br>PROGRAM_NAME are managed by OceanOPS. Detailed definition of PROGRAM_NAME is available here: <a href="https://www.ocean-ops.org/metadata/#concept-definitions" target="_blank">https://www.ocean-ops.org/metadata/#concept-definitions</a>.<br>Example : “Argo India” or “Argo GO-BGC, UW”. This is a constrained vocabulary (R41).</td>
 </tr>
 <tr class="even">
 <td>DATA_CENTRE</td>
@@ -2085,7 +2088,7 @@ CONFIG_MISSION_NUMBER = 3A further example for a float with multiple missions an
 <p>A <strong>sensor</strong> is a device used to measure a physical parameter.<br>Sensor outputs are provided in parameter counts and need to be converted into parameter physical units using a calibration equation.<br>This conversion can be done onboard the float or during the decoding process.A <strong>parameter</strong> is a measurement of a physical phenomenon;<br> it can be provided by a sensor (in sensor counts or in physical units) or computed (derived) from other parameters.A sensor can measure 1 to N parameter(s).<br>A parameter can be measured by 1 or N sensor(s).</p>
 <section id="float-sensor-information" class="level4" data-number="3.4.6.1">
 <h4 data-number="3.4.6.1" class="anchored" data-anchor-id="float-sensor-information"><span class="header-section-number">3.4.6.1</span> Float sensor information</h4>
-<p>This section contains information about the sensors of the profiler.A list of standardized Argo sensor names is given in reference table 25 (<a href="https://vocab.nerc.ac.uk/collection/R25/" class="uri">https://vocab.nerc.ac.uk/collection/R25/</a>).<br>Each ocean state variable to be recorded in an Argo profile or trajectory file, must be considered its own sensor in this context.<br> This is necessary to record the sensor serial numbers, etc.<br> Thus a CTD which records PRES, TEMP, and PSAL should be considered 3 separate sensors (CTD_PRES, CTD_TEMP, CTD_CNDC respectively), as all 3 parameters are reported in the Argo profile and trajectory files.<br> In comparison, an OPTODE only has DOXY reported in Argo NetCDF files, thus it should be considered a single sensor (OXYGEN_OPTODE or OXYGEN_ELECTROCHEMICAL) even though the sensor also reports TEMP_DOXY.<br> All intermediate variables that do not appear in the core Argo files, even though they may appear in the ‘raw’ form (i.e.<br>in the BGC-Argo B-file), do not have to be listed as a separate sensor.<br> This is especially true if there is not a unique serial number for the sensor.</p>
+<p>This section contains information about the sensors of the profiler.A list of standardized Argo sensor names is given in reference table 25 (<a href="https://vocab.nerc.ac.uk/collection/R25/" class="uri">https://vocab.nerc.ac.uk/collection/R25/</a>).<br>Each ocean state parameter recorded in an Argo profile or trajectory file must be considered its own sensor in this context.<br> This is necessary to record the sensor serial numbers, etc.<br> Thus a CTD which records PRES, TEMP, and PSAL should be considered 3 separate sensors (CTD_PRES, CTD_TEMP, CTD_CNDC respectively), as all 3 parameters are reported in the Argo profile and trajectory files.<br> In comparison, an OPTODE only has DOXY reported in Argo NetCDF files, thus it should be considered a single sensor (OXYGEN_OPTODE or OXYGEN_ELECTROCHEMICAL) even though the sensor also reports TEMP_DOXY.<br> All intermediate variables that do not appear in the core Argo files, even though they may appear in the ‘raw’ form (i.e.<br>in the BGC-Argo B-file), do not have to be listed as a separate sensor.<br> This is especially true if there is not a unique serial number for the sensor.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -2098,17 +2101,17 @@ CONFIG_MISSION_NUMBER = 3A further example for a float with multiple missions an
 <tr class="odd">
 <td>SENSOR&nbsp;</td>
 <td>char SENSOR(N_SENSOR, STRING32);<br>SENSOR:long_name = “Name of the sensor mounted on the float”;<br>SENSOR:conventions = “Argo reference table 25”;<br>SENSOR:_FillValue = ” “;<br>&nbsp;</td>
-<td>Names of the sensors mounted on the floatExample: CTD_PRES, CTD_TEMP, CTD_CNDC, OXYGEN_OPTODE.Valid SENSOR are listed in reference table R25 (<a href="https://vocab.nerc.ac.uk/collection/R25/" class="uri">https://vocab.nerc.ac.uk/collection/R25/</a>).<br></td>
+<td>Names of the sensors mounted on the float<br>Example: CTD_PRES, CTD_TEMP, CTD_CNDC, OPTODE_DOXY.<br>Valid SENSOR are listed in reference table R25 <a href="https://vocab.nerc.ac.uk/collection/R25/" target="_blank">https://vocab.nerc.ac.uk/collection/R25/</a>.</td>
 </tr>
 <tr class="even">
 <td>SENSOR_MAKER</td>
 <td>char SENSOR_MAKER(N_SENSOR, STRING256);<br>SENSOR_MAKER:long_name = “Name of the sensor manufacturer”;<br>SENSOR_MAKER:conventions = “Argo reference table 26”;<br>SENSOR_MAKER:_FillValue = ” “;<br></td>
-<td>Name of the manufacturer of the sensor.Example : DRUCK, SBE, AANDERAA.Valid SENSOR_MAKER are listed in reference table R26 (<a href="https://vocab.nerc.ac.uk/collection/R26/" class="uri">https://vocab.nerc.ac.uk/collection/R26/</a>).<br></td>
+<td>Name of the manufacturer of the sensor.Example : DRUCK, SBE, AANDERAA.<br>Valid SENSOR_MAKER are listed in reference table R26 <a href="https://vocab.nerc.ac.uk/collection/R26/" target="_blank">https://vocab.nerc.ac.uk/collection/R26/</a>.</td>
 </tr>
 <tr class="odd">
 <td>SENSOR_MODEL&nbsp;</td>
 <td>char SENSOR_MODEL(N_SENSOR, STRING256);<br>SENSOR_MODEL:long_name = “Type of sensor”;<br>SENSOR_MODEL:conventions = “Argo reference table 27”;<br>SENSOR_MODEL:_FillValue = ” “;<br>&nbsp;</td>
-<td>Model of sensor.Example: DRUCK, SBE41CP, AANDERAA_OPTODE_3930.Valid SENSOR_MODEL are listed in reference table R27 (<a href="https://vocab.nerc.ac.uk/collection/R27/" class="uri">https://vocab.nerc.ac.uk/collection/R27/</a>)&nbsp;&nbsp;</td>
+<td>Name of the model of the sensor, as defined by the sensor manufacturer.<br>Example: DRUCK, SBE41CP, AANDERAA_OPTODE_3930.Valid SENSOR_MODEL are listed in reference table R27 <a href="https://vocab.nerc.ac.uk/collection/R27/" target="_blank">https://vocab.nerc.ac.uk/collection/R27/</a></td>
 </tr>
 <tr class="even">
 <td>SENSOR_SERIAL_NO&nbsp;</td>
@@ -2118,17 +2121,13 @@ CONFIG_MISSION_NUMBER = 3A further example for a float with multiple missions an
 <tr class="odd">
 <td>SENSOR_FIRMWARE_VERSION</td>
 <td>char SENSOR_FIRMWARE_VERSION (N_SENSOR, STRING32)SENSOR_FIRMWARE_VERSION :long_name = “Firmware version of the sensor”;<br>SENSOR_FIRMWARE_VERSION :_FillValue = ” “;<br></td>
-<td><strong>This is an optional variable.</strong>Firmware version of the sensor.Example: 1.141</td>
+<td><strong>This is an optional variable.</strong> Firmware version of the sensor.<br>Example: 1.141</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="float-sensor-status-within-argo-program" class="level4" data-number="3.4.6.2">
-<h4 data-number="3.4.6.2" class="anchored" data-anchor-id="float-sensor-status-within-argo-program"><span class="header-section-number">3.4.6.2</span> Float sensor status within Argo program</h4>
-<p>A sensor can have an “operational Argo” status, an “Argo pilot” status, or be designated as “experimental”.If the sensor is an “operational Argo”, it must be registered in the R25 sensor table, and its data must be processed according to the cookbook and QC manual for sensor-derived parameters.If the sensor is an Argo pilot, it must be registered in the R25 sensor table.<br>As a pilot, its parameters have not yet been described in a cookbook or QC manual.<br>Its data is distributed through the regular data system.If the sensor is experimental: no R25 declaration, no cookbook, no manual.<br>The sensor should be declared in the SPECIAL_FEATURES variable of the metadata file. Example of the experimental RAMSES TRIOS hyperspectral radiometry: - 7900563_meta.ncSPECIAL_FEATURES = “THIS FLOAT HAS AUXILIARY SENSORS FOR HYPERSPECTRAL RADIOMETRIC MEASUREMENT.”</p>
-</section>
-<section id="float-parameter-information" class="level4" data-number="3.4.6.3">
-<h4 data-number="3.4.6.3" class="anchored" data-anchor-id="float-parameter-information"><span class="header-section-number">3.4.6.3</span> Float parameter information</h4>
+<section id="float-parameter-information" class="level4" data-number="3.4.6.2">
+<h4 data-number="3.4.6.2" class="anchored" data-anchor-id="float-parameter-information"><span class="header-section-number">3.4.6.2</span> Float parameter information</h4>
 <p>This section contains information about the parameters measured by the profiler or derived from profiler measurements.</p>
 <table class="caption-top table">
 <thead>
@@ -2624,7 +2623,7 @@ CONFIG_MISSION_NUMBER = 3A further example for a float with multiple missions an
 <section id="pressure-axis-management-in-core-argo-and-b-argo-profile-files" class="level3" data-number="3.6.1">
 <h3 data-number="3.6.1" class="anchored" data-anchor-id="pressure-axis-management-in-core-argo-and-b-argo-profile-files"><span class="header-section-number">3.6.1</span> Pressure axis management in core-Argo and b-Argo profile files</h3>
 <p>This section contains information on pressure axis management for core-Argo and b-Argo profile and trajectory files.<br>The vertical pressure levels PRES is the simple and unambiguous link between the parameters in the core- and b- profiles.<br>The same PRES is recorded in the core-Argo and b-Argo profile files.PRES is the only parameter in Reference Table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/" class="uri">https://vocab.nerc.ac.uk/collection/R03/</a>) duplicated in core-Argo and b-Argo profile files.The adjusted pressure parameter PRES_ADJUSTED is only available in the core-Argo profile files.<br>
-The variables PROFILE_PRES_QC, PRES_QC, PRES_ADJUSTED and PRES_ADJUSTED_ERROR are not duplicated in the b-Argo profile files.Some single-cycle profile files will contain multiple profiles with different vertical sampling schemes (N_PROF &gt; 1).<br>In these cases, all parameters in the core-Argo and the b-Argo profile files will have the same N_PROF dimension, listed in the same order.<br>The same set of vertical pressure levels (PRES with N_PROF &gt; 1) is duplicated in the core-Argo and b-Argo profile files.<br>Other parameters (e.g.<br>TEMP, PSAL) that are not measured in all vertical sampling schemes will be filled with FillValue in the respective N_PROF dimension.Users are reminded that the profile with N_PROF = 1 is required to be the Primary sampling profile.<br>Please refer to Table 16 (<a href="https://vocab.nerc.ac.uk/collection/R16/" class="uri">https://vocab.nerc.ac.uk/collection/R16/</a>) for detailed descriptions of the various vertical sampling schemes.<br><strong>Example</strong>Suppose a hypothetical float carries a high-resolution CTD sensor and a low-resolution nitrate sensor.<br>In each single-cycle, this hypothetical float is configured to return a 2-dbar bin-averaged CTD profile to 1000 dbar with no corresponding nitrate measurements, and a discrete 250-dbar interval nitrate profile to 1000 dbar with no corresponding temperature and salinity measurements.<br>The parameters in the resulting core-Argo and b-Argo profile files are formatted as follows for the two profiles in each cycle:In the core-Argo profile file, <br> N_PROF = 2, N_LEVELS = 500.<br> PRES = [2, 4, 6, …………………………………1000];<br> = [250, 500, 750, 1000, FillValue, …………].<br> TEMP = [T2, T4, T6, ……………………….T1000];<br> = [FillValue, ………………………………..].<br> PSAL = [S2, S4, S6, ………………………..S1000];<br> = [FillValue, ………………………………..].<br> In the b-Argo profile file, <br> N_PROF = 2, N_LEVELS = 500.<br> PRES = [2, 4, 6, …………………………………1000];<br> = [250, 500, 750, 1000, FillValue, ………….].<br> NITRATE = [FillValue, ………………………………..];<br> = [N250, N500, N750, N1000, FillValue, …].<br> Other intermediate nitrate variables in the b-file are omitted in this example.</p>
+The variables PROFILE_PRES_QC, PRES_QC, PRES_ADJUSTED and PRES_ADJUSTED_ERROR are not duplicated in the b-Argo profile files.Some single-cycle profile files will contain multiple profiles with different vertical sampling schemes (N_PROF &gt; 1).<br>In these cases, all parameters in the core-Argo and the b-Argo profile files will have the same N_PROF dimension, listed in the same order.<br>The same set of vertical pressure levels (PRES with N_PROF &gt; 1) is duplicated in the core-Argo and b-Argo profile files.<br>Other parameters (e.g.<br>TEMP, PSAL) that are not measured in all vertical sampling schemes will be filled with FillValue in the respective N_PROF dimension.Users are reminded that the profile with N_PROF = 1 is required to be the Primary sampling profile.<br>Please refer to Table 16 (<a href="https://vocab.nerc.ac.uk/collection/R16/" class="uri">https://vocab.nerc.ac.uk/collection/R16/</a>) for detailed descriptions of the various vertical sampling schemes.<br><strong>Example</strong><br>Suppose a hypothetical float carries a high-resolution CTD sensor and a low-resolution nitrate sensor.<br>In each single-cycle, this hypothetical float is configured to return a 2-dbar bin-averaged CTD profile to 1000 dbar with no corresponding nitrate measurements, and a discrete 250-dbar interval nitrate profile to 1000 dbar with no corresponding temperature and salinity measurements.<br>The parameters in the resulting core-Argo and b-Argo profile files are formatted as follows for the two profiles in each cycle:In the core-Argo profile file, <br> N_PROF = 2, N_LEVELS = 500.<br> PRES = [2, 4, 6, …………………………………1000];<br> = [250, 500, 750, 1000, FillValue, …………].<br> TEMP = [T2, T4, T6, ……………………….T1000];<br> = [FillValue, ………………………………..].<br> PSAL = [S2, S4, S6, ………………………..S1000];<br> = [FillValue, ………………………………..].<br> In the b-Argo profile file, <br> N_PROF = 2, N_LEVELS = 500.<br> PRES = [2, 4, 6, …………………………………1000];<br> = [250, 500, 750, 1000, FillValue, ………….].<br> NITRATE = [FillValue, ………………………………..];<br> = [N250, N500, N750, N1000, FillValue, …].<br> Other intermediate nitrate variables in the b-file are omitted in this example.</p>
 </section>
 <section id="management-of-multi-dimensional-parameters" class="level3" data-number="3.6.2">
 <h3 data-number="3.6.2" class="anchored" data-anchor-id="management-of-multi-dimensional-parameters"><span class="header-section-number">3.6.2</span> Management of multi-dimensional parameters</h3>
@@ -2681,11 +2680,14 @@ PARAMETER_DATA_MODE | char PARAMETER_DATA_MODE(N_ PROF, N_PARAM);<br>PARAMETER_D
 </section>
 <section id="predeployment-calibration-variable-dimension" class="level3" data-number="3.6.9">
 <h3 data-number="3.6.9" class="anchored" data-anchor-id="predeployment-calibration-variable-dimension"><span class="header-section-number">3.6.9</span> Predeployment calibration variable dimension</h3>
-<p>The PREDEPLOYMENT_CALIB_EQUATION,&nbsp; PREDEPLOYMENT_CALIB_COEFFICIENT, PREDEPLOYMENT_CALIB_COMMENT string lengths are by default set to STRING1024.When necessary (such as for the Nitrate sensor), the string length is set to 4096. ## GDAC FTP directory file format</p>
+<p>The PREDEPLOYMENT_CALIB_EQUATION,&nbsp; PREDEPLOYMENT_CALIB_COEFFICIENT, PREDEPLOYMENT_CALIB_COMMENT string lengths are by default set to STRING1024.When necessary (such as for the Nitrate sensor), the string length is set to 4096.</p>
 </section>
-<section id="profile-directory-file-format" class="level3" data-number="3.6.10">
-<h3 data-number="3.6.10" class="anchored" data-anchor-id="profile-directory-file-format"><span class="header-section-number">3.6.10</span> Profile directory file format</h3>
-<p>The profile directory file describes all individual profile files of the GDAC ftp site. Its format is an autodescriptive ASCII with comma separated values.&nbsp;</p>
+</section>
+<section id="gdac-ftp-directory-file-format" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="gdac-ftp-directory-file-format"><span class="header-section-number">3.7</span> GDAC FTP directory file format</h2>
+<section id="profile-directory-file-format-2.0" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="profile-directory-file-format-2.0"><span class="header-section-number">3.7.1</span> Profile directory file format 2.0</h3>
+<p>The profile directory file describes all individual profile files of the GDAC ftp site. Its format is an auto descriptive ASCII with comma separated values.&nbsp;</p>
 <p>It is located at the root of the GDACs ftp servers.</p>
 <ul>
 <li><p><a href="ftp://usgodae.org/pub/outgoing/argo/" class="uri">ftp://usgodae.org/pub/outgoing/argo/</a>&nbsp;</p></li>
@@ -2693,7 +2695,7 @@ PARAMETER_DATA_MODE | char PARAMETER_DATA_MODE(N_ PROF, N_PARAM);<br>PARAMETER_D
 </ul>
 <p>The directory file contains:</p>
 <ul>
-<li><p>A header with a list of general information : title, description, project name, format version, date of update, ftp root addresses, GDAC node</p></li>
+<li><p>A header with a list of general information: title, description, project name, format version, date of update, ftp root addresses, GDAC node</p></li>
 <li><p>A table with a description of each file of the GDAC ftp site. This table is a comma separated list.</p></li>
 </ul>
 <p><strong>Index file naming convention</strong></p>
@@ -2740,8 +2742,8 @@ PARAMETER_DATA_MODE | char PARAMETER_DATA_MODE(N_ PROF, N_PARAM);<br>PARAMETER_D
 <p>When the POSITION_QC or JULD_QC of the profile is 3 or 4 (probably bad, bad), the position is reported as missing in the “profile directory file”.&nbsp; Note that in this case, the position in core-argo file differs from the position in the directory file.”</p>
 <p>In the index file, a missing date or position is set to “,,” (empty element).</p>
 </section>
-<section id="profile-directory-file-format-version-2.1" class="level3" data-number="3.6.11">
-<h3 data-number="3.6.11" class="anchored" data-anchor-id="profile-directory-file-format-version-2.1"><span class="header-section-number">3.6.11</span> <strong>2.7.2 Profile directory file format version 2.1</strong>&nbsp;</h3>
+<section id="profile-directory-file-format-version-2.1" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="profile-directory-file-format-version-2.1"><span class="header-section-number">3.7.2</span> Profile directory file format version 2.1**&nbsp;</h3>
 <p>The profile directory file describes all individual profile files of the GDAC ftp site. Its format is an auto descriptive ASCII with comma separated values.&nbsp;</p>
 <p>This directory file format is more detailed than the previous version 2.0, it will eventually replace it.</p>
 <p>The directory file contains:</p>
@@ -2778,8 +2780,8 @@ PARAMETER_DATA_MODE | char PARAMETER_DATA_MODE(N_ PROF, N_PARAM);<br>PARAMETER_D
 <div class="line-block"><strong>Profile directory format example</strong> |<br>
 # Title : Profile directory file of the Argo Global Data Assembly Center# Description : The directory file describes all individual profile files of the argo GDAC ftp site.# Project : ARGO# Format version : 2.1# Date of update : 20081025220004# FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac# FTP root number 2 : ftp://usgodae.usgodae.org/pub/outgoing/argo/dac# GDAC node : CORIOLISfile,date,latitude,longitude,ocean,profiler_type,institution,date_update,profile_temp_qc,profile_psal_qc,profile_doxy_qc,ad_psal_adjustment_mean,ad_psal_adjustment_deviationaoml/13857/profiles/R13857_001.nc,19970729200300,0.267,-16.032,A,845,AO,20080918131927,A, , , ,&nbsp;aoml/13857/profiles/R13857_002.nc,19970809192112,0.072,-17.659,A,845,AO,20080918131929,A, , , ,&nbsp;aoml/13857/profiles/R13857_003.nc,19970820184545,0.543,-19.622,A,845,AO,20080918131931,A, , , ,…meds/3900084/profiles/D3900084_099.nc,20050830130800,-45.74,-58.67,A,846,ME,20060509152833,A,A, ,0.029,0.000meds/3900084/profiles/D3900084_103.nc,20051009125300,-42.867,-56.903,A,846,ME,20060509152833,A,A, ,-0.003,0.000… |</div>
 </section>
-<section id="trajectory-index-file-format-2.0" class="level3" data-number="3.6.12">
-<h3 data-number="3.6.12" class="anchored" data-anchor-id="trajectory-index-file-format-2.0"><span class="header-section-number">3.6.12</span> Trajectory index file format 2.0</h3>
+<section id="trajectory-index-file-format-2.0" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="trajectory-index-file-format-2.0"><span class="header-section-number">3.7.3</span> Trajectory index file format 2.0</h3>
 <p>The trajectory directory file describes all trajectory files of the GDAC ftp site. Its format is an auto-descriptive ASCII with comma separated values.&nbsp;</p>
 <p>The directory file contains:</p>
 <ul>
@@ -2791,9 +2793,9 @@ PARAMETER_DATA_MODE | char PARAMETER_DATA_MODE(N_ PROF, N_PARAM);<br>PARAMETER_D
 <div class="line-block"><strong>Trajectory directory format example</strong> |<br>
 # Title : Trajectory directory file of the Argo Global Data Assembly Center# Description : The directory file describes all trajectory files of the argo GDAC ftp site.# Project : ARGO# Format version : 2.0# Date of update : 20031028075500# FTP root number 1 :&nbsp; ftp://ftp.ifremer.fr/ifremer/argo/dac&nbsp;# FTP root number 2 :&nbsp; ftp://usgodae.usgodae.org/pub/outgoing/argo/dac# GDAC node : CORIOLISfile, latitude_max, latitude_min, longitude_max, longitude_min, profiler_type, institution, date_updateaoml/13857/13857_traj.nc,1.25,0.267,-16.032,-18.5,0845,AO,20030214155117aoml/13857/13857_traj.nc,0.072,-17.659,A,0845,AO,20030214155354aoml/13857/13857_traj.nc,0.543,-19.622,A,0845,AO,20030214155619…jma/29051/29051_traj.nc,32.280,30.280,143.238,140.238,846,JA,20030212125117jma/29051/29051_traj.nc,32.352,30.057,143.206,140.115,846,JA,20030212125117 |</div>
 </section>
-<section id="metadata-directory-file-format-2.0" class="level3" data-number="3.6.13">
-<h3 data-number="3.6.13" class="anchored" data-anchor-id="metadata-directory-file-format-2.0"><span class="header-section-number">3.6.13</span> metadata directory file format 2.0</h3>
-<p>The metadata directory file describes all metadata files of the GDAC ftp site. Its format is an autodescriptive ASCII with comma separated values.&nbsp;</p>
+<section id="metadata-directory-file-format-2.0" class="level3" data-number="3.7.4">
+<h3 data-number="3.7.4" class="anchored" data-anchor-id="metadata-directory-file-format-2.0"><span class="header-section-number">3.7.4</span> Metadata directory file format 2.0</h3>
+<p>The metadata directory file describes all metadata files of the GDAC ftp site. Its format is an auto descriptive ASCII with comma separated values.&nbsp;</p>
 <p>The directory file contains:</p>
 <ul>
 <li><p>A header with a list of general informations : title, description, project name, format version, date of update, ftp root addresses, GDAC node</p></li>

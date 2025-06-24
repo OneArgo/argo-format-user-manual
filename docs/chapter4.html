@@ -244,18 +244,24 @@ More on GDACs organization: <a href="http://www.argodatamgt.org/Media/Argo-Data-
 </section>
 <section id="bgc-argo-individual-synthetic-profile-file" class="level4" data-number="5.1.2.2">
 <h4 data-number="5.1.2.2" class="anchored" data-anchor-id="bgc-argo-individual-synthetic-profile-file"><span class="header-section-number">5.1.2.2</span> BGC-Argo individual synthetic profile file</h4>
-<p>To facilitate the use of BGC-Argo data, the GDAC merges each BGC-Argo file with its corresponding Core-Argo data file. The BGC-Argo synthetic profiles are documented in <a href="http://dx.doi.org/10.13155/55637" class="uri">http://dx.doi.org/10.13155/55637</a>&nbsp;The synthetic file contains the core-Argo and BGC-Argo parameters listed on reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/" class="uri">https://vocab.nerc.ac.uk/collection/R03/</a>). The intermediate parameters are ignored by the synthetic files.<br> <strong>File naming convention</strong>M&lt;R/D&gt;&lt;FloatWmoID&gt;_&lt;XXX&gt;&lt;D&gt;.nc&nbsp;* M : merged B-Argo file prefix</p>
+<p>To facilitate the use of BGC-Argo data, the GDAC merges each BGC-Argo file with its corresponding Core-Argo data file. The BGC-Argo synthetic profiles are documented in <a href="http://dx.doi.org/10.13155/55637" class="uri">http://dx.doi.org/10.13155/55637</a>&nbsp;The synthetic file contains the core-Argo and BGC-Argo parameters listed on reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/" class="uri">https://vocab.nerc.ac.uk/collection/R03/</a>). The intermediate parameters are ignored by the synthetic files.<br> <strong>File naming convention</strong><br></p>
 <ul>
-<li>&lt;R/D&gt;&lt;FloatWmoID&gt;_&lt;XXX&gt;&lt;D&gt;.nc : identical to Core-Argo file naming conventionExamples: MR1900045_083.nc, MR1900045_083D.nc, MD1900045_003.nc</li>
+<li>S&lt;R/D&gt;&lt;FloatWmoID&gt;_&lt;XXX&gt;&lt;D&gt;.nc&nbsp;* S : synthetic BGC-Argo file prefix</li>
+<li>&lt;R/D&gt;&lt;FloatWmoID&gt;_&lt;XXX&gt;&lt;D&gt;.nc : identical to Core-Argo file naming convention</li>
 </ul>
+<p>Examples: SR1900045_083.nc, SR1900045_083D.nc, SD1900045_003.nc</p>
 </section>
 </section>
 <section id="argo-trajectory-data-file" class="level3" data-number="5.1.3">
 <h3 data-number="5.1.3" class="anchored" data-anchor-id="argo-trajectory-data-file"><span class="header-section-number">5.1.3</span> Argo trajectory data file</h3>
-<p>The Argo trajectory files contain the core and BGC parameters provided by a float.&lt;FloatWmoID&gt;_&lt;R/D&gt;traj.nc* R: real-time data</p>
+<p>The Argo trajectory files contain the core and BGC parameters provided by a float.<br>
+&lt;FloatWmoID&gt;_&lt;R/D&gt;traj.nc</p>
 <ul>
-<li>D: delayed-mode data<br> <strong>Examples</strong>1900045_Rtraj.nc : real-time trajectory from float 19000451900045_Dtraj.nc : delayed-mode trajectory from float 1900045</li>
+<li>R: real-time data</li>
+<li>D: delayed-mode data</li>
 </ul>
+<p><strong>Examples</strong><br> 1900045_Rtraj.nc : real-time trajectory from float 1900045<br>
+1900045_Dtraj.nc : delayed-mode trajectory from float 1900045</p>
 </section>
 <section id="metadata-file" class="level3" data-number="5.1.4">
 <h3 data-number="5.1.4" class="anchored" data-anchor-id="metadata-file"><span class="header-section-number">5.1.4</span> Metadata file</h3>

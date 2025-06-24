@@ -62,7 +62,7 @@ The following table describes the parameter codes used for Argo data management.
 
 **Parameter attributes**
 
-* The C\_Format, Fortran\_Format and Format\_resolution attributes are float/sensor dependents. They are set by the DAC (Data Assembly Centre).
+- The C\_Format, Fortran\_Format and Format\_resolution attributes are float/sensor dependents. They are set by the DAC (Data Assembly Centre).
 
 If new parameters are required, they have to be added to this table before they will be accepted.\
 A request for new parameters can be sent for approval and inclusion.
