@@ -126,30 +126,34 @@ Each item of this section has a N_PROF (number of profiles) dimension.
 The parameters listed in STATION_PARAMETERS should be sorted in the same order within a given float’s data file.
  	 	 	 	
 Examples with POSITION_QC is 8 (estimated value)
+
 - Case 1: only one system has been used for the interpolation. That system is shown in POSITIONING_SYSTEM.
 - Case 2: When no position was transmitted and an  estimate of the position in delayed mode relies on information not from a positioning system (a numerical method, model data. etc.) the POSITIONG_SYSTEM  should be “NONE”
 
 ###  Measurements for each profile
-This section contains information on each level of each profile.
-Each variable in this section has a N_PROF (number of profiles), N_LEVELS (number of pressure levels) dimension.
-<PARAM> contains the raw values transmitted by the float.
-The values in <PARAM> should never be altered. <PARAM>_QC contains QC flags that pertain to the values in <PARAM>. Values in <PARAM>_QC are set initially in 'R' and 'A' modes by the automatic real-time tests.
+This section contains information on each level of each profile.  
+Each variable in this section has a N_PROF (number of profiles), N_LEVELS (number of pressure levels) dimension.  
+\<PARAM> contains the raw values transmitted by the float.  
+The values in \<PARAM> should never be altered. \<PARAM>\_QC contains QC flags that pertain to the values in \<PARAM>. Values in \<PARAM>\_QC are set initially in 'R' and 'A' modes by the automatic real-time tests.
 They are later modified in 'D' mode at levels where the QC flags are set incorrectly by the real-time procedures, and where erroneous data are not detected by the real-time procedures.
-Each parameter can be adjusted (in delayed-mode, but also in real-time if appropriate). In that case, <PARAM>_ADJUSTED contains the adjusted values, <PARAM>_ADJUSTED_QC contains the QC flags set by the adjustment process, and <PARAM>_ADJUSTED_ERROR contains the adjustment uncertainties.
-When a profile has DATA_MODE = ’R’, no adjusted data are available. Hence the adjusted section (<PARAM>_ADJUSTED, <PARAM>_ADJUSTED_QC and <PARAM>_ADJUSTED_ERROR) should be filled with FillValue.
+Each parameter can be adjusted (in delayed-mode, but also in real-time if appropriate). In that case, \<PARAM>_ADJUSTED contains the adjusted values, \<PARAM>_ADJUSTED_QC contains the QC flags set by the adjustment process, and \<PARAM>_ADJUSTED_ERROR contains the adjustment uncertainties.  
+When a profile has DATA_MODE = ’R’, no adjusted data are available. Hence the adjusted section (\<PARAM>_ADJUSTED, \<PARAM>_ADJUSTED_QC and \<PARAM>_ADJUSTED_ERROR) should be filled with FillValue.
 
 When N_PROF > 1, DATA_MODE for each profile can be assigned differently. This is because when there are multiple profiles, delayed-mode or near real-time adjustments can become available at different times.
 
 The adjusted section for each N_PROF should then be filled independently according to its DATA_MODE.
 
 For example, in a profile file with 2 profiles, it is possible that
+
 - DATA_MODE = ’D’ in N_PROF = 1, and
 - DATA_MODE = ’R’ in N_PROF = 2.
 
 In this case:
+
 - the adjusted section in N_PROF=1 with DATA_MODE=’D’ should be filled with their adjusted values;
 - the adjusted section in N_PROF=2 with DATA_MODE=’R’ should be filled with FillValue.
-The delayed mode QC for core Argo profiles is described in "Argo quality control manual" by Annie Wong et al. (see http://www.argodatamgt.org/Documentation).
+  
+The delayed mode QC for core Argo profiles is described in "Argo quality control manual" by Annie Wong et al. (see <http://www.argodatamgt.org/Documentation>).
 
 |  **Name** | **Definition** | **Comment** |
 |-----------|----------------|-------------|
