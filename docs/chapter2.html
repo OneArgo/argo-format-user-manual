@@ -1440,43 +1440,67 @@ JULD_DATA_MODE | char JULD_DATA_MODE(N_MEASUREMENT);<br>JULD_DATA_MODE:long_name
 <tr class="odd">
 <td>HISTORY_INSTITUTION</td>
 <td>char HISTORY_INSTITUTION (N_HISTORY, STRING4);<br>HISTORY_INSTITUTION:long_name = “Institution which performed action”;<br>HISTORY_INSTITUTION:conventions = “Argo reference table 4”;<br>HISTORY_INSTITUTION:_FillValue = ” “;<br></td>
-<td>Institution that performed the action.Institution codes are described in reference table 4 (<a href="https://vocab.nerc.ac.uk/collection/R04/" class="uri">https://vocab.nerc.ac.uk/collection/R04/</a>).Example&nbsp;: “ME” for MEDS</td>
+<td>Institution that performed the action.<br>Institution codes are described in reference table 4 (<a href="https://vocab.nerc.ac.uk/collection/R04/" class="uri">https://vocab.nerc.ac.uk/collection/R04/</a>).<br>Example&nbsp;: “ME” for MEDS</td>
 </tr>
 <tr class="even">
 <td>HISTORY_STEP</td>
 <td>char HISTORY_STEP (N_HISTORY, STRING4);<br>HISTORY_STEP:long_name = “Step in data processing”;<br>HISTORY_STEP:conventions = “Argo reference table 12”;<br>HISTORY_STEP:_FillValue = ” “;<br></td>
-<td>Code of the step in data processing for this history record. The step codes are described in reference table 12 (<a href="https://vocab.nerc.ac.uk/collection/R12/" class="uri">https://vocab.nerc.ac.uk/collection/R12/</a>).Example&nbsp;:&nbsp;“ARGQ” : Automatic QC of data reported in real-time has been performed</td>
+<td>Code of the step in data processing for this history record.<br>The step codes are described in reference table 12 (<a href="https://vocab.nerc.ac.uk/collection/R12/" class="uri">https://vocab.nerc.ac.uk/collection/R12/</a>).<br>Example&nbsp;:&nbsp;“ARGQ” : Automatic QC of data reported in real-time has been performed</td>
 </tr>
 <tr class="odd">
 <td>HISTORY_SOFTWARE</td>
 <td>char HISTORY_SOFTWARE (N_HISTORY, STRING4);<br>HISTORY_SOFTWARE:long_name = “Name of software which performed action”;<br>HISTORY_SOFTWARE:conventions = “Institution dependent”;<br>HISTORY_SOFTWARE:_FillValue = ” “;<br></td>
-<td>Name of the software that performed the action.This code is institution dependent.Example : “OW”</td>
+<td>Name of the software that performed the action.<br>This code is institution dependent.<br>Example : “OW”</td>
 </tr>
 <tr class="even">
 <td>HISTORY_SOFTWARE_RELEASE</td>
 <td>char HISTORY_SOFTWARE_RELEASE (N_HISTORY, STRING4);<br>HISTORY_SOFTWARE_RELEASE:long_name = “Version/release of software which performed action”;<br>HISTORY_SOFTWARE_RELEASE:conventions = “Institution dependent”;<br>HISTORY_SOFTWARE_RELEASE:_FillValue = ” “;<br></td>
-<td>Version of the software.This name is institution dependent.Example : “1.0”</td>
+<td>Version of the software.<br>This name is institution dependent.<br>Example : “1.0”</td>
 </tr>
 <tr class="odd">
 <td>HISTORY_REFERENCE</td>
 <td>char HISTORY_REFERENCE (N_HISTORY, STRING64);<br>HISTORY_REFERENCE:long_name = “Reference of database”;<br>HISTORY_REFERENCE:conventions = “Institution dependent”;<br>HISTORY_REFERENCE:_FillValue = ” “;<br></td>
-<td>Code of the reference database used for quality control in conjunction with the software.This code is institution dependent.Example : “WOD2001”</td>
+<td>Code of the reference database used for quality control in conjunction with the software.<br>This code is institution dependent.<br>Example : “WOD2001”</td>
 </tr>
 <tr class="even">
 <td>HISTORY_DATE</td>
 <td>char HISTORY_DATE(N_HISTORY, DATE_TIME);<br>HISTORY_DATE:long_name = “Date the history record was created”;<br>HISTORY_DATE:conventions = “YYYYMMDDHHMISS”;<br>HISTORY_DATE:_FillValue = ” “;<br></td>
-<td>Date of the action.Example&nbsp;: “20011217160057”</td>
+<td>Date of the action.<br>Example&nbsp;: “20011217160057”</td>
 </tr>
 <tr class="odd">
 <td>HISTORY_ACTION</td>
 <td>char HISTORY_ACTION (N_HISTORY, STRING4);<br>HISTORY_ACTION:long_name = “Action performed on data”;<br>HISTORY_ACTION:conventions = “Argo reference table 7”;<br>HISTORY_ACTION:_FillValue = ” “;<br></td>
-<td>Name of the action.The action codes are described in reference table 7 (<a href="https://vocab.nerc.ac.uk/collection/R07/" class="uri">https://vocab.nerc.ac.uk/collection/R07/</a>).Example&nbsp;: “QCF<span class="math inline">\(" for QC failed |
-| HISTORY\_PARAMETER | char HISTORY\_PARAMETER(N\_HISTORY, STRING64);&lt;br&gt;HISTORY\_PARAMETER:long\_name = "Parameter action is performed on";&lt;br&gt;HISTORY\_PARAMETER:conventions = "Argo reference table 3";&lt;br&gt;HISTORY\_PARAMETER:\_FillValue = " ";&lt;br&gt; | Name of the parameter on which the action is performed.Example&nbsp;: "PSAL" |
-| HISTORY\_PREVIOUS\_VALUE   | float HISTORY\_PREVIOUS\_VALUE(N\_HISTORY);&lt;br&gt;HISTORY\_PREVIOUS\_VALUE:long\_name = "Parameter/Flag previous value before action";&lt;br&gt;HISTORY\_PREVIOUS\_VALUE:\_FillValue = 99999.;&lt;br&gt; | Parameter or flag of the previous value before action.Example&nbsp;:' 2' (probably good) for a flag that was changed to '1' (good) |
-| HISTORY\_INDEX\_DIMENSION  | char HISTORY\_INDEX\_DIMENSION(N\_HISTORY);&lt;br&gt;HISTORY\_INDEX\_DIMENSION:long\_name = "Name of dimension to which HISTORY\_START\_INDEX and HISTORY\_STOP\_INDEX correspond";&lt;br&gt;HISTORY\_INDEX\_DIMENSION:conventions = "C: N\_CYCLE, M: N\_MEASUREMENT";&lt;br&gt;HISTORY\_INDEX\_DIMENSION:\_FillValue = " ";&lt;br&gt; | Name of dimension to which HISTORY\_START\_INDEX and HISORY\_STOP\_INDEX correspond. 'C': N\_CYCLE'M': N\_MEASUREMENT |
-| HISTORY\_START\_INDEX | int HISTORY\_ START\_INDEX (N\_HISTORY);&lt;br&gt;HISTORY\_START\_INDEX:long\_name = "Start index action applied on";&lt;br&gt;HISTORY\_START\_INDEX:\_FillValue =&nbsp;99999;&lt;br&gt; | Start index the action is applied to. This index corresponds to N\_MEASUREMENT or N\_CYCLE, depending on the corrected parameterExample&nbsp;: 100 |
-| HISTORY\_STOP\_INDEX | int HISTORY\_ STOP\_INDEX (N\_HISTORY);&lt;br&gt;HISTORY\_STOP\_INDEX:long\_name = "Stop index action applied on";&lt;br&gt;HISTORY\_STOP\_INDEX:\_FillValue =&nbsp;99999;&lt;br&gt; | Stop index the action is applied to. This index corresponds to N\_MEASUREMENT or N\_CYCLE, depending on the corrected parameterExample&nbsp;: 150 |
-| HISTORY\_QCTEST | char HISTORY\_QCTEST(N\_HISTORY,&nbsp; STRING16);&lt;br&gt;HISTORY\_QCTEST:long\_name = "Documentation of tests performed, tests failed (in hex form)";&lt;br&gt;HISTORY\_QCTEST:conventions = "Write tests performed when ACTION=QCP\)</span>;<br> tests failed when ACTION=QCF<span class="math inline">\(";&lt;br&gt;HISTORY\_QCTEST:\_FillValue = " ";&lt;br&gt; | This field records the tests performed when ACTION is set to QCP\)</span> (QC performed), the test failed when ACTION is set to QCF$ (QC failed).The QCTEST codes are described in reference table 11 (<a href="https://vocab.nerc.ac.uk/collection/R11/" class="uri">https://vocab.nerc.ac.uk/collection/R11/</a>).Example&nbsp;:”0A” (in hexadecimal form)</td>
+<td>Name of the action.<br>The action codes are described in reference table 7 (<a href="https://vocab.nerc.ac.uk/collection/R07/" class="uri">https://vocab.nerc.ac.uk/collection/R07/</a>).<br>Example&nbsp;: “QCF$” for QC failed</td>
+</tr>
+<tr class="even">
+<td>HISTORY_PARAMETER</td>
+<td>char HISTORY_PARAMETER(N_HISTORY, STRING64);<br>HISTORY_PARAMETER:long_name = “Parameter action is performed on”;<br>HISTORY_PARAMETER:conventions = “Argo reference table 3”;<br>HISTORY_PARAMETER:_FillValue = ” “;<br></td>
+<td>Name of the parameter on which the action is performed.<br>Example&nbsp;: “PSAL”</td>
+</tr>
+<tr class="odd">
+<td>HISTORY_PREVIOUS_VALUE</td>
+<td>float HISTORY_PREVIOUS_VALUE(N_HISTORY);<br>HISTORY_PREVIOUS_VALUE:long_name = “Parameter/Flag previous value before action”;<br>HISTORY_PREVIOUS_VALUE:_FillValue = 99999.;<br></td>
+<td>Parameter or flag of the previous value before action.<br>Example&nbsp;:’ 2’ (probably good) for a flag that was changed to ‘1’ (good)</td>
+</tr>
+<tr class="even">
+<td>HISTORY_INDEX_DIMENSION</td>
+<td>char HISTORY_INDEX_DIMENSION(N_HISTORY);<br>HISTORY_INDEX_DIMENSION:long_name = “Name of dimension to which HISTORY_START_INDEX and HISTORY_STOP_INDEX correspond”;<br>HISTORY_INDEX_DIMENSION:conventions = “C: N_CYCLE, M: N_MEASUREMENT”;<br>HISTORY_INDEX_DIMENSION:_FillValue = ” “;</td>
+<td>Name of dimension to which HISTORY_START_INDEX and HISORY_STOP_INDEX correspond.<br>‘C’: N_CYCLE<br>‘M’: N_MEASUREMENT</td>
+</tr>
+<tr class="odd">
+<td>HISTORY_START_INDEX</td>
+<td>int HISTORY_ START_INDEX (N_HISTORY);<br>HISTORY_START_INDEX:long_name = “Start index action applied on”;<br>HISTORY_START_INDEX:_FillValue =&nbsp;99999;<br></td>
+<td>Start index the action is applied to.<br>This index corresponds to N_MEASUREMENT or N_CYCLE, depending on the corrected parameter<br>Example&nbsp;: 100</td>
+</tr>
+<tr class="even">
+<td>HISTORY_STOP_INDEX</td>
+<td>int HISTORY_ STOP_INDEX (N_HISTORY);<br>HISTORY_STOP_INDEX:long_name = “Stop index action applied on”;<br>HISTORY_STOP_INDEX:_FillValue =&nbsp;99999;<br></td>
+<td>Stop index the action is applied to.<br>This index corresponds to N_MEASUREMENT or N_CYCLE, depending on the corrected parameter<br>Example&nbsp;: 150</td>
+</tr>
+<tr class="odd">
+<td>HISTORY_QCTEST</td>
+<td>char HISTORY_QCTEST(N_HISTORY,&nbsp; STRING16);<br>HISTORY_QCTEST:long_name = “Documentation of tests performed, tests failed (in hex form)”;<br>HISTORY_QCTEST:conventions = “Write tests performed when ACTION=QCP$; tests failed when ACTION=QCF$”;<br>HISTORY_QCTEST:_FillValue = ” “;</td>
+<td>This field records the tests performed when ACTION is set to QCP$ (QC performed), the test failed when ACTION is set to QCF$ (QC failed).<br>The QCTEST codes are described in reference table 11 (<a href="https://vocab.nerc.ac.uk/collection/R11/" class="uri">https://vocab.nerc.ac.uk/collection/R11/</a>).<br>Example&nbsp;: “0A” (in hexadecimal form)</td>
 </tr>
 </tbody>
 </table>
