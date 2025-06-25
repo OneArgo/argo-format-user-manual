@@ -3,8 +3,8 @@ title: "Formats description"
 ---
 
 ## Overview of the formats
-Argo data format is an implementation of NetCDF format developed by UCAR/Unidata (https://doi.org/10.5065/D6H70CW6).
-NetCDF (Network Common Data Form) is an interface for array-oriented data access and a library that provides an implementation of the interface. The NetCDF library also defines a machine-independent format for representing scientific data. Together, the interface, library, and format support the creation, access, and sharing of scientific data. The NetCDF software was developed at the Unidata Program Centre in Boulder, Colorado.
+Argo data format is an implementation of NetCDF format developed by UCAR/Unidata (<https://doi.org/10.5065/D6H70CW6>).  
+NetCDF (Network Common Data Form) is an interface for array-oriented data access and a library that provides an implementation of the interface. The NetCDF library also defines a machine-independent format for representing scientific data. Together, the interface, library, and format support the creation, access, and sharing of scientific data. The NetCDF software was developed at the Unidata Program Centre in Boulder, Colorado.  
 
 Argo formats are divided in 4 sections:
 
@@ -15,35 +15,29 @@ Argo formats are divided in 4 sections:
 
 Argo data comply with NetCDF Climate and Forecast (CF) Metadata Conventions:
 
-- https://cfconventions.org/ 
+- <https://cfconventions.org/> 
 
 Argo data uses the UDUNITS convention when applicable to populate the variable attribute "unit" in the Data section.  The UDUNITS standard, database and supporting information is available from
-- https://doi.org/10.5065/D6KD1WN0
+- <https://doi.org/10.5065/D6KD1WN0>
 
 Argo date and time: all date and time have to be given either in Universal Time (UTC) or in float’s time.
 
 ## Core-Argo profile format version 3.1
-An Argo single-cycle profile file contains a set of profiles from a single cycle. The minimum number is one profile per cycle. There is no defined maximum number of profiles per cycle.
-Core-Argo profile contains the CTD sensor parameters (pressure, temperature, salinity, conductivity) that are measured with the same vertical sampling scheme and at the same location and time. Additional parameters from other sensors are stored in a B-Argo profile file. The B-profile file is very similar to core-Argo profile file; its additional features are listed in §2.6
+An Argo single-cycle profile file contains a set of profiles from a single cycle. The minimum number is one profile per cycle. There is no defined maximum number of profiles per cycle.  
+Core-Argo profile contains the CTD sensor parameters (pressure, temperature, salinity, conductivity) that are measured with the same vertical sampling scheme and at the same location and time. Additional parameters from other sensors are stored in a B-Argo profile file. The B-profile file is very similar to core-Argo profile file; its additional features are listed in §2.6  
 Some specialty floats collect additional profiles per cycle. These specialty profiles contain parameters measured at pressure levels that are different from the CTD levels, and can be at locations and time that are different from the primary profile. When multiple profiles exist in a single cycle, users are urged to check the information associated with each profile in order to determine their spatial and temporal relations. Some examples of speciality profiles with different vertical sampling schemes are:
-Bouncing profiles: a series of shallow profiles performed during one cycle.
-High resolution near-surface observations: higher resolution vertical sampling near the surface from unpumped CTD.
+
+- Bouncing profiles: a series of shallow profiles performed during one cycle.
+- High resolution near-surface observations: higher resolution vertical sampling near the surface from unpumped CTD.
+
 For single-cycle profile file naming conventions, see §4.1.
 
 ### Global attributes
 The global attributes section is used for data discovery. The following global attributes should appear in the global section:
 
-// global attributes:<br>
-:title = "Argo float vertical profile";<br>
-:institution = "CSIRO";<br>
-:source = "Argo float";<br>
-:history = "2011-04-22T06:00:00Z creation";<br>
-:references = "http://www.argodatamgt.org/Documentation";<br>
-:id = "https://doi.org/10.17882/42182";<br>
-:comment = "free text";<br>
-:user_manual_version = "3.4";<br>
-:Conventions = "Argo-3.1 CF-1.6";<br>
-:featureType = "trajectoryProfile";<br>
+| \/\/ global attributes:|
+|----------------------|
+| :title = "Argo float vertical profile";<br> :institution = "CSIRO";<br> :source = "Argo float";<br> :history = "2011-04-22T06:00:00Z creation";<br> :references = "http://www.argodatamgt.org/Documentation";<br> :id = "https://doi.org/10.17882/42182";<br> :comment = "free text";<br> :user_manual_version = "3.4";<br> :Conventions = "Argo-3.1 CF-1.6";<br> :featureType = "trajectoryProfile";|
 
 
 | Global attribute name | Definition                          |

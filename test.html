@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -29,10 +29,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="test_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="test_files/libs/quarto-html/anchor.min.js"></script>
 <link href="test_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="test_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="test_files/libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="test_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="test_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="test_files/libs/bootstrap/bootstrap-8a79a254b8e706d3c925cde0a310d4f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="test_files/libs/bootstrap/bootstrap-5bdc1ec511977dd36301403cf8f4f68d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -41,44 +41,23 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
 
 
 
 
 <table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
 <thead>
 <tr class="header">
-<th><strong>Name</strong></th>
-<th><strong>Definition</strong></th>
-<th><strong>Comment</strong></th>
+<th>// global attributes:</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>PARAMETER</td>
-<td>char PARAMETER(N_PROF, N_CALIB, N_PARAM, STRING16);<br>PARAMETER:long_name = “List of parameters with calibration information”;<br>PARAMETER:conventions = “Argo reference table 3”;<br>PARAMETER:_FillValue = ” “;</td>
-<td>Name of the calibrated parameter. The list of parameters is&nbsp; in reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/" class="uri">https://vocab.nerc.ac.uk/collection/R03/</a>).<br>Example&nbsp;: PSAL</td>
-</tr>
-<tr class="even">
-<td>SCIENTIFIC_CALIB_EQUATION</td>
-<td>char SCIENTIFIC_CALIB_EQUATION(N_PROF, N_CALIB, N_PARAM, STRING256);<br>SCIENTIFIC_CALIB_EQUATION:long_name = “Calibration equation for this parameter”;<br>SCIENTIFIC_CALIB_EQUATION:_FillValue = ” “;<br></td>
-<td>Calibration equation applied to the parameter.<br>Example&nbsp;:Tc = a1 * T + a0</td>
-</tr>
-<tr class="odd">
-<td>SCIENTIFIC_CALIB_COEFFICIENT</td>
-<td>char SCIENTIFIC_CALIB_COEFFICIENT(N_PROF, N_CALIB, N_PARAM, STRING256);<br>SCIENTIFIC_CALIB_COEFFICIENT:long_name = “Calibration coefficients for this equation”;<br>SCIENTIFIC_CALIB_COEFFICIENT:_FillValue = ” “;</td>
-<td>Calibration coefficients for this equation.<br>Example&nbsp;:a1=0.99997 , a0=0.0021</td>
-</tr>
-<tr class="even">
-<td>SCIENTIFIC_CALIB_COMMENT</td>
-<td>char SCIENTIFIC_CALIB_COMMENT(N_PROF, N_CALIB, N_PARAM, STRING256);<br>SCIENTIFIC_CALIB_COMMENT:long_name = “Comment applying to this parameter calibration”;<br>SCIENTIFIC_CALIB_COMMENT:_FillValue = ” “;</td>
-<td>Comment about this calibration<br>Example&nbsp;:The sensor is not stable</td>
-</tr>
-<tr class="odd">
-<td>SCIENTIFIC_CALIB_DATE</td>
-<td>char SCIENTIFIC_CALIB_DATE (N_PROF N_CALIB, N_PARAM, DATE_TIME)SCIENTIFIC_CALIB_DATE:long_name = “Date of calibration”;<br>SCIENTIFIC_CALIB_DATE:conventions = “YYYYMMDDHHMISS”;<br>SCIENTIFIC_CALIB_DATE:_FillValue = ” “;</td>
-<td>Date of the calibration.<br>Example&nbsp;: 20011217161700</td>
+<td>:title = “Argo float vertical profile”;<br> :institution = “CSIRO”;<br> :source = “Argo float”;<br> :history = “2011-04-22T06:00:00Z creation”;<br> :references = “http://www.argodatamgt.org/Documentation”;<br> :id = “https://doi.org/10.17882/42182”;<br> :comment = “free text”;<br> :user_manual_version = “3.4”;<br> :Conventions = “Argo-3.1 CF-1.6”;<br> :featureType = “trajectoryProfile”;</td>
 </tr>
 </tbody>
 </table>
@@ -167,6 +146,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -277,6 +258,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

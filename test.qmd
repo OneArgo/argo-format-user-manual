@@ -1,9 +1,6 @@
 
 
-| **Name** | **Definition** | **Comment** |
-|----------|----------------|-------------|
-| PARAMETER | char PARAMETER(N\_PROF, N\_CALIB, N\_PARAM, STRING16);<br>PARAMETER:long\_name = "List of parameters with calibration information";<br>PARAMETER:conventions = "Argo reference table 3";<br>PARAMETER:\_FillValue = " ";|Name of the calibrated parameter. The list of parameters is  in reference table 3 (<https://vocab.nerc.ac.uk/collection/R03/>).<br>Example : PSAL |
-| SCIENTIFIC\_CALIB\_EQUATION | char SCIENTIFIC\_CALIB\_EQUATION(N\_PROF, N\_CALIB, N\_PARAM, STRING256);<br>SCIENTIFIC\_CALIB\_EQUATION:long\_name = "Calibration equation for this parameter";<br>SCIENTIFIC\_CALIB\_EQUATION:\_FillValue = " ";<br> | Calibration equation applied to the parameter.<br>Example :Tc = a1 \* T + a0|
-| SCIENTIFIC\_CALIB\_COEFFICIENT | char SCIENTIFIC\_CALIB\_COEFFICIENT(N\_PROF, N\_CALIB, N\_PARAM, STRING256);<br>SCIENTIFIC\_CALIB\_COEFFICIENT:long\_name = "Calibration coefficients for this equation";<br>SCIENTIFIC\_CALIB\_COEFFICIENT:\_FillValue = " "; | Calibration coefficients for this equation.<br>Example :a1=0.99997 , a0=0.0021|
-| SCIENTIFIC\_CALIB\_COMMENT | char SCIENTIFIC\_CALIB\_COMMENT(N\_PROF, N\_CALIB, N\_PARAM, STRING256);<br>SCIENTIFIC\_CALIB\_COMMENT:long\_name = "Comment applying to this parameter calibration";<br>SCIENTIFIC\_CALIB\_COMMENT:\_FillValue = " "; |Comment about this calibration<br>Example :The sensor is not stable|
-| SCIENTIFIC\_CALIB\_DATE | char SCIENTIFIC\_CALIB\_DATE (N\_PROF N\_CALIB, N\_PARAM, DATE\_TIME)SCIENTIFIC\_CALIB\_DATE:long\_name = "Date of calibration";<br>SCIENTIFIC\_CALIB\_DATE:conventions = "YYYYMMDDHHMISS";<br>SCIENTIFIC\_CALIB\_DATE:\_FillValue = " ";| Date of the calibration.<br>Example : 20011217161700 |
+| \/\/ global attributes:|
+|----------------------|
+| :title = "Argo float vertical profile";<br> :institution = "CSIRO";<br> :source = "Argo float";<br> :history = "2011-04-22T06:00:00Z creation";<br> :references = "http://www.argodatamgt.org/Documentation";<br> :id = "https://doi.org/10.17882/42182";<br> :comment = "free text";<br> :user_manual_version = "3.4";<br> :Conventions = "Argo-3.1 CF-1.6";<br> :featureType = "trajectoryProfile";|
+

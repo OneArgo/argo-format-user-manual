@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,12 +37,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-6561bbde787c299e21493071c8edc6ff.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c22f74f4c0eea731362da53e6cd12198.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-fdf964b8551a4c1da979a829183e41b0.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fdfa20662017c4660d53ed4ae2a36bf3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -286,7 +286,8 @@ window.Quarto = {
 
 <section id="overview-of-the-formats" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="overview-of-the-formats"><span class="header-section-number">3.1</span> Overview of the formats</h2>
-<p>Argo data format is an implementation of NetCDF format developed by UCAR/Unidata (https://doi.org/10.5065/D6H70CW6). NetCDF (Network Common Data Form) is an interface for array-oriented data access and a library that provides an implementation of the interface. The NetCDF library also defines a machine-independent format for representing scientific data. Together, the interface, library, and format support the creation, access, and sharing of scientific data. The NetCDF software was developed at the Unidata Program Centre in Boulder, Colorado.</p>
+<p>Argo data format is an implementation of NetCDF format developed by UCAR/Unidata (<a href="https://doi.org/10.5065/D6H70CW6" class="uri">https://doi.org/10.5065/D6H70CW6</a>).<br>
+NetCDF (Network Common Data Form) is an interface for array-oriented data access and a library that provides an implementation of the interface. The NetCDF library also defines a machine-independent format for representing scientific data. Together, the interface, library, and format support the creation, access, and sharing of scientific data. The NetCDF software was developed at the Unidata Program Centre in Boulder, Colorado.</p>
 <p>Argo formats are divided in 4 sections:</p>
 <ul>
 <li>Dimensions and definitions</li>
@@ -296,18 +297,37 @@ window.Quarto = {
 </ul>
 <p>Argo data comply with NetCDF Climate and Forecast (CF) Metadata Conventions:</p>
 <ul>
-<li>https://cfconventions.org/</li>
+<li><a href="https://cfconventions.org/" class="uri">https://cfconventions.org/</a></li>
 </ul>
-<p>Argo data uses the UDUNITS convention when applicable to populate the variable attribute “unit” in the Data section. The UDUNITS standard, database and supporting information is available from - https://doi.org/10.5065/D6KD1WN0</p>
+<p>Argo data uses the UDUNITS convention when applicable to populate the variable attribute “unit” in the Data section. The UDUNITS standard, database and supporting information is available from - <a href="https://doi.org/10.5065/D6KD1WN0" class="uri">https://doi.org/10.5065/D6KD1WN0</a></p>
 <p>Argo date and time: all date and time have to be given either in Universal Time (UTC) or in float’s time.</p>
 </section>
 <section id="core-argo-profile-format-version-3.1" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="core-argo-profile-format-version-3.1"><span class="header-section-number">3.2</span> Core-Argo profile format version 3.1</h2>
-<p>An Argo single-cycle profile file contains a set of profiles from a single cycle. The minimum number is one profile per cycle. There is no defined maximum number of profiles per cycle. Core-Argo profile contains the CTD sensor parameters (pressure, temperature, salinity, conductivity) that are measured with the same vertical sampling scheme and at the same location and time. Additional parameters from other sensors are stored in a B-Argo profile file. The B-profile file is very similar to core-Argo profile file; its additional features are listed in §2.6 Some specialty floats collect additional profiles per cycle. These specialty profiles contain parameters measured at pressure levels that are different from the CTD levels, and can be at locations and time that are different from the primary profile. When multiple profiles exist in a single cycle, users are urged to check the information associated with each profile in order to determine their spatial and temporal relations. Some examples of speciality profiles with different vertical sampling schemes are: Bouncing profiles: a series of shallow profiles performed during one cycle. High resolution near-surface observations: higher resolution vertical sampling near the surface from unpumped CTD. For single-cycle profile file naming conventions, see §4.1.</p>
+<p>An Argo single-cycle profile file contains a set of profiles from a single cycle. The minimum number is one profile per cycle. There is no defined maximum number of profiles per cycle.<br>
+Core-Argo profile contains the CTD sensor parameters (pressure, temperature, salinity, conductivity) that are measured with the same vertical sampling scheme and at the same location and time. Additional parameters from other sensors are stored in a B-Argo profile file. The B-profile file is very similar to core-Argo profile file; its additional features are listed in §2.6<br>
+Some specialty floats collect additional profiles per cycle. These specialty profiles contain parameters measured at pressure levels that are different from the CTD levels, and can be at locations and time that are different from the primary profile. When multiple profiles exist in a single cycle, users are urged to check the information associated with each profile in order to determine their spatial and temporal relations. Some examples of speciality profiles with different vertical sampling schemes are:</p>
+<ul>
+<li>Bouncing profiles: a series of shallow profiles performed during one cycle.</li>
+<li>High resolution near-surface observations: higher resolution vertical sampling near the surface from unpumped CTD.</li>
+</ul>
+<p>For single-cycle profile file naming conventions, see §4.1.</p>
 <section id="global-attributes" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="global-attributes"><span class="header-section-number">3.2.1</span> Global attributes</h3>
 <p>The global attributes section is used for data discovery. The following global attributes should appear in the global section:</p>
-<p>// global attributes:<br> :title = “Argo float vertical profile”;<br> :institution = “CSIRO”;<br> :source = “Argo float”;<br> :history = “2011-04-22T06:00:00Z creation”;<br> :references = “http://www.argodatamgt.org/Documentation”;<br> :id = “https://doi.org/10.17882/42182”;<br> :comment = “free text”;<br> :user_manual_version = “3.4”;<br> :Conventions = “Argo-3.1 CF-1.6”;<br> :featureType = “trajectoryProfile”;<br></p>
+<table class="caption-top table">
+<caption>institution = “CSIRO”;<br> :source = “Argo float”;<br> :history = “2011-04-22T06:00:00Z creation”;<br> :references = “http://www.argodatamgt.org/Documentation”;<br> :id = “https://doi.org/10.17882/42182”;<br> :comment = “free text”;<br> :user_manual_version = “3.4”;<br> :Conventions = “Argo-3.1 CF-1.6”;<br> :featureType = “trajectoryProfile”;|</caption>
+<thead>
+<tr class="header">
+<th>// global attributes:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>:title = “Argo float vertical profile”;<br></td>
+</tr>
+</tbody>
+</table>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 38%">
@@ -2089,13 +2109,20 @@ Configuration parameters are separated into two types.&nbsp;</p>
 <p>Users are able to determine which mission applies to each cycle by looking at the CONFIG_MISSION_NUMBER(N_CYCLE) variable in the trajectory files, and the CONFIG_MISSION_NUMBER(N_PROF) variable in the profile files.<br>
 See section “§2.2.4 General information for each profile” and “§2.3.6 N_CYCLE dimension variable group”).<br>
 <strong>Example</strong> <img src="assets/images/float-cycle-mission.png" class="img-fluid"></p>
-<p>In the above example, there are 3 different float behaviors to record, (with park depth varying between 1500, 2000 and 1700 db).<br>Each of these new behaviors requires a new mission number.<br>This is in addition to the pre-deployment or launch information:&nbsp;CONFIG_PARAMETER_NAME = “CONFIG_ParkPressure_dbar”<br>
-CONFIG_PARAMETER_VALUE = “1500”<br>
-CONFIG_MISSION_NUMBER = 1CONFIG_PARAMETER_NAME = “CONFIG_ParkPressure_dbar”<br>
+<p>In the above example, there are 3 different float behaviors to record, (with park depth varying between 1500, 2000 and 1700 db).<br>Each of these new behaviors requires a new mission number.<br>
+This is in addition to the pre-deployment or launch information:&nbsp; CONFIG_PARAMETER_NAME = “CONFIG_ParkPressure_dbar”&nbsp; CONFIG_PARAMETER_VALUE = “1500”&nbsp; CONFIG_MISSION_NUMBER = 1</p>
+<p>CONFIG_PARAMETER_NAME = “CONFIG_ParkPressure_dbar”<br>
 CONFIG_PARAMETER_VALUE = “2000”<br>
-CONFIG_MISSION_NUMBER = 2CONFIG_PARAMETER_NAME = “CONFIG _ParkPressure_dbar”<br>
+CONFIG_MISSION_NUMBER = 2</p>
+<p>CONFIG_PARAMETER_NAME = “CONFIG _ParkPressure_dbar”<br>
 CONFIG_PARAMETER_VALUE = “1700”<br>
-CONFIG_MISSION_NUMBER = 3A further example for a float with multiple missions and changes to multiple configuration parameters is shown below.&nbsp;In this example there are 11 pre-deployment/launch configuration parameters for this float which are set before launch.<br>Of this set, the last four are mission critical parameters that change and control float behavior;<br> these&nbsp; are reported in subsequent missions (missions 1 to n).<br>For this float, the depth at which the float parks, changes in missions 2 and 3 (with changes in two configuration parameters).<br>For mission 4, the park depth stays the same as for mission 3 but now the park sampling period has changed.<br>For mission 5, the park sampling period changes again.<br>All configuration parameters from mission 1 must still be reported for each subsequent mission, even those that do not change.</p>
+CONFIG_MISSION_NUMBER = 3</p>
+<p>A further example for a float with multiple missions and changes to multiple configuration parameters is shown below.&nbsp;In this example there are 11 pre-deployment/launch configuration parameters for this float which are set before launch.<br>
+Of this set, the last four are mission critical parameters that change and control float behavior; these&nbsp; are reported in subsequent missions (missions 1 to n).<br>
+For this float, the depth at which the float parks, changes in missions 2 and 3 (with changes in two configuration parameters).<br>
+For mission 4, the park depth stays the same as for mission 3 but now the park sampling period has changed.<br>
+For mission 5, the park sampling period changes again.<br>
+All configuration parameters from mission 1 must still be reported for each subsequent mission, even those that do not change.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 57%">
@@ -2396,7 +2423,7 @@ CONFIG_MISSION_NUMBER = 3A further example for a float with multiple missions an
 </section>
 <section id="mandatory-metadata-parameters" class="level3" data-number="3.4.8">
 <h3 data-number="3.4.8" class="anchored" data-anchor-id="mandatory-metadata-parameters"><span class="header-section-number">3.4.8</span> Mandatory metadata parameters</h3>
-<p>Part of the highly desirable metadata were made mandatory and are listed under this section.| | | |</p>
+<p>Part of the highly desirable metadata were made mandatory and are listed under this section.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -2474,12 +2501,12 @@ CONFIG_MISSION_NUMBER = 3A further example for a float with multiple missions an
 <tr class="even">
 <td>LAUNCH_LATITUDE&nbsp;</td>
 <td>not empty, -90 &lt;= real &lt;= 90&nbsp;</td>
-<td>LAUNCH_LATITUDE = -7.91400003433228;<br>&nbsp;</td>
+<td>LAUNCH_LATITUDE = -7.91400003433228;</td>
 </tr>
 <tr class="odd">
 <td>LAUNCH_LONGITUDE&nbsp;</td>
 <td>not empty, -180 &lt;= real &lt;= 180&nbsp;</td>
-<td>LAUNCH_LONGITUDE = -179.828338623047;<br>&nbsp;</td>
+<td>LAUNCH_LONGITUDE = -179.828338623047;</td>
 </tr>
 <tr class="even">
 <td>LAUNCH_QC&nbsp;</td>
@@ -2492,111 +2519,106 @@ CONFIG_MISSION_NUMBER = 3A further example for a float with multiple missions an
 <td>MANUAL_ VERSION = “004” or “041708”</td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
 <td>PI_NAME</td>
 <td>not empty</td>
 <td>PI_NAME = “Julia UITZ”;<br></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PLATFORM_FAMILY</td>
 <td>see reference table 22 (<a href="https://vocab.nerc.ac.uk/collection/R22/" class="uri">https://vocab.nerc.ac.uk/collection/R22/</a>).<br></td>
 <td>PLATFORM_FAMILY = “subsurface profiling float”, “ITP”, “POPS”;<br></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PLATFORM_MAKER</td>
 <td>see reference table 24 (<a href="https://vocab.nerc.ac.uk/collection/R24/" class="uri">https://vocab.nerc.ac.uk/collection/R24/</a>).&nbsp;</td>
-<td>PLATFORM_MAKER = “Optimare”;<br></td>
+<td>PLATFORM_MAKER = “Optimare”;</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PLATFORM_NUMBER</td>
 <td>IIIII or A9IIIII</td>
 <td>PLATFORM_NUMBER = “5900077”;<br></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PLATFORM_TYPE</td>
 <td>see reference table 23 (<a href="https://vocab.nerc.ac.uk/collection/R23/" class="uri">https://vocab.nerc.ac.uk/collection/R23/</a>).<br></td>
 <td>PLATFORM_TYPE = “SOLO” or “APEX” or “PROVOR”;<br>&nbsp;</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>POSITIONING_SYSTEM&nbsp;</td>
 <td>see reference table 9 (<a href="https://vocab.nerc.ac.uk/collection/R09/" class="uri">https://vocab.nerc.ac.uk/collection/R09/</a>).<br></td>
 <td>POSITIONING_SYSTEM = “ARGOS”;<br>&nbsp;</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PREDEPLOYMENT_CALIB_COEFFICIENT</td>
 <td>if exists then not empty otherwise default value = “n/a”</td>
 <td>PREDEPLOYMENT_CALIB_COEFFICIENT&nbsp; = “ser# = 3016 temperature coeffs: A0 =&nbsp; -0.0000 A1 = &nbsp; 0.0003 A2 =&nbsp; -0.0000 A3 = &nbsp; 0.0000”;<br></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PREDEPLOYMENT_CALIB_EQUATION</td>
 <td>if exists then not empty otherwise default value = “n/a”</td>
 <td>PREDEPLOYMENT_CALIB_EQUATION = “Temperature ITS-90 = 1/ { a0 + a1[lambda nu (n)] + a2 [lambda nu^2 (n)] + a3 [lambda nu^3 (n)]} - 273.15 (deg C)”;<br></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PTT&nbsp;</td>
 <td>if exists then not empty otherwise default value = “n/a”</td>
 <td>PTT = “23978”;<br>&nbsp;</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>SENSOR</td>
 <td>see reference table 25 (<a href="https://vocab.nerc.ac.uk/collection/R25/" class="uri">https://vocab.nerc.ac.uk/collection/R25/</a>).<br></td>
 <td>SENSOR = “CTD_TEMP”, “CTD_PRES”, “CTD_CNDC”, “OXYGEN_OPTODE”;<br></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>SENSOR_MAKER</td>
 <td>see reference table 26 (<a href="https://vocab.nerc.ac.uk/collection/R26/" class="uri">https://vocab.nerc.ac.uk/collection/R26/</a>).<br></td>
 <td>SENSOR_MAKER = “SEABIRD”;<br></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>SENSOR_MODEL</td>
 <td>see reference table 27 (<a href="https://vocab.nerc.ac.uk/collection/R27/" class="uri">https://vocab.nerc.ac.uk/collection/R27/</a>).<br></td>
 <td>SENSOR_MODEL = “SBE41”</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>SENSOR_SERIAL_NO</td>
 <td>not empty</td>
 <td>SENSOR_SERIAL_NO = “6785”;<br></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PARAMETER</td>
 <td>not empty, see reference table 3&nbsp; (<a href="https://vocab.nerc.ac.uk/collection/R03/" class="uri">https://vocab.nerc.ac.uk/collection/R03/</a>).<br></td>
 <td>PARAMETER = “TEMP”, “PRES”, ”CNDC”;<br></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PARAMETER_UNITS</td>
 <td>not empty</td>
 <td>PARAMETER _UNITS = “degree_Celsius”, “decibar”, “mhos/m”;<br></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PARAMETER_SENSOR</td>
 <td>not empty</td>
 <td>PARAMETER_SENSOR = “CTD_TEMP”, “OXYGEN_OPTODE”;<br></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>STANDARD_FORMAT_ID</td>
 <td>reference table available online <a href="http://tinyurl.com/qy7fdqc">https://docs.google.com/spreadsheets/d/16iTji2i9tLh2PfiiMItfhaQybQB1NLAhj4s0mDML5yY/edit#gid=9</a></td>
 <td>STANDARD_FORMAT_ID = “1010151”;<br></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>TRANS_FREQUENCY</td>
 <td>if exists then not empty otherwise default value = “n/a”</td>
 <td>TRANS_FREQUENCY = “1/44”;<br></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>TRANS_SYSTEM&nbsp;</td>
 <td>see reference table 10 (<a href="https://vocab.nerc.ac.uk/collection/R10/" class="uri">https://vocab.nerc.ac.uk/collection/R10/</a>).<br></td>
 <td>TRANS_SYSTEM = “ARGOS”;<br>&nbsp;</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>TRANS_SYSTEM_ID&nbsp;</td>
 <td>If exists not empty, otherwise = “n/a”</td>
 <td>TRANS_SYSTEM_ID = “14281”;<br>&nbsp;</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>WMO_INST_TYPE</td>
 <td>not empty</td>
 <td>WMO_INST_TYPE = “846”;<br></td>
@@ -3272,6 +3294,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -3382,6 +3406,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
