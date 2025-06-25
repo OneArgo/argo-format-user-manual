@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.32">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,12 +37,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-6561bbde787c299e21493071c8edc6ff.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fdfa20662017c4660d53ed4ae2a36bf3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-c22f74f4c0eea731362da53e6cd12198.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-fdf964b8551a4c1da979a829183e41b0.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -178,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#reference-table-3-parameter-code-table" id="toc-reference-table-3-parameter-code-table" class="nav-link" data-scroll-target="#reference-table-3-parameter-code-table"><span class="header-section-number">4.3</span> Reference table 3: parameter code table</a>
   <ul class="collapse">
-  <li><a href="#parameters-from-duplicate-sensors" id="toc-parameters-from-duplicate-sensors" class="nav-link" data-scroll-target="#parameters-from-duplicate-sensors"><span class="header-section-number">4.3.1</span> Parameters from duplicate sensors</a></li>
+  <li><a href="#how-to-indicate-multiple-sensors-for-the-same-parameter" id="toc-how-to-indicate-multiple-sensors-for-the-same-parameter" class="nav-link" data-scroll-target="#how-to-indicate-multiple-sensors-for-the-same-parameter"><span class="header-section-number">4.3.1</span> How to indicate multiple sensors for the same parameter</a></li>
   <li><a href="#oxygen-related-parameters" id="toc-oxygen-related-parameters" class="nav-link" data-scroll-target="#oxygen-related-parameters"><span class="header-section-number">4.3.2</span> Oxygen related parameters</a></li>
   </ul></li>
   <li><a href="#reference-table-4-data-centres-and-institutions-codes" id="toc-reference-table-4-data-centres-and-institutions-codes" class="nav-link" data-scroll-target="#reference-table-4-data-centres-and-institutions-codes"><span class="header-section-number">4.4</span> Reference table 4: data centres and institutions codes</a></li>
@@ -384,24 +384,33 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="reference-table-3-parameter-code-table" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="reference-table-3-parameter-code-table"><span class="header-section-number">4.3</span> Reference table 3: parameter code table</h2>
-<p><a href="https://vocab.nerc.ac.uk/collection/R03/current" class="uri">https://vocab.nerc.ac.uk/collection/R03/current</a>&nbsp;&nbsp;The following table describes the parameter codes used for Argo data management. The detailed parameter codes tables is available on Argo data-management web site:* <a href="http://www.argodatamgt.org/Documentation" class="uri">http://www.argodatamgt.org/Documentation</a>&nbsp;</p>
+<p><a href="https://vocab.nerc.ac.uk/collection/R03/current" class="uri">https://vocab.nerc.ac.uk/collection/R03/current</a>&nbsp;&nbsp; The following table describes the parameter codes used for Argo data management. The detailed parameter codes tables is available on Argo data-management web site: - <a href="http://www.argodatamgt.org/Documentation" class="uri">http://www.argodatamgt.org/Documentation</a>&nbsp;</p>
 <p><strong>Parameter attributes</strong></p>
 <ul>
-<li><p>The Fill_value attribute is set to 99999.f</p></li>
-<li><p>The C_Format, Fortran_Format and Format_resolution attributes are float/sensor dependents. They are set by the DAC (Data Assembly Centre).If new parameters are required, they have to be added to this table before they will be accepted.<br>
-A request for new parameters can be sent for approval and inclusion.</p></li>
+<li>The C_Format, Fortran_Format and Format_resolution attributes are float/sensor dependents. They are set by the DAC (Data Assembly Centre).</li>
 </ul>
+<p>If new parameters are required, they have to be added to this table before they will be accepted.<br>
+A request for new parameters can be sent for approval and inclusion.</p>
 <p><strong>Note on resolution</strong></p>
 <p>For each parameter, the resolution attribute is mandatory. However, the resolution value is sensor dependent.</p>
-<section id="parameters-from-duplicate-sensors" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="parameters-from-duplicate-sensors"><span class="header-section-number">4.3.1</span> Parameters from duplicate sensors</h3>
-<p>Some floats are equipped with 2 different sensors, measuring the same physical parameter. In that case, add the integer “2” at the end of the code of the duplicate parameter (e.g.&nbsp;DOXY2).If more sensors that measure the same physical parameter are added, then the integer will simply increase by 1 (i.e.&nbsp;DOXY3, DOXY4, and so on).</p>
-<p><strong>Example</strong> If a float has one Optode and one SBE oxygen sensor:* Use DOXY and TEMP_DOXY for Optode</p>
+<section id="how-to-indicate-multiple-sensors-for-the-same-parameter" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="how-to-indicate-multiple-sensors-for-the-same-parameter"><span class="header-section-number">4.3.1</span> How to indicate multiple sensors for the same parameter</h3>
+<p>Some floats are equipped with multiple sensors, measuring the same physical parameter. In that case, add the integer with an underscore “_n” at the end of the code of the parameter.<br>
+The integer “_n” starts with “_2” and increases by 1 when there are more than two sensors measuring the same physical parameter.</p>
+<p><strong>Example</strong></p>
+<p>If a float has one Optode and one SBE oxygen sensor:</p>
 <ul>
-<li>Use DOXY2 for SBE</li>
+<li><p>Use DOXY and TEMP_DOXY for Optode</p></li>
+<li><p>Use DOXY_2 for SBE</p></li>
 </ul>
-<p>If a float has two Optode oxygen sensors:* Use DOXY and TEMP_DOXY, and DOXY2 and TEMP_DOXY2</p>
-<p>If a float has two SBE oxygen sensors:* Use DOXY and DOXY2</p>
+<p>If a float has two Optode oxygen sensors:</p>
+<ul>
+<li>Use DOXY and TEMP_DOXY, and DOXY_2 and TEMP_DOXY_2</li>
+</ul>
+<p>If a float has four SBE oxygen sensors:</p>
+<ul>
+<li>Use DOXY, DOXY_2, DOXY_3, DOXY_4</li>
+</ul>
 </section>
 <section id="oxygen-related-parameters" class="level3" data-number="4.3.2">
 <h3 data-number="4.3.2" class="anchored" data-anchor-id="oxygen-related-parameters"><span class="header-section-number">4.3.2</span> Oxygen related parameters</h3>
@@ -998,8 +1007,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1110,7 +1117,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

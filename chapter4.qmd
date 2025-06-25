@@ -39,23 +39,34 @@ The individual profile files are provided by the DACs (Data Assembly Centres). 
 #### B-Argo individual profile file
 
 A B-Argo profile file contains all the parameters from a float, except the core-Argo parameters temperature, salinity, conductivity (TEMP, PSAL, CNDC). A float that performs only CTD measurements does not have B-Argo data files.<br>
-**File naming convention**B\<R/D>\<FloatWmoID>\_\<XXX>\<D>.nc * B : B-Argo file prefix
+**File naming convention**  
+B\<R/D>\<FloatWmoID>\_\<XXX>\<D>.nc
 
-* \<R/D>\<FloatWmoID>\_\<XXX>\<D>.nc : identical to Core-Argo file naming conventionExamples: BR1900045\_083.nc, BR1900045\_083D.nc, BD1900045\_003.ncWhen float reports a cycle greater than 999, the cycle number appears as 4 digits in the file name.
+- B : B-Argo file prefix
+- \<R/D>\<FloatWmoID>\_\<XXX>\<D>.nc : identical to Core-Argo file naming conventionExamples: BR1900045\_083.nc, BR1900045\_083D.nc, BD1900045\_003.ncWhen float reports a cycle greater than 999, the cycle number appears as 4 digits in the file name.
 
 #### BGC-Argo individual synthetic profile file
 
 To facilitate the use of BGC-Argo data, the GDAC merges each BGC-Argo file with its corresponding Core-Argo data file. The BGC-Argo synthetic profiles are documented in <http://dx.doi.org/10.13155/55637> The synthetic file contains the core-Argo and BGC-Argo parameters listed on reference table 3 (<https://vocab.nerc.ac.uk/collection/R03/>). The intermediate parameters are ignored by the synthetic files.<br>
-**File naming convention**M\<R/D>\<FloatWmoID>\_\<XXX>\<D>.nc * M : merged B-Argo file prefix
+**File naming convention**<br>
 
-* \<R/D>\<FloatWmoID>\_\<XXX>\<D>.nc : identical to Core-Argo file naming conventionExamples: MR1900045\_083.nc, MR1900045\_083D.nc, MD1900045\_003.nc
+- S\<R/D>\<FloatWmoID>\_\<XXX>\<D>.nc * S : synthetic BGC-Argo file prefix
+- \<R/D>\<FloatWmoID>\_\<XXX>\<D>.nc : identical to Core-Argo file naming convention
+  
+**Examples**<br>
+SR1900045\_083.nc, SR1900045\_083D.nc, SD1900045\_003.nc
 
 ### Argo trajectory data file
 
-The Argo trajectory files contain the core and BGC parameters provided by a float.\<FloatWmoID>\_\<R/D>traj.nc* R: real-time data
+The Argo trajectory files contain the core and BGC parameters provided by a float.  
+\<FloatWmoID>\_\<R/D>traj.nc
 
-* D: delayed-mode data<br>
-**Examples**1900045\_Rtraj.nc : real-time trajectory from float 19000451900045\_Dtraj.nc : delayed-mode trajectory from float 1900045
+- R: real-time data
+- D: delayed-mode data  
+
+**Examples**<br>
+1900045\_Rtraj.nc: real-time trajectory from float 1900045  
+1900045\_Dtraj.nc: delayed-mode trajectory from float 1900045
 
 ### Metadata file
 
