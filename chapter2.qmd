@@ -38,7 +38,8 @@ The global attributes section is used for data discovery. The following global a
 | \/\/ global attributes:|
 |----------------------|
 | :title = "Argo float vertical profile";<br> :institution = "CSIRO";<br> :source = "Argo float";<br> :history = "2011-04-22T06:00:00Z creation";<br> :references = "http://www.argodatamgt.org/Documentation";<br> :id = "https://doi.org/10.17882/42182";<br> :comment = "free text";<br> :user_manual_version = "3.4";<br> :Conventions = "Argo-3.1 CF-1.6";<br> :featureType = "trajectoryProfile";|
-
+  
+  
 
 | Global attribute name | Definition                          |
 |-----------------------|-------------------------------------|
