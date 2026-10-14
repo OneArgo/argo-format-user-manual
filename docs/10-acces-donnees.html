@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Glossary, definitions – Argo User's manual</title>
+<title>11&nbsp; Data access – Argo User's Manual</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,18 +30,17 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./chapter6.html" rel="prev">
+<link href="./11-section-history.html" rel="next">
+<link href="./09-tables-reference.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c22f74f4c0eea731362da53e6cd12198.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-fdf964b8551a4c1da979a829183e41b0.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-8da5b4427184b79ecddefad3d342027e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,7 +70,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -83,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter7.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Glossary, definitions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-acces-donnees.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data access</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -98,10 +96,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Argo User’s manual</a> 
-        <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
+      <a href="./">Argo User’s Manual</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -114,49 +109,102 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Argo User’s manual</span></span></a>
+ <span class="menu-text">Préface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter1.html" class="sidebar-item-text sidebar-link">
+  <a href="./00-historique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of the document</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Formats description</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter2.html" class="sidebar-item-text sidebar-link">
+  <a href="./02-formats-apercu.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Formats description</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-format-profil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Core-Argo profile format version 3.1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-format-trajectoire.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Argo trajectory format version 3.2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-format-metadata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Metadata format version 3.2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-format-technique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Technical information format version 3.1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-format-bargo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">B-Argo profile format additional features</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-fichiers-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Index files of the GDAC content</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reference tables</span></span></a>
+  <a href="./09-tables-reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Reference tables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data access</span></span></a>
+  <a href="./10-acces-donnees.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data access</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Using the History section of the Argo netCDF Structure</span></span></a>
+  <a href="./11-section-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Using the History section of the Argo netCDF Structure</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DAC-GDAC data-management</span></span></a>
+  <a href="./12-dac-gdac.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">DAC-GDAC data-management</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter7.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Glossary, definitions</span></span></a>
+  <a href="./13-glossaire.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Glossary, definitions</span></span></a>
   </div>
 </li>
     </ul>
@@ -169,14 +217,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#float" id="toc-float" class="nav-link active" data-scroll-target="#float"><span class="header-section-number">8.1</span> Float</a></li>
-  <li><a href="#sensor" id="toc-sensor" class="nav-link" data-scroll-target="#sensor"><span class="header-section-number">8.2</span> Sensor</a></li>
-  <li><a href="#parameter-measured-by-the-sensor" id="toc-parameter-measured-by-the-sensor" class="nav-link" data-scroll-target="#parameter-measured-by-the-sensor"><span class="header-section-number">8.3</span> Parameter measured by the sensor</a></li>
-  <li><a href="#calibration-of-the-parameter-measured-by-the-sensor" id="toc-calibration-of-the-parameter-measured-by-the-sensor" class="nav-link" data-scroll-target="#calibration-of-the-parameter-measured-by-the-sensor"><span class="header-section-number">8.4</span> Calibration of the parameter measured by the sensor</a></li>
-  <li><a href="#principal-investigator-pi" id="toc-principal-investigator-pi" class="nav-link" data-scroll-target="#principal-investigator-pi"><span class="header-section-number">8.5</span> Principal Investigator (PI)</a></li>
-  <li><a href="#global-data-assembly-centre-gdac" id="toc-global-data-assembly-centre-gdac" class="nav-link" data-scroll-target="#global-data-assembly-centre-gdac"><span class="header-section-number">8.6</span> Global Data Assembly Centre (GDAC)</a></li>
-  <li><a href="#data-assembly-centre-dac" id="toc-data-assembly-centre-dac" class="nav-link" data-scroll-target="#data-assembly-centre-dac"><span class="header-section-number">8.7</span> Data Assembly Centre (DAC)</a></li>
-  <li><a href="#gts" id="toc-gts" class="nav-link" data-scroll-target="#gts"><span class="header-section-number">8.8</span> GTS</a></li>
+  <li><a href="#core-argo-individual-profile-files" id="toc-core-argo-individual-profile-files" class="nav-link active" data-scroll-target="#core-argo-individual-profile-files"><span class="header-section-number">11.0.1</span> Core-Argo individual profile files</a></li>
+  <li><a href="#b-argo-data-file" id="toc-b-argo-data-file" class="nav-link" data-scroll-target="#b-argo-data-file"><span class="header-section-number">11.0.2</span> B-Argo data file</a></li>
+  <li><a href="#argo-trajectory-data-file" id="toc-argo-trajectory-data-file" class="nav-link" data-scroll-target="#argo-trajectory-data-file"><span class="header-section-number">11.0.3</span> Argo trajectory data file</a></li>
+  <li><a href="#metadata-file" id="toc-metadata-file" class="nav-link" data-scroll-target="#metadata-file"><span class="header-section-number">11.0.4</span> Metadata file</a></li>
+  <li><a href="#technical-data-file" id="toc-technical-data-file" class="nav-link" data-scroll-target="#technical-data-file"><span class="header-section-number">11.0.5</span> Technical Data file</a></li>
+  <li><a href="#auxiliary-data-files" id="toc-auxiliary-data-files" class="nav-link" data-scroll-target="#auxiliary-data-files"><span class="header-section-number">11.0.6</span> Auxiliary data files</a></li>
+  <li><a href="#other-argo-data-export-formats" id="toc-other-argo-data-export-formats" class="nav-link" data-scroll-target="#other-argo-data-export-formats"><span class="header-section-number">11.1</span> Other Argo data export formats</a></li>
   </ul>
 </nav>
     </div>
@@ -185,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Glossary, definitions</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data access</span></h1>
 </div>
 
 
@@ -202,60 +249,114 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This chapter gives a definition for the items described in this manual.</p>
-<section id="float" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="float"><span class="header-section-number">8.1</span> Float</h2>
-<p>An autonomous platform deployed in the sea that performs environmental monitoring.</p>
+<p>The whole Argo data set is available in real time and delayed mode from the global data centres (GDACs). More on the Argo data system organization at <a href="https://argo.ucsd.edu/organization/argo-data-system/"><u>https://argo.ucsd.edu/organization/argo-data-system/</u></a>.</p>
+<p>FTP address:</p>
+<ul>
+<li><a href="ftp://ftp.ifremer.fr/ifremer/argo"><u>ftp://ftp.ifremer.fr/ifremer/argo</u></a></li>
+</ul>
+<p>The whole Argo dataset is available in a one click download from Argo DOI (monthly updated)</p>
+<ul>
+<li><a href="https://doi.org/10.17882/42182"><u>https://doi.org/10.17882/42182</u></a></li>
+</ul>
+<p>The GDACs internet addresses are:</p>
+<ul>
+<li><p><a href="https://nrlgodae1.nrlmry.navy.mil/pub/outgoing/argo/"><u>https://nrlgodae1.nrlmry.navy.mil/pub/outgoing/argo/</u></a></p></li>
+<li><p>https://data-argo.ifremer.fr/</p></li>
+</ul>
+<p>The 2 GDACs offer the same data set that is mirrored in real time. File naming convention on GDACs</p>
+<p>The GDAC sites comply with the naming conventions detailed in the following paragraphs.</p>
+<section id="core-argo-individual-profile-files" class="level3" data-number="11.0.1">
+<h3 data-number="11.0.1" class="anchored" data-anchor-id="core-argo-individual-profile-files"><span class="header-section-number">11.0.1</span> Core-Argo individual profile files</h3>
+<p>The individual profile files are provided by the DACs (Data Assembly Centres).</p>
+<p>The core-Argo profile files contain the core parameters provided by a float: pressure, temperature, salinity (PRES, TEMP, PSAL) and their associated intermediate parameters. All biogeochemical parameters are managed in B-Argo data files.</p>
+<p>For floats that collect no more than 1 ascending and 1 descending profile per cycle the file names for individual profiles are &lt;R/D&gt;&lt;FloatWmoID&gt;_&lt;XXX&gt;&lt;D&gt;.nc where :</p>
+<ul>
+<li><p>The initial R indicates Real-Time data, the initial D indicates Delayed-Mode data</p></li>
+<li><p>XXX is the cycle number</p></li>
+<li><p>The second D indicates a descending profile (profiles without this D are collected during ascent).</p></li>
+</ul>
+<p>Note on &lt;XXX&gt; cycle numbers greater than 999</p>
+<p>When float reports a cycle greater than 999, the cycle number appears as 4 digits in the file name.</p>
+<p>Examples: R5902319_999.nc, R5902319_1000.nc</p>
+<p>Note on &lt;R/D&gt; in profile file name</p>
+<ul>
+<li><p>For core-files, the file name mode follows DATA_MODE in N_PROF = 1, which is the primary Argo CTD profile. Hence a ‘R’-core file becomes a ‘D’-core file only when DATA_MODE(1) = ‘D’. This file naming rule ensures that the integrity of the core Argo program is not affected by various miscellaneous secondary samplings.</p></li>
+<li><p>For b-files and GDAC merged-files, when any DATA_MODE(N_PROF) changes to ‘D’, the file name mode changes to ‘D’. This is because b-files and GDAC merged-files contain biogeochemical data, which can receive delayed-mode adjustments at different times.</p></li>
+</ul>
 </section>
-<section id="sensor" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="sensor"><span class="header-section-number">8.2</span> Sensor</h2>
-<p>A sensor is a device used to measure a physical parameter. Sensor outputs are provided in parameter counts and need to be converted into parameter physical units using a calibration equation. This conversion can be done onboard the float or during the decoding process.</p>
+<section id="b-argo-data-file" class="level3" data-number="11.0.2">
+<h3 data-number="11.0.2" class="anchored" data-anchor-id="b-argo-data-file"><span class="header-section-number">11.0.2</span> B-Argo data file</h3>
+<section id="b-argo-individual-profile-file" class="level4" data-number="11.0.2.1">
+<h4 data-number="11.0.2.1" class="anchored" data-anchor-id="b-argo-individual-profile-file"><span class="header-section-number">11.0.2.1</span> B-Argo individual profile file</h4>
+<p>A B-Argo profile file contains all the parameters from a float, except the core-Argo parameters temperature, salinity, conductivity (TEMP, PSAL, CNDC). A float that performs only CTD measurements does not have B-Argo data files.</p>
+<p>File naming convention</p>
+<p>B&lt;R/D&gt;&lt;FloatWmoID&gt;_&lt;XXX&gt;&lt;D&gt;.nc</p>
+<ul>
+<li><p>B : B-Argo file prefix</p></li>
+<li><p>&lt;R/D&gt;&lt;FloatWmoID&gt;_&lt;XXX&gt;&lt;D&gt;.nc : identical to Core-Argo file naming convention</p></li>
+</ul>
+<p>Examples: BR1900045_083.nc, BR1900045_083D.nc, BD1900045_003.nc</p>
+<p>When float reports a cycle greater than 999, the cycle number appears as 4 digits in the file name.</p>
 </section>
-<section id="parameter-measured-by-the-sensor" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="parameter-measured-by-the-sensor"><span class="header-section-number">8.3</span> Parameter measured by the sensor</h2>
-<p>A parameter is a measurement of a physical phenomenon; it can be provided by a sensor (in sensor counts or in physical units) or computed (derived) from other parameters.</p>
+<section id="bgc-argo-individual-synthetic-profile-file" class="level4" data-number="11.0.2.2">
+<h4 data-number="11.0.2.2" class="anchored" data-anchor-id="bgc-argo-individual-synthetic-profile-file"><span class="header-section-number">11.0.2.2</span> BGC-Argo individual synthetic profile file</h4>
+<p>To facilitate the use of BGC-Argo data, the GDAC merges each BGC-Argo file with its corresponding Core-Argo data file. The BGC-Argo synthetic profiles are documented in <a href="http://dx.doi.org/10.13155/55637"><u>http://dx.doi.org/10.13155/55637</u></a></p>
+<p>The synthetic file contains the core-Argo and BGC-Argo parameters listed on reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>). The intermediate parameters are ignored by the synthetic files.</p>
+<p>File naming convention</p>
+<p>S&lt;R/D&gt;&lt;FloatWmoID&gt;_&lt;XXX&gt;&lt;D&gt;.nc</p>
+<ul>
+<li><p>S: synthetic BGC-Argo file prefix</p></li>
+<li><p>&lt;R/D&gt;&lt;FloatWmoID&gt;_&lt;XXX&gt;&lt;D&gt;.nc : identical to Core-Argo file naming convention</p></li>
+</ul>
+<p>Examples: SR1900045_083.nc, SR1900045_083D.nc, SD1900045_003.nc</p>
 </section>
-<section id="calibration-of-the-parameter-measured-by-the-sensor" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="calibration-of-the-parameter-measured-by-the-sensor"><span class="header-section-number">8.4</span> Calibration of the parameter measured by the sensor</h2>
-<p>Verification of any operation measurement against independent measurements to derive a corrected value or a new parameter.</p>
 </section>
-<section id="principal-investigator-pi" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="principal-investigator-pi"><span class="header-section-number">8.5</span> Principal Investigator (PI)</h2>
-<p>The <strong>Principal Investigator (PI)</strong>, typically a scientist at a research institution, maintains the observing platform and the sensors that deliver the data. He or she is responsible for providing the data and all auxiliary information to a <strong>Data Assembly Center (DAC)</strong>.&nbsp;</p>
+<section id="argo-trajectory-data-file" class="level3" data-number="11.0.3">
+<h3 data-number="11.0.3" class="anchored" data-anchor-id="argo-trajectory-data-file"><span class="header-section-number">11.0.3</span> Argo trajectory data file</h3>
+<p>The Argo trajectory files contain the core and BGC parameters provided by a float.</p>
+<p>&lt;FloatWmoID&gt;_&lt;R/D&gt;traj.nc</p>
+<ul>
+<li><p>R: real-time data</p></li>
+<li><p>D: delayed-mode data</p></li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>1900045_Rtraj.nc: real-time trajectory from float 1900045</p>
+<p>1900045_Dtraj.nc: delayed-mode trajectory from float 1900045</p>
 </section>
-<section id="global-data-assembly-centre-gdac" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="global-data-assembly-centre-gdac"><span class="header-section-number">8.6</span> Global Data Assembly Centre (GDAC)</h2>
-<p>The <strong>GDAC</strong> distributes the best copy of the data files. When a higher quality data file (e.g.&nbsp;calibrated data) is available, it replaces the previous version of the data file.</p>
+<section id="metadata-file" class="level3" data-number="11.0.4">
+<h3 data-number="11.0.4" class="anchored" data-anchor-id="metadata-file"><span class="header-section-number">11.0.4</span> Metadata file</h3>
+<ul>
+<li>&lt;FloatWmoID&gt;_meta.nc<br>
+Example: 1900045_meta.nc</li>
+</ul>
 </section>
-<section id="data-assembly-centre-dac" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="data-assembly-centre-dac"><span class="header-section-number">8.7</span> Data Assembly Centre (DAC)</h2>
-<p>The <strong>DAC</strong> assembles Argo files and delivers these to the two <strong>Global Data Assembly Centers (GDACs)</strong>.</p>
+<section id="technical-data-file" class="level3" data-number="11.0.5">
+<h3 data-number="11.0.5" class="anchored" data-anchor-id="technical-data-file"><span class="header-section-number">11.0.5</span> Technical Data file</h3>
+<ul>
+<li>&lt;FloatWmoID&gt;_tech.nc<br>
+Example: 1900045_tech.nc</li>
+</ul>
 </section>
-<section id="gts" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="gts"><span class="header-section-number">8.8</span> GTS</h2>
-<p>WMO’s Global Telecommunication System (GTS) is the communications and data management component that allows the World Weather Watch (WWW) to operate through the collection and distribution of information critical to its processes.</p>
-<p>WMO : World Meteorological Organization</p>
+<section id="auxiliary-data-files" class="level3" data-number="11.0.6">
+<h3 data-number="11.0.6" class="anchored" data-anchor-id="auxiliary-data-files"><span class="header-section-number">11.0.6</span> Auxiliary data files</h3>
+<p>Auxiliary files are used for data and metadata that are not (yet) standardized among the Argo community.</p>
+<p>They typically contain data from new types of sensors or floats.</p>
+<p>The format of auxiliary data files is NOT regulated, they are distributed on GDAC ftp server in the “aux” directory that is parallel to the “dac” directory.</p>
+<p>The float metadata file in the ‘dac’ directory includes a text in the SPECIAL_FEATURES variable to indicate that there is additional data in the auxiliary directory and the nature of that data (see SEPCIAL_FEATURE description above for more details on how to proceed).</p>
+<p>PIs are encouraged to use a file format that is easily readable – either NetCDF or ASCII that mimics the Argo data format version 3.1 if possible. A good practice (not an obligation) within DACs is to document their auxiliary files. Coriolis DAC auxiliary file formats are documented here:</p>
+<ul>
+<li>Argo auxiliary files format for Coriolis DAC <a href="http://doi.org/10.13155/51995"><u>http://doi.org/10.13155/51995</u></a></li>
+</ul>
+</section>
+<section id="other-argo-data-export-formats" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="other-argo-data-export-formats"><span class="header-section-number">11.1</span> Other Argo data export formats</h2>
+<p>In addition to the format described in this document, most Argo data are also available from GTS (Global Telecommunication System), a network operated by WMO (World Meteorological Organization).</p>
+<p>Currently, Argo profiles data are distributed on GTS as BUFR messages with template n° 3-15-003 (the description of this format is available from the WMO web site - <a href="https://public.wmo.int"><u>https://public.wmo.int</u></a>). This will transition to WIS2.0 in the near future.</p>
 
 
 </section>
 
 </main> <!-- /main -->
-<script>
-
-document.addEventListener('DOMContentLoaded', function() {
-
-  const externalLinks = document.querySelectorAll('a[target="_blank"]');
-
-  externalLinks.forEach(link => {
-
-    link.classList.add('external-link');
-
-  });
-
-});
-
-</script>
-
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -276,150 +377,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -819,11 +776,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chapter6.html" class="pagination-link" aria-label="DAC-GDAC data-management">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DAC-GDAC data-management</span></span>
+      <a href="./09-tables-reference.html" class="pagination-link" aria-label="Reference tables">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Reference tables</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./11-section-history.html" class="pagination-link" aria-label="Using the History section of the Argo netCDF Structure">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Using the History section of the Argo netCDF Structure</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

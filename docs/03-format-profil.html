@@ -1,0 +1,2993 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Core-Argo profile format version 3.1 – Argo User's Manual</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04-format-trajectoire.html" rel="next">
+<link href="./02-formats-apercu.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-8da5b4427184b79ecddefad3d342027e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-formats-apercu.html">Formats description</a></li><li class="breadcrumb-item"><a href="./03-format-profil.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Core-Argo profile format version 3.1</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Argo User’s Manual</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Préface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-historique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of the document</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Formats description</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-formats-apercu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Formats description</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-format-profil.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Core-Argo profile format version 3.1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-format-trajectoire.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Argo trajectory format version 3.2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-format-metadata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Metadata format version 3.2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-format-technique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Technical information format version 3.1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-format-bargo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">B-Argo profile format additional features</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-fichiers-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Index files of the GDAC content</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-tables-reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Reference tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-acces-donnees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data access</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-section-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Using the History section of the Argo netCDF Structure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-dac-gdac.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">DAC-GDAC data-management</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-glossaire.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Glossary, definitions</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#global-attributes" id="toc-global-attributes" class="nav-link active" data-scroll-target="#global-attributes"><span class="header-section-number">4.1</span> Global attributes</a></li>
+  <li><a href="#dimensions" id="toc-dimensions" class="nav-link" data-scroll-target="#dimensions"><span class="header-section-number">4.2</span> Dimensions</a></li>
+  <li><a href="#general-information-on-the-profile-file" id="toc-general-information-on-the-profile-file" class="nav-link" data-scroll-target="#general-information-on-the-profile-file"><span class="header-section-number">4.3</span> General information on the profile file</a></li>
+  <li><a href="#general-information-for-each-profile" id="toc-general-information-for-each-profile" class="nav-link" data-scroll-target="#general-information-for-each-profile"><span class="header-section-number">4.4</span> General information for each profile</a></li>
+  <li><a href="#measurements-for-each-profile" id="toc-measurements-for-each-profile" class="nav-link" data-scroll-target="#measurements-for-each-profile"><span class="header-section-number">4.5</span> Measurements for each profile</a>
+  <ul class="collapse">
+  <li><a href="#how-to-report-unusual-parameter-resolutions-in-a-profile" id="toc-how-to-report-unusual-parameter-resolutions-in-a-profile" class="nav-link" data-scroll-target="#how-to-report-unusual-parameter-resolutions-in-a-profile"><span class="header-section-number">4.5.1</span> How to report unusual parameter resolutions in a profile</a></li>
+  </ul></li>
+  <li><a href="#scientific-calibration-information-for-each-profile" id="toc-scientific-calibration-information-for-each-profile" class="nav-link" data-scroll-target="#scientific-calibration-information-for-each-profile"><span class="header-section-number">4.6</span> Scientific calibration information for each profile</a></li>
+  <li><a href="#history-information-for-each-profile" id="toc-history-information-for-each-profile" class="nav-link" data-scroll-target="#history-information-for-each-profile"><span class="header-section-number">4.7</span> History information for each profile</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-formats-apercu.html">Formats description</a></li><li class="breadcrumb-item"><a href="./03-format-profil.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Core-Argo profile format version 3.1</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Core-Argo profile format version 3.1</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>An Argo single-cycle profile file contains a set of profiles from a single cycle. The minimum number is one profile per cycle. There is no defined maximum number of profiles per cycle.</p>
+<p>Core-Argo profile contains the CTD sensor parameters (pressure, temperature, salinity, conductivity) that are measured with the same vertical sampling scheme and at the same location and time. Additional parameters from other sensors are stored in a B-Argo profile file. The B-profile file is very similar to core-Argo profile file; its additional features are listed in <a href="#b-argo-profile-format-additional-features"><u>§2.6</u></a></p>
+<p>Some specialty floats collect additional profiles per cycle. These specialty profiles contain parameters measured at pressure levels that are different from the CTD levels, and can be at locations and time that are different from the primary profile. When multiple profiles exist in a single cycle, users are urged to check the information associated with each profile in order to determine their spatial and temporal relations. Some examples of speciality profiles with different vertical sampling schemes are:</p>
+<ul>
+<li><p>Bouncing profiles: a series of shallow profiles performed during one cycle.</p></li>
+<li><p>High resolution near-surface observations: higher resolution vertical sampling near the surface from unpumped CTD.</p></li>
+</ul>
+<p>For single-cycle profile file naming conventions, see <a href="10-acces-donnees.html#core-argo-individual-profile-files"><u>§4.1.1</u></a>.</p>
+<section id="global-attributes" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="global-attributes"><span class="header-section-number">4.1</span> Global attributes</h2>
+<p>The global attributes section is used for data discovery. The following global attributes should appear in the global section (attributes in italic are optional attributes):</p>
+<p>// global attributes:</p>
+<p>:title = “Argo float vertical profile”;</p>
+<p>:institution = “CSIRO”;</p>
+<p>:source = “Argo float”;</p>
+<p>:history = “2011-04-22T06:00:00Z creation”;</p>
+<p>:references = “<a href="http://www.argodatamgt.org/Documentation"><u>http://www.argodatamgt.org/Documentation</u></a>”;</p>
+<p><em>:id = “<a href="https://doi.org/10.17882/42182"><u>https://doi.org/10.17882/42182</u></a>”</em></p>
+<p>:comment = “free text”;</p>
+<p>:user_manual_version = “3.45”;</p>
+<p>:Conventions = “Argo-3.1 CF-1.6”;</p>
+<p>:featureType = “trajectoryProfile”;</p>
+<p><em>:comment_on_resolution = “free text”</em></p>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 78%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Global attribute name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+title
+</td>
+<td>
+A succinct description of what is in the dataset.
+</td>
+</tr>
+<tr class="odd">
+<td>
+institution
+</td>
+<td>
+Specifies where the original data was produced.
+</td>
+</tr>
+<tr class="even">
+<td>
+source
+</td>
+<td>
+The method of production of the original data. If it was model-generated, source should name the model and its version, as specifically as could be useful. If it is observational, source should characterize it (e.g., “surface observation” or “radiosonde”).
+</td>
+</tr>
+<tr class="odd">
+<td>
+history
+</td>
+<td>
+Provides an audit trail for modifications to the original data. Well-behaved generic NetCDF filters will automatically append their name and the parameters with which they were invoked to the global history attribute of an input NetCDF file. We recommend that each line begin with a timestamp indicating the date and time of day that the program was executed.
+</td>
+</tr>
+<tr class="even">
+<td>
+references
+</td>
+<td>
+Published or web-based references that describe the data or methods used to produce it.
+</td>
+</tr>
+<tr class="odd">
+<td>
+id
+</td>
+<td>
+<p>
+The Argo GDAC data DOI: <a href="https://doi.org/10.17882/42182"><u>https://doi.org/10.17882/42182</u></a>
+</p>
+<p>
+This attribute is <strong>optional</strong> but highly recommended
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+comment
+</td>
+<td>
+Miscellaneous information about the data or methods used to produce it.
+</td>
+</tr>
+<tr class="odd">
+<td>
+user_manual_version
+</td>
+<td>
+The version number of the user manual
+</td>
+</tr>
+<tr class="even">
+<td>
+Conventions
+</td>
+<td>
+The conventions supported by this file, blank separated
+</td>
+</tr>
+<tr class="odd">
+<td>
+featureType
+</td>
+<td>
+The NetCDF CF feature type.
+</td>
+</tr>
+<tr class="even">
+<td>
+comment_on_resolution
+</td>
+<td>
+<strong>Optional</strong> comment on parameter resolution
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dimensions" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="dimensions"><span class="header-section-number">4.2</span> Dimensions</h2>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 19%">
+<col style="width: 58%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>Value</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+DATE_TIME
+</td>
+<td>
+DATE_TIME = 14;
+</td>
+<td>
+<p>
+This dimension is the length of an ASCII date and time value.
+</p>
+<p>
+Date_time convention is&nbsp;: YYYYMMDDHHMISS
+</p>
+<p>
+YYYY&nbsp;: year
+</p>
+<p>
+MM&nbsp;: month
+</p>
+<p>
+DD&nbsp;: day
+</p>
+<p>
+HH&nbsp;: hour of the day (as 0 to 23)
+</p>
+<p>
+MI&nbsp;: minutes (as 0 to 59)
+</p>
+<p>
+SS&nbsp;: seconds (as 0 to 59)
+</p>
+<p>
+Date and time values are always in universal time coordinates (UTC).
+</p>
+<p>
+Examples&nbsp;:
+</p>
+<p>
+20010105172834&nbsp;: January 5<sup>th</sup> 2001 17:28:34
+</p>
+<p>
+19971217000000&nbsp;: December 17<sup>th</sup> 1997 00:00:00
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+<p>
+STRING1024
+</p>
+<p>
+STRING256<br> STRING64<br> STRING32<br> STRING16<br> STRING8<br> STRING4<br> STRING2
+</p>
+</td>
+<td>
+<p>
+STRING1024=1024;
+</p>
+<p>
+STRING256 = 256;
+</p>
+<p>
+STRING64 = 64;
+</p>
+<p>
+STRING32 = 32;
+</p>
+<p>
+STRING16 = 16;
+</p>
+<p>
+STRING8 = 8;
+</p>
+<p>
+STRING4 = 4;
+</p>
+<p>
+STRING2 = 2;
+</p>
+</td>
+<td>
+String dimensions from 2 to 256, optionally to 1024 (optional variables)
+</td>
+</tr>
+<tr class="even">
+<td>
+N_PROF
+</td>
+<td>
+N_PROF = &lt;int value&gt;;
+</td>
+<td>
+<p>
+Number of profiles contained in the file.
+</p>
+<p>
+This dimension depends on the data set.
+</p>
+<p>
+A file contains at least one profile.
+</p>
+<p>
+There is no defined limit on the maximum number of profiles in a file.
+</p>
+<p>
+Example:
+</p>
+<p>
+N_PROF = 100
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+N_PARAM
+</td>
+<td>
+N_PARAM = &lt;int value&gt;;
+</td>
+<td>
+<p>
+Maximum number of parameters measured or calculated for a pressure sample.
+</p>
+<p>
+This dimension depends on the data set.
+</p>
+<p>
+Examples&nbsp;:
+</p>
+<p>
+(pressure, temperature)&nbsp;: N_PARAM = 2
+</p>
+<p>
+(pressure, temperature, salinity)&nbsp;: N_PARAM = 3
+</p>
+<p>
+(pressure, temperature, conductivity, salinity)&nbsp;: N_PARAM = 4
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+N_LEVELS
+</td>
+<td>
+N_LEVELS = &lt;int value&gt;;
+</td>
+<td>
+<p>
+Maximum number of pressure levels contained in a profile.
+</p>
+<p>
+This dimension depends on the data set.
+</p>
+<p>
+Example: N_LEVELS = 100
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+N_CALIB
+</td>
+<td>
+N_CALIB = &lt;int value&gt;;
+</td>
+<td>
+<p>
+Maximum number of calibrations performed on a profile.
+</p>
+<p>
+This dimension depends on the data set.
+</p>
+<p>
+Example: N_CALIB = 10
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+N_HISTORY
+</td>
+<td>
+N_HISTORY = UNLIMITED;
+</td>
+<td>
+Number of history records.
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="general-information-on-the-profile-file" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="general-information-on-the-profile-file"><span class="header-section-number">4.3</span> General information on the profile file</h2>
+<p>This section contains information about the whole file.</p>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 45%">
+<col style="width: 32%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+<td>
+<strong>Comment</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+DATA_TYPE
+</td>
+<td>
+<p>
+char DATA_TYPE(STRING16);
+</p>
+<p>
+DATA_TYPE:long_name = “Data type”;
+</p>
+<p>
+DATA_TYPE:conventions = “Argo reference table 1”;
+</p>
+<p>
+DATA_TYPE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+This field contains the type of data contained in the file.
+</p>
+<p>
+The list of acceptable data types is in the reference table 1 (<a href="https://vocab.nerc.ac.uk/collection/R01/"><u>https://vocab.nerc.ac.uk/collection/R01/</u></a>).
+</p>
+<p>
+Example: Argo profile
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+FORMAT_VERSION
+</td>
+<td>
+<p>
+char FORMAT_VERSION(STRING4);
+</p>
+<p>
+FORMAT_VERSION:long_name = “File format version”;
+</p>
+<p>
+FORMAT_VERSION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+File format version
+</p>
+<p>
+Example: “3.1”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+HANDBOOK_VERSION
+</td>
+<td>
+<p>
+char HANDBOOK_VERSION(STRING4);
+</p>
+<p>
+HANDBOOK_VERSION:long_name = “Data handbook version”;
+</p>
+<p>
+HANDBOOK_VERSION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Version number of the data handbook.
+</p>
+<p>
+This field indicates that the data contained in this file are managed according to the policy described in the Argo data management handbook.
+</p>
+<p>
+Example: “1.0”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+REFERENCE_DATE_TIME
+</td>
+<td>
+<p>
+char REFERENCE_DATE_TIME(DATE_TIME);
+</p>
+<p>
+REFERENCE_DATE_TIME:long_name = “Date of reference for Julian days”;
+</p>
+<p>
+REFERENCE_DATE_TIME:conventions = “YYYYMMDDHHMISS”;
+</p>
+<p>
+REFERENCE_DATE_TIME:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Date of reference for Julian days.
+</p>
+<p>
+The recommended reference date time is “19500101000000”&nbsp;: January 1<sup>st</sup> 1950 00:00:00
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+DATE_CREATION
+</td>
+<td>
+<p>
+char DATE_CREATION(DATE_TIME);
+</p>
+<p>
+DATE_CREATION:long_name = “Date of file creation”;
+</p>
+<p>
+DATE_CREATION:conventions = “YYYYMMDDHHMISS”;
+</p>
+<p>
+DATE_CREATION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Date and time (UTC) of creation of this file.
+</p>
+<p>
+Format&nbsp;: YYYYMMDDHHMISS
+</p>
+<p>
+Example:
+</p>
+<p>
+20011229161700&nbsp;(meaning December 29<sup>th</sup> 2001 16:17:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+DATE_UPDATE
+</td>
+<td>
+<p>
+char DATE_UPDATE(DATE_TIME);
+</p>
+<p>
+DATE_UPDATE:long_name = “Date of update of this file”;
+</p>
+<p>
+DATE_UPDATE:conventions = “YYYYMMDDHHMISS”;
+</p>
+<p>
+DATE_UPDATE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Date and time (UTC) of update of this file.
+</p>
+<p>
+Format&nbsp;: YYYYMMDDHHMISS
+</p>
+<p>
+Example:
+</p>
+<p>
+20011230090500&nbsp;(meaning December 30<sup>th</sup> 2001 09:05:00)
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="general-information-for-each-profile" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="general-information-for-each-profile"><span class="header-section-number">4.4</span> General information for each profile</h2>
+<p>This section contains general information on each profile.</p>
+<p>Each item of this section has a N_PROF (number of profiles) dimension.</p>
+<table class="table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 37%">
+<col style="width: 39%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+<td>
+<strong>Comment</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+PLATFORM_NUMBER
+</td>
+<td>
+<p>
+char PLATFORM_NUMBER(N_PROF, STRING8);
+</p>
+<p>
+PLATFORM_NUMBER:long_name = “Float unique identifier”;
+</p>
+<p>
+PLATFORM_NUMBER:conventions = “WMO float identifier : A9IIIII”;
+</p>
+<p>
+PLATFORM_NUMBER:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+WMO float identifier.
+</p>
+<p>
+WMO is the World Meteorological Organization.
+</p>
+<p>
+This platform number is unique.
+</p>
+<p>
+Example: 6900045
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+PROJECT_NAME
+</td>
+<td>
+<p>
+char PROJECT_NAME(N_PROF, STRING64);
+</p>
+<p>
+PROJECT_NAME:long_name = “Name of the project”;
+</p>
+<p>
+PROJECT_NAME:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Name of the project that operates the float.
+</p>
+<p>
+Multiple projects can be separated by commas.
+</p>
+<p>
+Example: “GYROSCOPE, GMMC”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+PI_NAME
+</td>
+<td>
+<p>
+char PI_NAME (N_PROF, STRING64);
+</p>
+<p>
+PI_NAME:long_name = “Name of the principal investigator”;
+</p>
+<p>
+PI_NAME:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Name of the principal investigator responsible for the profiling float.
+</p>
+<p>
+Valid PI names are listed in reference table R40 (<a href="https://vocab.nerc.ac.uk/collectionsearch_nvs/R40/"><u>https://vocab.nerc.ac.uk/collection/R40/</u></a>). Multiple names can be concatenated, separated by commas.
+</p>
+<p>
+Example: “Julia UITZ”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+STATION_PARAMETERS
+</td>
+<td>
+<p>
+char STATION_PARAMETERS(N_PROF, N_PARAM, STRING16);
+</p>
+<p>
+STATION_PARAMETERS:long_name = “List of available parameters for the station”;
+</p>
+<p>
+STATION_PARAMETERS:conventions = “Argo reference table 3”;
+</p>
+<p>
+STATION_PARAMETERS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+List of parameters contained in this profile.
+</p>
+<p>
+The parameter names are listed in reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).
+</p>
+<p>
+Examples&nbsp;: TEMP, PSAL, PRES
+</p>
+<p>
+TEMP&nbsp;: temperature
+</p>
+<p>
+PSAL&nbsp;: practical salinity
+</p>
+<p>
+PRES: pressure
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+CYCLE_NUMBER
+</td>
+<td>
+<p>
+int CYCLE_NUMBER(N_PROF);
+</p>
+<p>
+CYCLE_NUMBER:long_name = “Float cycle number”;
+</p>
+<p>
+CYCLE_NUMBER:conventions = “0…N, 0 : launch cycle (if exists), 1 : first complete cycle”;
+</p>
+<p>
+CYCLE_NUMBER:_FillValue = 99999;
+</p>
+</td>
+<td>
+<p>
+Float cycle number.
+</p>
+<p>
+See <a href="01-introduction.html#argo-float-cycles"><u>§1.6</u></a>: float cycle definition.
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+DIRECTION
+</td>
+<td>
+<p>
+char DIRECTION(N_PROF);
+</p>
+<p>
+DIRECTION:long_name = “Direction of the station profiles”;
+</p>
+<p>
+DIRECTION:conventions = “A: ascending profiles, D: descending profiles”;
+</p>
+<p>
+DIRECTION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Type of profile on which measurement occurs.
+</p>
+<p>
+A&nbsp;: ascending profile
+</p>
+<p>
+D&nbsp;: descending profile
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+DATA_CENTRE
+</td>
+<td>
+<p>
+char DATA_CENTRE(N_PROF, STRING2);
+</p>
+<p>
+DATA_CENTRE:long_name = “Data centre in charge of float data processing”;
+</p>
+<p>
+DATA_CENTRE:conventions = “Argo reference table 4”;
+</p>
+<p>
+DATA_CENTRE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Code for the data centre in charge of the float data management.
+</p>
+<p>
+The data centre codes are described in the reference table 4 (<a href="https://vocab.nerc.ac.uk/collection/R04/"><u>https://vocab.nerc.ac.uk/collection/R04/</u></a>).
+</p>
+<p>
+Example: “ME” for MEDS
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+DC_REFERENCE
+</td>
+<td>
+<p>
+char DC_REFERENCE(N_PROF, STRING32);
+</p>
+<p>
+DC_REFERENCE:long_name = “Station unique identifier in data centre”;
+</p>
+<p>
+DC_REFERENCE:conventions = “Data centre convention”;
+</p>
+<p>
+DC_REFERENCE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Unique identifier of the profile in the data centre.
+</p>
+<p>
+Data centres may have different identifier schemes.
+</p>
+<p>
+DC_REFERENCE is therefore not unique across data centres.
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+DATA_STATE_INDICATOR
+</td>
+<td>
+<p>
+char DATA_STATE_INDICATOR(N_PROF, STRING4);
+</p>
+<p>
+DATA_STATE_INDICATOR:long_name = “Degree of processing the data have passed through”;
+</p>
+<p>
+DATA_STATE_INDICATOR:conventions = “Argo reference table 6”;
+</p>
+<p>
+DATA_STATE_INDICATOR:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Data processing level
+</p>
+<p>
+The data state indicator is described in the reference table 6 (<a href="https://vocab.nerc.ac.uk/collection/R06/"><u>https://vocab.nerc.ac.uk/collection/R06/</u></a>).
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+DATA_MODE
+</td>
+<td>
+<p>
+char DATA_MODE(N_PROF);
+</p>
+<p>
+DATA_MODE:long_name = “Delayed mode or real time data”;
+</p>
+<p>
+DATA_MODE:conventions = “R : real time; D : delayed mode; A : real time with adjustment”;
+</p>
+<p>
+DATA_MODE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Indicates if the profile contains real time, delayed mode or adjusted data.
+</p>
+<p>
+R&nbsp;: real time data
+</p>
+<p>
+D&nbsp;: delayed mode data
+</p>
+<p>
+A : real time data with adjusted values
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+PLATFORM_TYPE
+</td>
+<td>
+<p>
+char PLATFORM_TYPE(N_PROF, STRING32);
+</p>
+<p>
+PLATFORM_TYPE:long_name = “Type of float”;
+</p>
+<p>
+PLATFORM_TYPE:conventions = “Argo reference table 23”;
+</p>
+<p>
+PLATFORM_TYPE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Type of float listed in reference table 23 (<a href="https://vocab.nerc.ac.uk/collection/R23/"><u>https://vocab.nerc.ac.uk/collection/R23/</u></a>).
+</p>
+<p>
+Example: SOLO, APEX, PROVOR, ARVOR, NINJA
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+FLOAT_SERIAL_NO
+</td>
+<td>
+<p>
+char FLOAT_SERIAL_NO(N_PROF, STRING32);
+</p>
+<p>
+FLOAT_SERIAL_NO:long_name = “Serial number of the float”;
+</p>
+<p>
+FLOAT_SERIAL_NO:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Serial number of the float.
+</p>
+<p>
+Example: 1679
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+FIRMWARE_VERSION
+</td>
+<td>
+<p>
+char FIRMWARE_VERSION(N_PROF, STRING64);
+</p>
+<p>
+FIRMWARE_VERSION:long_name = “Instrument firmware version”;
+</p>
+<p>
+FIRMWARE_VERSION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Firmware version of the float.
+</p>
+<p>
+The dimension STRING32 instead of STRING64 remains accepted.
+</p>
+<p>
+Example: “013108”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+WMO_INST_TYPE
+</td>
+<td>
+<p>
+char WMO_INST_TYPE(N_PROF, STRING4);
+</p>
+<p>
+WMO_INST_TYPE:long_name = “Coded instrument type”;
+</p>
+<p>
+WMO_INST_TYPE:conventions = “Argo reference table 8”;
+</p>
+<p>
+WMO_INST_TYPE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Instrument type from WMO code table 1770.
+</p>
+<p>
+A subset of WMO table 1770 is documented in the reference table 8 (<a href="https://vocab.nerc.ac.uk/collection/R08/"><u>https://vocab.nerc.ac.uk/collection/R08/</u></a>).
+</p>
+<p>
+Example:
+</p>
+<p>
+846 : Webb Research float, Seabird sensor
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD
+</td>
+<td>
+<p>
+double JULD(N_PROF);
+</p>
+<p>
+JULD:long_name = “Julian day (UTC) of the station relative to REFERENCE_DATE_TIME”;
+</p>
+<p>
+JULD:standard_name = “time”;
+</p>
+<p>
+JULD:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD:resolution = X;
+</p>
+<p>
+JULD:_FillValue = 999999.;
+</p>
+<p>
+JULD:axis = “T”;
+</p>
+</td>
+<td>
+<p>
+Julian day of the profile.
+</p>
+<p>
+The integer part represents the day, the decimal part represents the time of the profile.
+</p>
+<p>
+Date and time are in Universal Time.
+</p>
+<p>
+The Julian day is relative to REFERENCE_DATE_TIME.
+</p>
+<p>
+Example:
+</p>
+<p>
+18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_QC
+</td>
+<td>
+<p>
+char JULD_QC(N_PROF);
+</p>
+<p>
+JULD_QC:long_name = “Quality on date and time”;
+</p>
+<p>
+JULD_QC:conventions = “Argo reference table 2”;
+</p>
+<p>
+JULD_QC:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Quality flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in the reference tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2/"><u>https://vocab.nerc.ac.uk/collection/RR2/</u></a> for real time and <a href="https://vocab.nerc.ac.uk/collection/RD2/"><u>https://vocab.nerc.ac.uk/collection/RD2/</u></a> for delayed mode).
+</p>
+<p>
+Example:
+</p>
+<p>
+1 (standing for date and time seem correct)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_LOCATION
+</td>
+<td>
+<p>
+double JULD_LOCATION(N_PROF);
+</p>
+<p>
+JULD_LOCATION:long_name = “Julian day (UTC) of the location relative to REFERENCE_DATE_TIME”;
+</p>
+<p>
+JULD_LOCATION:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_LOCATION:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_LOCATION:resolution = X;
+</p>
+<p>
+JULD_LOCATION:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day of the location of the profile.
+</p>
+<p>
+The integer part represents the day, the decimal part represents the time of the profile.
+</p>
+<p>
+Date and time are in Universal Time.
+</p>
+<p>
+The Julian day is relative to REFERENCE_DATE_TIME.
+</p>
+<p>
+Example:
+</p>
+<p>
+18833.8013889885&nbsp;(standing for July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+LATITUDE
+</td>
+<td>
+<p>
+double LATITUDE(N_PROF);
+</p>
+<p>
+LATITUDE:long_name = “Latitude of the station, best estimate”;
+</p>
+<p>
+LATITUDE:standard_name = “latitude”;
+</p>
+<p>
+LATITUDE:units = “degree_north”;
+</p>
+<p>
+LATITUDE:_FillValue = 99999.;
+</p>
+<p>
+LATITUDE:valid_min = -90.;
+</p>
+<p>
+LATITUDE:valid_max = 90.;
+</p>
+<p>
+LATITUDE:axis = “Y”;
+</p>
+</td>
+<td>
+<p>
+Latitude of the profile.
+</p>
+<p>
+Unit&nbsp;: degree north
+</p>
+<p>
+This field contains the best estimated latitude.
+</p>
+<p>
+The latitude value may be improved in delayed mode.
+</p>
+<p>
+The measured locations of the float are located in the trajectory file.
+</p>
+<p>
+Example: 44.4991&nbsp;(standing for 44° 29’ 56.76’’ N)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+LONGITUDE
+</td>
+<td>
+<p>
+double LONGITUDE(N_PROF);
+</p>
+<p>
+LONGITUDE:long_name = “Longitude of the station, best estimate”;
+</p>
+<p>
+LONGITUDE:standard_name = “longitude”;
+</p>
+<p>
+LONGITUDE:units = “degree_east”;
+</p>
+<p>
+LONGITUDE:_FillValue = 99999.;
+</p>
+<p>
+LONGITUDE:valid_min = -180.;
+</p>
+<p>
+LONGITUDE:valid_max = 180.;
+</p>
+<p>
+LONGITUDE:axis = “X”;
+</p>
+</td>
+<td>
+<p>
+Longitude of the profile.
+</p>
+<p>
+Unit&nbsp;: degree east
+</p>
+<p>
+This field contains the best estimated longitude.
+</p>
+<p>
+The longitude value may be improved in delayed mode.
+</p>
+<p>
+The measured locations of the float are located in the trajectory file.
+</p>
+<p>
+Example: 16.7222&nbsp;(standing for 16° 43’ 19.92’’ E)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+POSITION_QC
+</td>
+<td>
+<p>
+char POSITION_QC(N_PROF);
+</p>
+<p>
+POSITION_QC:long_name = “Quality on position (latitude and longitude)”;
+</p>
+<p>
+POSITION_QC:conventions = “Argo reference table 2”;
+</p>
+<p>
+POSITION_QC:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Quality flag on position.
+</p>
+<p>
+The flag on position is set according to (LATITUDE, LONGITUDE) quality.
+</p>
+<p>
+The flag scale is described in the reference tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2/"><u>https://vocab.nerc.ac.uk/collection/RR2/</u></a> for real time and <a href="https://vocab.nerc.ac.uk/collection/RD2/"><u>https://vocab.nerc.ac.uk/collection/RD2/</u></a> for delayed mode).
+</p>
+<p>
+Example: 1 (meaning position seems correct)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+POSITIONING_SYSTEM
+</td>
+<td>
+<p>
+char POSITIONING_SYSTEM(N_PROF, STRING8);
+</p>
+<p>
+POSITIONING_SYSTEM:long_name = “Positioning system”;
+</p>
+<p>
+POSITIONING_SYSTEM:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Name of the system in charge of positioning the float locations from reference table 9 (<a href="https://vocab.nerc.ac.uk/collection/R09/"><u>https://vocab.nerc.ac.uk/collection/R09/</u></a>).
+</p>
+<p>
+Examples&nbsp;: ARGOS
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+POSITION_ERROR_REPORTED
+</td>
+<td>
+<p>
+float POSITION_ERROR_REPORTED(N_PROF);
+</p>
+<p>
+POSITION_ERROR_REPORTED:long_name = “Position error reported by the positioning system”;
+</p>
+<p>
+POSITION_ERROR_REPORTED:units = “meters”;
+</p>
+<p>
+POSITION_ERROR_REPORTED:_FillValue = 99999.;
+</p>
+</td>
+<td>
+<p>
+<strong>This is an optional variable.</strong>
+</p>
+<p>
+Position error reported by the positioning system.
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+POSITION_ERROR_ESTIMATED
+</td>
+<td>
+<p>
+float POSITION_ERROR_ESTIMATED(N_PROF);
+</p>
+<p>
+POSITION_ERROR_ESTIMATED:long_name = “Position error estimated by the real-time or delayed-mode process”;
+</p>
+<p>
+POSITION_ERROR_ESTIMATED:units = “meters”;
+</p>
+<p>
+POSITION_ERROR_ESTIMATED:_FillValue = 99999.;
+</p>
+</td>
+<td>
+<strong>This is an optional variable.</strong> Position error estimated by the real-time or delayed-mode process.
+</td>
+</tr>
+<tr class="odd">
+<td>
+POSITION_ERROR_ESTIMATED_COMMENT
+</td>
+<td>
+<p>
+char POSITION_ERROR_ESTIMATED_COMMENT(N_PROF, STRING1024);
+</p>
+<p>
+POSITION_ERROR_ESTIMATED_COMMENT:long_name = “Comment on the method used to determine POSITION_ERROR_ESTIMATED”;
+</p>
+<p>
+POSITION_ERROR_ESTIMATED_COMMENT:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+<strong>This is an optional variable.</strong>
+</p>
+<p>
+Comment on the method used to determine POSITION_ERROR_ESTIMATED.
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+PROFILE_&lt;PARAM&gt;_QC
+</td>
+<td>
+<p>
+char PROFILE_&lt;PARAM&gt;_QC(N_PROF);
+</p>
+<p>
+PROFILE_&lt;PARAM&gt;_QC:long_name = “Global quality flag of &lt;PARAM&gt; profile”;
+</p>
+<p>
+PROFILE_&lt;PARAM&gt;_QC:conventions = “Argo reference table 2a”;
+</p>
+<p>
+PROFILE_&lt;PARAM&gt;_QC:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Global quality flag on the PARAM profile.
+</p>
+<p>
+PARAM is among the STATION_PARAMETERS.
+</p>
+<p>
+The overall flag is set to indicate the percentage of good data in the profile as described in reference table 2a (<a href="https://vocab.nerc.ac.uk/collection/RP2/"><u>https://vocab.nerc.ac.uk/collection/RP2/</u></a>).
+</p>
+<p>
+Example:
+</p>
+<p>
+PROFILE_TEMP_QC = A (meaning the temperature profile contains only good values)
+</p>
+<p>
+PROFILE_PSAL_QC = C (meaning the salinity profile contains 50% to 75% good values)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+VERTICAL_SAMPLING_SCHEME
+</td>
+<td>
+<p>
+char VERTICAL_SAMPLING_SCHEME(N_PROF, STRING256);
+</p>
+<p>
+VERTICAL_SAMPLING_SCHEME:long_name = “Vertical sampling scheme”;
+</p>
+<p>
+VERTICAL_SAMPLING_SCHEME:conventions = “Argo reference table 16”;
+</p>
+<p>
+VERTICAL_SAMPLING_SCHEME:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Use the vertical sampling scheme to differentiate and identify profiles from a single-cycle with different vertical sampling schemes.
+</p>
+<p>
+See reference table 16 (<a href="https://vocab.nerc.ac.uk/collection/R16/"><u>https://vocab.nerc.ac.uk/collection/R16/</u></a>).
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+CONFIG_MISSION_NUMBER
+</td>
+<td>
+<p>
+int CONFIG_MISSION_NUMBER(N_PROF);
+</p>
+<p>
+CONFIG_MISSION_NUMBER:long_name = ” Unique number denoting the missions performed by the float”;
+</p>
+<p>
+CONFIG_MISSION_NUMBER:conventions = “1…N, 1 : first complete mission”;
+</p>
+<p>
+CONFIG_MISSION_NUMBER:_FillValue = 99999;
+</p>
+</td>
+<td>
+<p>
+Unique number of the mission to which this profile belongs.
+</p>
+<p>
+See note on floats with multiple configurations <a href="05-format-metadata.html#note-on-floats-with-multiple-missions"><u>§2.4.6.1</u></a>.
+</p>
+<p>
+The number 0 (zero) can be used to denote the float’s mission prelude, if it exists.
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note: how to sort STATION_PARAMETERS variable</p>
+<p>The parameters listed in STATION_PARAMETERS should be sorted in the same order within a given float’s data file.</p>
+<p><strong>Note: how to set POSITIONING_SYSTEM for estimated position</strong></p>
+<p><strong><u>Case 1:</u></strong> when only one system has been used for the interpolation. That system is shown in <strong>POSITIONING_SYSTEM</strong>.</p>
+<p><strong><u>Case 2:</u></strong> when no position was transmitted and an estimate of the position in delayed mode relies on information not from a positioning system (a numerical method, model data. etc.) the <strong>POSITIONING_SYSTEM</strong> should be “<strong>NONE</strong>”</p>
+</section>
+<section id="measurements-for-each-profile" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="measurements-for-each-profile"><span class="header-section-number">4.5</span> Measurements for each profile</h2>
+<p>This section contains information on each level of each profile.<br>
+Each variable in this section has a N_PROF (number of profiles), N_LEVELS (number of pressure levels) dimension.</p>
+<p>&lt;PARAM&gt; contains the raw values transmitted by the float. These raw values (including missing data) are not to be altered by any post-processing. Missing data should be reported as such and <strong>not</strong> filled with estimated values.</p>
+<p>&lt;PARAM&gt;_QC contains QC flags that pertain to the values in &lt;PARAM&gt;. Values in &lt;PARAM&gt;_QC are set initially in ‘R’ and ‘A’ modes by the automatic real-time tests. They are later modified in ‘D’ mode at levels where the QC flags are set incorrectly by the real-time procedures, and where erroneous data are not detected by the real-time procedures.</p>
+<p>Each parameter can be adjusted (in delayed-mode, but also in real-time if appropriate). In that case, &lt;PARAM&gt;_ADJUSTED contains the adjusted values, &lt;PARAM&gt;_ADJUSTED_QC contains the QC flags set by the adjustment process, and &lt;PARAM&gt;_ADJUSTED_ERROR contains the adjustment uncertainties.</p>
+<p>When a profile has DATA_MODE = ’R’, no adjusted data are available. Hence the adjusted section (&lt;PARAM&gt;_ADJUSTED, &lt;PARAM&gt;_ADJUSTED_QC and &lt;PARAM&gt;_ADJUSTED_ERROR) should be filled with FillValue.</p>
+<p>When N_PROF &gt; 1, DATA_MODE for each profile can be assigned differently. This is because when there are multiple profiles, delayed-mode or near real-time adjustments can become available at different times.</p>
+<p>The adjusted section for each N_PROF should then be filled independently according to its DATA_MODE.</p>
+<p>For example, in a profile file with 2 profiles, it is possible that</p>
+<ul>
+<li><p>DATA_MODE = ’D’ in N_PROF = 1, and</p></li>
+<li><p>DATA_MODE = ’R’ in N_PROF = 2.</p></li>
+</ul>
+<p>In this case:</p>
+<ul>
+<li><p>the adjusted section in N_PROF=1 with DATA_MODE=’D’ should be filled with their adjusted values;</p></li>
+<li><p>the adjusted section in N_PROF=2 with DATA_MODE=’R’ should be filled with FillValue.</p></li>
+</ul>
+<p>The real-time and delayed-mode QC for core Argo profiles is described in “Argo quality control manual for CTD and trajectory data” <a href="https://archimer.ifremer.fr/doc/00228/33951/"><u>https://archimer.ifremer.fr/doc/00228/33951/</u></a>.</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 44%">
+<col style="width: 35%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+<td>
+<strong>Comment</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+&lt;PARAM&gt;
+</td>
+<td>
+<p>
+float &lt;PARAM&gt;(N_PROF, N_LEVELS);
+</p>
+<p>
+&lt;PARAM&gt;:long_name = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;:standard_name = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;:_FillValue = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;:units = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;:valid_min = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;:valid_max = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;:C_format = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;:FORTRAN_format = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;:resolution = &lt;X&gt;;
+</p>
+</td>
+<td>
+<p>
+&lt;PARAM&gt; contains the original values of a parameter listed in reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).
+</p>
+<p>
+&lt;X&gt;: this field is specified in the reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+&lt;PARAM&gt;_QC
+</td>
+<td>
+<p>
+char &lt;PARAM&gt;_QC(N_PROF, N_LEVELS);
+</p>
+<p>
+&lt;PARAM&gt;_QC:long_name = “quality flag”;
+</p>
+<p>
+&lt;PARAM&gt;_QC:conventions = “Argo reference table 2”;
+</p>
+<p>
+&lt;PARAM&gt;_QC:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Quality flag applied on each &lt;PARAM&gt; value.
+</p>
+<p>
+The flag scale is specified in reference tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2/"><u>https://vocab.nerc.ac.uk/collection/RR2/</u></a> for real time and <a href="https://vocab.nerc.ac.uk/collection/RD2/"><u>https://vocab.nerc.ac.uk/collection/RD2/</u></a> for delayed mode).
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+&lt;PARAM&gt;_ADJUSTED
+</td>
+<td>
+<p>
+float &lt;PARAM&gt;_ADJUSTED(N_PROF, N_LEVELS);
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:long_name = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:standard_name = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:_FillValue = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:units = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:valid_min = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:valid_max = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:C_format = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:FORTRAN_format = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:resolution= &lt;X&gt;;
+</p>
+</td>
+<td>
+<p>
+&lt;PARAM&gt;_ADJUSTED contains the adjusted values derived from the original values of the parameter.
+</p>
+<p>
+&lt;X&gt;: this field is specified in the reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).
+</p>
+<p>
+<strong>&lt;PARAM&gt;_ADJUSTED is mandatory for ‘c’ and ‘b’ parameters, optional for ‘ib’ and ‘ic’ parameters.</strong>
+</p>
+<p>
+When no adjustment is performed, the FillValue is inserted.
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+&lt;PARAM&gt;_ADJUSTED_QC
+</td>
+<td>
+<p>
+char &lt;PARAM&gt;_ADJUSTED_QC(N_PROF, N_LEVELS);
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_QC:long_name = “quality flag”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_QC:conventions = “Argo reference table 2”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_QC:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Quality flag applied on each &lt;PARAM&gt;_ADJUSTED value.
+</p>
+<p>
+The flag scale is specified in reference tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2/"><u>https://vocab.nerc.ac.uk/collection/RR2/</u></a> for real time and <a href="https://vocab.nerc.ac.uk/collection/RD2/"><u>https://vocab.nerc.ac.uk/collection/RD2/</u></a> for delayed mode).
+</p>
+<p>
+<strong>&lt;PARAM&gt;_ADJUSTED_QC is mandatory if &lt;PARAM&gt;_ADJUSTED is present.</strong>
+</p>
+<p>
+When no adjustment is performed, the FillValue is inserted.
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+&lt;PARAM&gt;_ADJUSTED_ERROR
+</td>
+<td>
+<p>
+float &lt;PARAM&gt;_ADJUSTED_ERROR(N_PROF, N_LEVELS);
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR:long_name = “Contains the error on the adjusted values as determined by the delayed mode QC process”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR:_FillValue = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR:units = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR:C_format = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR:FORTRAN_format = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR:resolution= &lt;X&gt;;
+</p>
+</td>
+<td>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR
+</p>
+<p>
+Contains the error on the adjusted values as determined by the delayed mode QC process.
+</p>
+<p>
+&lt;X&gt;: this field is specified in the reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).
+</p>
+<p>
+<strong>&lt;PARAM&gt;_ADJUSTED_ERROR is mandatory if &lt;PARAM&gt;_ADJUSTED is present.</strong>
+</p>
+<p>
+When no adjustment is performed, the FillValue is inserted.
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note on vertical axis associated to PRES</p>
+<p>The variable PRES (pressure) is the vertical axis. The PRES declaration contains the variable attribute</p>
+<p>PRES:axis = “Z”;</p>
+<p>Example of a profiling float performing temperature measurements with adjusted values of temperature</p>
+<table class="table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Parameter definition: TEMP, TEMP_ADJUSTED</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+<p>
+float TEMP(N_PROF, N_LEVELS);
+</p>
+<p>
+TEMP:long_name = “sea temperature in-situ ITS-90 scale”;
+</p>
+<p>
+TEMP:standard_name = “sea_water_temperature”;
+</p>
+<p>
+TEMP:_FillValue = 99999.f;
+</p>
+<p>
+TEMP:units = “degree_Celsius”;
+</p>
+<p>
+TEMP:valid_min = -2.f;
+</p>
+<p>
+TEMP:valid_max = 40.f;
+</p>
+<p>
+TEMP:C_format = “%9.3f”;
+</p>
+<p>
+TEMP:FORTRAN_format = “F9.3”;
+</p>
+<p>
+TEMP:resolution = 0.001f;
+</p>
+<p>
+char TEMP_QC(N_PROF, N_LEVELS);
+</p>
+<p>
+TEMP_QC:long_name = “quality flag”;
+</p>
+<p>
+TEMP_QC:conventions = “Argo reference table 2”;
+</p>
+<p>
+TEMP_QC:_FillValue = ” “;
+</p>
+<p>
+float TEMP_ADJUSTED(N_PROF, N_LEVELS);
+</p>
+<p>
+TEMP_ADJUSTED:long_name = “adjusted sea temperature in-situ ITS-90 scale”;
+</p>
+<p>
+TEMP:standard_name = “sea_water_temperature”;
+</p>
+<p>
+TEMP_ADJUSTED:_FillValue = 99999.f;
+</p>
+<p>
+TEMP_ADJUSTED:units = “degree_Celsius”;
+</p>
+<p>
+TEMP_ADJUSTED:valid_min = -2.f;
+</p>
+<p>
+TEMP_ADJUSTED:valid_max = 40.f;
+</p>
+<p>
+TEMP_ADJUSTED:C_format = “%9.3f”;
+</p>
+<p>
+TEMP_ADJUSTED:FORTRAN_format= “F9.3”;
+</p>
+<p>
+TEMP_ADJUSTED:resolution= 0.001f;
+</p>
+<p>
+char TEMP_ADJUSTED_QC(N_PROF, N_LEVELS);
+</p>
+<p>
+TEMP_ADJUSTED QC:long_name = “quality flag”;
+</p>
+<p>
+TEMP_ADJUSTED QC:conventions = “Argo reference table 2”;
+</p>
+<p>
+TEMP_ADJUSTED_QC:_FillValue = ” “;
+</p>
+<p>
+float TEMP_ADJUSTED_ERROR(N_PROF, N_LEVELS);
+</p>
+<p>
+TEMP_ADJUSTED_ERROR:long_name = “error on sea temperature in-situ ITS-90 scale”;
+</p>
+<p>
+TEMP_ADJUSTED_ERROR:_FillValue = 99999.f;
+</p>
+<p>
+TEMP_ADJUSTED_ERROR:units = “degree_Celsius”;
+</p>
+<p>
+TEMP_ADJUSTED_ERROR :C_format = “%9.3f”;
+</p>
+<p>
+TEMP_ADJUSTED_ERROR :FORTRAN_format= “F9.3”;
+</p>
+<p>
+TEMP_ADJUSTED_ERROR:resolution= 0.001f;
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="how-to-report-unusual-parameter-resolutions-in-a-profile" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="how-to-report-unusual-parameter-resolutions-in-a-profile"><span class="header-section-number">4.5.1</span> How to report unusual parameter resolutions in a profile</h3>
+<p>The resolution of a parameter is reported in the “resolution” attribute.</p>
+<p>For specific floats, the resolution of a parameter may depend on the profile level.</p>
+<p>How to keep the information in the file?</p>
+<ul>
+<li>add a “comment_on_resolution” attribute on the variable to inform the user,</li>
+</ul>
+</section>
+</section>
+<section id="scientific-calibration-information-for-each-profile" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="scientific-calibration-information-for-each-profile"><span class="header-section-number">4.6</span> Scientific calibration information for each profile</h2>
+<p>Scientific calibrations are applied to parameters to create adjusted parameters. Different calibration methods will be used by groups processing Argo data. When a method is applied, its description is stored in the following fields.</p>
+<p>This section contains scientific calibration information for each parameter of each profile.</p>
+<p>Each item of this section has a N_PROF (number of profiles), N_CALIB (number of calibrations), N_PARAM (number of parameters) dimensions.</p>
+<p>If no scientific calibration is available, N_CALIB is set to 1, PARAMETER is filled with the list of parameter names, and all values of the calibration section are set to fill values.</p>
+<table class="table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 35%">
+<col style="width: 36%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+<td>
+<strong>Comment</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+PARAMETER
+</td>
+<td>
+<p>
+char PARAMETER(N_PROF, N_CALIB, N_PARAM, STRING16);
+</p>
+<p>
+PARAMETER:long_name = “List of parameters with calibration information”;
+</p>
+<p>
+PARAMETER:conventions = “Argo reference table 3”;
+</p>
+<p>
+PARAMETER:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Name of the calibrated parameter. The list of parameters is in reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).
+</p>
+<p>
+Example: “PSAL”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+SCIENTIFIC_CALIB_EQUATION
+</td>
+<td>
+<p>
+char SCIENTIFIC_CALIB_EQUATION(N_PROF, N_CALIB, N_PARAM, STRING256);
+</p>
+<p>
+SCIENTIFIC_CALIB_EQUATION:long_name = “Calibration equation for this parameter”;
+</p>
+<p>
+SCIENTIFIC_CALIB_EQUATION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Calibration equation applied to the parameter.
+</p>
+<p>
+Example:
+</p>
+<p>
+“Tc = a1 * T + a0”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+SCIENTIFIC_CALIB_COEFFICIENT
+</td>
+<td>
+<p>
+char SCIENTIFIC_CALIB_COEFFICIENT(N_PROF, N_CALIB, N_PARAM, STRING256);
+</p>
+<p>
+SCIENTIFIC_CALIB_COEFFICIENT:long_name = “Calibration coefficients for this equation”;
+</p>
+<p>
+SCIENTIFIC_CALIB_COEFFICIENT:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Calibration coefficients for this equation.
+</p>
+<p>
+Example:
+</p>
+<p>
+“a1=0.99997 , a0=0.0021”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+SCIENTIFIC_CALIB_COMMENT
+</td>
+<td>
+<p>
+char SCIENTIFIC_CALIB_COMMENT(N_PROF, N_CALIB, N_PARAM, STRING256);
+</p>
+<p>
+SCIENTIFIC_CALIB_COMMENT:long_name = “Comment applying to this parameter calibration”;
+</p>
+<p>
+SCIENTIFIC_CALIB_COMMENT:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Comment about this calibration
+</p>
+<p>
+Example:
+</p>
+<p>
+“The sensor is not stable”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+SCIENTIFIC_CALIB_DATE
+</td>
+<td>
+<p>
+char SCIENTIFIC_CALIB_DATE (N_PROF N_CALIB, N_PARAM, DATE_TIME)
+</p>
+<p>
+SCIENTIFIC_CALIB_DATE:long_name = “Date of calibration”;
+</p>
+<p>
+SCIENTIFIC_CALIB_DATE:conventions = “YYYYMMDDHHMISS”;
+</p>
+<p>
+SCIENTIFIC_CALIB_DATE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Date of the calibration.
+</p>
+<p>
+Example: “20011217161700”
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="history-information-for-each-profile" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="history-information-for-each-profile"><span class="header-section-number">4.7</span> History information for each profile</h2>
+<p>This section contains history information for each action performed on each profile by a data centre.</p>
+<p>Each item of this section has a N_HISTORY (number of history records), N_PROF (number of profiles) dimension.</p>
+<p>A history record is created whenever an action is performed on a profile.</p>
+<p>The recorded actions are coded and described in the history code table from the reference table 7 (<a href="https://vocab.nerc.ac.uk/collection/R07/"><u>https://vocab.nerc.ac.uk/collection/R07/</u></a>).</p>
+<p>On the GDAC, the history section of the multi-cycle files is empty to reduce the size of the file. The history section is available in the single-cycle files.</p>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 30%">
+<col style="width: 42%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+<td>
+<strong>Comment</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+HISTORY_INSTITUTION
+</td>
+<td>
+<p>
+char HISTORY_INSTITUTION(N_HISTORY, N_PROF, STRING4);
+</p>
+<p>
+HISTORY_INSTITUTION:long_name = “Institution which performed action”;
+</p>
+<p>
+HISTORY_INSTITUTION:conventions = “Argo reference table 4”;
+</p>
+<p>
+HISTORY_INSTITUTION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Institution that performed the action.
+</p>
+<p>
+Institution codes are described in reference table 4 (<a href="https://vocab.nerc.ac.uk/collection/R04/"><u>https://vocab.nerc.ac.uk/collection/R04/</u></a>).
+</p>
+<p>
+Example: “ME” for MEDS
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+HISTORY_STEP
+</td>
+<td>
+<p>
+char HISTORY_STEP(N_HISTORY, N_PROF, STRING4);
+</p>
+<p>
+HISTORY_STEP:long_name = “Step in data processing”;
+</p>
+<p>
+HISTORY_STEP:conventions = “Argo reference table 12”;
+</p>
+<p>
+HISTORY_STEP:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Code of the step in data processing for this history record. The step codes are described in reference table 12 (<a href="https://vocab.nerc.ac.uk/collection/R12/"><u>https://vocab.nerc.ac.uk/collection/R12/</u></a>).
+</p>
+<p>
+Example:
+</p>
+<p>
+“ARGQ” : Automatic QC of data reported in real-time has been performed
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+HISTORY_SOFTWARE
+</td>
+<td>
+<p>
+char HISTORY_SOFTWARE (N_HISTORY, N_PROF, STRING4);
+</p>
+<p>
+HISTORY_SOFTWARE:long_name = “Name of software which performed action”;
+</p>
+<p>
+HISTORY_SOFTWARE:conventions = “Institution dependent”;
+</p>
+<p>
+HISTORY_SOFTWARE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Name of the software that performed the action.
+</p>
+<p>
+This code is institution dependent.
+</p>
+<p>
+Example: “WJO”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+HISTORY_SOFTWARE_RELEASE
+</td>
+<td>
+<p>
+char HISTORY_SOFTWARE_RELEASE(N_HISTORY, N_PROF, STRING4);
+</p>
+<p>
+HISTORY_SOFTWARE_RELEASE:long_name = “Version/release of software which performed action”;
+</p>
+<p>
+HISTORY_SOFTWARE_RELEASE:conventions = “Institution dependent”;
+</p>
+<p>
+HISTORY_SOFTWARE_RELEASE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Version of the software.
+</p>
+<p>
+This name is institution dependent.
+</p>
+<p>
+Example: “1.0”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+HISTORY_REFERENCE
+</td>
+<td>
+<p>
+char HISTORY_REFERENCE (N_HISTORY, N_PROF, STRING64);
+</p>
+<p>
+HISTORY_REFERENCE:long_name = “Reference of database”;
+</p>
+<p>
+HISTORY_REFERENCE:conventions = “Institution dependent”;
+</p>
+<p>
+HISTORY_REFERENCE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Code of the reference database used for quality control in conjunction with the software.
+</p>
+<p>
+This code is institution dependent.
+</p>
+<p>
+Example: “WOD2001”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+HISTORY_DATE
+</td>
+<td>
+<p>
+char HISTORY_DATE(N_HISTORY, N_PROF, DATE_TIME);
+</p>
+<p>
+HISTORY_DATE:long_name = “Date the history record was created”;
+</p>
+<p>
+HISTORY_DATE:conventions = “YYYYMMDDHHMISS”;
+</p>
+<p>
+HISTORY_DATE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Date of the action.
+</p>
+<p>
+Example: “20011217160057”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+HISTORY_ACTION
+</td>
+<td>
+<p>
+char HISTORY_ACTION(N_HISTORY, N_PROF, STRING4);
+</p>
+<p>
+HISTORY_ACTION:long_name = “Action performed on data”;
+</p>
+<p>
+HISTORY_ACTION:conventions = “Argo reference table 7”;
+</p>
+<p>
+HISTORY_ACTION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Name of the action.
+</p>
+<p>
+The action codes are described in reference table 7 (<a href="https://vocab.nerc.ac.uk/collection/R07/"><u>https://vocab.nerc.ac.uk/collection/R07/</u></a>).
+</p>
+<p>
+Example: “QCF<span class="math inline">\(" for QC failed&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;HISTORY_PARAMETER&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;char HISTORY_PARAMETER(N_HISTORY, N_PROF, STRING16);&lt;/p&gt;
+&lt;p&gt;HISTORY_PARAMETER:long_name = "Station parameter action is performed on";&lt;/p&gt;
+&lt;p&gt;HISTORY_PARAMETER:conventions = "Argo reference table 3";&lt;/p&gt;
+&lt;p&gt;HISTORY_PARAMETER:_FillValue = " ";&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;Name of the parameter on which the action is performed.&lt;/p&gt;
+&lt;p&gt;The parameters are described in reference table 3 (&lt;a href="https://vocab.nerc.ac.uk/collection/R03/"&gt;&lt;u&gt;https://vocab.nerc.ac.uk/collection/R03/&lt;/u&gt;&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Example: "PSAL"&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;HISTORY_START_PRES&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;float HISTORY_START_PRES(N_HISTORY, N_PROF);&lt;/p&gt;
+&lt;p&gt;HISTORY_START_PRES:long_name = "Start pressure action applied on";&lt;/p&gt;
+&lt;p&gt;HISTORY_START_PRES:_FillValue = 99999.f;&lt;/p&gt;
+&lt;p&gt;HISTORY_START_PRES:units = "decibar";&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;Start pressure the action is applied to.&lt;/p&gt;
+&lt;p&gt;Example: "1500.0"&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;HISTORY_STOP_PRES&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;float HISTORY_STOP_PRES(N_HISTORY, N_PROF);&lt;/p&gt;
+&lt;p&gt;HISTORY_STOP_PRES:long_name = "Stop pressure action applied on";&lt;/p&gt;
+&lt;p&gt;HISTORY_STOP_PRES:_FillValue = 99999.f;&lt;/p&gt;
+&lt;p&gt;HISTORY_STOP_PRES:units = "decibar";&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;Stop pressure the action is applied to.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;This should be greater than or equal to START_PRES.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Example: "1757.0"&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;HISTORY_PREVIOUS_VALUE&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;float HISTORY_PREVIOUS_VALUE(N_HISTORY, N_PROF);&lt;/p&gt;
+&lt;p&gt;HISTORY_PREVIOUS_VALUE:long_name = "Parameter/Flag previous value before action";&lt;/p&gt;
+&lt;p&gt;HISTORY_PREVIOUS_VALUE:_FillValue = 99999.f;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;Parameter or flag of the previous value before action.&lt;/p&gt;
+&lt;p&gt;Example: "2" (probably good) for a flag that was changed to 1 (good)&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;HISTORY_QCTEST&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;char HISTORY_QCTEST(N_HISTORY, N_PROF, STRING16);&lt;/p&gt;
+&lt;p&gt;HISTORY_QCTEST:long_name = "Documentation of tests performed, tests failed (in hex form)";&lt;/p&gt;
+&lt;p&gt;HISTORY_QCTEST:conventions = "Write tests performed when ACTION=QCP\)</span>; tests failed when ACTION=QCF<span class="math inline">\(";&lt;/p&gt;
+&lt;p&gt;HISTORY_QCTEST:_FillValue = " ";&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;This field records the tests performed when ACTION is set to QCP\)</span> (QC performed), the test failed when ACTION is set to QCF$ (QC failed).
+</p>
+<p>
+The QCTEST codes are described in reference table 11 (<a href="https://vocab.nerc.ac.uk/collection/R11/"><u>https://vocab.nerc.ac.uk/collection/R11/</u></a>).
+</p>
+<p>
+Example: “0A” (in hexadecimal form)
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The usage of the History section is described in <a href="#using-the-history-section-of-the-argo-netcdf-structure"><u>§5</u></a> “<strong>Using the History section of the Argo netCDF Structure</strong>”.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02-formats-apercu.html" class="pagination-link" aria-label="Formats description">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Formats description</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04-format-trajectoire.html" class="pagination-link" aria-label="Argo trajectory format version 3.2">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Argo trajectory format version 3.2</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

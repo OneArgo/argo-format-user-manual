@@ -1,0 +1,4415 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Argo trajectory format version 3.2 – Argo User's Manual</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05-format-metadata.html" rel="next">
+<link href="./03-format-profil.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-8da5b4427184b79ecddefad3d342027e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-formats-apercu.html">Formats description</a></li><li class="breadcrumb-item"><a href="./04-format-trajectoire.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Argo trajectory format version 3.2</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Argo User’s Manual</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Préface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-historique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of the document</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Formats description</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-formats-apercu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Formats description</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-format-profil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Core-Argo profile format version 3.1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-format-trajectoire.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Argo trajectory format version 3.2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-format-metadata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Metadata format version 3.2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-format-technique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Technical information format version 3.1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-format-bargo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">B-Argo profile format additional features</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-fichiers-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Index files of the GDAC content</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-tables-reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Reference tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-acces-donnees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data access</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-section-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Using the History section of the Argo netCDF Structure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-dac-gdac.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">DAC-GDAC data-management</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-glossaire.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Glossary, definitions</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#global-attributes" id="toc-global-attributes" class="nav-link active" data-scroll-target="#global-attributes"><span class="header-section-number">5.1</span> Global attributes</a></li>
+  <li><a href="#dimensions-and-definitions" id="toc-dimensions-and-definitions" class="nav-link" data-scroll-target="#dimensions-and-definitions"><span class="header-section-number">5.2</span> Dimensions and definitions</a></li>
+  <li><a href="#general-information-on-the-trajectory-file" id="toc-general-information-on-the-trajectory-file" class="nav-link" data-scroll-target="#general-information-on-the-trajectory-file"><span class="header-section-number">5.3</span> General information on the trajectory file</a></li>
+  <li><a href="#general-information-on-the-float" id="toc-general-information-on-the-float" class="nav-link" data-scroll-target="#general-information-on-the-float"><span class="header-section-number">5.4</span> General information on the float</a></li>
+  <li><a href="#n_measurement-dimension-variable-group" id="toc-n_measurement-dimension-variable-group" class="nav-link" data-scroll-target="#n_measurement-dimension-variable-group"><span class="header-section-number">5.5</span> N_MEASUREMENT dimension variable group</a>
+  <ul class="collapse">
+  <li><a href="#how-to-report-unusual-pressure-resolutions-in-the-n_measurement-variable-group-of-the-traj-file" id="toc-how-to-report-unusual-pressure-resolutions-in-the-n_measurement-variable-group-of-the-traj-file" class="nav-link" data-scroll-target="#how-to-report-unusual-pressure-resolutions-in-the-n_measurement-variable-group-of-the-traj-file"><span class="header-section-number">5.5.1</span> How to report unusual Pressure resolutions in the N_MEASUREMENT variable group of the TRAJ file</a></li>
+  </ul></li>
+  <li><a href="#n_cycle-dimension-variable-group" id="toc-n_cycle-dimension-variable-group" class="nav-link" data-scroll-target="#n_cycle-dimension-variable-group"><span class="header-section-number">5.6</span> N_CYCLE dimension variable group</a></li>
+  <li><a href="#scientific-calibration-section" id="toc-scientific-calibration-section" class="nav-link" data-scroll-target="#scientific-calibration-section"><span class="header-section-number">5.7</span> Scientific calibration section</a></li>
+  <li><a href="#juld-calibration-section" id="toc-juld-calibration-section" class="nav-link" data-scroll-target="#juld-calibration-section"><span class="header-section-number">5.8</span> JULD calibration section</a></li>
+  <li><a href="#history-information" id="toc-history-information" class="nav-link" data-scroll-target="#history-information"><span class="header-section-number">5.9</span> History information</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-formats-apercu.html">Formats description</a></li><li class="breadcrumb-item"><a href="./04-format-trajectoire.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Argo trajectory format version 3.2</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Argo trajectory format version 3.2</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Argo trajectory files contain all received Argos and GPS locations of Argo floats. The trajectory file also contains cycle timing information important for making velocity calculations. These times may come directly from the float in real time, from calculations based on float information in real time, from the satellite system in real time, or from estimations done in delayed mode.</p>
+<p>In addition to locations and cycle timing information, a trajectory file often contains measurements such as pressure, temperature, salinity or conductivity performed at various intermediate times during the cycle. The full pressure, temperature and salinity profile collected upon ascent is not included in the trajectory file. This is stored in the profile file.</p>
+<p>An Argo trajectory file contains the CTD and BGC sensor parameters that are measured outside the vertical profiles.</p>
+<p>There may be two Argo trajectory files at one time for a float - a real time trajectory file (“R”) and a delayed mode trajectory file (“D”). For naming conventions, see <a href="10-acces-donnees.html#argo-trajectory-data-file"><u>§4.1.3</u></a>. The real time trajectory file will contain all the data obtained in real time for all the cycles the float has performed. The “R” file will exist until the float dies and DMQC is finalized. A delayed mode trajectory file exists for the entire float lifetime.</p>
+<p>The delayed mode trajectory file will contain both real time and delayed mode data. The delayed mode data will be the highest quality data available for each cycle that has been delayed mode quality controlled. However, delayed mode quality control may not be performed on all the float’s cycles. In this case, the “D” file will contain both the real time and delayed mode data only for the cycles for which delayed mode quality control has been performed. Therefore, if both an “R” and “D” trajectory file exist, to obtain the best quality data for the entire float record, it might be necessary to look at the “D” file for the cycles that have been delayed mode quality controlled and then in the “R” file for the rest of the cycles which have not yet been delayed mode quality controlled. Once a float dies and the entire float record has been quality controlled, the “D” file will be the only file available on the GDAC and will contain both adjusted and not adjusted data.</p>
+<p>The trajectory file contains two groups of data variables. In this document the groups are differentiated by their dimension.</p>
+<p>The variable group described in <a href="#n_measurement-dimension-variable-group"><u>§2.3.5</u></a> which includes the locations, cycle timing information, and measurements from the float is N_MEASUREMENT long. It includes all the data from the float. If filled, the best timing information is kept in the JULD_ADJUSTED variable. If this is filled in real time, that means either clock drift has been determined and adjustment has been applied (inclusive of adjustment of zero) or another timing estimate has been done based on typical float behavior. Simultaneously, the DATA_MODE should be marked as “A” indicating an adjusted float, and the CLOCK_OFFSET variable should be appropriately filled.</p>
+<p>The variable group described in <a href="#n_cycle-dimension-variable-group"><u>§2.3.6</u></a> which includes the cycle timing information and other cycle descriptive variables is N_CYCLE long. The cycle timing information is a subset of the information found in the N_MEASUREMENT array. This array includes the best timing information which matches the JULD_ADJUSTED times if filled, else JULD times from the N_MEASUREMENT array., The times can be corrected for float clock drift or estimated. The JULD_*_STATUS variables provide information on the state of the timing information. The N_CYCLE array also includes several variables that pertain only to the entire cycle such as GROUNDED, CONFIG_MISSION_NUMBER, etc.</p>
+<p>In the N_MEASUREMENT group, the MEASUREMENT_CODE variable must be correctly understood. This variable is designed to indicate where in the cycle the location, times and important float timing events. The Measurement Code Table (Reference Table 15 - <a href="https://vocab.nerc.ac.uk/collection/R15/"><u>https://vocab.nerc.ac.uk/collection/R15/</u></a>) contains all the flags and their meanings for the MEASUREMENT_CODE variable. This table is comprised of two parts - a) Absolute codes: measurement code (MC) values can be primary (mandatory) or secondary (highly desirable), and b) Relative codes: measurement code values are relative to an absolute code and are further divided into two parts: generic codes that can be used by a wide variety of floats and specific codes that are directly important to a specific float/measurement.</p>
+<p>All Primary and Secondary MC events that are experienced by the float are required to be present in the N_MEASUREMENT array and redundantly in the N_CYCLE variables. Secondary codes are codes that are not as crucial as the primary codes, but it is still recommended they be filled. All other codes are voluntary. Please note the term ‘experienced by the float’. It is not necessary, nor best practice, to include measurement codes including primary or secondary codes, if the float is not programmed to activate an action described by the measurement code. For example a float alternates cycle missions. In even cycles n, the float does not enter a drift phase, but instead rises directly back to the surface after falling to depth. In odd cycles n+1, the float enters a drift phase. In the N_MEASUREMENT array the even cycles n would not include measurement codes indicative of drift, such as MC250 or MC300. But these codes would be included in odd cycles n+1.</p>
+<p>If the float experiences an event but the time is not able to be determined, then most JULD variables are set to fill value and a *_STATUS = ‘9’ is used in both the N_MEASUREMENT and N_CYCLE arrays. This indicates that it might be possible to estimate the timing of the event in the future and acts as a placeholder.</p>
+<p>If a float does not experience an event, then the fill values are used for all N_CYCLE variables. These non-events do not get a placeholder in the N_MEASUREMENT arrays as described above.</p>
+<p>For file naming conventions, see <a href="10-acces-donnees.html#argo-trajectory-data-file"><u>§4.1.3</u></a>.</p>
+<section id="global-attributes" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="global-attributes"><span class="header-section-number">5.1</span> Global attributes</h2>
+<p>The global attributes section is used for data discovery. It complies with NetCDF Climate and Forecast (CF) Metadata Conventions (version 1.6).</p>
+<ul>
+<li><a href="http://cfconventions.org/"><u>http://cfconventions.org/</u></a></li>
+</ul>
+<p>The following global attributes should appear in the global section (attributes in italic are optional attributes):</p>
+<p>// global attributes:</p>
+<p>:title = “Argo float trajectory file”;</p>
+<p>:institution = “CORIOLIS”;</p>
+<p>:source = “Argo float”;</p>
+<p>:history = “2011-04-22T06:00:00Z creation”;</p>
+<p>:references = “<a href="http://www.argodatamgt.org/Documentation"><u>http://www.argodatamgt.org/Documentation</u></a>”;</p>
+<p><em>:id = “<a href="https://doi.org/10.17882/42182"><u>https://doi.org/10.17882/42182</u></a>”</em></p>
+<p>:comment = “free text”;</p>
+<p>:user_manual_version = “3.45”;</p>
+<p>:Conventions = “Argo-3.2 CF-1.6”;</p>
+<p>:featureType = “trajectory”;</p>
+<p><em>:comment_on_resolution = “PRES variable resolution depends on measurement code”;</em></p>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 78%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Global attribute name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+title
+</td>
+<td>
+A succinct description of what is in the dataset.
+</td>
+</tr>
+<tr class="odd">
+<td>
+institution
+</td>
+<td>
+Specifies where the original data was produced.
+</td>
+</tr>
+<tr class="even">
+<td>
+source
+</td>
+<td>
+The method of production of the original data. If it was model-generated, source should name the model and its version, as specifically as could be useful. If it is observational, source should characterize it (e.g., “surface observation” or “radiosonde”).
+</td>
+</tr>
+<tr class="odd">
+<td>
+history
+</td>
+<td>
+Provides an audit trail for modifications to the original data. Well-behaved generic NetCDF filters will automatically append their name and the parameters with which they were invoked to the global history attribute of an input NetCDF file. We recommend that each line begin with a timestamp indicating the date and time of day that the program was executed.
+</td>
+</tr>
+<tr class="even">
+<td>
+references
+</td>
+<td>
+Published or web-based references that describe the data or methods used to produce it.
+</td>
+</tr>
+<tr class="odd">
+<td>
+id
+</td>
+<td>
+<p>
+The Argo GDAC data DOI: <a href="https://doi.org/10.17882/42182"><u>https://doi.org/10.17882/42182</u></a>
+</p>
+<p>
+This attribute is <strong>optional</strong> but highly recommended
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+comment
+</td>
+<td>
+Miscellaneous information about the data or methods used to produce it.
+</td>
+</tr>
+<tr class="odd">
+<td>
+user_manual_version
+</td>
+<td>
+The version number of the user manual
+</td>
+</tr>
+<tr class="even">
+<td>
+Conventions
+</td>
+<td>
+The conventions supported by this file, blank separated
+</td>
+</tr>
+<tr class="odd">
+<td>
+featureType
+</td>
+<td>
+The NetCDF CF feature type.
+</td>
+</tr>
+<tr class="even">
+<td>
+comment_on_resolution
+</td>
+<td>
+<strong>Optional</strong> comment on parameter resolution
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dimensions-and-definitions" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="dimensions-and-definitions"><span class="header-section-number">5.2</span> Dimensions and definitions</h2>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 17%">
+<col style="width: 60%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+<td>
+<strong>Comment</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+DATE_TIME
+</td>
+<td>
+DATE_TIME = 14;
+</td>
+<td>
+<p>
+This dimension is the length of an ASCII date and time value.
+</p>
+<p>
+Date_time convention is&nbsp;: YYYYMMDDHHMISS
+</p>
+<p>
+YYYY&nbsp;: year
+</p>
+<p>
+MM&nbsp;: month
+</p>
+<p>
+DD&nbsp;: day
+</p>
+<p>
+HH&nbsp;: hour of the day
+</p>
+<p>
+MI&nbsp;: minutes
+</p>
+<p>
+SS&nbsp;: seconds
+</p>
+<p>
+Date and time values are either in Universal Time (UTC) or float’s time.
+</p>
+<p>
+Examples&nbsp;:
+</p>
+<p>
+20010105172834&nbsp;: January 5<sup>th</sup> 2001 17:28:34
+</p>
+<p>
+19971217000000&nbsp;: December 17<sup>th</sup> 1997 00:00:00
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+<p>
+STRING256
+</p>
+<p>
+STRING64
+</p>
+<p>
+STRING32<br> STRING16
+</p>
+<p>
+STRING8<br> STRING4<br> STRING2
+</p>
+</td>
+<td>
+<p>
+STRING256 = 256
+</p>
+<p>
+STRING64 = 64;
+</p>
+<p>
+STRING32 = 32;
+</p>
+<p>
+STRING16 = 16;
+</p>
+<p>
+STRING8 = 8;
+</p>
+<p>
+STRING4 = 4;
+</p>
+<p>
+STRING2 = 2;
+</p>
+</td>
+<td>
+String dimensions from 2 to 256.
+</td>
+</tr>
+<tr class="even">
+<td>
+N_PARAM
+</td>
+<td>
+N_PARAM = &lt;int value&gt;;
+</td>
+<td>
+<p>
+Maximum number of parameters measured or calculated for a pressure sample.
+</p>
+<p>
+Examples&nbsp;:
+</p>
+<p>
+(pressure, temperature)&nbsp;: N_PARAM = 2
+</p>
+<p>
+(pressure, temperature, salinity)&nbsp;: N_PARAM = 3
+</p>
+<p>
+(pressure, temperature, conductivity, salinity)&nbsp;: N_PARAM = 4
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+N_MEASUREMENT
+</td>
+<td>
+N_MEASUREMENT = unlimited;
+</td>
+<td>
+This dimension is the number of recorded locations, cycle timings and measurements of the file.
+</td>
+</tr>
+<tr class="even">
+<td>
+N_CYCLE
+</td>
+<td>
+N_CYCLE = &lt;int value&gt;;
+</td>
+<td>
+<p>
+Number of collected float cycles.&nbsp;
+</p>
+<p>
+If all the cycles have been collected (i.e.&nbsp;if there are no missing cycles), it is the number of cycles performed by the float. In this particular case, as some floats begin cycle numbering at 0, others at 1, in the former, N_CYCLE = max(CYCLE_NUMBER) +1.&nbsp; In the latter, N_CYCLE = max(CYCLE_NUMBER)
+</p>
+<p>
+Example: N_CYCLE = 100
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+N_HISTORY
+</td>
+<td>
+N_HISTORY = &lt;int value&gt;;
+</td>
+<td>
+<p>
+Maximum number of history records for a location. This dimension depends on the data set
+</p>
+<p>
+Example: N_HISTORY = 10
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+N_VALUESxx
+</td>
+<td>
+N_VALUESxx = &lt;int value&gt;;
+</td>
+<td>
+Maximum number of parameter measurements sampled at a given pressure level. This dimension depends on the data set. Example: N_VALUES41 = 41.
+</td>
+</tr>
+<tr class="odd">
+<td>
+N_CALIB_PARAM
+</td>
+<td>
+N_CALIB_PARAM = &lt;int value&gt;;
+</td>
+<td>
+Maximum number of calibrations performed on a float to fill the parameter adjusted fields. This dimension depends on the data set. Example: N_CALIB_PARAM = 3.
+</td>
+</tr>
+<tr class="even">
+<td>
+N_CALIB_JULD
+</td>
+<td>
+N_CALIB_JULD = &lt;int value&gt;;
+</td>
+<td>
+Maximum number of calibrations performed on a float to fill the JULD adjusted fields. This dimension depends on the data set. Example: N_CALIB_JULD = 3.
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="general-information-on-the-trajectory-file" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="general-information-on-the-trajectory-file"><span class="header-section-number">5.3</span> General information on the trajectory file</h2>
+<p>This section contains information about the whole file.</p>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 43%">
+<col style="width: 34%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+<td>
+<strong>Comment</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+DATA_TYPE
+</td>
+<td>
+<p>
+char DATA_TYPE(STRING16);<br> DATA_TYPE:long_name = “Data type”;
+</p>
+<p>
+DATA_TYPE:conventions = “Argo reference table 1”;
+</p>
+<p>
+DATA_TYPE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+This field contains the type of data contained in the file.
+</p>
+<p>
+The list of acceptable data types is in the reference table 1 (<a href="https://vocab.nerc.ac.uk/collection/R01/"><u>https://vocab.nerc.ac.uk/collection/R01/</u></a>).
+</p>
+<p>
+Example: “Argo trajectory”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+FORMAT_VERSION
+</td>
+<td>
+<p>
+char FORMAT_VERSION(STRING4);
+</p>
+<p>
+FORMAT_VERSION:long_name = “File format version”;
+</p>
+<p>
+FORMAT_VERSION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+File format version
+</p>
+<p>
+Example: “3.2”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+HANDBOOK_VERSION
+</td>
+<td>
+<p>
+char HANDBOOK_VERSION(STRING4);
+</p>
+<p>
+HANDBOOK_VERSION:long_name = “Data handbook version”;
+</p>
+<p>
+HANDBOOK_VERSION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Version number of the data handbook.
+</p>
+<p>
+This field indicates that the data contained in this file are managed according to the policy described in the Argo data management handbook.
+</p>
+<p>
+Example: “1.2”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+REFERENCE_DATE_TIME
+</td>
+<td>
+<p>
+char REFERENCE_DATE_TIME(DATE_TIME);
+</p>
+<p>
+REFERENCE_DATE_TIME:long_name = “Date of reference for Julian days”;
+</p>
+<p>
+REFERENCE_DATE_TIME:conventions = “YYYYMMDDHHMISS”;
+</p>
+<p>
+REFERENCE_DATE_TIME:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Date of reference for Julian days.
+</p>
+<p>
+The recommended reference date time is
+</p>
+<p>
+“19500101000000”&nbsp;(meaning January 1<sup>st</sup> 1950 00:00:00)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+DATE_CREATION
+</td>
+<td>
+<p>
+char DATE_CREATION(DATE_TIME);
+</p>
+<p>
+DATE_CREATION:long_name = “Date of file creation”;
+</p>
+<p>
+DATE_CREATION:conventions = “YYYYMMDDHHMISS”;
+</p>
+<p>
+DATE_CREATION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Date and time (UTC) of creation of this file.
+</p>
+<p>
+Format&nbsp;: YYYYMMDDHHMISS
+</p>
+<p>
+Example:
+</p>
+<p>
+“20011229161700”&nbsp;(meaning December 29<sup>th</sup> 2001 16:17:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+DATE_UPDATE
+</td>
+<td>
+<p>
+char DATE_UPDATE(DATE_TIME);
+</p>
+<p>
+DATE_UPDATE:long_name = “Date of update of this file”;
+</p>
+<p>
+DATE_UPDATE:conventions = “YYYYMMDDHHMISS”;
+</p>
+<p>
+DATE_UPDATE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Date and time (UTC) of update of this file.
+</p>
+<p>
+Format&nbsp;: YYYYMMDDHHMISS
+</p>
+<p>
+Example:
+</p>
+<p>
+“20011230090500”&nbsp;(meaning December 30<sup>th</sup> 2001 09:05:00)
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="general-information-on-the-float" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="general-information-on-the-float"><span class="header-section-number">5.4</span> General information on the float</h2>
+<p>This section contains general information on the float.</p>
+<table class="table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 33%">
+<col style="width: 42%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+<td>
+<strong>Comment</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+PLATFORM_NUMBER
+</td>
+<td>
+<p>
+char PLATFORM_NUMBER(STRING8);
+</p>
+<p>
+PLATFORM_NUMBER:long_name = “Float unique identifier”;
+</p>
+<p>
+PLATFORM_NUMBER:conventions = “WMO float identifier: A9IIIII”;
+</p>
+<p>
+PLATFORM_NUMBER:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+WMO float identifier.
+</p>
+<p>
+WMO is the World Meteorological Organization.
+</p>
+<p>
+This platform number is unique.
+</p>
+<p>
+Example: “6900045”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+PROJECT_NAME
+</td>
+<td>
+<p>
+char PROJECT_NAME(STRING64);
+</p>
+<p>
+PROJECT_NAME:long_name = “Name of the project”;
+</p>
+<p>
+PROJECT_NAME:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Name of the project that operates the float.<br> Multiple projects can be separated by commas.
+</p>
+<p>
+Example: “GYROSCOPE, GMMC”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+PI_NAME
+</td>
+<td>
+<p>
+char PI_NAME (STRING64);
+</p>
+<p>
+PI_NAME:long_name = “Name of the principal investigator”;
+</p>
+<p>
+PI_NAME:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Name of the principal investigator responsible for the profiling float. Valid PI names are listed in reference table R40: <a href="https://vocab.nerc.ac.uk/collection/R40/"><u>https://vocab.nerc.ac.uk/collection/R40/</u></a>
+</p>
+<p>
+Multiple names can be concatenated, separated by commas.
+</p>
+<p>
+Example: “Julia UITZ”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+TRAJECTORY_PARAMETERS
+</td>
+<td>
+<p>
+char TRAJECTORY_PARAMETERS(N_PARAM, STRING64);
+</p>
+<p>
+TRAJECTORY_PARAMETERS:long_name = “List of available parameters”;
+</p>
+<p>
+TRAJECTORY_PARAMETERS:conventions = “Argo reference table 3”;
+</p>
+<p>
+TRAJECTORY_PARAMETERS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+List of parameters contained in this trajectory file.
+</p>
+<p>
+The parameter names are listed in reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).
+</p>
+<p>
+Examples&nbsp;: “PRES”,” TEMP”, “PSAL”, “DOXY”, etc.
+</p>
+<p>
+“PRES”: pressure
+</p>
+<p>
+“TEMP”&nbsp;: temperature
+</p>
+<p>
+“PSAL”&nbsp;: practical salinity
+</p>
+<p>
+“DOXY”: dissolved oxygen
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+DATA_CENTRE
+</td>
+<td>
+<p>
+char DATA_CENTRE(STRING2);
+</p>
+<p>
+DATA_CENTRE:long_name = “Data centre in charge of float data processing”;
+</p>
+<p>
+DATA_CENTRE:conventions = “Argo reference table 4”;
+</p>
+<p>
+DATA_CENTRE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Code for the data centre in charge of the float data management.
+</p>
+<p>
+The data centre codes are described in the reference table 4 (<a href="https://vocab.nerc.ac.uk/collection/R04/"><u>https://vocab.nerc.ac.uk/collection/R04/</u></a>).
+</p>
+<p>
+Example: “ME” for MEDS
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+DATA_STATE_INDICATOR
+</td>
+<td>
+<p>
+char DATA_STATE_INDICATOR(STRING4);
+</p>
+<p>
+DATA_STATE_INDICATOR:long_name = “Degree of processing the data have passed through”;
+</p>
+<p>
+DATA_STATE_INDICATOR:conventions = “Argo reference table 6”;
+</p>
+<p>
+DATA_STATE_INDICATOR:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Data processing level.
+</p>
+<p>
+The data state indicator is described in the reference table 6 (<a href="https://vocab.nerc.ac.uk/collection/R06/"><u>https://vocab.nerc.ac.uk/collection/R06/</u></a>).
+</p>
+<p>
+Example: “2B”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+PLATFORM_TYPE
+</td>
+<td>
+<p>
+char PLATFORM_TYPE(STRING32);
+</p>
+<p>
+PLATFORM_TYPE:long_name = “Type of float”;
+</p>
+<p>
+PLATFORM_TYPE:conventions = “Argo reference table 23”;
+</p>
+<p>
+PLATFORM_TYPE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Type of float listed in reference table 23 (<a href="https://vocab.nerc.ac.uk/collection/R23/"><u>https://vocab.nerc.ac.uk/collection/R23/</u></a>).
+</p>
+<p>
+Example: “SOLO”, “APEX”, “PROVOR”, “ARVOR”, “NINJA”.
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+FLOAT_SERIAL_NO
+</td>
+<td>
+<p>
+char FLOAT_SERIAL_NO(STRING32);
+</p>
+<p>
+FLOAT_SERIAL_NO:long_name = “Serial number of the float”;
+</p>
+<p>
+FLOAT_SERIAL_NO:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+This field should contain only the serial number of the float.
+</p>
+<p>
+Example: “1679”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+FIRMWARE_VERSION
+</td>
+<td>
+<p>
+char FIRMWARE_VERSION(STRING64);
+</p>
+<p>
+FIRMWARE_VERSION:long_name = “Instrument firmware version”;
+</p>
+<p>
+FIRMWARE_VERSION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Firmware version of the float.
+</p>
+<p>
+The dimension STRING32 instead of STRING64 remains accepted.
+</p>
+<p>
+Example: “013108”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+WMO_INST_TYPE
+</td>
+<td>
+<p>
+char WMO_INST_TYPE(STRING4);
+</p>
+<p>
+WMO_INST_TYPE:long_name = “Coded instrument type”;
+</p>
+<p>
+WMO_INST_TYPE:conventions = “Argo reference table 8”;
+</p>
+<p>
+WMO_INST_TYPE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Instrument type from WMO code table 1770.
+</p>
+<p>
+A subset of WMO table 1770 is documented in the reference table 8 (<a href="https://vocab.nerc.ac.uk/collection/R08/"><u>https://vocab.nerc.ac.uk/collection/R08/</u></a>).
+</p>
+<p>
+Example: “831”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+POSITIONING_SYSTEM
+</td>
+<td>
+<p>
+char POSITIONING_SYSTEM(STRING8);
+</p>
+<p>
+POSITIONING_SYSTEM:long_name = “Positioning system”;
+</p>
+<p>
+POSITIONING_SYSTEM:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Name of the system used to derive the float locations, see reference table 9 (<a href="https://vocab.nerc.ac.uk/collection/R09/"><u>https://vocab.nerc.ac.uk/collection/R09/</u></a>).
+</p>
+<p>
+Example: “ARGOS”
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="n_measurement-dimension-variable-group" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="n_measurement-dimension-variable-group"><span class="header-section-number">5.5</span> N_MEASUREMENT dimension variable group</h2>
+<p>This section describes the variables found in the N_MEASUREMENT dimension variable group. In this variable group you find the unadjusted data as reported by the float, adjusted timing, the reported locations, as well as measurements performed along the surface and subsurface trajectory.</p>
+<p>N_MEASUREMENT is the number of locations, cycle timings, and measurements received or estimated from information sent by the float. If a cycle is missed, nothing is entered into the N_MEASUREMENT array - e.g.&nbsp;no fill values are allowed to indicate a missing cycle.</p>
+<p>The N_MEASURMENT array should be arranged first by CYCLE_NUMBER and then by the order the events for that cycle occurred. Some data within the netCDF may not have a time attached to it, but it should still be placed as close as possible to its origination time. Because the order of the N_MEASUREMENT array is based on time, MEASUREMENT_CODE will not be ascending for every cycle, but JULD is usually ascending (unless a clock offset has been applied and then the JULD variable may have an inversion) and JULD_ADJUSTED is always ascending. To construct the trajectory netCDF a full understanding of when the float data was gathered within the cycle is necessary.</p>
+<p>JULD contains the raw timing values either from the satellite system or from the float. The values in JULD cannot be estimated, nor altered such as for clock drift.</p>
+<p>JULD_ADJUSTED contains the best estimate of float timing available for this float. If necessary, it contains adjusted timing variables due to clock drift. The times can be adjusted either in real time or in delayed mode due to clock drift or estimation of times based on float behavior by a float expert. The JULD_ADJUSTED_STATUS variable indicates how the JULD_ADJUSTED value is filled and indicates whether the time is estimated or measured. The JULD_ADJUSTED_QC contains the QC flags for the adjusted times. This may lead to times where JULD_ADJUSTED is filled, but JULD contains ‘FillValue’. That is because the time is estimated rather than measured.</p>
+<p>In R-mode, no times are adjusted, but times may be estimated and placed within JULD_ADJUSTED with the JULD_ADJUSTED_STATUS flag set to ‘1’ indicating an estimated value. Non-adjusted times do not need to be carried down to the JULD_ADJUSTED array, so this array may be sparse or even empty. No estimated times are allowed in the JULD variable.</p>
+<p>In A-mode, adjustments are made, typically to PSAL and PRES, but others may be adjusted as well such as JULD if real-time correction of clock drift is applied. If an adjustment is made, all values must be carried down to the ADJUSTED variables with the appropriate adjustment applied. Real time estimates will also be present in ‘A’ files. Non-zero adjustments will need to be applied to any present estimates.</p>
+<p>In D-mode, all adjustments and estimations are complete. Similar to the ‘A’ file, there must be correspondence between the ADJUSTED and non-ADJUSTED fields. This means that all values must be carried down to the ADJUSTED field. ADJUSTED variables may have a value while the corresponding non-ADJUSTED variable is ‘FillValue’ due to the presence of an estimated value. The opposite is not allowed. There cannot be a non-ADJUSTED value and ‘FillValue’ in the corresponding ADJUSTED variable.</p>
+<p>CYCLE_NUMBER contains the cycle number of the cycle that is assigned in real time. This cycle number must match the profile cycle number, which is the number recorded in the CYCLE_NUMBER(N_PROF) variable in profile files.</p>
+<p>CYCLE_NUMBER_INDEX indicates which cycle number information is contained in that index of the N_CYCLE array. For example, CYCLE_NUMBER_INDEX(4)=3 means the 4th element of all 34 N_CYCLE variables is associated with the WMO_003.nc profile file. This might happen if the float’s first cycle has a cycle number of zero rather than one. Additionally, all the elements of the N_MEASUREMENT variables for which CYCLE_NUMBER = 3 are likewise associated with the 4th N_CYCLE elements and with the WMO_003.nc profile file. This clearly links the index in the N_CYCLE array to the cycle number in the N_MEASUREMENT array.</p>
+<p>Additionally, CYCLE_NUMBER = -1 indicates the float’s launch and the JULD and LATITUDE and LONGITUDE variables should contain the float’s launch time and location.</p>
+<p>CYCLE_NUMBER_ADJUSTED contains a cycle numbering which has been assessed and adjusted to be correct, especially for the purposes of trajectory calculations. If a cycle is recovered during delayed mode and no profile file is created, the cycle must be added into the CYCLE_NUMBER_ADJUSTED and CYCLE_NUMBER_ADJUSTED_INDEX variables. Two examples of recovered cycles are below.</p>
+<p>The first example is where cycle number 5 is recovered in delayed mode. The cycle number variables must be rewritten as follows:</p>
+<p>CYCLE_NUMBER 1, 2, 3, 4, _, 6, 7, 8, 9, 10, 11,…,</p>
+<p>CYCLE_NUMBER_INDEX 1, 2, 3, 4, _, 6, 7, 8, 9, 10, 11,…,</p>
+<p>CYCLE_NUMBER_ADJUSTED 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, _</p>
+<p>CYCLE_NUMBER_ADJUSTED_INDEX 1, 2, 3, 4, 5, 6, 7, 8 9, 10, _</p>
+<p>Here, FillValue is added to CYCLE_NUMBER and CYCLE_NUMBER_INDEX to indicate that no profile file exists with cycle number 5.</p>
+<p>A second example of an error that might be discovered in cycle number in delayed mode involves floats that do not send cycle number and for which cycle number must be calculated. Here, cycle number 5 was incorrectly skipped in real time and is introduced in delayed mode:</p>
+<p>CYCLE_NUMBER 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12,…</p>
+<p>CYCLE_NUMBER_INDEX 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12,…</p>
+<p>CYCLE_NUMBER_ADJUSTED 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, _, _</p>
+<p>CYCLE_NUMBER_ADJUSTED_INDEX 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, _, _</p>
+<p>Here, CYCLE_NUMBER = 6 which was assigned in real time, should actually be assigned cycle number = 5 as reflected by the CYCLE_NUMBER_ADJUSTED variable.</p>
+<p>CYCLE_NUMBER always corresponds to the profile cycle number. To look for the cycle that matches the profile cycle number, users must look in the CYCLE_NUMBER variable for the cycle number they are interested in. If the CYCLE_NUMBER_ADJUSTED variable is ‘FillValue’, then this cycle is in real time mode and no corrected cycle number exists. If the CYCLE_NUMBER_ADJUSTED variable is filled, this is the correct cycle number as determined during delayed mode. For the previous example, profile cycle number 6 corresponds to CYCLE_NUMBER = 6 and CYCLE_NUMBER_ADJUSTED = 5.</p>
+<p>&lt;PARAM&gt; contains the uncorrected real-time data transmitted by the floats.</p>
+<p>The values in &lt;PARAM&gt; should never be altered. &lt;PARAM&gt;_QC contains QC flags that pertain to the values in &lt;PARAM&gt;. Values in &lt;PARAM&gt;_QC are set initially in real time by the automatic real-time tests.</p>
+<p>They are later modified in ‘D’ mode at levels where the QC flags are set incorrectly by the real-time procedures, and where erroneous data are not detected by the real-time procedures.</p>
+<p>Each parameter can be adjusted. In that case, &lt;PARAM&gt;_ADJUSTED contains the adjusted values, &lt;PARAM&gt;_ADJUSTED_QC contains the QC flags set by the delayed-mode process, and &lt;PARAM&gt;_ADJUSTED_ERROR contains the adjustment uncertainties.</p>
+<p>A file A-mode processing contains adjusted sections with fill values (&lt;PARAM&gt;_ADJUSTED, &lt;PARAM&gt;_ADJUSTED_QC and &lt;PARAM&gt;_ADJUSTED_ERROR). This is the same for all other ADJUSTED variables (e.g.&nbsp;JULD_ADJUSTED).</p>
+<p>When no parameter is measured along the trajectory, N_PARAM (number of parameters) and any fields relative to parameter are not in the file: &lt;PARAM&gt;, &lt;PARAM&gt;_QC, &lt;PARAM&gt;_ADJUSTED, &lt;PARAM&gt;_ADJUSTED_QC, &lt;PARAM&gt;_ADJUSTED_ERROR and TRAJECTORY_PARAMETERS.</p>
+<p><strong><u>Iridium and estimated positions:</u></strong></p>
+<p>Iridium-based or estimated positions are included if no GPS fix could be obtained that is considered good in real-time. POSITIONING_SYSTEM is used to indicate that multiple positioning systems are present in the trajectory file (see reference table 9 - <a href="https://vocab.nerc.ac.uk/collection/R09/"><u>https://vocab.nerc.ac.uk/collection/R09/</u></a>). Used are “I” (for Iridium) or “U” (for estimated) in POSITION_ACCURACY (Table 5 - <a href="https://vocab.nerc.ac.uk/collection/R05/"><u>https://vocab.nerc.ac.uk/collection/R05/</u></a>). If both AXES_ERROR_ELLIPSE_MAJOR and AXES_ERROR_ELLIPSE_MINOR values are the same AXES_ERROR_ELLIPSE_ANGLE is not needed (set to FillValue).</p>
+<p><strong><u>RAFOS positions:</u></strong></p>
+<p>A similar approach is used storing the error and indicating that the position comes from RAFOS estimates. POSITIONING_SYSTEM remains filled with the primary system, i.e.&nbsp;GPS or Argos rather than RAFOS. POSITION_ACCURACY becomes ‘R’ and the MEASUREMENT_CODE for positions and associated times is MC - 25, MC being a primary or secondary measurement code (see <a href="09-tables-reference.html#reference-table-15-codes-of-trajectory-measurements-performed-within-a-cycle"><u>§3.15</u></a> for more details)</p>
+<p>Details on how the RAFOS positions were derived cannot be stored in the traj.nc file. These will be in a traj_aux file.</p>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 36%">
+<col style="width: 46%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>definition</strong>
+</td>
+<td>
+<strong>comment</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD
+</td>
+<td>
+<p>
+double JULD(N_MEASUREMENT);
+</p>
+<p>
+JULD:long_name = “Julian day (UTC) of each measurement relative to REFERENCE_DATE_TIME”;
+</p>
+<p>
+JULD:standard_name = “time”;
+</p>
+<p>
+JULD:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD:resolution = X;
+</p>
+<p>
+JULD:_FillValue = 999999.;
+</p>
+<p>
+JULD:axis = “T”;
+</p>
+</td>
+<td>
+<p>
+Julian day of the location (or measurement).
+</p>
+<p>
+The integer part represents the day, the decimal part represents the time of the measurement.
+</p>
+<p>
+Date and time are in universal time coordinates.
+</p>
+<p>
+The Julian day is relative to REFERENCE_DATE_TIME.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_STATUS
+</td>
+<td>
+<p>
+char JULD_STATUS(N_MEASUREMENT);
+</p>
+<p>
+JULD_STATUS:long_name=“Status of the date and time”
+</p>
+<p>
+JULD_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_QC
+</td>
+<td>
+<p>
+char JULD_QC(N_MEASUREMENT);
+</p>
+<p>
+JULD_QC:long_name = “Quality on date and time”;
+</p>
+<p>
+JULD_QC:conventions = “Argo reference table 2”;
+</p>
+<p>
+JULD_QC:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Quality flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in the reference tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2"><u>https://vocab.nerc.ac.uk/collection/RR2/</u></a> for real-time and <a href="https://vocab.nerc.ac.uk/collection/RD2/"><u>https://vocab.nerc.ac.uk/collection/RD2/</u></a> for delayed-mode).
+</p>
+<p>
+Example: “1” (meaning the date and time seem correct)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_ADJUSTED
+</td>
+<td>
+<p>
+double JULD_ADJUSTED(N_MEASUREMENT);
+</p>
+<p>
+JULD_ADJUSTED:long_name = “Adjusted julian day (UTC) of each measurement relative to REFERENCE_DATE_TIME”;
+</p>
+<p>
+JULD_ADJUSTED:standard_name = “time”;
+</p>
+<p>
+JULD_ADJUSTED:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_ADJUSTED:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_ADJUSTED:resolution = X;
+</p>
+<p>
+JULD_ADJUSTED:_FillValue = 999999.;
+</p>
+<p>
+JULD:axis = “T”;
+</p>
+</td>
+<td>
+<p>
+Adjusted Julian day of the location (or measurement).
+</p>
+<p>
+The integer part represents the day, the decimal part represents the time of the measurement.
+</p>
+<p>
+Date and time are in universal time coordinates.
+</p>
+<p>
+The Julian day is relative to REFERENCE_DATE_TIME.
+</p>
+<p>
+The date may be adjusted due to float clock drift or expert review.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_ADJUSTED_STATUS
+</td>
+<td>
+<p>
+char JULD_ADJUSTED_STATUS(N_MEASUREMENT);
+</p>
+<p>
+JULD_ADJUSTED_STATUS:long_name=“Status of the JULD_ADJUSTED date”
+</p>
+<p>
+JULD_ADJUSTED_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_ADJUSTED_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_ADJUSTED_QC
+</td>
+<td>
+<p>
+char JULD_ADJUSTED_QC(N_MEASUREMENT);
+</p>
+<p>
+JULD_ADJUSTED_QC:long_name = “Quality on adjusted date and time”;
+</p>
+<p>
+JULD_ADJUSTED_QC:conventions = “Argo reference table 2”;
+</p>
+<p>
+JULD_ADJUSTED_QC:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Quality flag on JULD_ADJUSTED date and time.
+</p>
+<p>
+The flag scale is described in the reference tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2"><u>https://vocab.nerc.ac.uk/collection/RR2/</u></a> for real-time and <a href="https://vocab.nerc.ac.uk/collection/RD2/"><u>https://vocab.nerc.ac.uk/collection/RD2/</u></a> for delayed-mode).
+</p>
+<p>
+Example: “1” (meaning the date and time seem correct)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+LATITUDE
+</td>
+<td>
+<p>
+double LATITUDE(N_MEASUREMENT);
+</p>
+<p>
+LATITUDE:long_name = “Latitude of each location”;
+</p>
+<p>
+LATITUDE:standard_name = “latitude”;
+</p>
+<p>
+LATITUDE:units = “degree_north”;
+</p>
+<p>
+LATITUDE:_FillValue = 99999.;
+</p>
+<p>
+LATITUDE:valid_min = -90.;
+</p>
+<p>
+LATITUDE:valid_max = 90.;
+</p>
+<p>
+LATITUDE:axis = “Y”;
+</p>
+</td>
+<td>
+<p>
+Latitude of the location (or measurement).
+</p>
+<p>
+Unit&nbsp;: degree north
+</p>
+<p>
+Example: 44.4991&nbsp;(standing for 44° 29’ 56.76’’ N)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+LONGITUDE
+</td>
+<td>
+<p>
+double LONGITUDE(N_MEASUREMENT);
+</p>
+<p>
+LONGITUDE:long_name = “Longitude of each location”;
+</p>
+<p>
+LONGITUDE:standard_name = “longitude”;
+</p>
+<p>
+LONGITUDE:units = “degree_east”;
+</p>
+<p>
+LONGITUDE:_FillValue = 99999.;
+</p>
+<p>
+LONGITUDE:valid_min = -180.;
+</p>
+<p>
+LONGITUDE:valid_max = 180.;
+</p>
+<p>
+LONGITUDE:axis = “X”;
+</p>
+</td>
+<td>
+<p>
+Longitude of the location (or measurement).
+</p>
+<p>
+Unit&nbsp;: degree east
+</p>
+<p>
+Example: 16.7222&nbsp;(standing for 16° 43’ 19.92’’ E)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+POSITION_ACCURACY
+</td>
+<td>
+<p>
+char POSITION_ACCURACY(N_MEASUREMENT);
+</p>
+<p>
+POSITION_ACCURACY:long_name = “Estimated accuracy in latitude and longitude”;
+</p>
+<p>
+POSITION_ACCURACY:conventions = “Argo reference table 5”;
+</p>
+<p>
+POSITION_ACCURACY:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Position accuracy received from the positioning system.
+</p>
+<p>
+The location classes from ARGOS are described in the reference table 5 (<a href="https://vocab.nerc.ac.uk/collection/R05/"><u>https://vocab.nerc.ac.uk/collection/R05/</u></a>).
+</p>
+<p>
+A “G” indicates the GPS positioning system.
+</p>
+<p>
+Examples&nbsp;:
+</p>
+<p>
+“3”&nbsp;for a latitude and longitude accuracy &lt; 250 m.
+</p>
+<p>
+“G” for GPS accuracy
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+POSITION_QC
+</td>
+<td>
+<p>
+char POSITION_QC(N_MEASUREMENT);
+</p>
+<p>
+POSITION_QC:long_name = “Quality on position”;
+</p>
+<p>
+POSITION_QC:conventions = “Argo reference table 2”;
+</p>
+<p>
+POSITION_QC:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Quality flag on position.
+</p>
+<p>
+The flag on position is set according to (LATITUDE, LONGITUDE, JULD) quality.
+</p>
+<p>
+The flag scale is described in the reference tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2"><u>https://vocab.nerc.ac.uk/collection/RR2/</u></a> for real-time and <a href="https://vocab.nerc.ac.uk/collection/RD2/"><u>https://vocab.nerc.ac.uk/collection/RD2/</u></a> for delayed-mode).
+</p>
+<p>
+Example: “1”&nbsp;(meaning the position seems correct)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+CYCLE_NUMBER
+</td>
+<td>
+<p>
+int CYCLE_NUMBER(N_MEASUREMENT);
+</p>
+<p>
+CYCLE_NUMBER:long_name = “Float cycle number of the measurement”;
+</p>
+<p>
+CYCLE_NUMBER:conventions = “0…N, 0 : launch cycle, 1 : first complete cycle”;
+</p>
+<p>
+CYCLE_NUMBER:_FillValue = 99999;
+</p>
+</td>
+<td>
+<p>
+Cycle number of the float for this series of measurements, locations and timings. Some floats begin with a cycle 0 and some begin at cycle number 1. Cycle number is -1 for the float’s launch and includes the time and location.
+</p>
+<p>
+For one cycle number, there are usually several locations/measurements received. This cycle number must match the profile cycle number.
+</p>
+<p>
+Example: 17 for measurements performed during the 17<sup>th</sup> cycle of the float.
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+CYCLE_NUMBER_ADJUSTED
+</td>
+<td>
+<p>
+int CYCLE_NUMBER_ADJUSTED (N_MEASUREMENT);
+</p>
+<p>
+CYCLE_NUMBER_ADJUSTED:long_name = “Adjusted float cycle number of the measurement”;
+</p>
+<p>
+CYCLE_NUMBER_ADJUSTED:conventions = “0…N, 0 : launch cycle, 1 : first complete cycle”;
+</p>
+<p>
+CYCLE_NUMBER_ADJUSTED:_FillValue = 99999;
+</p>
+</td>
+<td>
+<p>
+Adjusted cycle number of the float for this series of measurements, locations and timings. Some floats begin with a cycle 0 and some begin at cycle number 1.
+</p>
+<p>
+For one cycle number, there are usually several locations/measurements received. Sometimes cycle numbers are assigned erroneously and need to be corrected. This variable contains the corrected cycle numbers.
+</p>
+<p>
+Example: 17 for measurements performed during the 17<sup>th</sup> cycle of the float.
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+MEASUREMENT_CODE
+</td>
+<td>
+<p>
+int MEASUREMENT_CODE (N_MEASUREMENT);
+</p>
+<p>
+MEASUREMENT_CODE:long_name = “Flag referring to a measurement event in the cycle”;
+</p>
+<p>
+MEASUREMENT_CODE:conventions = “Argo reference table 15”;
+</p>
+<p>
+MEASUREMENT_CODE:_FillValue = 99999;
+</p>
+</td>
+<td>
+<p>
+Flag for each event in the cycle which corresponds to Argo reference table 15 (<a href="https://vocab.nerc.ac.uk/collection/R15/"><u>https://vocab.nerc.ac.uk/collection/R15/</u></a>).
+</p>
+<p>
+Example: 100 (meaning all measurements made at the start of descent to the drift pressure. Could be time, location, surface pressure, etc.)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+&lt;PARAM&gt;
+</td>
+<td>
+<p>
+float &lt;PARAM&gt;(N_MEASUREMENT);
+</p>
+<p>
+&lt;PARAM&gt;:long_name = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;:standard_name = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;:_FillValue = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;:units = “&lt;X&gt;”;<br> &lt;PARAM&gt;:valid_min = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;:valid_max = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;:C_format = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;:FORTRAN_format = “&lt;X&gt;”;
+</p>
+</td>
+<td>
+<p>
+&lt;PARAM&gt; contains the original values of a parameter listed in the “code” column of reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).
+</p>
+<p>
+&lt;X&gt;: these fields are specified in the columns of the reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+&lt;PARAM&gt;_QC
+</td>
+<td>
+<p>
+char &lt;PARAM&gt;_QC(N_MEASUREMENT);
+</p>
+<p>
+&lt;PARAM&gt;_QC:long_name = “quality flag”;
+</p>
+<p>
+&lt;PARAM&gt;_QC:conventions = “Argo reference table 2”;
+</p>
+<p>
+&lt;PARAM&gt;_QC:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Quality flag applied on each &lt;PARAM&gt; value.
+</p>
+<p>
+The flag scale is specified in tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2"><u>https://vocab.nerc.ac.uk/collection/RR2/</u></a> for real-time and <a href="https://vocab.nerc.ac.uk/collection/RD2/"><u>https://vocab.nerc.ac.uk/collection/RD2/</u></a> for delayed-mode).
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+&lt;PARAM&gt;_ADJUSTED
+</td>
+<td>
+<p>
+float &lt;PARAM&gt;_ADJUSTED(N_MEASUREMENT);
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:long_name = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:standard_name = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:_FillValue = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:units = “&lt;X&gt;”;<br> &lt;PARAM&gt;_ADJUSTED:valid_min = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:valid_max = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:comment = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:C_format = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:FORTRAN_format = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED:resolution= &lt;X&gt;;
+</p>
+</td>
+<td>
+<p>
+&lt;PARAM&gt;_ADJUSTED contains the adjusted values derived from the original values of the parameter.
+</p>
+<p>
+&lt;X&gt;: these fields are specified in the columns of the reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).
+</p>
+<p>
+When no adjustment is performed, the FillValue is inserted.
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED is mandatory for core and bgc parameters, but not for intermediate parameter<del>s</del>.
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+&lt;PARAM&gt;_ADJUSTED_QC
+</td>
+<td>
+<p>
+char &lt;PARAM&gt;_ADJUSTED_QC(N_MEASUREMENT);
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_QC:long_name = “quality flag”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_QC:conventions = “Argo reference table 2”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_QC:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Quality flag applied on each &lt;PARAM&gt;_ADJUSTED values.
+</p>
+<p>
+The flag scale is specified in reference tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2"><u>https://vocab.nerc.ac.uk/collection/RR2/</u></a> for real-time and <a href="https://vocab.nerc.ac.uk/collection/RD2/"><u>https://vocab.nerc.ac.uk/collection/RD2/</u></a> for delayed-mode).
+</p>
+<p>
+When no adjustment is performed, the FillValue is inserted.
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_QC is mandatory for core and bgc parameters, but not for intermediate parameters.
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+&lt;PARAM&gt;_ADJUSTED_ERROR
+</td>
+<td>
+<p>
+float &lt;PARAM&gt;_ADJUSTED_ERROR(N_MEASUREMENT);
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR:long_name = “Contains the error on the adjusted values as determined by the delayed mode QC process.”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR:_FillValue = &lt;X&gt;;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR:units = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR:C_format = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR:FORTRAN_format = “&lt;X&gt;”;
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR:resolution= &lt;X&gt;;
+</p>
+</td>
+<td>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR contains the error on the adjusted values of the parameter.
+</p>
+<p>
+&lt;X&gt;: these fields are specified in the columns of the reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).
+</p>
+<p>
+When no adjustment is performed, the FillValue is inserted.
+</p>
+<p>
+&lt;PARAM&gt;_ADJUSTED_ERROR is mandatory for core and bgc parameters, but not for intermediate parameters.
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+AXES_ERROR_ELLIPSE_MAJOR
+</td>
+<td>
+<p>
+float AXES_ERROR_ELLIPSE_MAJOR(N_MEASUREMENT);
+</p>
+<p>
+AXES_ERROR_ELLIPSE_MAJOR.long_name = “Semi-major axis of error ellipse from positioning system”;
+</p>
+<p>
+AXES_ERROR_ELLIPSE_MAJOR:units = “meters”;
+</p>
+<p>
+AXES_ERROR_ELLIPSE_MAJOR:_FillValue = 99999.;
+</p>
+</td>
+<td>
+Semi-major axis of error ellipse reported by the positioning system.
+</td>
+</tr>
+<tr class="odd">
+<td>
+AXES_ERROR_ELLIPSE_MINOR
+</td>
+<td>
+<p>
+float AXES_ERROR_ELLIPSE_MINOR(N_MEASUREMENT);
+</p>
+<p>
+AXES_ERROR_ELLIPSE_MINOR.long_name = “Semi-minor axis of error ellipse from positioning system”;
+</p>
+<p>
+AXES_ERROR_ELLIPSE_MINOR:units = “meters”;
+</p>
+<p>
+AXES_ERROR_ELLIPSE_MINOR:_FillValue = 99999.;
+</p>
+</td>
+<td>
+Semi-minor axis of error ellipse reported by the positioning system.
+</td>
+</tr>
+<tr class="even">
+<td>
+AXES_ERROR_ELLIPSE_ANGLE
+</td>
+<td>
+<p>
+float AXES_ERROR_ELLIPSE_ANGLE(N_MEASUREENT);
+</p>
+<p>
+AXES_ERROR_ELLIPSE_ANGLE.long_name = “Angle of error ellipse from positioning system”;
+</p>
+<p>
+AXES_ERROR_ELLIPSE_ANGLE:units = “Degrees (from North when heading East)”;
+</p>
+<p>
+AXES_ERROR_ELLIPSE_ANGLE:_FillValue = 99999.;
+</p>
+</td>
+<td>
+Angle of error ellipse reported by the positioning system.
+</td>
+</tr>
+<tr class="odd">
+<td>
+SATELLITE_NAME
+</td>
+<td>
+<p>
+char SATELLITE_NAME(N_MEASUREMENT);
+</p>
+<p>
+SATELLITE_NAME.long_name = “Satellite name from positioning system”;
+</p>
+<p>
+SATELLITE_NAME.FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Satellite name from positioning system.
+</p>
+<p>
+SATELLITE_NAME is only used for Argos position
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+TRAJECTORY_PARAMETER_DATA_MODE
+</td>
+<td>
+<p>
+char TRAJECTORY_PARAMETER_DATA_MODE(N_MEASUREMENT, N_PARAM);
+</p>
+<p>
+TRAJECTORY_PARAMETER_DATA_MODE:long_name = “Delayed mode or real time data”;
+</p>
+<p>
+TRAJECTORY_PARAMETER_DATA_MODE:conventions = “R : real time; D : delayed mode; A : real time with adjustment”;
+</p>
+<p>
+TRAJECTORY_PARAMETER_DATA_MODE:_FillValue = ” “;
+</p>
+</td>
+<td>
+Indicates the availability of adjustment of each TRAJECTORY_PARAMETERS. ‘R’ = no adjusted value is available. ‘A’ = real-time adjusted value is available. ‘D’ = delayed-mode adjusted value is available.
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_DATA_MODE
+</td>
+<td>
+<p>
+char JULD_DATA_MODE(N_MEASUREMENT);
+</p>
+<p>
+JULD_DATA_MODE:long_name = “Delayed mode or real time data”;
+</p>
+<p>
+JULD_DATA_MODE:conventions “R : real time; D : delayed mode; A : real time with adjustment”;
+</p>
+<p>
+JULD_DATA_MODE:-FillValue = ” “;
+</p>
+</td>
+<td>
+Indicates the availability of adjustment/estimation of the Julian day of the measurement, which is stored in JULD_ADJUSTED. The raw parameter JULD stores the original telemetered value, or FillValue (if not available). If JULD_DATA_MODE = ‘R’, JULD_ADJUSTED = FillValue. If JULD_DATA_MODE = ‘A’, JULD_ADJUSTED = real-time adjusted/estimated value. If JULD_DATA_MODE = ‘D’, JULD_ADJUSTED = delayed-mode adjusted/estimated value.
+</td>
+</tr>
+</tbody>
+</table>
+<section id="how-to-report-unusual-pressure-resolutions-in-the-n_measurement-variable-group-of-the-traj-file" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="how-to-report-unusual-pressure-resolutions-in-the-n_measurement-variable-group-of-the-traj-file"><span class="header-section-number">5.5.1</span> How to report unusual Pressure resolutions in the N_MEASUREMENT variable group of the TRAJ file</h3>
+<p>In the N_MEASUREMENT array of the TRAJ file, the pressure resolution may differ according to the MEASUREMENT_CODE.</p>
+<p>How to keep the information in the file?</p>
+<ul>
+<li><p>add a “comment_on_resolution” attribute to the variable to inform the user,</p></li>
+<li><p>add a “comment_on_resolution” global attribute to the file</p></li>
+</ul>
+<p>For example, for APEX and PROVOR floats some pressures are provided in bars whereas most of them are in dbar. Thus, in this case:</p>
+<ul>
+<li><p>PRES:resolution = 0.1f;</p></li>
+<li><p>PRES:comment_on_resolution = “PRES resolution is 0.1 dbar, except for measurement codes [150 189 198 289 297 298 389 398 489 497 498 589 901] for which PRES resolution is 1 bar”;</p></li>
+</ul>
+<p>You may add a comment_on_resolution global attribute</p>
+<ul>
+<li>:comment_on_resolution = “PRES variable resolution may be lower than nominal depending on measurement codes”</li>
+</ul>
+</section>
+</section>
+<section id="n_cycle-dimension-variable-group" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="n_cycle-dimension-variable-group"><span class="header-section-number">5.6</span> N_CYCLE dimension variable group</h2>
+<p>This section contains information on the variables with dimension N_CYCLE. They include variables that contain the best estimate of float timing.</p>
+<p>Each field in this section has a N_CYCLE dimension.</p>
+<p>N_CYCLE is the number of collected cycles performed by the float. It is a dimension, thus it may not equal the maximum cycle number within the file.</p>
+<p>The N_CYCLE array should be ordered by CYCLE_NUMBER_INDEX.</p>
+<p>The cycle definition is available at <a href="01-introduction.html#argo-float-cycles"><u>§1.6</u></a>. Cycle is defined as a series of actions, including collection of data, made by a float that ends with transmission of data. If the float fails to collect nor transmit data, a cycle has not occurred and CYCLE_NUMBER_INDEX should not be incremented.</p>
+<p>Floats begin with different cycle numbers depending on float type. To understand how the N_CYCLE dimension variable group relates to the N_MEASUREMENT variable group, the user must consult the CYCLE_NUMBER_INDEX variable. This variable indicates the cycle number of the float information that is contained in that particular N_CYCLE index. For example, to find the N_CYCLE information that corresponds to CYCLE_NUMBER = 1, look for CYCLE_NUMBER_INDEX = 1.</p>
+<p>Additionally, CYCLE_NUMBER_INDEX is the number of the profile cycle associated with the trajectory cycle in that index of the N_CYCLE array.</p>
+<p>If any errors are discovered in how the cycle numbers were assigned in real-time, or if additional cycles are recovered in delayed mode, the CYCLE_NUMBER_INDEX_ADJUSTED variable is adjusted accordingly.</p>
+<p>CYCLE_NUMBER_INDEX always corresponds to the profile cycle number. To look for the cycle that matches the profile cycle number, users must look in the CYCLE_NUMBER_INDEX variable for the cycle number they are interested in. If the CYCLE_NUMBER_INDEX_ADJUSTED variable contains ‘FillValue’, then this cycle is in real time mode and no corrected cycle number exists. If the CYCLE_NUMBER_INDEX_ADJUSTED variable is filled, this is the correct cycle number as determined during delayed mode.</p>
+<p><strong>When a cycle is missing (e.g.&nbsp;no data received), no fill values are used to indicate a missing cycle.</strong></p>
+<p>The table here-below lists all the variables having an N_CYCLE dimension. The possible cycle phase names within the JULD date and time STATUS variables (i.e., the JULD_&lt;cycle_phase_name&gt; and JULD_&lt;cycle_phase_name&gt;_STATUS variables) are also listed under the <a href="https://vocab.nerc.ac.uk/collection/RTV/"><u>https://vocab.nerc.ac.uk/collection/RTV/</u></a> table.</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 32%">
+<col style="width: 47%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+<td>
+<strong>Comment</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_DESCENT_START
+</td>
+<td>
+<p>
+double JULD_DESCENT_START(N_CYCLE);
+</p>
+<p>
+JULD_DESCENT_START:long_name = “Descent start date of the cycle”;
+</p>
+<p>
+JULD_DESCENT_START:standard_name = “time”;
+</p>
+<p>
+JULD_DESCENT_START:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_DESCENT_START:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_DESCENT_START:resolution = X;
+</p>
+<p>
+JULD_DESCENT_START:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) when float leaves the surface and begins descent.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_DESCENT_START_STATUS
+</td>
+<td>
+<p>
+char JULD_DESCENT_START_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_DESCENT_START_STATUS:long_name = “Status of descent start date of the cycle”;
+</p>
+<p>
+JULD_DESCENT_START_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_DESCENT_START_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_FIRST_STABILIZATION
+</td>
+<td>
+<p>
+double JULD_FIRST_STABILIZATION(N_CYCLE);
+</p>
+<p>
+JULD_FIRST_STABILIZATION:long_name = “Time when a float first becomes water-neutral”;
+</p>
+<p>
+JULD_FIRST_STABILIZATION:standard_name = “time”;
+</p>
+<p>
+JULD_FIRST_STABILIZATION:units = days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_FIRST_STABILIZATION: conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_FIRST_STABILIZATION:resolution = X;
+</p>
+<p>
+JULD_FIRST_STABILIZATION:_FillValue = 999999.
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) of time when a float first becomes water-neutral.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_FIRST_STABILIZATION_STATUS
+</td>
+<td>
+<p>
+char JULD_FIRST_STABILIZATION_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_FIRST_STABILIZATION_STATUS:long_name = “Status of time when a float first becomes water-neutral”;
+</p>
+<p>
+JULD_FIRST_STABILIZATION_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_STABILIZATION_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_DESCENT_END
+</td>
+<td>
+<p>
+double JULD_DESCENT_END(N_CYCLE);
+</p>
+<p>
+JULD_DESCENT_END:long_name = “Descent end date of the cycle”;
+</p>
+<p>
+JULD_DESCENT_END:standard_name = “time”;
+</p>
+<p>
+JULD_DESCENT_END:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_DESCENT_END:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_DESCENT_END:resolution = X;
+</p>
+<p>
+JULD_DESCENT_END:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) when float first approaches within 3% of the eventual drift pressure. Float may be transitioning from the surface or from a deep profile.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_DESCENT_END_STATUS
+</td>
+<td>
+<p>
+char JULD_DESCENT_END_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_DESCENT_END_STATUS:long_name = “Status of descent end date of the cycle”;
+</p>
+<p>
+JULD_DESCENT_END_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_DESCENT_END_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_PARK_START
+</td>
+<td>
+<p>
+double JULD_PARK_START(N_CYCLE);
+</p>
+<p>
+JULD_PARK_START:long_name = “Drift start date of the cycle”;
+</p>
+<p>
+JULD_PARK_START:standard_name = “time”;
+</p>
+<p>
+JULD_PARK_START:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_PARK_START:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_PARK_START:resolution = X;
+</p>
+<p>
+JULD_PARK_START:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) when the float transitions to its Park or Drift mission. This variable is based on float logic based on a descent timer (i.e.&nbsp;SOLO), or be based on measurements of pressure (i.e.&nbsp;Provor).
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_PARK_START_STATUS
+</td>
+<td>
+<p>
+char JULD_PARK_START_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_PARK_START_STATUS:long_name = “Status of drift start date of the cycle”;
+</p>
+<p>
+JULD_PARK_START_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_PARK_START_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_PARK_END
+</td>
+<td>
+<p>
+double JULD_PARK_END(N_CYCLE);
+</p>
+<p>
+JULD_PARK_END:long_name = “Drift end date of the cycle”;
+</p>
+<p>
+JULD_PARK_END:standard_name = “time”;
+</p>
+<p>
+JULD_PARK_END:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_PARK_END:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_PARK_END:resolution = X;
+</p>
+<p>
+JULD_PARK_END:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) when float exits from its Park or Drift mission. It may next rise to the surface (AST) or sink to profile depth (DDET).
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_PARK_END_STATUS
+</td>
+<td>
+<p>
+char JULD_PARK_END_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_PARK_END_STATUS:long_name = “Status of drift end date of the cycle”;
+</p>
+<p>
+JULD_PARK_END_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_PARK_END_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_DEEP_DESCENT_END
+</td>
+<td>
+<p>
+double JULD_DEEP_DESCENT_END(N_CYCLE);
+</p>
+<p>
+JULD_DEEP_DESCENT_END:long_name = “Deep descent end date of the cycle”;
+</p>
+<p>
+JULD_DEEP_DESCENT_END:standard_name = “time”;
+</p>
+<p>
+JULD_DEEP_DESCENT_END:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_DEEP_DESCENT_END:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_DEEP_DESCENT_END:resolution = X;
+</p>
+<p>
+JULD_DEEP_DESCENT_END:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) when float first approaches within 3% of the eventual deep drift/profile pressure.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_DEEP_DESCENT_END_STATUS
+</td>
+<td>
+<p>
+char JULD_DEEP_DESCENT_END_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_DEEP_DESCENT_END_STATUS:long_name = “Status of deep descent end date of the cycle”;
+</p>
+<p>
+JULD_DEEP_DESCENT_END_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_DEEP_DESCENT_END_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_DEEP_PARK_START
+</td>
+<td>
+<p>
+double JULD_DEEP_PARK_START(N_CYCLE);
+</p>
+<p>
+JULD_DEEP_PARK_START:long_name = “Deep park start date of the cycle”;
+</p>
+<p>
+JULD_DEEP_PARK_START:standard_name = “time”;
+</p>
+<p>
+JULD_DEEP_PARK_START:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_DEEP_PARK_START:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_DEEP_PARK_START:resolution = X;
+</p>
+<p>
+JULD_DEEP_PARK_START:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) when the float transitions to its Deep Park or Deep Drift mission. This variable is based on float logic based on a descent timer (i.e.&nbsp;SOLO), or be based on measurements of pressure (i.e.&nbsp;Provor).
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_DEEP_PARK_START _STATUS
+</td>
+<td>
+<p>
+char JULD_DEEP_PARK_START _STATUS(N_CYCLE);
+</p>
+<p>
+JULD_DEEP_PARK_START_STATUS:long_name = “Status of deep park start date of the cycle”;
+</p>
+<p>
+JULD_DEEP_PARK_START _STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_DEEP_PARK_START _STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_ASCENT_START
+</td>
+<td>
+<p>
+double JULD_ASCENT_START(N_CYCLE);
+</p>
+<p>
+JULD_ASCENT_START:long_name = “Start date of the ascent to the surface”;
+</p>
+<p>
+JULD_ASCENT_START:standard_name = “time”;
+</p>
+<p>
+JULD_ASCENT_START:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_ASCENT_START:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_ASCENT_START:resolution = X;
+</p>
+<p>
+JULD_ASCENT_START:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) of the beginning of the float’s ascent to the surface.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_ASCENT_START_STATUS
+</td>
+<td>
+<p>
+char JULD_ASCENT_START_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_ASCENT_START_STATUS:long_name = “Status of start date of the ascent to the surface”;
+</p>
+<p>
+JULD_ASCENT_START_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_ASCENT_START_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (.<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>)
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_DEEP_ASCENT_START
+</td>
+<td>
+<p>
+double JULD_DEEP_ASCENT_START(N_CYCLE);
+</p>
+<p>
+JULD_DEEP_ASCENT_START:long_name = “Deep ascent start date of the cycle”;
+</p>
+<p>
+JULD_DEEP_ASCENT_START:standard_name = “time”;
+</p>
+<p>
+JULD_DEEP_ASCENT_START:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_DEEP_ASCENT_START:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_DEEP_ASCENT_START:resolution = X;
+</p>
+<p>
+JULD_DEEP_ASCENT_START:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) when the float begins its rise to drift pressure. Typical for profile-on-descent floats.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_DEEP_ASCENT_START_STATUS
+</td>
+<td>
+<p>
+char JULD_DEEP_ASCENT_START_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_DEEP_ASCENT_START_STATUS:long_name = “Status of deep ascent start date of the cycle”;
+</p>
+<p>
+JULD_DEEP_ASCENT_START_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_DEEP_ASCENT_START_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_ASCENT_END
+</td>
+<td>
+<p>
+double JULD_ASCENT_END(N_CYCLE);
+</p>
+<p>
+JULD_ASCENT_END:long_name = “End date of ascent to the surface”;
+</p>
+<p>
+JULD_ASCENT_END:standard_name = “time”;
+</p>
+<p>
+JULD_ASCENT_END:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_ASCENT_END:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_ASCENT_END:resolution = X;
+</p>
+<p>
+JULD_ASCENT_END:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) of the end of the ascent to the surface.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_ASCENT_END_STATUS
+</td>
+<td>
+<p>
+char JULD_ASCENT_END_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_ASCENT_END_STATUS:long_name = “Status of end date of ascent to the surface”;
+</p>
+<p>
+JULD_ASCENT_END_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_ASCENT_END_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>)
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_TRANSMISSION_START
+</td>
+<td>
+<p>
+double JULD_TRANSMISSION_START(N_CYCLE);
+</p>
+<p>
+JULD_TRANSMISSION_START:long_name = “Start date of transmission”;
+</p>
+<p>
+JULD_TRANSMISSION_START:standard_name = “time”;
+</p>
+<p>
+JULD_TRANSMISSION_START:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_TRANSMISSION_START:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_TRANSMISSION_START:resolution = X;
+</p>
+<p>
+JULD_TRANSMISSION_START:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) of the beginning of data transmission.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_TRANSMISSION_START_STATUS
+</td>
+<td>
+<p>
+char JULD_TRANSMISSION_START_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_TRANSMISSION_START_STATUS:long_name = “Status of start date of transmission”;
+</p>
+<p>
+JULD_TRANSMISSION_START_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_TRANSMISSION_START_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>)
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_FIRST_MESSAGE
+</td>
+<td>
+<p>
+double JULD_FIRST_MESSAGE(N_CYCLE);
+</p>
+<p>
+JULD_FIRST_MESSAGE:long_name = “Date of earliest float message received”;
+</p>
+<p>
+JULD_FIRST_MESSAGE:standard_name = “time”;
+</p>
+<p>
+JULD_FIRST_MESSAGE:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_FIRST_MESSAGE:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_FIRST_MESSAGE:resolution = X;
+</p>
+<p>
+JULD_FIRST_MESSAGE:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) of the earliest float message received. May or may not have a position associated with it.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_FIRST_MESSAGE_STATUS
+</td>
+<td>
+<p>
+char JULD_FIRST_MESSAGE_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_FIRST_MESSAGE_STATUS:long_name = “Status of date of earliest float message received”;
+</p>
+<p>
+JULD_FIRST)MESSAGE_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_FIRST_MESSAGE_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_FIRST_LOCATION
+</td>
+<td>
+<p>
+double JULD_FIRST_LOCATION(N_CYCLE);
+</p>
+<p>
+JULD_FIRST_LOCATION:long_name = “Date of earliest location”;
+</p>
+<p>
+JULD_FIRST_LOCATION:standard_name = “time”;
+</p>
+<p>
+JULD_FIRST_LOCATION:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_FIRST_LOCATION:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_FIRST_LOCATION:resolution = X;
+</p>
+<p>
+JULD_FIRST_LOCATION:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) of the earliest position.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_FIRST_LOCATION_STATUS
+</td>
+<td>
+<p>
+char JULD_FIRST_LOCATION_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_FIRST_LOCATION_STATUS:long_name = “Status of date of earliest location”;
+</p>
+<p>
+JULD_FIRST_LOCATION_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_FIRST_LOCATION_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_LAST_LOCATION
+</td>
+<td>
+<p>
+double JULD_LAST_LOCATION(N_CYCLE);
+</p>
+<p>
+JULD_LAST_LOCATION:long_name = “Date of latest location”;
+</p>
+<p>
+JULD_LAST_LOCATION:standard_name = “time”;
+</p>
+<p>
+JULD_LAST_LOCATION:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_LAST_LOCATION:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_LAST_LOCATION:resolution = X;
+</p>
+<p>
+JULD_LAST_LOCATION:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) of the latest position.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_LAST_LOCATION_STATUS
+</td>
+<td>
+<p>
+char JULD_LAST_LOCATION_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_LAST_LOCATION_STATUS:long_name = “Status of date of latest location”;
+</p>
+<p>
+JULD_LAST_LOCATION_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_LAST_LOCATION_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_LAST_MESSAGE
+</td>
+<td>
+<p>
+double JULD_LAST_MESSAGE(N_CYCLE);
+</p>
+<p>
+JULD_LAST_MESSAGE:long_name = “Date of latest float message received”;
+</p>
+<p>
+JULD_LAST_MESSAGE:standard_name = “time”;
+</p>
+<p>
+JULD_LAST_MESSAGE:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_LAST_MESSAGE:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_LAST_MESSAGE:resolution = X;
+</p>
+<p>
+JULD_LAST_MESSAGE:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) of the latest float message received. May or may not have a position associated with it.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_LAST_MESSAGE_STATUS
+</td>
+<td>
+<p>
+char JULD_LAST_MESSAGE_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_LAST_MESSAGE_STATUS:long_name = “Status of date of latest float message received”;
+</p>
+<p>
+JULD_LAST_MESSAGE_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_LAST_MESSAGE_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_TRANSMISSION_END
+</td>
+<td>
+<p>
+double JULD_TRANSMISSION_END(N_CYCLE);
+</p>
+<p>
+JULD_TRANSMISSION_END:long_name = “Transmission end date”;
+</p>
+<p>
+JULD_TRANSMISSION_END:standard_name = “time”;
+</p>
+<p>
+JULD_TRANSMISSION_END:units = “days since 1950-01-01 00:00:00 UTC”;
+</p>
+<p>
+JULD_TRANSMISSION_END:conventions = “Relative julian days with decimal part (as parts of day)”;
+</p>
+<p>
+JULD_TRANSMISSION_END:resolution = X;
+</p>
+<p>
+JULD_TRANSMISSION_END:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Julian day (UTC) of the end of transmission.
+</p>
+<p>
+Example: 18833.8013889885&nbsp;(meaning July 25 2001 19:14:00)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_TRANSMISSION_END_STATUS
+</td>
+<td>
+<p>
+char JULD_TRANSMISSION_END_STATUS(N_CYCLE);
+</p>
+<p>
+JULD_TRANSMISSION_END_STATUS:long_name = “Status of transmission end date”;
+</p>
+<p>
+JULD_TRANSMISSION_END_STATUS:conventions = “Argo reference table 19”;
+</p>
+<p>
+JULD_TRANSMISSION_END_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on JULD date and time.
+</p>
+<p>
+The flag scale is described in reference table 19 (<a href="https://vocab.nerc.ac.uk/collection/R19/"><u>https://vocab.nerc.ac.uk/collection/R19/</u></a>).
+</p>
+<p>
+Example: “2” (meaning the value is transmitted by the float)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+CLOCK_OFFSET
+</td>
+<td>
+<p>
+double CLOCK_OFFSET(N_CYCLE);
+</p>
+<p>
+CLOCK_OFFSET:long_name = “Time of float clock drift”;
+</p>
+<p>
+CLOCK_OFFSET:units = “days”;
+</p>
+<p>
+CLOCK_OFFSET:conventions = “Days with decimal part (as parts of day)”;
+</p>
+<p>
+CLOCK_OFFSET:_FillValue = 999999.;
+</p>
+</td>
+<td>
+<p>
+Decimal part of day that float clock has drifted. Float clock drift is defined as Float time (provided by the inboard Real Time Clock (RTC) of the float) – UT time. This makes the clock drift less than 0 if float RTC is before UT time.
+</p>
+<p>
+Float clock drift can be corrected in real time or in delayed mode. Real time corrections correspond to a data mode of “A”. For “A” mode files, JULD_ADJUSTED = JULD - CLOCK_OFFSET
+</p>
+<p>
+“D” mode files may have corrections for clock drift only or additional time corrections based on expert review.
+</p>
+<p>
+Example: -1.08546 (meaning the clock drift is estimated to be equal to – 1 day 2 hours 3 minutes and 4 seconds at the time of the corresponding cycle surfacing)
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+GROUNDED
+</td>
+<td>
+<p>
+char GROUNDED(N_CYCLE);
+</p>
+<p>
+GROUNDED:long_name = “Did the profiler touch the ground for that cycle?”;
+</p>
+<p>
+GROUNDED:conventions = “Argo reference table 20”;
+</p>
+<p>
+GROUNDED:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+GROUNDED indicates the best estimate of whether the float touched the ground for that cycle.
+</p>
+<p>
+The conventions&nbsp;are described in Argo reference table 20 (<a href="https://vocab.nerc.ac.uk/collection/R20/"><u>https://vocab.nerc.ac.uk/collection/R20/</u></a>
+</p>
+<p>
+Example: “Y”&nbsp;(meaning yes, the float touched the ground)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+REPRESENTATIVE_PARK_PRESSURE
+</td>
+<td>
+<p>
+float REPRESENTATIVE_PARK_PRESSURE (N_CYCLE);
+</p>
+<p>
+REPRESENTATIVE_PARK_PRESSURE:long_name = “Best pressure value during park phase”;
+</p>
+<p>
+REPRESENTATIVE_PARK_PRESSURE:units = “&lt;X&gt;”;
+</p>
+<p>
+REPRESENTATIVE_PARK_PRESSURE:_FillValue = &lt;X&gt;;
+</p>
+</td>
+<td>
+<p>
+The Representative Park Pressure (RPP) is the best pressure value assigned to the drift phase. See reference table 21 to understand how this pressure was evaluated. It should match the PRES(N_MEASUREMENT) values with MC = 301.
+</p>
+<p>
+&lt;X&gt;: these fields are specified in the columns of the reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).
+</p>
+<p>
+Example: “1025”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+REPRESENTATIVE_PARK_PRESSURE_STATUS
+</td>
+<td>
+<p>
+char REPRESENTATIVE_PARK_PRESSURE_STATUS (N_CYCLE);
+</p>
+<p>
+REPRESENTATIVE_PARK_PRESSURE_STATUS:long_name = “Status of best pressure value during park phase”;
+</p>
+<p>
+REPRESENTATIVE_PARK_PRESSURE_STATUS:conventions = “Argo reference table 21”;
+</p>
+<p>
+REPRESENTATIVE_PARK_PRESSURE_STATUS:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Status flag on the Representative Park Pressure (RPP).
+</p>
+<p>
+The flag scale is described in reference table 21 (<a href="https://vocab.nerc.ac.uk/collection/R21/"><u>https://vocab.nerc.ac.uk/collection/R21/</u></a>).
+</p>
+<p>
+Example: ‘2’ (meaning mean value, directly provided by the float, of pressure measurements regularly sampled during the drift phase)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+CONFIG_MISSION_NUMBER
+</td>
+<td>
+<p>
+int CONFIG_MISSION_NUMBER (N_CYCLE);
+</p>
+<p>
+CONFIG_MISSION_NUMBER:long_name = “Unique number denoting the missions performed by the float”;
+</p>
+<p>
+CONFIG_MISSION_NUMBER:conventions = “1…N, 1 : first complete mission”;
+</p>
+<p>
+CONFIG_MISSION_NUMBER:_FillValue = 99999;
+</p>
+</td>
+<td>
+<p>
+Unique number of the mission to which this profile belongs.
+</p>
+<p>
+See note on floats with multiple configurations <a href="05-format-metadata.html#note-on-floats-with-multiple-missions"><u>§2.4.6.1</u></a>.
+</p>
+<p>
+The number 0 (zero) can be used to denote the float’s mission prelude, if it exists.
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+CYCLE_NUMBER_INDEX
+</td>
+<td>
+<p>
+int CYCLE_NUMBER_INDEX(N_CYCLE);
+</p>
+<p>
+CYCLE_NUMBER_INDEX:long_name = “Cycle number that corresponds to the current index”;
+</p>
+<p>
+CYCLE_NUMBER_INDEX:conventions = “0…N, 0 : launch cycle, 1 : first complete cycle”;
+</p>
+<p>
+CYCLE_NUMBER_INDEX:FillValue = 99999;
+</p>
+</td>
+<td>
+<p>
+Cycle number of the float that corresponds to the information contained in the current index. This cycle number must match the profile cycle number, ensuring that the trajectory and profile with the same cycle number contain data from the same cycle.
+</p>
+<p>
+Example: 17 means information for the 17<sup>th</sup> cycle of the float is contained in this index.
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+CYCLE_NUMBER_INDEX_ADJUSTED
+</td>
+<td>
+<p>
+int CYCLE_NUMBER_INDEX_ADJUSTED (N_CYCLE);
+</p>
+<p>
+CYCLE_NUMBER_INDEX_ADJUSTED:long_name = “Adjusted cycle number that corresponds to the current index”;
+</p>
+<p>
+CYCLE_NUMBER_INDEX_ADJUSTED:conventions = “0…N, 0 : launch cycle, 1 : first complete cycle”;
+</p>
+<p>
+CYCLE_NUMBER_INDEX_ADJUSTED:FillValue = 99999;
+</p>
+</td>
+<td>
+<p>
+Corrected cycle number of the float that corresponds to the information contained in the current index. Errors may be found in CYCLE_NUMBER_INDEX variable which are corrected and contained in this variable.
+</p>
+<p>
+Example: 17 means information for the 17<sup>th</sup> cycle of the float is contained in this index.
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+DATA_MODE
+</td>
+<td>
+<p>
+char DATA_MODE(N_ CYCLE);
+</p>
+<p>
+DATA_MODE:long_name = “Delayed mode or real time data”;
+</p>
+<p>
+DATA_MODE:conventions = “R : real time; D : delayed mode; A : real time with adjustment”;
+</p>
+<p>
+DATA_MODE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Indicates if the trajectory cycle contains real time, adjusted or delayed mode data. A delayed mode cycle means the positions, times, cycle number, pressure, temperature, and salinity (if measured) have been quality controlled. Additional parameters like oxygen may not be quality controlled. Floats often have delayed mode data only after they die, but can have both delayed mode and real time data for different parameters while alive. When this occurs, two trajectory files exist - a real time file (“R”) with only real time data for all the cycles in the float record and a delayed mode file (“D”) with both real time and delayed mode data for all the cycles that have been delayed mode quality controlled. Floats can be adjusted in real time with adjusted time values only in the JULD_ADJUSTED variable and its associated _STATUS and _QC variables. This occurs when floats are corrected in real time for clock drift.
+</p>
+<p>
+Examples :
+</p>
+<p>
+‘R’&nbsp;: real time data
+</p>
+<p>
+‘D’&nbsp;: delayed mode data
+</p>
+<p>
+‘A’ : real time data with JULD_ADJUSTED values
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+<span id="w182w38fxh8s" class="anchor"></span>ICE_ALGORITHM_STATUS
+</td>
+<td>
+integer ICE_ALGORITHM_STATUS(N_CYCLE); ICE_ALGORITHM_STATUS:long_name=“Status of the results of the on-board ice avoidance algorithm mapped to standardised categories”;<br> ICE_ALGORITHM_STATUS:conventions=“Argo reference table <mark>42</mark>” ICE_ALGORITHM_STATUS:_FillValue= 99999;
+</td>
+<td>
+<p>
+<strong>This is an optional variable.</strong>
+</p>
+<p>
+The ICE_ALGORITHM_STATUS variable does not directly report the value transmitted by the float as these values vary by float model. These float-specific values can be found in the tech-netCDF.
+</p>
+<p>
+Instead, the ICE_ALGORITHM_STATUS is applicable to all float types, matching what is transmitted to a list of common situations.
+</p>
+<p>
+There are 2 options available to DACs on how to fill this variable, BASIC and EXTENDED.
+</p>
+<p>
+Argo reference table R42 (soon on the NVS, see <a href="09-tables-reference.html#reference-table-42-ice_algorithm_status"><u>§3.35</u></a> in the meanwhile) references the general meanings of the basic and extended values, whatever the float type.
+</p>
+<p>
+Specific and detailed lookup tables by float type are provided in the trajectory cookbook, which also specifies how to fill this variable from float-specific technical data.
+</p>
+<p>
+The trajectory cookbook (<a href="https://dx.doi.org/10.13155/29824"><u>https://dx.doi.org/10.13155/29824</u></a>) must be followed to fill this variable
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="scientific-calibration-section" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="scientific-calibration-section"><span class="header-section-number">5.7</span> Scientific calibration section</h2>
+<p>The SCIENTIFIC CALIBRATION section in the V3.2 traj files stores information of parameter scientific calibration during park drift, descend to profile, or surface drift.</p>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 30%">
+<col style="width: 42%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+<td>
+<strong>Comment</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+SCIENTIFIC_CALIB_PARAMETER
+</td>
+<td>
+<p>
+char SCIENTIFIC_CALIB_PARAMETER(N_CALIB_PARAM, N_PARAM, STRING64);
+</p>
+<p>
+SCIENTIFIC_CALIB_PARAMETER:long_name = “List of parameters with calibration information”;
+</p>
+<p>
+SCIENTIFIC_CALIB_PARAMETER:conventions = “Argo reference table 3”;
+</p>
+<p>
+SCIENTIFIC_CALIB_PARAMETER:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Name of the calibrated parameter. The list of parameters is in reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).
+</p>
+<p>
+Example: “DOXY”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+SCIENTIFIC_CALIB_EQUATION
+</td>
+<td>
+<p>
+char SCIENTIFIC_CALIB_EQUATION(N_CALIB_PARAM, N_PARAM, STRING256);
+</p>
+<p>
+SCIENTIFIC_CALIB_EQUATION:long_name = “Calibration equation for this parameter”;
+</p>
+<p>
+SCIENTIFIC_CALIB_EQUATION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Calibration equation applied to the parameter.
+</p>
+<p>
+Example: “Tc = a1*T + a0”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+SCIENTIFIC_CALIB_COEFFICIENT
+</td>
+<td>
+<p>
+char SCIENTIFIC_CALIB_COEFFICIENT(N_CALIB_PARAM, N_PARAM, STRING256);
+</p>
+<p>
+SCIENTIFIC_CALIB_COEFFICIENT:long_name = “Calibration coefficients for this equation”;
+</p>
+<p>
+SCIENTIFIC_CALIB_COEFFICIENT:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Calibration coefficients for this equation.
+</p>
+<p>
+Example: “a1=0.99997, a0=0.0021”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+SCIENTIFIC_CALIB_COMMENT
+</td>
+<td>
+<p>
+char SCIENTIFIC_CALIB_COMMENT(N_CALIB_PARAM, N_PARAM, STRING256);
+</p>
+<p>
+SCIENTIFIC_CALIB_COMMENT:long_name = “Comment applying to this parameter calibration”;
+</p>
+<p>
+SCIENTIFIC_CALIB_COMMENT:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Comment about this calibration.
+</p>
+<p>
+Example: “MC&lt;500 and MC&gt;600 : DOXY adjustment based on comparison of surface in-air data with NCEP atmospheric reanalysis following Bittig et al.&nbsp;(2018).”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+SCIENTIFIC_CALIB_DATE
+</td>
+<td>
+<p>
+char SCIENTIFIC_CALIB_DATE(N_CALIB_PARAM, N_PARAM, DATE_TIME);
+</p>
+<p>
+SCIENTIFIC_CALIB_DATE:long_name = “Date of calibration”;
+</p>
+<p>
+SCIENTIFIC_CALIB_DATE:conventions = “YYYYMMDDHHMISS”;
+</p>
+<p>
+SCIENTIFIC_CALIB_DATE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Date of the calibration.
+</p>
+<p>
+Example: “20011217161700”
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="juld-calibration-section" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="juld-calibration-section"><span class="header-section-number">5.8</span> JULD calibration section</h2>
+<p>The JULD CALIBRATION section in the V3.2 traj files stores information of JULD calibration.</p>
+<table class="table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 35%">
+<col style="width: 37%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+<td>
+<strong>Comment</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_CALIB_EQUATION
+</td>
+<td>
+<p>
+char JULD_CALIB_EQUATION(N_CALIB_JULD, STRING256);
+</p>
+<p>
+JULD_CALIB_EQUATION:long_name = “Calibration equation for JULD”;
+</p>
+<p>
+JULD_CALIB_EQUATION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Calibration equation applied to JULD.
+</p>
+<p>
+Example: “JULD_ADJUSTED = a1*JULD + a0”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_CALIB_COEFFICIENT
+</td>
+<td>
+<p>
+char JULD_CALIB_COEFFICIENT(N_CALIB_JULD, STRING256);
+</p>
+<p>
+JULD_CALIB_COEFFICIENT:long_name = “Calibration coefficients for JULD equation”;
+</p>
+<p>
+JULD_CALIB_COEFFICIENT:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Calibration coefficients for this equation.
+</p>
+<p>
+Example: “a1=0.99997, a0=0.0021”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+JULD_CALIB_COMMENT
+</td>
+<td>
+<p>
+char JULD_CALIB_COMMENT(N_CALIB_JULD, STRING256);
+</p>
+<p>
+JULD_CALIB_COMMENT:long_name = “Comment applying to JULD calibration”;
+</p>
+<p>
+JULD_CALIB_COMMENT:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Comment about this calibration.
+</p>
+<p>
+Example: “Float times have been linearly corrected from float clock offset (reported in CLOCK_OFFSET(N_CYCLE)).”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+JULD_CALIB_DATE
+</td>
+<td>
+<p>
+char JULD_CALIB_DATE(N_CALIB_JULD, DATE_TIME);
+</p>
+<p>
+JULD_CALIB_DATE:long_name = “Date of JULD calibration”;
+</p>
+<p>
+JULD_CALIB_DATE:conventions = “YYYYMMDDHHMISS”;
+</p>
+<p>
+JULD_CALIB_DATE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Date of the calibration.
+</p>
+<p>
+Example: “20011217161700”
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="history-information" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="history-information"><span class="header-section-number">5.9</span> History information</h2>
+<p>This section contains history information for each action performed on each measurement.</p>
+<p>Each item of this section has a N_HISTORY (number of history records) dimension.</p>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 30%">
+<col style="width: 42%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Name</strong>
+</td>
+<td>
+<strong>Definition</strong>
+</td>
+<td>
+<strong>Comment</strong>
+</td>
+</tr>
+<tr class="even">
+<td>
+HISTORY_INSTITUTION
+</td>
+<td>
+<p>
+char HISTORY_INSTITUTION (N_HISTORY, STRING4);
+</p>
+<p>
+HISTORY_INSTITUTION:long_name = “Institution which performed action”;
+</p>
+<p>
+HISTORY_INSTITUTION:conventions = “Argo reference table 4”;
+</p>
+<p>
+HISTORY_INSTITUTION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Institution that performed the action.
+</p>
+<p>
+Institution codes are described in reference table 4 (<a href="https://vocab.nerc.ac.uk/collection/R04/"><u>https://vocab.nerc.ac.uk/collection/R04/</u></a>).
+</p>
+<p>
+Example: “ME” for MEDS
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+HISTORY_STEP
+</td>
+<td>
+<p>
+char HISTORY_STEP (N_HISTORY, STRING4);
+</p>
+<p>
+HISTORY_STEP:long_name = “Step in data processing”;
+</p>
+<p>
+HISTORY_STEP:conventions = “Argo reference table 12”;
+</p>
+<p>
+HISTORY_STEP:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Code of the step in data processing for this history record. The step codes are described in reference table 12 (<a href="https://vocab.nerc.ac.uk/collection/R12/"><u>https://vocab.nerc.ac.uk/collection/R12/</u></a>).
+</p>
+<p>
+Example: “ARGQ” (meaning automatic QC of data reported in real-time has been performed)
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+HISTORY_SOFTWARE
+</td>
+<td>
+<p>
+char HISTORY_SOFTWARE (N_HISTORY, STRING4);
+</p>
+<p>
+HISTORY_SOFTWARE:long_name = “Name of software which performed action”;
+</p>
+<p>
+HISTORY_SOFTWARE:conventions = “Institution dependent”;
+</p>
+<p>
+HISTORY_SOFTWARE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Name of the software that performed the action.
+</p>
+<p>
+This code is institution dependent.
+</p>
+<p>
+Example: “OW”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+HISTORY_SOFTWARE_RELEASE
+</td>
+<td>
+<p>
+char HISTORY_SOFTWARE_RELEASE (N_HISTORY, STRING4);
+</p>
+<p>
+HISTORY_SOFTWARE_RELEASE:long_name = “Version/release of software which performed action”;
+</p>
+<p>
+HISTORY_SOFTWARE_RELEASE:conventions = “Institution dependent”;
+</p>
+<p>
+HISTORY_SOFTWARE_RELEASE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Version of the software.
+</p>
+<p>
+This name is institution dependent.
+</p>
+<p>
+Example: “1.0”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+HISTORY_REFERENCE
+</td>
+<td>
+<p>
+char HISTORY_REFERENCE (N_HISTORY, STRING64);
+</p>
+<p>
+HISTORY_REFERENCE:long_name = “Reference of database”;
+</p>
+<p>
+HISTORY_REFERENCE:conventions = “Institution dependent”;
+</p>
+<p>
+HISTORY_REFERENCE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Code of the reference database used for quality control in conjunction with the software.
+</p>
+<p>
+This code is institution dependent.
+</p>
+<p>
+Example: “WOD2001”
+</p>
+</td>
+</tr>
+<tr class="odd">
+<td>
+HISTORY_DATE
+</td>
+<td>
+<p>
+char HISTORY_DATE(N_HISTORY, DATE_TIME);
+</p>
+<p>
+HISTORY_DATE:long_name = “Date the history record was created”;
+</p>
+<p>
+HISTORY_DATE:conventions = “YYYYMMDDHHMISS”;
+</p>
+<p>
+HISTORY_DATE:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Date of the action.
+</p>
+<p>
+Example: “20011217160057”
+</p>
+</td>
+</tr>
+<tr class="even">
+<td>
+HISTORY_ACTION
+</td>
+<td>
+<p>
+char HISTORY_ACTION (N_HISTORY, STRING4);
+</p>
+<p>
+HISTORY_ACTION:long_name = “Action performed on data”;
+</p>
+<p>
+HISTORY_ACTION:conventions = “Argo reference table 7”;
+</p>
+<p>
+HISTORY_ACTION:_FillValue = ” “;
+</p>
+</td>
+<td>
+<p>
+Name of the action.
+</p>
+<p>
+The action codes are described in reference table 7 (<a href="https://vocab.nerc.ac.uk/collection/R07/"><u>https://vocab.nerc.ac.uk/collection/R07/</u></a>).
+</p>
+<p>
+Example: “QCF<span class="math inline">\(" for QC failed&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;HISTORY_PARAMETER&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;char HISTORY_PARAMETER(N_HISTORY, STRING64);&lt;/p&gt;
+&lt;p&gt;HISTORY_PARAMETER:long_name = "Parameter action is performed on";&lt;/p&gt;
+&lt;p&gt;HISTORY_PARAMETER:conventions = "Argo reference table 3";&lt;/p&gt;
+&lt;p&gt;HISTORY_PARAMETER:_FillValue = " ";&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;Name of the parameter on which the action is performed.&lt;/p&gt;
+&lt;p&gt;Example: "PSAL"&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;HISTORY_PREVIOUS_VALUE&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;float HISTORY_PREVIOUS_VALUE(N_HISTORY);&lt;/p&gt;
+&lt;p&gt;HISTORY_PREVIOUS_VALUE:long_name = "Parameter/Flag previous value before action";&lt;/p&gt;
+&lt;p&gt;HISTORY_PREVIOUS_VALUE:_FillValue = 99999.;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;Parameter or flag of the previous value before action.&lt;/p&gt;
+&lt;p&gt;Example: "2" (probably good) for a flag that was changed to 1 (good)&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;HISTORY_INDEX_DIMENSION&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;char HISTORY_INDEX_DIMENSION(N_HISTORY);&lt;/p&gt;
+&lt;p&gt;HISTORY_INDEX_DIMENSION:long_name = "Name of dimension to which HISTORY_START_INDEX and HISTORY_STOP_INDEX correspond";&lt;/p&gt;
+&lt;p&gt;HISTORY_INDEX_DIMENSION:conventions = "C: N_CYCLE, M: N_MEASUREMENT";&lt;/p&gt;
+&lt;p&gt;HISTORY_INDEX_DIMENSION:_FillValue = " ";&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;Name of dimension to which HISTORY_START_INDEX and HISORY_STOP_INDEX correspond.&lt;br /&gt;
+'C': N_CYCLE&lt;/p&gt;
+&lt;p&gt;'M': N_MEASUREMENT&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;HISTORY_START_INDEX&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;int HISTORY_ START_INDEX (N_HISTORY);&lt;/p&gt;
+&lt;p&gt;HISTORY_START_INDEX:long_name = "Start index action applied on";&lt;/p&gt;
+&lt;p&gt;HISTORY_START_INDEX:_FillValue =&lt;/p&gt;
+&lt;p&gt;99999;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;Start index the action is applied to. This index corresponds to N_MEASUREMENT or N_CYCLE, depending on the corrected parameter.&lt;/p&gt;
+&lt;p&gt;Example: 100&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;HISTORY_STOP_INDEX&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;int HISTORY_ STOP_INDEX (N_HISTORY);&lt;/p&gt;
+&lt;p&gt;HISTORY_STOP_INDEX:long_name = "Stop index action applied on";&lt;/p&gt;
+&lt;p&gt;HISTORY_STOP_INDEX:_FillValue =&lt;/p&gt;
+&lt;p&gt;99999;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;Stop index the action is applied to. This index corresponds to N_MEASUREMENT or N_CYCLE, depending on the corrected parameter.&lt;/p&gt;
+&lt;p&gt;Example: 150&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;HISTORY_QCTEST&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;char HISTORY_QCTEST(N_HISTORY, STRING16);&lt;/p&gt;
+&lt;p&gt;HISTORY_QCTEST:long_name = "Documentation of tests performed, tests failed (in hex form)";&lt;/p&gt;
+&lt;p&gt;HISTORY_QCTEST:conventions = "Write tests performed when ACTION=QCP\)</span>; tests failed when ACTION=QCF<span class="math inline">\(";&lt;/p&gt;
+&lt;p&gt;HISTORY_QCTEST:_FillValue = " ";&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;This field records the tests performed when ACTION is set to QCP\)</span> (QC performed), the test failed when ACTION is set to QCF$ (QC failed).
+</p>
+<p>
+The QCTEST codes are described in reference table 11 (<a href="https://vocab.nerc.ac.uk/collection/R11/"><u>https://vocab.nerc.ac.uk/collection/R11/</u></a>).
+</p>
+<p>
+Example: “0A” (in hexadecimal form)
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The usage of the history section is described in <a href="#using-the-history-section-of-the-argo-netcdf-structure"><u>§5</u></a> “<strong>Using the History section of the Argo netCDF Structure</strong>”.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03-format-profil.html" class="pagination-link" aria-label="Core-Argo profile format version 3.1">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Core-Argo profile format version 3.1</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05-format-metadata.html" class="pagination-link" aria-label="Metadata format version 3.2">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Metadata format version 3.2</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
