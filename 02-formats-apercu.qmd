@@ -1,0 +1,26 @@
+# Formats description
+## Overview of the formats
+Argo data format is an implementation of NetCDF format developed by UCAR/Unidata ([<u>http://doi.org/10.5065/D6H70CW6</u>](http://doi.org/10.5065/D6H70CW6)).
+
+NetCDF (Network Common Data Form) is an interface for array-oriented data access and a library that provides an implementation of the interface. The NetCDF library also defines a machine-independent format for representing scientific data. Together, the interface, library, and format support the creation, access, and sharing of scientific data. The NetCDF software was developed at the Unidata Program Centre in Boulder, Colorado.
+
+Argo formats are divided in 4 sections:
+
+- Dimensions and definitions
+
+- General information
+
+- Data section
+
+- History section
+
+Argo data comply with NetCDF Climate and Forecast (CF) Metadata Conventions (version 1.6).
+
+- [<u>http://cfconventions.org/</u>](http://cfconventions.org/)
+
+Argo data uses the UDUNITS convention when applicable to populate the variable attribute "unit" in the Data section. The UDUNITS standard, database and supporting information is available from
+
+- [<u>https://doi.org/10.5065/D6KD1WN0</u>](https://doi.org/10.5065/D6KD1WN0).
+
+Argo date and time: all date and time have to be given either in Universal Time (UTC) or in float’s time.
+

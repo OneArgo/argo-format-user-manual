@@ -1,0 +1,48 @@
+# Glossary, definitions
+This chapter gives a definition for the items described in this manual.
+
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 68%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Term</strong></td>
+<td><strong>Definition</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Float</strong></td>
+<td>An autonomous platform deployed in the sea that performs environmental monitoring.</td>
+</tr>
+<tr class="odd">
+<td><strong>Sensor</strong></td>
+<td>A sensor is a device used to measure a physical parameter. Sensor outputs are provided in parameter counts and need to be converted into parameter physical units using a calibration equation. This conversion can be done onboard the float or during the decoding process.</td>
+</tr>
+<tr class="even">
+<td><strong>Parameter measured by the sensor</strong></td>
+<td>A parameter is a measurement of a physical phenomenon; it can be provided by a sensor (in sensor counts or in physical units) or computed (derived) from other parameters.</td>
+</tr>
+<tr class="odd">
+<td><strong>Calibration of the parameter measured by the sensor</strong></td>
+<td>Verification of any operation measurement against independent measurements to derive a corrected value or a new parameter.</td>
+</tr>
+<tr class="even">
+<td><strong>Principal Investigator (PI)</strong></td>
+<td>The <strong>Principal Investigator (PI)</strong>, typically a scientist at a research institution, maintains the observing platform and the sensors that deliver the data. He or she is responsible for providing the data and all auxiliary information to a <strong>Data Assembly Center (DAC)</strong>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Global Data Assembly Centre (GDAC)</strong></td>
+<td>The <strong>GDAC</strong> distributes the best copy of the data files. When a higher quality data file (e.g. calibrated data) is available, it replaces the previous version of the data file.</td>
+</tr>
+<tr class="even">
+<td><strong>Data Assembly Centre (DAC)</strong></td>
+<td>The DAC assembles Argo files and delivers these to the two Global Data Assembly Centers (GDACs).</td>
+</tr>
+<tr class="odd">
+<td><strong>GTS</strong></td>
+<td><p>WMO's Global Telecommunication System (GTS) is the communications and data management component that allows the World Weather Watch (WWW) to operate through the collection and distribution of information critical to its processes.</p>
+<p>WMO: World Meteorological Organization</p></td>
+</tr>
+</tbody>
+</table>

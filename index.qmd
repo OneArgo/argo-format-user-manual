@@ -1,5 +1,23 @@
+# Préface {.unnumbered}
+
+<p align="center">
+<img src="images/image2.png" alt="Argo logo" style="width:250px;">
+</p>
+
+## Argo User's Manual
+
+**Version 3.45.0 — 2026 (Work in Progress)**
+
+> **WORK IN PROGRESS VERSION**
+>
+> TO SEE THE DRAFT MODIFICATIONS, you need to connect to your account and/or ask for an access in "comment mode".
+
+**Authors:** Argo data management team
+
+### How to cite this document
+
+**Argo User's manual, xxx 2026,** [http://dx.doi.org/10.13155/29825](http://dx.doi.org/10.13155/29825)
+
 ---
-title: Argo User's manual
----
-This document is the Argo data user’s manual. It contains the description of the formats and files produced by the Argo Data Assembly Centres (DACs).
-These files are distributed by Argo Global Data Assembly Centre (GDAC).
+
+Ce document a été converti depuis le fichier Word *argo-dm-user-manual-3.45.0-WorkInProgress.docx* vers Markdown/Quarto. L'historique détaillé des révisions du document est disponible au chapitre [Historique du document](00-historique.qmd).

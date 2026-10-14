@@ -1,36 +1,34 @@
 project:
   type: book
-  output-dir: docs
 
 book:
-  title: "Argo User's manual"
-  subtitle: "Version 3.43.0"
+  title: "Argo User's Manual"
+  subtitle: "Version 3.45.0 (Work in Progress — 2026)"
   author: "Argo data management team"
-  date: 06/23/2025
-  doi: 10.13155/29825
+  date: today
   chapters:
     - index.qmd
-    - chapter1.qmd
-    - chapter2.qmd
-    - chapter3.qmd
-    - chapter4.qmd
-    - chapter5.qmd
-    - chapter6.qmd
-    - chapter7.qmd
+    - 00-historique.qmd
+    - 01-introduction.qmd
+    - part: "Formats description"
+      chapters:
+        - 02-formats-apercu.qmd
+        - 03-format-profil.qmd
+        - 04-format-trajectoire.qmd
+        - 05-format-metadata.qmd
+        - 06-format-technique.qmd
+        - 07-format-bargo.qmd
+        - 08-fichiers-index.qmd
+    - 09-tables-reference.qmd
+    - 10-acces-donnees.qmd
+    - 11-section-history.qmd
+    - 12-dac-gdac.qmd
+    - 13-glossaire.qmd
 
 format:
   html:
-    theme:
-      light: yeti
-      dark: darkly
-    css: assets/css/styles.css
+    theme: cosmo
     toc: true
-    include-after-body:
-      - assets/js/script.js.html
-
-
-resources:
-  - "assets/json/"
-  - "assets/images/"
-  - "assets/js/"
-
+    toc-depth: 3
+    number-sections: true
+    code-fold: false

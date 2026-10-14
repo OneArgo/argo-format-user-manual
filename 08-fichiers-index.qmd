@@ -1,0 +1,637 @@
+# Index files of the GDAC content
+Index files of GDAC content provide means to retrieve, find, make statistics on GDAC files with respect to a selection of fields. There exists one index file for each of the following types of GDAC files: profile files, B-profile files, S-profile files, trajectory, tech and meta files. These index files are located at the root of the GDAC servers (both https and ftp):
+
+- [<u>https://data-argo.ifremer.fr/</u>](https://data-argo.ifremer.fr/)
+
+- [<u>https://nrlgodae1.nrlmry.navy.mil/pub/outgoing/argo/</u>](https://nrlgodae1.nrlmry.navy.mil/pub/outgoing/argo/)
+
+- [<u>ftp://ftp.ifremer.fr/ifremer/argo/</u>](ftp://ftp.ifremer.fr/ifremer/argo/)
+
+Some other more detailed index files exist on [<u>https://data-argo.ifremer.fr/etc/</u>](https://data-argo.ifremer.fr/etc/) repository. This repository is for internal expertise, only the detailed profile and S-profile index files will be described here-below.
+
+These index files are auto-descriptive ASCII files; each index file contains:
+
+- A header with a list of general information: title, description, project name, format version, date of update, ftp root addresses, GDAC node
+
+- A table with a header containing the names of the columns followed by a line for each file of the GDAC that falls in this category of index. The table is a comma separated list.
+
+Each index file is also available in a compressed version (gzipped with the .gz extension), also at the root of the GDAC servers.
+
+In addition, for each update of an index file, an MD5 signature is produced. The MD5 signature file allows the user to check that the collected file is identical to the original file. MD5 signatures are recorded under the Ifremer [<u>https://data-argo.ifremer.fr/etc/md5/</u>](https://data-argo.ifremer.fr/etc/md5/) repository with the following file naming convention: {index_file_name}.gz.md5.
+
+## Index of profile files 
+The index of profile files describes all individual profile files on the GDAC. It is named:
+
+- ar_index_global_prof.txt
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>ar_index_global_prof.txt definition</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Profile directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all individual profile files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.0</p>
+<p># Date of update : YYYYMMDDHHMISS</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file,date,latitude,longitude,ocean,profiler_type,institution,date_update</p>
+<ul>
+<li><p>file : path and file name. The file name contains the float number and the cycle number.<br />
+Fill value : none, this field is mandatory</p></li>
+<li><p>date : date of the profile, YYYYMMDDHHMISS<br />
+Fill value : " " (blank)</p></li>
+<li><p>latitude, longitude : location of the profile<br />
+Fill value : 99999.</p></li>
+<li><p>ocean : code of the ocean of the profile as described in reference table 13<br />
+Fill value : " " (blank)</p></li>
+<li><p>profiler_type : type of profiling float as described in reference table 8<br />
+Fill value : " " (blank)</p></li>
+<li><p>institution : institution of the profiling float described in reference table 4<br />
+Fill value : " " (blank)</p></li>
+<li><p>date_update : : date of last update of the file, YYYYMMDDHHMISS<br />
+Fill value : " " (blank)</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>ar_index_global_prof.txt example</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Profile directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all individual profile files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.0</p>
+<p># Date of update : 20260918112415</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file,date,latitude,longitude,ocean,profiler_type,institution,date_update</p>
+<p>aoml/13857/profiles/D13857_001.nc,19970729200300,0.267,-16.032,A,845,AO,20260220143529</p>
+<p>aoml/13857/profiles/D13857_002.nc,19970809192112,0.072,-17.659,A,845,AO,20260220143529</p>
+<p>aoml/13857/profiles/D13857_003.nc,19970820184545,0.543,-19.622,A,845,AO,20260220143530</p>
+<p>aoml/13857/profiles/D13857_004.nc,19970831193905,1.256,-20.521,A,845,AO,20260220143530</p>
+<p>…</p></td>
+</tr>
+</tbody>
+</table>
+
+There is also a subset of ar_index_global_prof.txt only containing the updates from the previous week and which follows exactly the same format:
+
+- ar_index_this_week_prof.txt
+
+**<u>Note on date or position with a bad quality control flag in index files:</u>**
+
+When the POSITION_QC or JULD_QC of the profile is 3 or 4 (probably bad, bad), the position is reported as missing in the index. In the index file, a missing date or position is set to ",," (empty element).
+
+## Detailed index of profile directory files 
+The detailed index of profiles file describes all individual profile files of the GDAC with additional fields. The detailed index of profile files is limited to temperature, salinity and oxygen observations. It is located under the ‘***etc’*** subdirectory and is named:
+
+- argo_profile_detailled_index.txt.gz
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>argo_profile_detailled_index.txt.gz definition</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Profile directory file of the Argo Global Data Assembly Center</p>
+<p># Description: The directory file describes all individual profile files of the argo GDAC ftp site.</p>
+<p># Project: ARGO</p>
+<p># Format version: 2.2</p>
+<p># Date of update: YYYYMMDDHHMISS</p>
+<p># FTP root number 1: ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2: ftp://usgodae.usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node: CORIOLIS</p>
+<p>file,date,latitude,longitude,ocean,profiler_type,institution,date_update,profile_temp_qc,profile_psal_qc,profile_doxy_qc,ad_psal_adjustment_mean, ad_psal_adjustment_deviation,gdac_date_creation,gdac_date_update,n_levels</p>
+<ul>
+<li><p>file: path and file name on the ftp site. The file name contains the float number and the cycle number.<br />
+Fill value : none, this field is mandatory</p></li>
+<li><p>date: date of the profile, YYYYMMDDHHMISS<br />
+Fill value : " " (blank)</p></li>
+<li><p>latitude, longitude : location of the profile<br />
+Fill value : 99999.</p></li>
+<li><p>ocean: code of the ocean of the profile as described in reference table 13<br />
+Fill value : " " (blank)</p></li>
+<li><p>profiler_type : type of profiling float as described in reference table 8<br />
+Fill value : " " (blank)</p></li>
+<li><p>institution: institution of the profiling float described in reference table 4<br />
+Fill value : " " (blank)</p></li>
+<li><p>date_update: date of last update of the file, YYYYMMDDHHMISS<br />
+Fill value: " " (blank)</p></li>
+<li><p>profile_temp_qc,profile_psal_qc,profile_doxy_qc : global quality flag on temperature, salinity and oxygen profile.<br />
+Fill value: " " (blank)</p></li>
+<li><p>ad_psal_adjustment_mean : for delayed mode or adjusted mode<br />
+Mean of psal_adjusted – psal on the deepest 500 meters with good psal_adjusted_qc (equal to 1)<br />
+Fill value: " " (blank)</p></li>
+<li><p>ad_psal_adjustment_deviation : for delayed mode or adjusted mode<br />
+Standard deviation of psal_adjusted – psal on the deepest 500 meters with good psal_adjusted_qc (equal to 1)<br />
+Fill value: " " (blank)</p></li>
+<li><p>gdac_date_creation : creation date of the file on GDAC, YYYYMMDDHHMISS</p></li>
+<li><p>gdac_date_update : update date of the file on GDAC, YYYYMMDDHHMISS</p></li>
+<li><p>n_levels :maximum number of pressure levels contained in a profile</p></li>
+</ul>
+<blockquote>
+<p>Fill value: " " (blank)</p>
+</blockquote></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>argo_profile_detailled_index.txt.gz example</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Profile directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all individual profile files of the argo GDAC ftp site</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.2</p>
+<p># Date of update : 20260918022801</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file,date,latitude,longitude,ocean,profiler_type,institution,date_update,profile_temp_qc,profile_psal_qc,profile_doxy_qc,ad_psal_adjustment_mean,ad_psal_adjustment_deviation,gdac_date_creation,gdac_date_update,n_levels</p>
+<p>aoml/13857/profiles/D13857_001.nc,19970729200300,0.267,-16.032,A,845,AO,20260220143529,A,,,,,20260220154030,20260220214030,112</p>
+<p>aoml/13857/profiles/D13857_002.nc,19970809192112,0.072,-17.659,A,845,AO,20260220143529,A,,,,,20260220154031,20260220214030,112</p>
+<p>aoml/13857/profiles/D13857_003.nc,19970820184545,0.543,-19.622,A,845,AO,20260220143530,A,,,,,20260220154032,20260220214031,111</p>
+<p>aoml/13857/profiles/D13857_004.nc,19970831193905,1.256,-20.521,A,845,AO,20260220143530,A,,,,,20260220154033,20260220214032,109</p>
+<p>…</p></td>
+</tr>
+</tbody>
+</table>
+
+## Index of trajectory files
+The index of trajectory files describes all trajectory files of the GDAC. It is named:
+
+- ar_index_global_traj.txt
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>ar_index_global_traj.txt definition</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Trajectory directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all trajectory files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.2</p>
+<p># Date of update : YYYYMMDDHHMISS</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file, latitude_max, latitude_min, longitude_max, longitude_min, profiler_type, institution, date_update</p>
+<ul>
+<li><p>file : path and file name on the ftp site<br />
+Fill value : none, this field is mandatory</p></li>
+<li><p>latitude_max, latitude_min, longitude_max, longitude_min : extreme locations of the float<br />
+Fill values : 99999.</p></li>
+<li><p>profiler_type : type of profiling float as described in reference table 8<br />
+Fill value : " " (blank)</p></li>
+<li><p>institution : institution of the profiling float described in reference table 4<br />
+Fill value : " " (blank)</p></li>
+<li><p>date_update : date of last update of the file, YYYYMMDDHHMISS<br />
+Fill value : " " (blank)</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>ar_index_global_traj.txt example</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Trajectory directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all trajectory files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.2</p>
+<p># Date of update : 20260918072957</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file,latitude_max,latitude_min,longitude_max,longitude_min,profiler_type,institution,date_update</p>
+<p>aoml/13857/13857_Rtraj.nc,6.931,0.008,-15.014,-33.808,845,AO,20210428200335</p>
+<p>aoml/13858/13858_Rtraj.nc,5.213,-0.363,-9.498,-17.793,845,AO,20210428200337</p>
+<p>aoml/13859/13859_Rtraj.nc,5.929,-0.939,-18.642,-33.677,845,AO,20181011200025</p>
+<p>aoml/15819/15819_Rtraj.nc,-2.659,-9.186,-16.427,-39.959,845,AO,20210428200342</p>
+<p>…</p></td>
+</tr>
+</tbody>
+</table>
+
+## Index of metadata files
+The index of metadata files describes all metadata files of the GDAC. It is named:
+
+- ar_index_global_meta.txt
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>ar_index_global_meta.txt definition</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Metadata directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all metadata files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.0</p>
+<p># Date of update : YYYYMMDDHHMISS</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file, profiler_type, institution, date_update</p>
+<ul>
+<li><p>file : path and file name on the ftp site<br />
+Fill value : none, this field is mandatory</p></li>
+<li><p>profiler_type : type of profiling float as described in reference table 8<br />
+Fill value : " " (blank)</p></li>
+<li><p>institution : institution of the profiling float described in reference table 4<br />
+Fill value : " " (blank)</p></li>
+<li><p>date_update : date of last update of the file, YYYYMMDDHHMISS<br />
+Fill value : " " (blank)</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>ar_index_global_meta.txt example</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Metadata directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all metadata files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.0</p>
+<p># Date of update : 20260918002101</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file,profiler_type,institution,date_update</p>
+<p>aoml/13857/13857_meta.nc,845,AO,20181011200014</p>
+<p>aoml/13858/13858_meta.nc,845,AO,20181011200015</p>
+<p>aoml/13859/13859_meta.nc,845,AO,20181011200025</p>
+<p>aoml/15819/15819_meta.nc,845,AO,20181011200016</p>
+<p>…</p></td>
+</tr>
+</tbody>
+</table>
+
+There is also a subset of ar_index_global_meta.txt only containing the updates from the previous week and which follows exactly the same format:
+
+- Ar_index_this_week_meta.txt
+
+## Index of technical files
+The index of technical files describes all tech files of the GDAC. It is named:
+
+- ar_index_global_tech.txt
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>ar_index_global_tech.txt definition</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Technical directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all technical files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.0</p>
+<p># Date of update : YYYYMMDDHHMISS</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file,institution,date_update</p>
+<ul>
+<li><p>file : path and file name on the ftp site<br />
+Fill value : none, this field is mandatory</p></li>
+<li><p>institution : institution of the profiling float described in reference table 4<br />
+Fill value : " " (blank)</p></li>
+<li><p>date_update : date of last update of the file, YYYYMMDDHHMISS<br />
+Fill value : " " (blank)</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>ar_index_global_tech.txt example</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Technical directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all technical files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.0</p>
+<p># Date of update : 20260917162201</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file,institution,date_update</p>
+<p>aoml/13857/13857_tech.nc,AO,20210428200335</p>
+<p>aoml/13858/13858_tech.nc,AO,20210428200337</p>
+<p>aoml/13859/13859_tech.nc,AO,20181011200025</p>
+<p>aoml/15819/15819_tech.nc,AO,20210428200342</p>
+<p>…</p></td>
+</tr>
+</tbody>
+</table>
+
+## Index of B-profile files 
+The index of B-profile files describes all individual biogeochemical profile files on the GDAC. It is named:
+
+- argo_bio-profile_index.txt
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>argo_bio-profile_index.txt definition</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Bio-Profile directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all individual bio-profile files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.2</p>
+<p># Date of update : YYYYMMDDHHMISS</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file,date,latitude,longitude,ocean,profiler_type,institution,parameters,parameter_data_mode,date_update</p>
+<ul>
+<li><p>file : path and file name on the ftp site. The file name contains the float number and the cycle number.<br />
+Fill value : none, this field is mandatory</p></li>
+<li><p>date : date of the profile, YYYYMMDDHHMISS<br />
+Fill value : " " (blank)</p></li>
+<li><p>latitude, longitude : location of the profile<br />
+Fill value : 99999.</p></li>
+<li><p>ocean : code of the ocean of the profile as described in reference table 13<br />
+Fill value : " " (blank)</p></li>
+<li><p>profiler_type : type of profiling float as described in reference table 8<br />
+Fill value : " " (blank)</p></li>
+<li><p>institution : institution of the profiling float described in reference table 4<br />
+Fill value : " " (blank)</p></li>
+<li><p>Parameters : list of the measured parameters, separated by white spaces</p></li>
+</ul>
+<blockquote>
+<p>Fill value : none, this field is mandatory</p>
+</blockquote>
+<ul>
+<li><p>Parameter_data_mode: Data mode associated to the parameter</p></li>
+</ul>
+<blockquote>
+<p>Fill value : none, this field is mandatory</p>
+</blockquote>
+<ul>
+<li><p>date_update : : date of last update of the file, YYYYMMDDHHMISS<br />
+Fill value : " " (blank)</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>argo_bio-profile_index.txt example</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Bio-Profile directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all individual bio-profile files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.2</p>
+<p># Date of update : 20260918112401</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file,date,latitude,longitude,ocean,profiler_type,institution,parameters,parameter_data_mode,date_update</p>
+<p>aoml/1900722/profiles/BD1900722_001.nc,20061022021624,-40.316,73.389,I,846,AO,PRES TEMP_DOXY BPHASE_DOXY DOXY,RRRD,20200312153230</p>
+<p>aoml/1900722/profiles/BD1900722_002.nc,20061101064423,-40.390,73.528,I,846,AO,PRES TEMP_DOXY BPHASE_DOXY DOXY,RRRD,20200312153230</p>
+<p>aoml/1900722/profiles/BD1900722_003.nc,20061111101222,-40.455,73.335,I,846,AO,PRES TEMP_DOXY BPHASE_DOXY DOXY,RRRD,20200312153230</p>
+<p>aoml/1900722/profiles/BD1900722_004.nc,20061121075021,-40.134,73.080,I,846,AO,PRES TEMP_DOXY BPHASE_DOXY DOXY,RRRD,20200312153230</p>
+<p>…</p></td>
+</tr>
+</tbody>
+</table>
+
+## Index of S-profile files
+The index of S-profile files describes all individual synthetic profile files on the GDAC. It is named
+
+- argo_synthetic-profile_index.txt
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>argo_synthetic-profile_index.txt definition</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Synthetic-Profile directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all individual synthetic-profile files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.2</p>
+<p># Date of update : YYYYMMDDHHMISS</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file,date,latitude,longitude,ocean,profiler_type,institution,parameters,parameter_data_mode,date_update</p>
+<ul>
+<li><p>file : path and file name on the ftp site. The file name contains the float number and the cycle number.<br />
+Fill value : none, this field is mandatory</p></li>
+<li><p>date : date of the profile, YYYYMMDDHHMISS<br />
+Fill value : " " (blank)</p></li>
+<li><p>latitude, longitude : location of the profile<br />
+Fill value : 99999.</p></li>
+<li><p>ocean : code of the ocean of the profile as described in reference table 13<br />
+Fill value : " " (blank)</p></li>
+<li><p>profiler_type : type of profiling float as described in reference table 8<br />
+Fill value : " " (blank)</p></li>
+<li><p>institution : institution of the profiling float described in reference table 4<br />
+Fill value : " " (blank)</p></li>
+<li><p>Parameters : list of the measured parameters, separated by white spaces</p></li>
+</ul>
+<blockquote>
+<p>Fill value : none, this field is mandatory</p>
+</blockquote>
+<ul>
+<li><p>Parameter_data_mode: Data mode associated to the parameter</p></li>
+</ul>
+<blockquote>
+<p>Fill value : none, this field is mandatory</p>
+</blockquote>
+<ul>
+<li><p>date_update : : date of last update of the file, YYYYMMDDHHMISS<br />
+Fill value : " " (blank)</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>argo_synthetic-profile_index.txt example</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Synthetic-Profile directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all individual synthetic-profile files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.2</p>
+<p># Date of update : 20260918112409</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file,date,latitude,longitude,ocean,profiler_type,institution,parameters,parameter_data_mode,date_update</p>
+<p>aoml/1900722/profiles/SD1900722_001.nc,20061022021624,-40.316,73.389,I,846,AO,PRES TEMP PSAL DOXY,DDDD,20220628080801</p>
+<p>aoml/1900722/profiles/SD1900722_002.nc,20061101064423,-40.390,73.528,I,846,AO,PRES TEMP PSAL DOXY,DDDD,20220628080813</p>
+<p>aoml/1900722/profiles/SD1900722_003.nc,20061111101222,-40.455,73.335,I,846,AO,PRES TEMP PSAL DOXY,DDDD,20220628080826</p>
+<p>aoml/1900722/profiles/SD1900722_004.nc,20061121075021,-40.134,73.080,I,846,AO,PRES TEMP PSAL DOXY,DDDD,20220628080839</p>
+<p>…</p></td>
+</tr>
+</tbody>
+</table>
+
+## Detailed index of S-profile files 
+The detailed index of S-profile files describes all individual S-profile files on the GDAC. It is located under the ‘***etc’*** subdirectory and is named:
+
+- argo_synthetic-profile_detailled_index.txt
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>argo_synthetic-profile_detailled_index.txt definition</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Synthetic-Profile directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all individual synthetic-profile files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.2</p>
+<p># Date of update : YYYYMMDDHHMISS</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file,date,latitude,longitude,ocean,profiler_type,institution,parameters,parameter_data_mode,parameter_quality, date_update,gdac_date_creation,gdac_date_update,n_levels</p>
+<ul>
+<li><p>file : path and file name on the ftp site. The file name contains the float number and the cycle number.<br />
+Fill value : none, this field is mandatory</p></li>
+<li><p>date : date of the profile, YYYYMMDDHHMISS<br />
+Fill value : " " (blank)</p></li>
+<li><p>latitude, longitude : location of the profile<br />
+Fill value : 99999.</p></li>
+<li><p>ocean : code of the ocean of the profile as described in reference table 13<br />
+Fill value : " " (blank)</p></li>
+<li><p>profiler_type : type of profiling float as described in reference table 8<br />
+Fill value : " " (blank)</p></li>
+<li><p>institution : institution of the profiling float described in reference table 4<br />
+Fill value : " " (blank)</p></li>
+<li><p>Parameters : list of the measured parameters, separated by white spaces</p></li>
+</ul>
+<blockquote>
+<p>Fill value : none, this field is mandatory</p>
+</blockquote>
+<ul>
+<li><p>Parameter_data_mode: Data mode associated to the parameter</p></li>
+</ul>
+<blockquote>
+<p>Fill value : none, this field is mandatory</p>
+</blockquote>
+<ul>
+<li><p>parameter_quality: Profile quality flag associated to the parameter</p></li>
+</ul>
+<blockquote>
+<p>Fill value : " " (blank)</p>
+</blockquote>
+<ul>
+<li><p>date_update : date of last update of the file, YYYYMMDDHHMISS<br />
+Fill value : " " (blank)</p></li>
+<li><p>gdac_date_creation : creation date of the file on GDAC, YYYYMMDDHHMISS</p></li>
+<li><p>gdac_date_update : update date of the file on GDAC, YYYYMMDDHHMISS</p></li>
+<li><p>n_levels : maximum number of pressure levels contained in a profile</p></li>
+</ul>
+<blockquote>
+<p>Fill value: " " (blank)</p>
+</blockquote></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>argo_synthetic-profile_detailled_index.txt example</strong></td>
+</tr>
+<tr class="even">
+<td><p># Title : Synthetic-Profile directory file of the Argo Global Data Assembly Center</p>
+<p># Description : The directory file describes all individual synthetic-profile files of the argo GDAC ftp site.</p>
+<p># Project : ARGO</p>
+<p># Format version : 2.2</p>
+<p># Date of update : 20260918022857</p>
+<p># FTP root number 1 : ftp://ftp.ifremer.fr/ifremer/argo/dac</p>
+<p># FTP root number 2 : ftp://usgodae.usgodae.org/pub/outgoing/argo/dac</p>
+<p># GDAC node : CORIOLIS</p>
+<p>file,date,latitude,longitude,ocean,profiler_type,institution,parameters,parameter_data_mode,parameter_quality,date_update,gdac_date_creation,gdac_date_update,n_levels</p>
+<p>aoml/1900722/profiles/SD1900722_001.nc,20061022021624,-40.316,73.389,I,846,AO,PRES TEMP PSAL DOXY,DDDD,AABB,20220628080801,20190425093239,20220628080801,71</p>
+<p>aoml/1900722/profiles/SD1900722_002.nc,20061101064423,-40.390,73.528,I,846,AO,PRES TEMP PSAL DOXY,DDDD,AAAB,20220628080813,20190425093249,20220628080813,71</p>
+<p>aoml/1900722/profiles/SD1900722_003.nc,20061111101222,-40.455,73.335,I,846,AO,PRES TEMP PSAL DOXY,DDDD,AAAA,20220628080826,20190425093301,20220628080826,71</p>
+<p>aoml/1900722/profiles/SD1900722_004.nc,20061121075021,-40.134,73.080,I,846,AO,PRES TEMP PSAL DOXY,DDDD,AAAA,20220628080839,20190425093314,20220628080839,71</p>
+<p>…</p></td>
+</tr>
+</tbody>
+</table>
+

@@ -1,0 +1,975 @@
+# Core-Argo profile format version 3.1
+An Argo single-cycle profile file contains a set of profiles from a single cycle. The minimum number is one profile per cycle. There is no defined maximum number of profiles per cycle.
+
+Core-Argo profile contains the CTD sensor parameters (pressure, temperature, salinity, conductivity) that are measured with the same vertical sampling scheme and at the same location and time. Additional parameters from other sensors are stored in a B-Argo profile file. The B-profile file is very similar to core-Argo profile file; its additional features are listed in [<u>§2.6</u>](#b-argo-profile-format-additional-features)
+
+Some specialty floats collect additional profiles per cycle. These specialty profiles contain parameters measured at pressure levels that are different from the CTD levels, and can be at locations and time that are different from the primary profile. When multiple profiles exist in a single cycle, users are urged to check the information associated with each profile in order to determine their spatial and temporal relations. Some examples of speciality profiles with different vertical sampling schemes are:
+
+- Bouncing profiles: a series of shallow profiles performed during one cycle.
+
+- High resolution near-surface observations: higher resolution vertical sampling near the surface from unpumped CTD.
+
+For single-cycle profile file naming conventions, see [<u>§4.1.1</u>](#core-argo-individual-profile-files).
+
+## Global attributes
+The global attributes section is used for data discovery. The following global attributes should appear in the global section (attributes in italic are optional attributes):
+
+// global attributes:
+
+:title = "Argo float vertical profile";
+
+:institution = "CSIRO";
+
+:source = "Argo float";
+
+:history = "2011-04-22T06:00:00Z creation";
+
+:references = "[<u>http://www.argodatamgt.org/Documentation</u>](http://www.argodatamgt.org/Documentation)";
+
+*:id = "[<u>https://doi.org/10.17882/42182</u>](https://doi.org/10.17882/42182)"*
+
+:comment = "free text";
+
+:user_manual_version = "3.45";
+
+:Conventions = "Argo-3.1 CF-1.6";
+
+:featureType = "trajectoryProfile";
+
+*:comment_on_resolution = "free text"*
+
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 78%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Global attribute name</strong></td>
+<td><strong>Definition</strong></td>
+</tr>
+<tr class="even">
+<td>title</td>
+<td>A succinct description of what is in the dataset.</td>
+</tr>
+<tr class="odd">
+<td>institution</td>
+<td>Specifies where the original data was produced.</td>
+</tr>
+<tr class="even">
+<td>source</td>
+<td>The method of production of the original data. If it was model-generated, source should name the model and its version, as specifically as could be useful. If it is observational, source should characterize it (e.g., "surface observation" or "radiosonde").</td>
+</tr>
+<tr class="odd">
+<td>history</td>
+<td>Provides an audit trail for modifications to the original data. Well-behaved generic NetCDF filters will automatically append their name and the parameters with which they were invoked to the global history attribute of an input NetCDF file. We recommend that each line begin with a timestamp indicating the date and time of day that the program was executed.</td>
+</tr>
+<tr class="even">
+<td>references</td>
+<td>Published or web-based references that describe the data or methods used to produce it.</td>
+</tr>
+<tr class="odd">
+<td>id</td>
+<td><p>The Argo GDAC data DOI: <a href="https://doi.org/10.17882/42182"><u>https://doi.org/10.17882/42182</u></a></p>
+<p>This attribute is <strong>optional</strong> but highly recommended</p></td>
+</tr>
+<tr class="even">
+<td>comment</td>
+<td>Miscellaneous information about the data or methods used to produce it.</td>
+</tr>
+<tr class="odd">
+<td>user_manual_version</td>
+<td>The version number of the user manual</td>
+</tr>
+<tr class="even">
+<td>Conventions</td>
+<td>The conventions supported by this file, blank separated</td>
+</tr>
+<tr class="odd">
+<td>featureType</td>
+<td>The NetCDF CF feature type.</td>
+</tr>
+<tr class="even">
+<td>comment_on_resolution</td>
+<td><strong>Optional</strong> comment on parameter resolution</td>
+</tr>
+</tbody>
+</table>
+
+## Dimensions
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 19%" />
+<col style="width: 58%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Value</strong></td>
+<td><strong>Definition</strong></td>
+</tr>
+<tr class="even">
+<td>DATE_TIME</td>
+<td>DATE_TIME = 14;</td>
+<td><p>This dimension is the length of an ASCII date and time value.</p>
+<p>Date_time convention is : YYYYMMDDHHMISS</p>
+<p>YYYY : year</p>
+<p>MM : month</p>
+<p>DD : day</p>
+<p>HH : hour of the day (as 0 to 23)</p>
+<p>MI : minutes (as 0 to 59)</p>
+<p>SS : seconds (as 0 to 59)</p>
+<p>Date and time values are always in universal time coordinates (UTC).</p>
+<p>Examples :</p>
+<p>20010105172834 : January 5<sup>th</sup> 2001 17:28:34</p>
+<p>19971217000000 : December 17<sup>th</sup> 1997 00:00:00</p></td>
+</tr>
+<tr class="odd">
+<td><p>STRING1024</p>
+<p>STRING256<br />
+STRING64<br />
+STRING32<br />
+STRING16<br />
+STRING8<br />
+STRING4<br />
+STRING2</p></td>
+<td><p>STRING1024=1024;</p>
+<p>STRING256 = 256;</p>
+<p>STRING64 = 64;</p>
+<p>STRING32 = 32;</p>
+<p>STRING16 = 16;</p>
+<p>STRING8 = 8;</p>
+<p>STRING4 = 4;</p>
+<p>STRING2 = 2;</p></td>
+<td>String dimensions from 2 to 256, optionally to 1024 (optional variables)</td>
+</tr>
+<tr class="even">
+<td>N_PROF</td>
+<td>N_PROF = &lt;int value&gt;;</td>
+<td><p>Number of profiles contained in the file.</p>
+<p>This dimension depends on the data set.</p>
+<p>A file contains at least one profile.</p>
+<p>There is no defined limit on the maximum number of profiles in a file.</p>
+<p>Example:</p>
+<p>N_PROF = 100</p></td>
+</tr>
+<tr class="odd">
+<td>N_PARAM</td>
+<td>N_PARAM = &lt;int value&gt;;</td>
+<td><p>Maximum number of parameters measured or calculated for a pressure sample.</p>
+<p>This dimension depends on the data set.</p>
+<p>Examples :</p>
+<p>(pressure, temperature) : N_PARAM = 2</p>
+<p>(pressure, temperature, salinity) : N_PARAM = 3</p>
+<p>(pressure, temperature, conductivity, salinity) : N_PARAM = 4</p></td>
+</tr>
+<tr class="even">
+<td>N_LEVELS</td>
+<td>N_LEVELS = &lt;int value&gt;;</td>
+<td><p>Maximum number of pressure levels contained in a profile.</p>
+<p>This dimension depends on the data set.</p>
+<p>Example: N_LEVELS = 100</p></td>
+</tr>
+<tr class="odd">
+<td>N_CALIB</td>
+<td>N_CALIB = &lt;int value&gt;;</td>
+<td><p>Maximum number of calibrations performed on a profile.</p>
+<p>This dimension depends on the data set.</p>
+<p>Example: N_CALIB = 10</p></td>
+</tr>
+<tr class="even">
+<td>N_HISTORY</td>
+<td>N_HISTORY = UNLIMITED;</td>
+<td>Number of history records.</td>
+</tr>
+</tbody>
+</table>
+
+## General information on the profile file
+This section contains information about the whole file.
+
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 45%" />
+<col style="width: 32%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Definition</strong></td>
+<td><strong>Comment</strong></td>
+</tr>
+<tr class="even">
+<td>DATA_TYPE</td>
+<td><p>char DATA_TYPE(STRING16);</p>
+<p>DATA_TYPE:long_name = "Data type";</p>
+<p>DATA_TYPE:conventions = "Argo reference table 1";</p>
+<p>DATA_TYPE:_FillValue = " ";</p></td>
+<td><p>This field contains the type of data contained in the file.</p>
+<p>The list of acceptable data types is in the reference table 1 (<a href="https://vocab.nerc.ac.uk/collection/R01/"><u>https://vocab.nerc.ac.uk/collection/R01/</u></a>).</p>
+<p>Example: Argo profile</p></td>
+</tr>
+<tr class="odd">
+<td>FORMAT_VERSION</td>
+<td><p>char FORMAT_VERSION(STRING4);</p>
+<p>FORMAT_VERSION:long_name = "File format version";</p>
+<p>FORMAT_VERSION:_FillValue = " ";</p></td>
+<td><p>File format version</p>
+<p>Example: "3.1"</p></td>
+</tr>
+<tr class="even">
+<td>HANDBOOK_VERSION</td>
+<td><p>char HANDBOOK_VERSION(STRING4);</p>
+<p>HANDBOOK_VERSION:long_name = "Data handbook version";</p>
+<p>HANDBOOK_VERSION:_FillValue = " ";</p></td>
+<td><p>Version number of the data handbook.</p>
+<p>This field indicates that the data contained in this file are managed according to the policy described in the Argo data management handbook.</p>
+<p>Example: "1.0"</p></td>
+</tr>
+<tr class="odd">
+<td>REFERENCE_DATE_TIME</td>
+<td><p>char REFERENCE_DATE_TIME(DATE_TIME);</p>
+<p>REFERENCE_DATE_TIME:long_name = "Date of reference for Julian days";</p>
+<p>REFERENCE_DATE_TIME:conventions = "YYYYMMDDHHMISS";</p>
+<p>REFERENCE_DATE_TIME:_FillValue = " ";</p></td>
+<td><p>Date of reference for Julian days.</p>
+<p>The recommended reference date time is "19500101000000" : January 1<sup>st</sup> 1950 00:00:00</p></td>
+</tr>
+<tr class="even">
+<td>DATE_CREATION</td>
+<td><p>char DATE_CREATION(DATE_TIME);</p>
+<p>DATE_CREATION:long_name = "Date of file creation";</p>
+<p>DATE_CREATION:conventions = "YYYYMMDDHHMISS";</p>
+<p>DATE_CREATION:_FillValue = " ";</p></td>
+<td><p>Date and time (UTC) of creation of this file.</p>
+<p>Format : YYYYMMDDHHMISS</p>
+<p>Example:</p>
+<p>20011229161700 (meaning December 29<sup>th</sup> 2001 16:17:00)</p></td>
+</tr>
+<tr class="odd">
+<td>DATE_UPDATE</td>
+<td><p>char DATE_UPDATE(DATE_TIME);</p>
+<p>DATE_UPDATE:long_name = "Date of update of this file";</p>
+<p>DATE_UPDATE:conventions = "YYYYMMDDHHMISS";</p>
+<p>DATE_UPDATE:_FillValue = " ";</p></td>
+<td><p>Date and time (UTC) of update of this file.</p>
+<p>Format : YYYYMMDDHHMISS</p>
+<p>Example:</p>
+<p>20011230090500 (meaning December 30<sup>th</sup> 2001 09:05:00)</p></td>
+</tr>
+</tbody>
+</table>
+
+## General information for each profile
+This section contains general information on each profile.
+
+Each item of this section has a N_PROF (number of profiles) dimension.
+
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 37%" />
+<col style="width: 39%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Definition</strong></td>
+<td><strong>Comment</strong></td>
+</tr>
+<tr class="even">
+<td>PLATFORM_NUMBER</td>
+<td><p>char PLATFORM_NUMBER(N_PROF, STRING8);</p>
+<p>PLATFORM_NUMBER:long_name = "Float unique identifier";</p>
+<p>PLATFORM_NUMBER:conventions = "WMO float identifier : A9IIIII";</p>
+<p>PLATFORM_NUMBER:_FillValue = " ";</p></td>
+<td><p>WMO float identifier.</p>
+<p>WMO is the World Meteorological Organization.</p>
+<p>This platform number is unique.</p>
+<p>Example: 6900045</p></td>
+</tr>
+<tr class="odd">
+<td>PROJECT_NAME</td>
+<td><p>char PROJECT_NAME(N_PROF, STRING64);</p>
+<p>PROJECT_NAME:long_name = "Name of the project";</p>
+<p>PROJECT_NAME:_FillValue = " ";</p></td>
+<td><p>Name of the project that operates the float.</p>
+<p>Multiple projects can be separated by commas.</p>
+<p>Example: "GYROSCOPE, GMMC"</p></td>
+</tr>
+<tr class="even">
+<td>PI_NAME</td>
+<td><p>char PI_NAME (N_PROF, STRING64);</p>
+<p>PI_NAME:long_name = "Name of the principal investigator";</p>
+<p>PI_NAME:_FillValue = " ";</p></td>
+<td><p>Name of the principal investigator responsible for the profiling float.</p>
+<p>Valid PI names are listed in reference table R40 (<a href="https://vocab.nerc.ac.uk/collectionsearch_nvs/R40/"><u>https://vocab.nerc.ac.uk/collection/R40/</u></a>). Multiple names can be concatenated, separated by commas.</p>
+<p>Example: "Julia UITZ"</p></td>
+</tr>
+<tr class="odd">
+<td>STATION_PARAMETERS</td>
+<td><p>char STATION_PARAMETERS(N_PROF, N_PARAM, STRING16);</p>
+<p>STATION_PARAMETERS:long_name = "List of available parameters for the station";</p>
+<p>STATION_PARAMETERS:conventions = "Argo reference table 3";</p>
+<p>STATION_PARAMETERS:_FillValue = " ";</p></td>
+<td><p>List of parameters contained in this profile.</p>
+<p>The parameter names are listed in reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).</p>
+<p>Examples : TEMP, PSAL, PRES</p>
+<p>TEMP : temperature</p>
+<p>PSAL : practical salinity</p>
+<p>PRES: pressure</p></td>
+</tr>
+<tr class="even">
+<td>CYCLE_NUMBER</td>
+<td><p>int CYCLE_NUMBER(N_PROF);</p>
+<p>CYCLE_NUMBER:long_name = "Float cycle number";</p>
+<p>CYCLE_NUMBER:conventions = "0...N, 0 : launch cycle (if exists), 1 : first complete cycle";</p>
+<p>CYCLE_NUMBER:_FillValue = 99999;</p></td>
+<td><p>Float cycle number.</p>
+<p>See <a href="#argo-float-cycles"><u>§1.6</u></a>: float cycle definition.</p></td>
+</tr>
+<tr class="odd">
+<td>DIRECTION</td>
+<td><p>char DIRECTION(N_PROF);</p>
+<p>DIRECTION:long_name = "Direction of the station profiles";</p>
+<p>DIRECTION:conventions = "A: ascending profiles, D: descending profiles";</p>
+<p>DIRECTION:_FillValue = " ";</p></td>
+<td><p>Type of profile on which measurement occurs.</p>
+<p>A : ascending profile</p>
+<p>D : descending profile</p></td>
+</tr>
+<tr class="even">
+<td>DATA_CENTRE</td>
+<td><p>char DATA_CENTRE(N_PROF, STRING2);</p>
+<p>DATA_CENTRE:long_name = "Data centre in charge of float data processing";</p>
+<p>DATA_CENTRE:conventions = "Argo reference table 4";</p>
+<p>DATA_CENTRE:_FillValue = " ";</p></td>
+<td><p>Code for the data centre in charge of the float data management.</p>
+<p>The data centre codes are described in the reference table 4 (<a href="https://vocab.nerc.ac.uk/collection/R04/"><u>https://vocab.nerc.ac.uk/collection/R04/</u></a>).</p>
+<p>Example: "ME" for MEDS</p></td>
+</tr>
+<tr class="odd">
+<td>DC_REFERENCE</td>
+<td><p>char DC_REFERENCE(N_PROF, STRING32);</p>
+<p>DC_REFERENCE:long_name = "Station unique identifier in data centre";</p>
+<p>DC_REFERENCE:conventions = "Data centre convention";</p>
+<p>DC_REFERENCE:_FillValue = " ";</p></td>
+<td><p>Unique identifier of the profile in the data centre.</p>
+<p>Data centres may have different identifier schemes.</p>
+<p>DC_REFERENCE is therefore not unique across data centres.</p></td>
+</tr>
+<tr class="even">
+<td>DATA_STATE_INDICATOR</td>
+<td><p>char DATA_STATE_INDICATOR(N_PROF, STRING4);</p>
+<p>DATA_STATE_INDICATOR:long_name = "Degree of processing the data have passed through";</p>
+<p>DATA_STATE_INDICATOR:conventions = "Argo reference table 6";</p>
+<p>DATA_STATE_INDICATOR:_FillValue = " ";</p></td>
+<td><p>Data processing level</p>
+<p>The data state indicator is described in the reference table 6 (<a href="https://vocab.nerc.ac.uk/collection/R06/"><u>https://vocab.nerc.ac.uk/collection/R06/</u></a>).</p></td>
+</tr>
+<tr class="odd">
+<td>DATA_MODE</td>
+<td><p>char DATA_MODE(N_PROF);</p>
+<p>DATA_MODE:long_name = "Delayed mode or real time data";</p>
+<p>DATA_MODE:conventions = "R : real time; D : delayed mode; A : real time with adjustment";</p>
+<p>DATA_MODE:_FillValue = " ";</p></td>
+<td><p>Indicates if the profile contains real time, delayed mode or adjusted data.</p>
+<p>R : real time data</p>
+<p>D : delayed mode data</p>
+<p>A : real time data with adjusted values</p></td>
+</tr>
+<tr class="even">
+<td>PLATFORM_TYPE</td>
+<td><p>char PLATFORM_TYPE(N_PROF, STRING32);</p>
+<p>PLATFORM_TYPE:long_name = "Type of float";</p>
+<p>PLATFORM_TYPE:conventions = "Argo reference table 23";</p>
+<p>PLATFORM_TYPE:_FillValue = " ";</p></td>
+<td><p>Type of float listed in reference table 23 (<a href="https://vocab.nerc.ac.uk/collection/R23/"><u>https://vocab.nerc.ac.uk/collection/R23/</u></a>).</p>
+<p>Example: SOLO, APEX, PROVOR, ARVOR, NINJA</p></td>
+</tr>
+<tr class="odd">
+<td>FLOAT_SERIAL_NO</td>
+<td><p>char FLOAT_SERIAL_NO(N_PROF, STRING32);</p>
+<p>FLOAT_SERIAL_NO:long_name = "Serial number of the float";</p>
+<p>FLOAT_SERIAL_NO:_FillValue = " ";</p></td>
+<td><p>Serial number of the float.</p>
+<p>Example: 1679</p></td>
+</tr>
+<tr class="even">
+<td>FIRMWARE_VERSION</td>
+<td><p>char FIRMWARE_VERSION(N_PROF, STRING64);</p>
+<p>FIRMWARE_VERSION:long_name = "Instrument firmware version";</p>
+<p>FIRMWARE_VERSION:_FillValue = " ";</p></td>
+<td><p>Firmware version of the float.</p>
+<p>The dimension STRING32 instead of STRING64 remains accepted.</p>
+<p>Example: "013108"</p></td>
+</tr>
+<tr class="odd">
+<td>WMO_INST_TYPE</td>
+<td><p>char WMO_INST_TYPE(N_PROF, STRING4);</p>
+<p>WMO_INST_TYPE:long_name = "Coded instrument type";</p>
+<p>WMO_INST_TYPE:conventions = "Argo reference table 8";</p>
+<p>WMO_INST_TYPE:_FillValue = " ";</p></td>
+<td><p>Instrument type from WMO code table 1770.</p>
+<p>A subset of WMO table 1770 is documented in the reference table 8 (<a href="https://vocab.nerc.ac.uk/collection/R08/"><u>https://vocab.nerc.ac.uk/collection/R08/</u></a>).</p>
+<p>Example:</p>
+<p>846 : Webb Research float, Seabird sensor</p></td>
+</tr>
+<tr class="even">
+<td>JULD</td>
+<td><p>double JULD(N_PROF);</p>
+<p>JULD:long_name = "Julian day (UTC) of the station relative to REFERENCE_DATE_TIME";</p>
+<p>JULD:standard_name = "time";</p>
+<p>JULD:units = "days since 1950-01-01 00:00:00 UTC";</p>
+<p>JULD:conventions = "Relative julian days with decimal part (as parts of day)";</p>
+<p>JULD:resolution = X;</p>
+<p>JULD:_FillValue = 999999.;</p>
+<p>JULD:axis = "T";</p></td>
+<td><p>Julian day of the profile.</p>
+<p>The integer part represents the day, the decimal part represents the time of the profile.</p>
+<p>Date and time are in Universal Time.</p>
+<p>The Julian day is relative to REFERENCE_DATE_TIME.</p>
+<p>Example:</p>
+<p>18833.8013889885 (meaning July 25 2001 19:14:00)</p></td>
+</tr>
+<tr class="odd">
+<td>JULD_QC</td>
+<td><p>char JULD_QC(N_PROF);</p>
+<p>JULD_QC:long_name = "Quality on date and time";</p>
+<p>JULD_QC:conventions = "Argo reference table 2";</p>
+<p>JULD_QC:_FillValue = " ";</p></td>
+<td><p>Quality flag on JULD date and time.</p>
+<p>The flag scale is described in the reference tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2/"><u>https://vocab.nerc.ac.uk/collection/RR2/</u></a> for real time and <a href="https://vocab.nerc.ac.uk/collection/RD2/"><u>https://vocab.nerc.ac.uk/collection/RD2/</u></a> for delayed mode).</p>
+<p>Example:</p>
+<p>1 (standing for date and time seem correct)</p></td>
+</tr>
+<tr class="even">
+<td>JULD_LOCATION</td>
+<td><p>double JULD_LOCATION(N_PROF);</p>
+<p>JULD_LOCATION:long_name = "Julian day (UTC) of the location relative to REFERENCE_DATE_TIME";</p>
+<p>JULD_LOCATION:units = "days since 1950-01-01 00:00:00 UTC";</p>
+<p>JULD_LOCATION:conventions = "Relative julian days with decimal part (as parts of day)";</p>
+<p>JULD_LOCATION:resolution = X;</p>
+<p>JULD_LOCATION:_FillValue = 999999.;</p></td>
+<td><p>Julian day of the location of the profile.</p>
+<p>The integer part represents the day, the decimal part represents the time of the profile.</p>
+<p>Date and time are in Universal Time.</p>
+<p>The Julian day is relative to REFERENCE_DATE_TIME.</p>
+<p>Example:</p>
+<p>18833.8013889885 (standing for July 25 2001 19:14:00)</p></td>
+</tr>
+<tr class="odd">
+<td>LATITUDE</td>
+<td><p>double LATITUDE(N_PROF);</p>
+<p>LATITUDE:long_name = "Latitude of the station, best estimate";</p>
+<p>LATITUDE:standard_name = "latitude";</p>
+<p>LATITUDE:units = "degree_north";</p>
+<p>LATITUDE:_FillValue = 99999.;</p>
+<p>LATITUDE:valid_min = -90.;</p>
+<p>LATITUDE:valid_max = 90.;</p>
+<p>LATITUDE:axis = "Y";</p></td>
+<td><p>Latitude of the profile.</p>
+<p>Unit : degree north</p>
+<p>This field contains the best estimated latitude.</p>
+<p>The latitude value may be improved in delayed mode.</p>
+<p>The measured locations of the float are located in the trajectory file.</p>
+<p>Example: 44.4991 (standing for 44° 29’ 56.76’’ N)</p></td>
+</tr>
+<tr class="even">
+<td>LONGITUDE</td>
+<td><p>double LONGITUDE(N_PROF);</p>
+<p>LONGITUDE:long_name = "Longitude of the station, best estimate";</p>
+<p>LONGITUDE:standard_name = "longitude";</p>
+<p>LONGITUDE:units = "degree_east";</p>
+<p>LONGITUDE:_FillValue = 99999.;</p>
+<p>LONGITUDE:valid_min = -180.;</p>
+<p>LONGITUDE:valid_max = 180.;</p>
+<p>LONGITUDE:axis = "X";</p></td>
+<td><p>Longitude of the profile.</p>
+<p>Unit : degree east</p>
+<p>This field contains the best estimated longitude.</p>
+<p>The longitude value may be improved in delayed mode.</p>
+<p>The measured locations of the float are located in the trajectory file.</p>
+<p>Example: 16.7222 (standing for 16° 43’ 19.92’’ E)</p></td>
+</tr>
+<tr class="odd">
+<td>POSITION_QC</td>
+<td><p>char POSITION_QC(N_PROF);</p>
+<p>POSITION_QC:long_name = "Quality on position (latitude and longitude)";</p>
+<p>POSITION_QC:conventions = "Argo reference table 2";</p>
+<p>POSITION_QC:_FillValue = " ";</p></td>
+<td><p>Quality flag on position.</p>
+<p>The flag on position is set according to (LATITUDE, LONGITUDE) quality.</p>
+<p>The flag scale is described in the reference tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2/"><u>https://vocab.nerc.ac.uk/collection/RR2/</u></a> for real time and <a href="https://vocab.nerc.ac.uk/collection/RD2/"><u>https://vocab.nerc.ac.uk/collection/RD2/</u></a> for delayed mode).</p>
+<p>Example: 1 (meaning position seems correct)</p></td>
+</tr>
+<tr class="even">
+<td>POSITIONING_SYSTEM</td>
+<td><p>char POSITIONING_SYSTEM(N_PROF, STRING8);</p>
+<p>POSITIONING_SYSTEM:long_name = "Positioning system";</p>
+<p>POSITIONING_SYSTEM:_FillValue = " ";</p></td>
+<td><p>Name of the system in charge of positioning the float locations from reference table 9 (<a href="https://vocab.nerc.ac.uk/collection/R09/"><u>https://vocab.nerc.ac.uk/collection/R09/</u></a>).</p>
+<p>Examples : ARGOS</p></td>
+</tr>
+<tr class="odd">
+<td>POSITION_ERROR_REPORTED</td>
+<td><p>float POSITION_ERROR_REPORTED(N_PROF);</p>
+<p>POSITION_ERROR_REPORTED:long_name = "Position error reported by the positioning system";</p>
+<p>POSITION_ERROR_REPORTED:units = "meters";</p>
+<p>POSITION_ERROR_REPORTED:_FillValue = 99999.;</p></td>
+<td><p><strong>This is an optional variable.</strong></p>
+<p>Position error reported by the positioning system.</p></td>
+</tr>
+<tr class="even">
+<td>POSITION_ERROR_ESTIMATED</td>
+<td><p>float POSITION_ERROR_ESTIMATED(N_PROF);</p>
+<p>POSITION_ERROR_ESTIMATED:long_name = "Position error estimated by the real-time or delayed-mode process";</p>
+<p>POSITION_ERROR_ESTIMATED:units = "meters";</p>
+<p>POSITION_ERROR_ESTIMATED:_FillValue = 99999.;</p></td>
+<td><strong>This is an optional variable.</strong> Position error estimated by the real-time or delayed-mode process.</td>
+</tr>
+<tr class="odd">
+<td>POSITION_ERROR_ESTIMATED_COMMENT</td>
+<td><p>char POSITION_ERROR_ESTIMATED_COMMENT(N_PROF, STRING1024);</p>
+<p>POSITION_ERROR_ESTIMATED_COMMENT:long_name = "Comment on the method used to determine POSITION_ERROR_ESTIMATED";</p>
+<p>POSITION_ERROR_ESTIMATED_COMMENT:_FillValue = " ";</p></td>
+<td><p><strong>This is an optional variable.</strong></p>
+<p>Comment on the method used to determine POSITION_ERROR_ESTIMATED.</p></td>
+</tr>
+<tr class="even">
+<td>PROFILE_&lt;PARAM&gt;_QC</td>
+<td><p>char PROFILE_&lt;PARAM&gt;_QC(N_PROF);</p>
+<p>PROFILE_&lt;PARAM&gt;_QC:long_name = "Global quality flag of &lt;PARAM&gt; profile";</p>
+<p>PROFILE_&lt;PARAM&gt;_QC:conventions = "Argo reference table 2a";</p>
+<p>PROFILE_&lt;PARAM&gt;_QC:_FillValue = " ";</p></td>
+<td><p>Global quality flag on the PARAM profile.</p>
+<p>PARAM is among the STATION_PARAMETERS.</p>
+<p>The overall flag is set to indicate the percentage of good data in the profile as described in reference table 2a (<a href="https://vocab.nerc.ac.uk/collection/RP2/"><u>https://vocab.nerc.ac.uk/collection/RP2/</u></a>).</p>
+<p>Example:</p>
+<p>PROFILE_TEMP_QC = A (meaning the temperature profile contains only good values)</p>
+<p>PROFILE_PSAL_QC = C (meaning the salinity profile contains 50% to 75% good values)</p></td>
+</tr>
+<tr class="odd">
+<td>VERTICAL_SAMPLING_SCHEME</td>
+<td><p>char VERTICAL_SAMPLING_SCHEME(N_PROF, STRING256);</p>
+<p>VERTICAL_SAMPLING_SCHEME:long_name = "Vertical sampling scheme";</p>
+<p>VERTICAL_SAMPLING_SCHEME:conventions = "Argo reference table 16";</p>
+<p>VERTICAL_SAMPLING_SCHEME:_FillValue = " ";</p></td>
+<td><p>Use the vertical sampling scheme to differentiate and identify profiles from a single-cycle with different vertical sampling schemes.</p>
+<p>See reference table 16 (<a href="https://vocab.nerc.ac.uk/collection/R16/"><u>https://vocab.nerc.ac.uk/collection/R16/</u></a>).</p></td>
+</tr>
+<tr class="even">
+<td>CONFIG_MISSION_NUMBER</td>
+<td><p>int CONFIG_MISSION_NUMBER(N_PROF);</p>
+<p>CONFIG_MISSION_NUMBER:long_name = " Unique number denoting the missions performed by the float";</p>
+<p>CONFIG_MISSION_NUMBER:conventions = "1...N, 1 : first complete mission";</p>
+<p>CONFIG_MISSION_NUMBER:_FillValue = 99999;</p></td>
+<td><p>Unique number of the mission to which this profile belongs.</p>
+<p>See note on floats with multiple configurations <a href="#note-on-floats-with-multiple-missions"><u>§2.4.6.1</u></a>.</p>
+<p>The number 0 (zero) can be used to denote the float’s mission prelude, if it exists.</p></td>
+</tr>
+</tbody>
+</table>
+
+Note: how to sort STATION_PARAMETERS variable
+
+The parameters listed in STATION_PARAMETERS should be sorted in the same order within a given float’s data file.
+
+**Note: how to set POSITIONING_SYSTEM for estimated position**
+
+**<u>Case 1:</u>** when only one system has been used for the interpolation. That system is shown in **POSITIONING_SYSTEM**.
+
+**<u>Case 2:</u>** when no position was transmitted and an estimate of the position in delayed mode relies on information not from a positioning system (a numerical method, model data. etc.) the **POSITIONING_SYSTEM** should be "**NONE**"
+
+## Measurements for each profile
+This section contains information on each level of each profile.  
+Each variable in this section has a N_PROF (number of profiles), N_LEVELS (number of pressure levels) dimension.
+
+\<PARAM\> contains the raw values transmitted by the float. These raw values (including missing data) are not to be altered by any post-processing. Missing data should be reported as such and **not** filled with estimated values.
+
+\<PARAM\>\_QC contains QC flags that pertain to the values in \<PARAM\>. Values in \<PARAM\>\_QC are set initially in 'R' and 'A' modes by the automatic real-time tests. They are later modified in 'D' mode at levels where the QC flags are set incorrectly by the real-time procedures, and where erroneous data are not detected by the real-time procedures.
+
+Each parameter can be adjusted (in delayed-mode, but also in real-time if appropriate). In that case, \<PARAM\>\_ADJUSTED contains the adjusted values, \<PARAM\>\_ADJUSTED_QC contains the QC flags set by the adjustment process, and \<PARAM\>\_ADJUSTED_ERROR contains the adjustment uncertainties.
+
+When a profile has DATA_MODE = ’R’, no adjusted data are available. Hence the adjusted section (\<PARAM\>\_ADJUSTED, \<PARAM\>\_ADJUSTED_QC and \<PARAM\>\_ADJUSTED_ERROR) should be filled with FillValue.
+
+When N_PROF \> 1, DATA_MODE for each profile can be assigned differently. This is because when there are multiple profiles, delayed-mode or near real-time adjustments can become available at different times.
+
+The adjusted section for each N_PROF should then be filled independently according to its DATA_MODE.
+
+For example, in a profile file with 2 profiles, it is possible that
+
+- DATA_MODE = ’D’ in N_PROF = 1, and
+
+- DATA_MODE = ’R’ in N_PROF = 2.
+
+In this case:
+
+- the adjusted section in N_PROF=1 with DATA_MODE=’D’ should be filled with their adjusted values;
+
+- the adjusted section in N_PROF=2 with DATA_MODE=’R’ should be filled with FillValue.
+
+The real-time and delayed-mode QC for core Argo profiles is described in "Argo quality control manual for CTD and trajectory data" [<u>https://archimer.ifremer.fr/doc/00228/33951/</u>](https://archimer.ifremer.fr/doc/00228/33951/).
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 44%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Definition</strong></td>
+<td><strong>Comment</strong></td>
+</tr>
+<tr class="even">
+<td>&lt;PARAM&gt;</td>
+<td><p>float &lt;PARAM&gt;(N_PROF, N_LEVELS);</p>
+<p>&lt;PARAM&gt;:long_name = "&lt;X&gt;";</p>
+<p>&lt;PARAM&gt;:standard_name = "&lt;X&gt;";</p>
+<p>&lt;PARAM&gt;:_FillValue = &lt;X&gt;;</p>
+<p>&lt;PARAM&gt;:units = "&lt;X&gt;";</p>
+<p>&lt;PARAM&gt;:valid_min = &lt;X&gt;;</p>
+<p>&lt;PARAM&gt;:valid_max = &lt;X&gt;;</p>
+<p>&lt;PARAM&gt;:C_format = "&lt;X&gt;";</p>
+<p>&lt;PARAM&gt;:FORTRAN_format = "&lt;X&gt;";</p>
+<p>&lt;PARAM&gt;:resolution = &lt;X&gt;;</p></td>
+<td><p>&lt;PARAM&gt; contains the original values of a parameter listed in reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).</p>
+<p>&lt;X&gt;: this field is specified in the reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).</p></td>
+</tr>
+<tr class="odd">
+<td>&lt;PARAM&gt;_QC</td>
+<td><p>char &lt;PARAM&gt;_QC(N_PROF, N_LEVELS);</p>
+<p>&lt;PARAM&gt;_QC:long_name = "quality flag";</p>
+<p>&lt;PARAM&gt;_QC:conventions = "Argo reference table 2";</p>
+<p>&lt;PARAM&gt;_QC:_FillValue = " ";</p></td>
+<td><p>Quality flag applied on each &lt;PARAM&gt; value.</p>
+<p>The flag scale is specified in reference tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2/"><u>https://vocab.nerc.ac.uk/collection/RR2/</u></a> for real time and <a href="https://vocab.nerc.ac.uk/collection/RD2/"><u>https://vocab.nerc.ac.uk/collection/RD2/</u></a> for delayed mode).</p></td>
+</tr>
+<tr class="even">
+<td>&lt;PARAM&gt;_ADJUSTED</td>
+<td><p>float &lt;PARAM&gt;_ADJUSTED(N_PROF, N_LEVELS);</p>
+<p>&lt;PARAM&gt;_ADJUSTED:long_name = "&lt;X&gt;";</p>
+<p>&lt;PARAM&gt;_ADJUSTED:standard_name = "&lt;X&gt;";</p>
+<p>&lt;PARAM&gt;_ADJUSTED:_FillValue = &lt;X&gt;;</p>
+<p>&lt;PARAM&gt;_ADJUSTED:units = "&lt;X&gt;";</p>
+<p>&lt;PARAM&gt;_ADJUSTED:valid_min = &lt;X&gt;;</p>
+<p>&lt;PARAM&gt;_ADJUSTED:valid_max = &lt;X&gt;;</p>
+<p>&lt;PARAM&gt;_ADJUSTED:C_format = "&lt;X&gt;";</p>
+<p>&lt;PARAM&gt;_ADJUSTED:FORTRAN_format = "&lt;X&gt;";</p>
+<p>&lt;PARAM&gt;_ADJUSTED:resolution= &lt;X&gt;;</p></td>
+<td><p>&lt;PARAM&gt;_ADJUSTED contains the adjusted values derived from the original values of the parameter.</p>
+<p>&lt;X&gt;: this field is specified in the reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).</p>
+<p><strong>&lt;PARAM&gt;_ADJUSTED is mandatory for ‘c’ and ‘b’ parameters, optional for ‘ib’ and ‘ic’ parameters.</strong></p>
+<p>When no adjustment is performed, the FillValue is inserted.</p></td>
+</tr>
+<tr class="odd">
+<td>&lt;PARAM&gt;_ADJUSTED_QC</td>
+<td><p>char &lt;PARAM&gt;_ADJUSTED_QC(N_PROF, N_LEVELS);</p>
+<p>&lt;PARAM&gt;_ADJUSTED_QC:long_name = "quality flag";</p>
+<p>&lt;PARAM&gt;_ADJUSTED_QC:conventions = "Argo reference table 2";</p>
+<p>&lt;PARAM&gt;_ADJUSTED_QC:_FillValue = " ";</p></td>
+<td><p>Quality flag applied on each &lt;PARAM&gt;_ADJUSTED value.</p>
+<p>The flag scale is specified in reference tables 2 (<a href="https://vocab.nerc.ac.uk/collection/RR2/"><u>https://vocab.nerc.ac.uk/collection/RR2/</u></a> for real time and <a href="https://vocab.nerc.ac.uk/collection/RD2/"><u>https://vocab.nerc.ac.uk/collection/RD2/</u></a> for delayed mode).</p>
+<p><strong>&lt;PARAM&gt;_ADJUSTED_QC is mandatory if &lt;PARAM&gt;_ADJUSTED is present.</strong></p>
+<p>When no adjustment is performed, the FillValue is inserted.</p></td>
+</tr>
+<tr class="even">
+<td>&lt;PARAM&gt;_ADJUSTED_ERROR</td>
+<td><p>float &lt;PARAM&gt;_ADJUSTED_ERROR(N_PROF, N_LEVELS);</p>
+<p>&lt;PARAM&gt;_ADJUSTED_ERROR:long_name = "Contains the error on the adjusted values as determined by the delayed mode QC process";</p>
+<p>&lt;PARAM&gt;_ADJUSTED_ERROR:_FillValue = &lt;X&gt;;</p>
+<p>&lt;PARAM&gt;_ADJUSTED_ERROR:units = "&lt;X&gt;";</p>
+<p>&lt;PARAM&gt;_ADJUSTED_ERROR:C_format = "&lt;X&gt;";</p>
+<p>&lt;PARAM&gt;_ADJUSTED_ERROR:FORTRAN_format = "&lt;X&gt;";</p>
+<p>&lt;PARAM&gt;_ADJUSTED_ERROR:resolution= &lt;X&gt;;</p></td>
+<td><p>&lt;PARAM&gt;_ADJUSTED_ERROR</p>
+<p>Contains the error on the adjusted values as determined by the delayed mode QC process.</p>
+<p>&lt;X&gt;: this field is specified in the reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).</p>
+<p><strong>&lt;PARAM&gt;_ADJUSTED_ERROR is mandatory if &lt;PARAM&gt;_ADJUSTED is present.</strong></p>
+<p>When no adjustment is performed, the FillValue is inserted.</p></td>
+</tr>
+</tbody>
+</table>
+
+Note on vertical axis associated to PRES
+
+The variable PRES (pressure) is the vertical axis. The PRES declaration contains the variable attribute
+
+PRES:axis = "Z";
+
+Example of a profiling float performing temperature measurements with adjusted values of temperature
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Parameter definition: TEMP, TEMP_ADJUSTED</strong></td>
+</tr>
+<tr class="even">
+<td><p>float TEMP(N_PROF, N_LEVELS);</p>
+<p>TEMP:long_name = "sea temperature in-situ ITS-90 scale";</p>
+<p>TEMP:standard_name = "sea_water_temperature";</p>
+<p>TEMP:_FillValue = 99999.f;</p>
+<p>TEMP:units = "degree_Celsius";</p>
+<p>TEMP:valid_min = -2.f;</p>
+<p>TEMP:valid_max = 40.f;</p>
+<p>TEMP:C_format = "%9.3f";</p>
+<p>TEMP:FORTRAN_format = "F9.3";</p>
+<p>TEMP:resolution = 0.001f;</p>
+<p>char TEMP_QC(N_PROF, N_LEVELS);</p>
+<p>TEMP_QC:long_name = "quality flag";</p>
+<p>TEMP_QC:conventions = "Argo reference table 2";</p>
+<p>TEMP_QC:_FillValue = " ";</p>
+<p>float TEMP_ADJUSTED(N_PROF, N_LEVELS);</p>
+<p>TEMP_ADJUSTED:long_name = "adjusted sea temperature in-situ ITS-90 scale";</p>
+<p>TEMP:standard_name = "sea_water_temperature";</p>
+<p>TEMP_ADJUSTED:_FillValue = 99999.f;</p>
+<p>TEMP_ADJUSTED:units = "degree_Celsius";</p>
+<p>TEMP_ADJUSTED:valid_min = -2.f;</p>
+<p>TEMP_ADJUSTED:valid_max = 40.f;</p>
+<p>TEMP_ADJUSTED:C_format = "%9.3f";</p>
+<p>TEMP_ADJUSTED:FORTRAN_format= "F9.3";</p>
+<p>TEMP_ADJUSTED:resolution= 0.001f;</p>
+<p>char TEMP_ADJUSTED_QC(N_PROF, N_LEVELS);</p>
+<p>TEMP_ADJUSTED QC:long_name = "quality flag";</p>
+<p>TEMP_ADJUSTED QC:conventions = "Argo reference table 2";</p>
+<p>TEMP_ADJUSTED_QC:_FillValue = " ";</p>
+<p>float TEMP_ADJUSTED_ERROR(N_PROF, N_LEVELS);</p>
+<p>TEMP_ADJUSTED_ERROR:long_name = "error on sea temperature in-situ ITS-90 scale ";</p>
+<p>TEMP_ADJUSTED_ERROR:_FillValue = 99999.f;</p>
+<p>TEMP_ADJUSTED_ERROR:units = "degree_Celsius";</p>
+<p>TEMP_ADJUSTED_ERROR :C_format = "%9.3f";</p>
+<p>TEMP_ADJUSTED_ERROR :FORTRAN_format= "F9.3";</p>
+<p>TEMP_ADJUSTED_ERROR:resolution= 0.001f;</p></td>
+</tr>
+</tbody>
+</table>
+
+### How to report unusual parameter resolutions in a profile
+The resolution of a parameter is reported in the "resolution" attribute.
+
+For specific floats, the resolution of a parameter may depend on the profile level.
+
+How to keep the information in the file?
+
+- add a "comment_on_resolution" attribute on the variable to inform the user,
+
+## Scientific calibration information for each profile
+Scientific calibrations are applied to parameters to create adjusted parameters. Different calibration methods will be used by groups processing Argo data. When a method is applied, its description is stored in the following fields.
+
+This section contains scientific calibration information for each parameter of each profile.
+
+Each item of this section has a N_PROF (number of profiles), N_CALIB (number of calibrations), N_PARAM (number of parameters) dimensions.
+
+If no scientific calibration is available, N_CALIB is set to 1, PARAMETER is filled with the list of parameter names, and all values of the calibration section are set to fill values.
+
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 35%" />
+<col style="width: 36%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Definition</strong></td>
+<td><strong>Comment</strong></td>
+</tr>
+<tr class="even">
+<td>PARAMETER</td>
+<td><p>char PARAMETER(N_PROF, N_CALIB, N_PARAM, STRING16);</p>
+<p>PARAMETER:long_name = "List of parameters with calibration information";</p>
+<p>PARAMETER:conventions = "Argo reference table 3";</p>
+<p>PARAMETER:_FillValue = " ";</p></td>
+<td><p>Name of the calibrated parameter. The list of parameters is in reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).</p>
+<p>Example: "PSAL"</p></td>
+</tr>
+<tr class="odd">
+<td>SCIENTIFIC_CALIB_EQUATION</td>
+<td><p>char SCIENTIFIC_CALIB_EQUATION(N_PROF, N_CALIB, N_PARAM, STRING256);</p>
+<p>SCIENTIFIC_CALIB_EQUATION:long_name = "Calibration equation for this parameter";</p>
+<p>SCIENTIFIC_CALIB_EQUATION:_FillValue = " ";</p></td>
+<td><p>Calibration equation applied to the parameter.</p>
+<p>Example:</p>
+<p>"Tc = a1 * T + a0"</p></td>
+</tr>
+<tr class="even">
+<td>SCIENTIFIC_CALIB_COEFFICIENT</td>
+<td><p>char SCIENTIFIC_CALIB_COEFFICIENT(N_PROF, N_CALIB, N_PARAM, STRING256);</p>
+<p>SCIENTIFIC_CALIB_COEFFICIENT:long_name = "Calibration coefficients for this equation";</p>
+<p>SCIENTIFIC_CALIB_COEFFICIENT:_FillValue = " ";</p></td>
+<td><p>Calibration coefficients for this equation.</p>
+<p>Example:</p>
+<p>"a1=0.99997 , a0=0.0021"</p></td>
+</tr>
+<tr class="odd">
+<td>SCIENTIFIC_CALIB_COMMENT</td>
+<td><p>char SCIENTIFIC_CALIB_COMMENT(N_PROF, N_CALIB, N_PARAM, STRING256);</p>
+<p>SCIENTIFIC_CALIB_COMMENT:long_name = "Comment applying to this parameter calibration";</p>
+<p>SCIENTIFIC_CALIB_COMMENT:_FillValue = " ";</p></td>
+<td><p>Comment about this calibration</p>
+<p>Example:</p>
+<p>"The sensor is not stable"</p></td>
+</tr>
+<tr class="even">
+<td>SCIENTIFIC_CALIB_DATE</td>
+<td><p>char SCIENTIFIC_CALIB_DATE (N_PROF N_CALIB, N_PARAM, DATE_TIME)</p>
+<p>SCIENTIFIC_CALIB_DATE:long_name = "Date of calibration";</p>
+<p>SCIENTIFIC_CALIB_DATE:conventions = "YYYYMMDDHHMISS";</p>
+<p>SCIENTIFIC_CALIB_DATE:_FillValue = " ";</p></td>
+<td><p>Date of the calibration.</p>
+<p>Example: "20011217161700"</p></td>
+</tr>
+</tbody>
+</table>
+
+## History information for each profile
+This section contains history information for each action performed on each profile by a data centre.
+
+Each item of this section has a N_HISTORY (number of history records), N_PROF (number of profiles) dimension.
+
+A history record is created whenever an action is performed on a profile.
+
+The recorded actions are coded and described in the history code table from the reference table 7 ([<u>https://vocab.nerc.ac.uk/collection/R07/</u>](https://vocab.nerc.ac.uk/collection/R07/)).
+
+On the GDAC, the history section of the multi-cycle files is empty to reduce the size of the file. The history section is available in the single-cycle files.
+
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 30%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Definition</strong></td>
+<td><strong>Comment</strong></td>
+</tr>
+<tr class="even">
+<td>HISTORY_INSTITUTION</td>
+<td><p>char HISTORY_INSTITUTION(N_HISTORY, N_PROF, STRING4);</p>
+<p>HISTORY_INSTITUTION:long_name = "Institution which performed action";</p>
+<p>HISTORY_INSTITUTION:conventions = "Argo reference table 4";</p>
+<p>HISTORY_INSTITUTION:_FillValue = " ";</p></td>
+<td><p>Institution that performed the action.</p>
+<p>Institution codes are described in reference table 4 (<a href="https://vocab.nerc.ac.uk/collection/R04/"><u>https://vocab.nerc.ac.uk/collection/R04/</u></a>).</p>
+<p>Example: "ME" for MEDS</p></td>
+</tr>
+<tr class="odd">
+<td>HISTORY_STEP</td>
+<td><p>char HISTORY_STEP(N_HISTORY, N_PROF, STRING4);</p>
+<p>HISTORY_STEP:long_name = "Step in data processing";</p>
+<p>HISTORY_STEP:conventions = "Argo reference table 12";</p>
+<p>HISTORY_STEP:_FillValue = " ";</p></td>
+<td><p>Code of the step in data processing for this history record. The step codes are described in reference table 12 (<a href="https://vocab.nerc.ac.uk/collection/R12/"><u>https://vocab.nerc.ac.uk/collection/R12/</u></a>).</p>
+<p>Example:</p>
+<p>"ARGQ" : Automatic QC of data reported in real-time has been performed</p></td>
+</tr>
+<tr class="even">
+<td>HISTORY_SOFTWARE</td>
+<td><p>char HISTORY_SOFTWARE (N_HISTORY, N_PROF, STRING4);</p>
+<p>HISTORY_SOFTWARE:long_name = "Name of software which performed action";</p>
+<p>HISTORY_SOFTWARE:conventions = "Institution dependent";</p>
+<p>HISTORY_SOFTWARE:_FillValue = " ";</p></td>
+<td><p>Name of the software that performed the action.</p>
+<p>This code is institution dependent.</p>
+<p>Example: "WJO"</p></td>
+</tr>
+<tr class="odd">
+<td>HISTORY_SOFTWARE_RELEASE</td>
+<td><p>char HISTORY_SOFTWARE_RELEASE(N_HISTORY, N_PROF, STRING4);</p>
+<p>HISTORY_SOFTWARE_RELEASE:long_name = "Version/release of software which performed action";</p>
+<p>HISTORY_SOFTWARE_RELEASE:conventions = "Institution dependent";</p>
+<p>HISTORY_SOFTWARE_RELEASE:_FillValue = " ";</p></td>
+<td><p>Version of the software.</p>
+<p>This name is institution dependent.</p>
+<p>Example: "1.0"</p></td>
+</tr>
+<tr class="even">
+<td>HISTORY_REFERENCE</td>
+<td><p>char HISTORY_REFERENCE (N_HISTORY, N_PROF, STRING64);</p>
+<p>HISTORY_REFERENCE:long_name = "Reference of database";</p>
+<p>HISTORY_REFERENCE:conventions = "Institution dependent";</p>
+<p>HISTORY_REFERENCE:_FillValue = " ";</p></td>
+<td><p>Code of the reference database used for quality control in conjunction with the software.</p>
+<p>This code is institution dependent.</p>
+<p>Example: "WOD2001"</p></td>
+</tr>
+<tr class="odd">
+<td>HISTORY_DATE</td>
+<td><p>char HISTORY_DATE(N_HISTORY, N_PROF, DATE_TIME);</p>
+<p>HISTORY_DATE:long_name = "Date the history record was created";</p>
+<p>HISTORY_DATE:conventions = "YYYYMMDDHHMISS";</p>
+<p>HISTORY_DATE:_FillValue = " ";</p></td>
+<td><p>Date of the action.</p>
+<p>Example: "20011217160057"</p></td>
+</tr>
+<tr class="even">
+<td>HISTORY_ACTION</td>
+<td><p>char HISTORY_ACTION(N_HISTORY, N_PROF, STRING4);</p>
+<p>HISTORY_ACTION:long_name = "Action performed on data";</p>
+<p>HISTORY_ACTION:conventions = "Argo reference table 7";</p>
+<p>HISTORY_ACTION:_FillValue = " ";</p></td>
+<td><p>Name of the action.</p>
+<p>The action codes are described in reference table 7 (<a href="https://vocab.nerc.ac.uk/collection/R07/"><u>https://vocab.nerc.ac.uk/collection/R07/</u></a>).</p>
+<p>Example: "QCF$" for QC failed</p></td>
+</tr>
+<tr class="odd">
+<td>HISTORY_PARAMETER</td>
+<td><p>char HISTORY_PARAMETER(N_HISTORY, N_PROF, STRING16);</p>
+<p>HISTORY_PARAMETER:long_name = "Station parameter action is performed on";</p>
+<p>HISTORY_PARAMETER:conventions = "Argo reference table 3";</p>
+<p>HISTORY_PARAMETER:_FillValue = " ";</p></td>
+<td><p>Name of the parameter on which the action is performed.</p>
+<p>The parameters are described in reference table 3 (<a href="https://vocab.nerc.ac.uk/collection/R03/"><u>https://vocab.nerc.ac.uk/collection/R03/</u></a>).</p>
+<p>Example: "PSAL"</p></td>
+</tr>
+<tr class="even">
+<td>HISTORY_START_PRES</td>
+<td><p>float HISTORY_START_PRES(N_HISTORY, N_PROF);</p>
+<p>HISTORY_START_PRES:long_name = "Start pressure action applied on";</p>
+<p>HISTORY_START_PRES:_FillValue = 99999.f;</p>
+<p>HISTORY_START_PRES:units = "decibar";</p></td>
+<td><p>Start pressure the action is applied to.</p>
+<p>Example: "1500.0"</p></td>
+</tr>
+<tr class="odd">
+<td>HISTORY_STOP_PRES</td>
+<td><p>float HISTORY_STOP_PRES(N_HISTORY, N_PROF);</p>
+<p>HISTORY_STOP_PRES:long_name = "Stop pressure action applied on";</p>
+<p>HISTORY_STOP_PRES:_FillValue = 99999.f;</p>
+<p>HISTORY_STOP_PRES:units = "decibar";</p></td>
+<td><p>Stop pressure the action is applied to.</p>
+<p><strong>This should be greater than or equal to START_PRES.</strong></p>
+<p>Example: "1757.0"</p></td>
+</tr>
+<tr class="even">
+<td>HISTORY_PREVIOUS_VALUE</td>
+<td><p>float HISTORY_PREVIOUS_VALUE(N_HISTORY, N_PROF);</p>
+<p>HISTORY_PREVIOUS_VALUE:long_name = "Parameter/Flag previous value before action";</p>
+<p>HISTORY_PREVIOUS_VALUE:_FillValue = 99999.f;</p></td>
+<td><p>Parameter or flag of the previous value before action.</p>
+<p>Example: "2" (probably good) for a flag that was changed to 1 (good)</p></td>
+</tr>
+<tr class="odd">
+<td>HISTORY_QCTEST</td>
+<td><p>char HISTORY_QCTEST(N_HISTORY, N_PROF, STRING16);</p>
+<p>HISTORY_QCTEST:long_name = "Documentation of tests performed, tests failed (in hex form)";</p>
+<p>HISTORY_QCTEST:conventions = "Write tests performed when ACTION=QCP$; tests failed when ACTION=QCF$";</p>
+<p>HISTORY_QCTEST:_FillValue = " ";</p></td>
+<td><p>This field records the tests performed when ACTION is set to QCP$ (QC performed), the test failed when ACTION is set to QCF$ (QC failed).</p>
+<p>The QCTEST codes are described in reference table 11 (<a href="https://vocab.nerc.ac.uk/collection/R11/"><u>https://vocab.nerc.ac.uk/collection/R11/</u></a>).</p>
+<p>Example: "0A" (in hexadecimal form)</p></td>
+</tr>
+</tbody>
+</table>
+
+The usage of the History section is described in [<u>§5</u>](#using-the-history-section-of-the-argo-netcdf-structure) "**Using the History section of the Argo netCDF Structure**".
+

@@ -1,0 +1,118 @@
+# Data access
+The whole Argo data set is available in real time and delayed mode from the global data centres (GDACs). More on the Argo data system organization at [<u>https://argo.ucsd.edu/organization/argo-data-system/</u>](https://argo.ucsd.edu/organization/argo-data-system/).
+
+FTP address:
+
+- [<u>ftp://ftp.ifremer.fr/ifremer/argo</u>](ftp://ftp.ifremer.fr/ifremer/argo)
+
+The whole Argo dataset is available in a one click download from Argo DOI (monthly updated)
+
+- [<u>https://doi.org/10.17882/42182</u>](https://doi.org/10.17882/42182)
+
+The GDACs internet addresses are:
+
+- [<u>https://nrlgodae1.nrlmry.navy.mil/pub/outgoing/argo/</u>](https://nrlgodae1.nrlmry.navy.mil/pub/outgoing/argo/)
+
+- https://data-argo.ifremer.fr/
+
+The 2 GDACs offer the same data set that is mirrored in real time. File naming convention on GDACs
+
+The GDAC sites comply with the naming conventions detailed in the following paragraphs.
+
+### Core-Argo individual profile files
+The individual profile files are provided by the DACs (Data Assembly Centres).
+
+The core-Argo profile files contain the core parameters provided by a float: pressure, temperature, salinity (PRES, TEMP, PSAL) and their associated intermediate parameters. All biogeochemical parameters are managed in B-Argo data files.
+
+For floats that collect no more than 1 ascending and 1 descending profile per cycle the file names for individual profiles are \<R/D\>\<FloatWmoID\>\_\<XXX\>\<D\>.nc where :
+
+- The initial R indicates Real-Time data, the initial D indicates Delayed-Mode data
+
+- XXX is the cycle number
+
+- The second D indicates a descending profile (profiles without this D are collected during ascent).
+
+Note on \<XXX\> cycle numbers greater than 999
+
+When float reports a cycle greater than 999, the cycle number appears as 4 digits in the file name.
+
+Examples: R5902319_999.nc, R5902319_1000.nc
+
+Note on \<R/D\> in profile file name
+
+- For core-files, the file name mode follows DATA_MODE in N_PROF = 1, which is the primary Argo CTD profile. Hence a 'R'-core file becomes a 'D'-core file only when DATA_MODE(1) = 'D'. This file naming rule ensures that the integrity of the core Argo program is not affected by various miscellaneous secondary samplings.
+
+- For b-files and GDAC merged-files, when any DATA_MODE(N_PROF) changes to 'D', the file name mode changes to 'D'. This is because b-files and GDAC merged-files contain biogeochemical data, which can receive delayed-mode adjustments at different times.
+
+### B-Argo data file
+#### B-Argo individual profile file
+A B-Argo profile file contains all the parameters from a float, except the core-Argo parameters temperature, salinity, conductivity (TEMP, PSAL, CNDC). A float that performs only CTD measurements does not have B-Argo data files.
+
+File naming convention
+
+B\<R/D\>\<FloatWmoID\>\_\<XXX\>\<D\>.nc
+
+- B : B-Argo file prefix
+
+- \<R/D\>\<FloatWmoID\>\_\<XXX\>\<D\>.nc : identical to Core-Argo file naming convention
+
+Examples: BR1900045_083.nc, BR1900045_083D.nc, BD1900045_003.nc
+
+When float reports a cycle greater than 999, the cycle number appears as 4 digits in the file name.
+
+#### BGC-Argo individual synthetic profile file
+To facilitate the use of BGC-Argo data, the GDAC merges each BGC-Argo file with its corresponding Core-Argo data file. The BGC-Argo synthetic profiles are documented in [<u>http://dx.doi.org/10.13155/55637</u>](http://dx.doi.org/10.13155/55637)
+
+The synthetic file contains the core-Argo and BGC-Argo parameters listed on reference table 3 ([<u>https://vocab.nerc.ac.uk/collection/R03/</u>](https://vocab.nerc.ac.uk/collection/R03/)). The intermediate parameters are ignored by the synthetic files.
+
+File naming convention
+
+S\<R/D\>\<FloatWmoID\>\_\<XXX\>\<D\>.nc
+
+- S: synthetic BGC-Argo file prefix
+
+- \<R/D\>\<FloatWmoID\>\_\<XXX\>\<D\>.nc : identical to Core-Argo file naming convention
+
+Examples: SR1900045_083.nc, SR1900045_083D.nc, SD1900045_003.nc
+
+### Argo trajectory data file
+The Argo trajectory files contain the core and BGC parameters provided by a float.
+
+\<FloatWmoID\>\_\<R/D\>traj.nc
+
+- R: real-time data
+
+- D: delayed-mode data
+
+**Examples**
+
+1900045_Rtraj.nc: real-time trajectory from float 1900045
+
+1900045_Dtraj.nc: delayed-mode trajectory from float 1900045
+
+### Metadata file
+- \<FloatWmoID\>\_meta.nc  
+  Example: 1900045_meta.nc
+
+### Technical Data file
+- \<FloatWmoID\>\_tech.nc  
+  Example: 1900045_tech.nc
+
+### Auxiliary data files
+Auxiliary files are used for data and metadata that are not (yet) standardized among the Argo community.
+
+They typically contain data from new types of sensors or floats.
+
+The format of auxiliary data files is NOT regulated, they are distributed on GDAC ftp server in the "aux" directory that is parallel to the "dac" directory.
+
+The float metadata file in the ‘dac’ directory includes a text in the SPECIAL_FEATURES variable to indicate that there is additional data in the auxiliary directory and the nature of that data (see SEPCIAL_FEATURE description above for more details on how to proceed).
+
+PIs are encouraged to use a file format that is easily readable – either NetCDF or ASCII that mimics the Argo data format version 3.1 if possible. A good practice (not an obligation) within DACs is to document their auxiliary files. Coriolis DAC auxiliary file formats are documented here:
+
+- Argo auxiliary files format for Coriolis DAC [<u>http://doi.org/10.13155/51995</u>](http://doi.org/10.13155/51995)
+
+## Other Argo data export formats
+In addition to the format described in this document, most Argo data are also available from GTS (Global Telecommunication System), a network operated by WMO (World Meteorological Organization).
+
+Currently, Argo profiles data are distributed on GTS as BUFR messages with template n° 3-15-003 (the description of this format is available from the WMO web site - [<u>https://public.wmo.int</u>](https://public.wmo.int)). This will transition to WIS2.0 in the near future.
+

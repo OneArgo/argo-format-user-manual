@@ -1,0 +1,966 @@
+# History of the document
+
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 77%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Version</strong></td>
+<td><strong>Date</strong></td>
+<td><strong>Comment</strong></td>
+</tr>
+<tr class="even">
+<td>0.9</td>
+<td>29/12/2001</td>
+<td>Thierry Carval : creation of the document</td>
+</tr>
+<tr class="odd">
+<td>0.9a</td>
+<td>18/01/2002</td>
+<td>Bob Keeley : general comments and updates</td>
+</tr>
+<tr class="even">
+<td>0.9a</td>
+<td>24/01/2002</td>
+<td>Valérie Harscoat : general comments and updates</td>
+</tr>
+<tr class="odd">
+<td>0.9a</td>
+<td>25/01/2002</td>
+<td>Claudia Schmid : general comments and updates</td>
+</tr>
+<tr class="even">
+<td>0.9a</td>
+<td>24/01/2002</td>
+<td>Roger Goldsmith : general comments and updates</td>
+</tr>
+<tr class="odd">
+<td>0.9b</td>
+<td>05/03/2002</td>
+<td>Roger Goldsmith, Yasushi Takatsuki and Claudia Schmid comments implemented.</td>
+</tr>
+<tr class="even">
+<td>0.9c</td>
+<td>24/04/2002</td>
+<td>Comments from version 0.9b are implemented</td>
+</tr>
+<tr class="odd">
+<td>1.0</td>
+<td>09/07/2002</td>
+<td>Comments from version 0.9c are implemented</td>
+</tr>
+<tr class="even">
+<td>1.0a</td>
+<td>31/12/2002</td>
+<td>Missing values in trajectory and calibration</td>
+</tr>
+<tr class="odd">
+<td>1.0a</td>
+<td>17/01/2003</td>
+<td>Description of directory file format</td>
+</tr>
+<tr class="even">
+<td>1.0a</td>
+<td>24/01/2003</td>
+<td>Update of reference tables</td>
+</tr>
+<tr class="odd">
+<td>1.0a</td>
+<td>24/01/2003</td>
+<td>Update of "measurements of each profile" to handle corrected values</td>
+</tr>
+<tr class="even">
+<td>1.0a</td>
+<td>24/01/2003</td>
+<td>Increase the size of DC_REFERENCE from STRING16 to STRING32</td>
+</tr>
+<tr class="odd">
+<td>1.0b</td>
+<td>17/03/2003</td>
+<td>Replace corrected values with adjusted values</td>
+</tr>
+<tr class="even">
+<td>1.0b</td>
+<td>29/04/2003</td>
+<td>DC_REFERENCE removed from trajectory format general information of the float section</td>
+</tr>
+<tr class="odd">
+<td>1.0b</td>
+<td>30/04/2003</td>
+<td>Use blank fill values for character variables</td>
+</tr>
+<tr class="even">
+<td>1.0c</td>
+<td>30/04/2003</td>
+<td>Proposal submitted on 30/04/2003</td>
+</tr>
+<tr class="odd">
+<td>1.0d</td>
+<td>14/08/2003</td>
+<td>Proposal submitted on 14/08/2003 (green font)</td>
+</tr>
+<tr class="even">
+<td>1.0e</td>
+<td>23/10/2003</td>
+<td>Proposal submitted on 12/11/2003 (green font)</td>
+</tr>
+<tr class="odd">
+<td>2.0</td>
+<td>12/11/2003</td>
+<td>All comments from "Argo user's manual comments" ref ar-dm-02-02 implemented.<br />
+General agreement from Argo data management meeting in Monterey (Nov. 5-7, 2003)</td>
+</tr>
+<tr class="even">
+<td>2.01</td>
+<td>15/12/2003</td>
+<td>History section updated.</td>
+</tr>
+<tr class="odd">
+<td>2.01</td>
+<td>01/10/2004</td>
+<td>metadata section :<br />
+WMO_INST_TYPE added to history section<br />
+INSTRUMENT_TYPE renamed INST_REFERENCE</td>
+</tr>
+<tr class="even">
+<td>2.01</td>
+<td>10/11/2004</td>
+<td>Reference table 2 quality control flag scale updated by Annie Wong</td>
+</tr>
+<tr class="odd">
+<td>2.01</td>
+<td>10/11/2004</td>
+<td>Updates in reference table 3, parameter codes table<br />
+DOXY, TEMP_DOXY, TEMP (use ITS-90 scale)</td>
+</tr>
+<tr class="even">
+<td>2.01</td>
+<td>23/11/2004</td>
+<td>Reference table 14 : instrument failure mode added by Annie Wong</td>
+</tr>
+<tr class="odd">
+<td>2.01</td>
+<td>25/02/2005</td>
+<td>Table 11 updated for frozen profile and deepest pressure tests from Rebecca Macreadie</td>
+</tr>
+<tr class="even">
+<td>2.01</td>
+<td>28/02/2005</td>
+<td>Table 4 updated : CSIO, China Second Institute of Oceanography</td>
+</tr>
+<tr class="odd">
+<td>2.01</td>
+<td>12/04/2005</td>
+<td>Mathieu Belbeoch : table 5 updated : argos location classes</td>
+</tr>
+<tr class="even">
+<td>2.01</td>
+<td>12/06/2005</td>
+<td>Change lengths of all parameter name variables to accommodate longer parameter names. Affects: STATION_PARAMETERS (section 2.2.3), PARAMETER (section 2.2.5), and HISTORY_PARAMETER (section 2.2.6) in the profile format; TRAJECTORY_PARAMETERS (section 2.3.3) and HISTORY_PARAMETER (section 2.3.6) in the trajectory format; SENSOR (section 2.4.5) and PARAMETER (section 2.4.6) in the metadata format</td>
+</tr>
+<tr class="odd">
+<td>2.01</td>
+<td>12/06/2005</td>
+<td>Change ":conventions" attribute and description of PROFILE_&lt;PARAM&gt;_QC in section 2.2.3.</td>
+</tr>
+<tr class="even">
+<td>2.01</td>
+<td>12/06/2005</td>
+<td>Add reference table 2a for the redefined PROFILE_&lt;PARAM&gt;_QC variables</td>
+</tr>
+<tr class="odd">
+<td>2.01</td>
+<td>20/06/2005</td>
+<td>New long name for TEMP_DOXY in section 3.3</td>
+</tr>
+<tr class="even">
+<td>2.01</td>
+<td>22/06/2005</td>
+<td>Claudia Schmid : general update of trajectory file history section (N_MEASUREMENT dimension removed)</td>
+</tr>
+<tr class="odd">
+<td>2.01</td>
+<td>07/11/2005</td>
+<td>Claudia Schmid : create reference table 14 for technical parameter names.<br />
+Minor typo corrections.</td>
+</tr>
+<tr class="even">
+<td>2.01</td>
+<td>07/11/2005</td>
+<td>Thierry Carval : add a GPS code for position accuracy in ref. Table 5.</td>
+</tr>
+<tr class="odd">
+<td>2.01</td>
+<td>08/11/2005</td>
+<td>Ann Thresher : example of sensor type in metadata</td>
+</tr>
+<tr class="even">
+<td>2.01</td>
+<td>09/11/2005</td>
+<td>Annie Wong : §3.2.2 usage of &lt;PARAM_ADJUSTED_QC&gt; and &lt;PARAM_QC&gt;<br />
+Reference table 2 updated (qc 3 and 4)</td>
+</tr>
+<tr class="odd">
+<td>2.01</td>
+<td>11/11/2005</td>
+<td>Thierry Carval : §2.2.4, §2.3.4 accept adjusted parameters in real time files</td>
+</tr>
+<tr class="even">
+<td>2.01</td>
+<td>11/11/2005</td>
+<td>Thierry Carval : §2.2.6 history section for multi-profile files is empty</td>
+</tr>
+<tr class="odd">
+<td>2.01</td>
+<td>11/11/2005</td>
+<td>Thierry Carval : §1.3, §2.2.3, §2.3.4 real-time adjusted data</td>
+</tr>
+<tr class="even">
+<td>2.01</td>
+<td>11/11/2005</td>
+<td>Thierry Carval : §2.4.8 highly desirable metadata description</td>
+</tr>
+<tr class="odd">
+<td>2.1</td>
+<td>30/11/2005</td>
+<td>Annie Wong : §3.2.1 update on flag 4 real time comment</td>
+</tr>
+<tr class="even">
+<td>2.1</td>
+<td>20/12/2005</td>
+<td>Thierry Carval : remove erroneous blanks (ex : "Argo reference table 3")</td>
+</tr>
+<tr class="odd">
+<td>2.1</td>
+<td>01/03/2006</td>
+<td>Mark Ignaszewski: §2.3.6 Change HISTORY_*_INDEX to "int", Change HISTORY_REFERENCE to STRING64. Change to "dependent" in all sections. Remove PLATFORM_SERIAL_NO from desirable parameter table. Add "No QC performed" to Table 2a. Change FORMAT_VERSION to 2.2 in all sections.</td>
+</tr>
+<tr class="even">
+<td>2.1</td>
+<td>26/09/2006</td>
+<td>Thierry Carval<br />
+§2.4.3 : TRANS_SYSTEM_ID : use N/A when not applicable (eg : Iridium or Orbcomm)</td>
+</tr>
+<tr class="odd">
+<td>2.1</td>
+<td>27/11/2006</td>
+<td><p>Thierry Carval</p>
+<p>§2.4.8 : highly desirable metadata; PARKING_PRESSURE may be empty for floats drifting along a selected density level.</p></td>
+</tr>
+<tr class="even">
+<td>2.1</td>
+<td>09/06/2008</td>
+<td><p>Claudia Schmid</p>
+<p>§3.3: use DOXY2 for floats equipped with 2 oxygen sensors.</p></td>
+</tr>
+<tr class="odd">
+<td>2.2</td>
+<td>12/02/2009</td>
+<td>Claudia Schmid<br />
+§4.1 : file naming convention, multi-profiles cycle</td>
+</tr>
+<tr class="even">
+<td>2.2</td>
+<td>03/03/2009</td>
+<td><p>Thierry Carval</p>
+<p>§6.1 : greylist file collection</p>
+<p>§2.2.2 : move date_creation and date_update to "general information on profile file section".</p></td>
+</tr>
+<tr class="odd">
+<td>2.2</td>
+<td>21/08/2009</td>
+<td><p>§1.2 : new graphic for float cycles description<br />
+§2.2.3 : add a firmware version to general information for profile<br />
+§2.3.4 : add a "CYCLE_STAGE" in trajectory file<br />
+<a href="#n_measurement-dimension-variable-group"><u>§2.3.5</u></a> : add "CYCLE_PHASE" and "cycle" in trajectory file<br />
+§2.4.3 : general review of float characteristics<br />
+§2.4.5 : configuration parameters<br />
+§2.4.8. : metadata file version 2.3<br />
+§2.6 : technical data format 2.3</p>
+<p>§2.8.2 : profile directory file format version 2.1<br />
+§3.3 : add BPHASE_DOXY<br />
+§3.3 : remark on unit conversion of oxygen</p>
+<p>§6.2 : GDAC files removal<br />
+add a RAFOS positioning system</p>
+<p>add a note on qc flag and qc manual</p>
+<p>add a description of greylist use for users</p>
+<p>trajectory format : move date_creation and date_update in the file information section</p></td>
+</tr>
+<tr class="even">
+<td>2.2</td>
+<td>27/11/2009</td>
+<td><p>§1.1: "Notice on file format change" chapter added</p>
+<p>§1.2: "User Obligations" chapter added</p>
+<p>§1.3: "Disclaimer" chapter added</p>
+<p>§1.4: "Further information sources and contact information" chapter added</p>
+<p>§2.3.1 and §2.3.6: remove N_HISTORY2 dimension from trajectory format</p>
+<p>§2.3.2: move DATE_CREATION and DATE_UPDATE to "General information on the trajectory file" chapter</p>
+<p>§2.3.4: revisit PARAM and PARAM_QC policy in real-time/delayed mode</p>
+<p>§2.5.4: CONFIGURATION_PHASE_REPETITION is removed from the configuration parameter chapter.</p>
+<p>§2.5.4: new example with a graphic</p>
+<p>§2.8.2: Profile directory file format statement transition added.</p>
+<p>§3.2.1: add a reference to quality control manual.</p>
+<p>§3.11: add a description of table 11. Add a new column in the table to explain the link between QC test binary ID and test number.</p>
+<p>§3.14: table 14 "technical parameter names" revision, links to naming convention and list of technical parameters added.</p>
+<p>§6.1.1: "Greylist definition" chapter added</p>
+<p>§6.1.1: Who/when/how to add a float in the greylist</p>
+<p>§6.1.1: Who/when/how to remove floats from the greylist</p>
+<p>§6.1.1: How users should use the greylist</p></td>
+</tr>
+<tr class="odd">
+<td>2.2</td>
+<td>31/12/2009</td>
+<td><p>§1.3: Disclaimer; argo data are continuously managed and updated</p>
+<p>§2.3.4: Trajectory locations and measurements</p>
+<p>Remove DC_REFERENCE</p>
+<p>Do not report DATA_MODE in this section</p>
+<p>report CYCLE_NUMBER in this section</p>
+<p><a href="#n_measurement-dimension-variable-group"><u>§2.3.5</u></a>: Trajectory cycle information from the float</p>
+<p>Missing cycle management</p>
+<p>Report DATA_MODE in this section</p>
+<p>§3.2.1: Reference table 2: measurement flag scale</p>
+<p>For flag 2 comment is "Treat as good data" instead of "Probably good data"</p>
+<p>§3.3.2: Oxygen data management</p>
+<p>§3.14 Reference table 14: technical parameter names</p>
+<p>How to require new technical parameters</p></td>
+</tr>
+<tr class="even">
+<td>2.2</td>
+<td>08/01/2010</td>
+<td><p>Address the following messages listed and commented in argo-user-manual-comment-toulouse.doc :</p>
+<p>04/01/2010 22:32 Annie Wong</p>
+<p>31/12/2009 22:49 Claudia Schmid</p>
+<p>31/12/2009 20:35 Claudia Schmid</p>
+<p>31/12/2009 19:12 Annie Wong</p></td>
+</tr>
+<tr class="odd">
+<td>2.31</td>
+<td>08/09/2010</td>
+<td>T. Carval : CONCENT_DOXY is renamed MOLAR_DOXY to be compliant with the document "Processing Argo OXYGEN data at the DAC level", version 1.0</td>
+</tr>
+<tr class="even">
+<td>2.31</td>
+<td>14/06/2011</td>
+<td>T. Carval : Add a NMDIS Chinese DAC</td>
+</tr>
+<tr class="odd">
+<td>2.4</td>
+<td>19/11/2011</td>
+<td>Thierry Carval : general revision of the document presentation</td>
+</tr>
+<tr class="even">
+<td>2.4</td>
+<td>19/11/2011</td>
+<td>§2.3 Megan Scanderbeg : update of trajectory format following Seoul trajectory &amp; ADMT12 meeting</td>
+</tr>
+<tr class="odd">
+<td>2.4</td>
+<td>19/11/2011</td>
+<td>§3.3 Thierry Carval : CNDC (conductivity) valid min is set to 8.5 instead of 60.0</td>
+</tr>
+<tr class="even">
+<td>2.4</td>
+<td>10/02/2012</td>
+<td>§2.2.3 Thierry Carval : vertical sampling scheme to manage profiles performed on different vertical axes</td>
+</tr>
+<tr class="odd">
+<td>2.4</td>
+<td>10/02/2012</td>
+<td>§2.4 Esmee Van Wijk : metadata format version 2.4</td>
+</tr>
+<tr class="even">
+<td>2.4</td>
+<td>10/02/2012</td>
+<td>§2.2.3 Thierry Carval : global attributes and parameter attributes for CF compatibility</td>
+</tr>
+<tr class="odd">
+<td>2.4</td>
+<td>13/02/0212</td>
+<td>§2.5 Thierry Carval : remove chapter "technical information format version 2.2"; keep "technical information format version 2.3"</td>
+</tr>
+<tr class="even">
+<td>2.4</td>
+<td>20/02/2012</td>
+<td><p>Feedbacks from the draft "User's manual" sent on 13/02/2012.</p>
+<p>The changes are highlighted in green.</p>
+<p>The comments are available in argo-dm-user-manual-seoul-update-comment.docx</p></td>
+</tr>
+<tr class="odd">
+<td>2.4</td>
+<td>14/03/2012</td>
+<td><p>Feedbacks from the draft "User's manual" sent on 14/03/2012.</p>
+<p>The changes are highlighted in grey.</p>
+<p>The comments are available in argo-dm-user-manual-seoul-update-comment.docx</p></td>
+</tr>
+<tr class="even">
+<td>2.4</td>
+<td>30/03/2012</td>
+<td>The version 2.4 of Argo user's manual is officially released.</td>
+</tr>
+<tr class="odd">
+<td>2.41</td>
+<td>19/06/2012</td>
+<td>§2.4.6: CONFIGURATION_MISSION_COMMENT: FillValue is equal to " ";</td>
+</tr>
+<tr class="even">
+<td>2.41</td>
+<td>07/11/2012</td>
+<td>§2.4 : metadata format, additions from Esmee</td>
+</tr>
+<tr class="odd">
+<td>2.41</td>
+<td>10/11/2012</td>
+<td>§6.3 : compressed files distribution</td>
+</tr>
+<tr class="even">
+<td>2.41</td>
+<td>10/11/2012</td>
+<td>§6.5 : compressed files data submission</td>
+</tr>
+<tr class="odd">
+<td>2.41</td>
+<td>07/01/2013</td>
+<td>§2.2 §2.3 §2.4 §2.4 all format versions renamed as 3.0</td>
+</tr>
+<tr class="even">
+<td>3.0</td>
+<td>03/05/2013</td>
+<td>§2.3 : trajectory format entirely revisited by Megan Scanderbeg, Jean-Philippe Rannou and John Gilson</td>
+</tr>
+<tr class="odd">
+<td>3.01</td>
+<td>06/05/2013</td>
+<td>§3.15 : move reference table 15 from §2.3 to §3.15 and replace the previous version.</td>
+</tr>
+<tr class="even">
+<td>3.01</td>
+<td>06/05/2013</td>
+<td>§3.20 : reference table 20 "grounded flags" updated</td>
+</tr>
+<tr class="odd">
+<td>3.01</td>
+<td>06/05/2013</td>
+<td>§3.21 : reference table 21 added, "representative park pressure status"</td>
+</tr>
+<tr class="even">
+<td>3.01</td>
+<td>06/05/2013</td>
+<td>§4.1 : file naming convention, update on trajectory file names</td>
+</tr>
+<tr class="odd">
+<td>3.01</td>
+<td>06/05/2013</td>
+<td>§2.3.6 : table n_cycle revisited, 2 variables added</td>
+</tr>
+<tr class="even">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td>§2.2 : more information to describe the relations between profiles – vertical sampling scheme – cycle</td>
+</tr>
+<tr class="odd">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td>§2.2.4 : Replace INST_REFERENCE with FLOAT_SERIAL_NO</td>
+</tr>
+<tr class="even">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td>§2.2.4 : FIRMWARE_VERSION : dimension set to STRING16, remove attribute "conventions"</td>
+</tr>
+<tr class="odd">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td>§2.2.4 : add a CONFIG_MISSION_NUMBER variable in the profile file</td>
+</tr>
+<tr class="even">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td>§2.4.4 : remove IMEI number</td>
+</tr>
+<tr class="odd">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td>§2.4.4 : TRANS_FREQUENCY dimension set to (N_TRANS_SYSTEM ,STRING16)</td>
+</tr>
+<tr class="even">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td>§2.4.4: PLATFORM_TYPE, STANDARD_FORMAT_ID, DAC_FORMAT_ID : add a link to the draft reference table (an Internet spreadsheet)</td>
+</tr>
+<tr class="odd">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td>§2.4.4: remove variable SAMPLING_MODE</td>
+</tr>
+<tr class="even">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td>§2.4.4: remove variable ARGO_GROUP</td>
+</tr>
+<tr class="odd">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td>§2.4.4: BATTERY_PACKS moved from mandatory metadata to highly desirable metadata</td>
+</tr>
+<tr class="even">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td><p>§3.3: reference table 3: parameter code table, oxygen related parameters</p>
+<p>. Remove pres_doxy</p>
+<p>. Update long names</p>
+<p>. Add TPHASE_DOXY, C1PHASE_DOXY, C2PHASE_DOXY, MLPL_DOXY</p>
+<p>Resolution is mandatory but its content is sensor dependent.</p></td>
+</tr>
+<tr class="odd">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td><p>§3.8 : reference table 8: instrument types</p>
+<p>Add 10 new instruments types</p></td>
+</tr>
+<tr class="even">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td><p>§3.17 : reference table 17: obsolete</p>
+<p>Remove reference table 17.</p></td>
+</tr>
+<tr class="odd">
+<td>3.01</td>
+<td>19/06/2013</td>
+<td>§4.1 : trajectory : new file naming convention</td>
+</tr>
+<tr class="even">
+<td>3.01</td>
+<td>20/06/2013</td>
+<td><p>§2.2.4 :</p>
+<p>Add the PLATFORM_TYPE variable</p>
+<p>Add an N_PROF dimension in FLOAT_SERIAL_NO.</p></td>
+</tr>
+<tr class="odd">
+<td>3.01</td>
+<td>20/06/2013</td>
+<td>§2.3.4 : add the PLATFORM_TYPE variable</td>
+</tr>
+<tr class="even">
+<td>3.01</td>
+<td>26/06/2013</td>
+<td>§2.2.4 : CONFIG_MISSION_NUMBER long name updated</td>
+</tr>
+<tr class="odd">
+<td>3.01</td>
+<td>26/06/2013</td>
+<td><p>Remarks from Megan Scanderbeg</p>
+<p>§2.3.1 : add a global attribute in the profile file :</p>
+<p>:comment_on_resolution = "PRES variable resolution depends on measurement code";</p>
+<p>§2.3.4 : remove the STRING2 dimension from SATELLITE_NAME</p>
+<p>char SATELLITE_NAME(N_MEASUREMENT, STRING2);</p>
+<p>§3.15 : remove the old reference table 15 (but keep the new one)</p></td>
+</tr>
+<tr class="even">
+<td>3.01</td>
+<td>27/06/2013</td>
+<td>configuration_mission_number graphic updated</td>
+</tr>
+<tr class="odd">
+<td>3.01</td>
+<td>28/06/2013</td>
+<td>§2.3.2 : add a STRING32 dimension</td>
+</tr>
+<tr class="even">
+<td>3.02</td>
+<td>18/07/2013</td>
+<td>§3.3 : remove the sensor names from oxygen related parameter’s long name attributes</td>
+</tr>
+<tr class="odd">
+<td>3.03</td>
+<td>28/08/2013</td>
+<td><p>§2.4.2: add a STRING64 dimension</p>
+<p>§2.4.4: CONTROLLER_BOARD_SERIAL_NO_PRIMARY long_name : remove "The "</p>
+<p>§2.4.1: //global attributes:user_manual_version="3.03"</p></td>
+</tr>
+<tr class="even">
+<td>3.03</td>
+<td>30/08/2013</td>
+<td>§2.4.2 : add a STRING32 dimension in definition column</td>
+</tr>
+<tr class="odd">
+<td>3.1</td>
+<td>30/11/2013</td>
+<td><p>§1.2 : use DOI for data and document citation</p>
+<p><a href="#argo-float-cycles"><u>§1.6</u></a> : update cycle definition</p>
+<p>§2.2.4 §2.3.4 §2.4.4 :FLOAT_SERIAL_NO dimension extended to 32 instead of 16</p>
+<p>§2.2.4, §2.3.4, §2.4.4 : add a "conventions" attribute to PLATFORM_TYPE</p>
+<p>§2.3.5 : add a "resolution attribute" to JULD and JULD_ADJUSTED</p>
+<p>§2.3.5.1 How to report unusual Pressure resolutions in the N_MEASUREMENT variable group of the TRAJ file</p>
+<p>§2.4 : general revision of metadata format; §2.4.6 adding launch configuration parameters; §2.4.7 discriminate float sensor and float parameter information</p>
+<p>§2.4.4 : add a "conventions" attribute to PLATFORM_FAMILY and PLATFORM_MAKER</p>
+<p>§2.4.5 : add STARTUP_DATE and STARTUP_DATE_QC</p>
+<p>§2.4.7.1 : add a "conventions" attribute to SENSOR_MAKER and SENSOR_MODEL</p>
+<p>§2.6 : B-Argo profile additional format features</p>
+<p>§3.22, §3.23, §3.24, §3.25, §3.26, §0 : new reference tables</p>
+<p>§3.3 : separation of core-Argo and B-Argo parameters in reference table 3</p>
+<p>§0 : separation of core-Argo data files and B-Argo data files</p>
+<p>§7 : add a glossary</p></td>
+</tr>
+<tr class="even">
+<td>3.1</td>
+<td>19/12/2013</td>
+<td>§3.1 : add the B-Argo profile and B-Argo trajectory data types in reference table 1.</td>
+</tr>
+<tr class="odd">
+<td>3.1</td>
+<td>21/02/2014</td>
+<td>§2.6.1 : manage pressure axis between core-argo and b-argo files</td>
+</tr>
+<tr class="even">
+<td>3.1</td>
+<td>18/04/2014</td>
+<td><p>§3.3 : revision of valid_min and valid max on TEMP, PSAL, DOXY to be compliant with Argo quality control manual.</p>
+<p>§2.3.6: add a "conventions" attribute to each cycle timing</p>
+<p>§2.2.3, §2.3.3: add a FILE_TYPE variable to discriminate C, B or M files.</p>
+<p>§2.2.6: list parameter names in the PARAMETER variables even if no calibration is performed yet.</p>
+<p>Page 1 : add a DOI to the manual</p>
+<p>Page 2 : add a "How to cite this document" chapter</p>
+<p>§6.4: add a chapter on Argo DOIs</p></td>
+</tr>
+<tr class="odd">
+<td>3.1</td>
+<td>22/04/2014</td>
+<td>§4 : change the usgodae ftp server</td>
+</tr>
+<tr class="even">
+<td>3.1</td>
+<td>06/05/2014</td>
+<td>§2.2.4 : add "JULD:resolution = X;" and "JULD_LOCATION:resolution = X;"</td>
+</tr>
+<tr class="odd">
+<td>3.1</td>
+<td>21/05/2014</td>
+<td><p><a href="#argo-float-cycles"><u>§1.6</u></a> : improve end cycle definition (John)</p>
+<p>§2.2.5.1 : do not report resolution attribute if not known</p>
+<p>§2.2, 2.3, 2.4, 2.5 : a proper definition replaces "eponymous" : "The version number of the user manual"</p>
+<p>§3.22….3.27 : add a link to Matthieu’s tiny url reference tables</p>
+<p>§2.2, §2.3 : no need for a file_type variable</p>
+<p>precisions for use of array N_VALUES##</p></td>
+</tr>
+<tr class="even">
+<td>3.1</td>
+<td>31/05/2014</td>
+<td><p>§2.6.1 : core-Argo b-Argo parameters separation, improvement of the chapter, add an example</p>
+<p>§2.6.3 : management of spectral parameters, revision of the chapter name</p>
+<p>§3.11 : reference table 11, addition of the new QC tests 21 and 22</p>
+<p>§2.3.6 : JULD_DEEP_PARK_START typo correction in long name</p></td>
+</tr>
+<tr class="odd">
+<td>3.1</td>
+<td>03/06/2014</td>
+<td><p>§2.3 : update REPRESENTATIVE_PARK_PRESSURE:long_name</p>
+<p>§2.3 : add a long_name attribute to all *_STATUS variable</p>
+<p>§2.3 : JULD_ASCENT_END:long_name...remove the word "float's"</p>
+<p>§2.3 : replace any "0..N" with "0...N"</p></td>
+</tr>
+<tr class="even">
+<td>3.1</td>
+<td>23/06/2014</td>
+<td><p>§2.4 : update config_parameter_value and launch_config_parameter_value fill values</p>
+<p>§2.3 : update/create long name attributes in trajectory section</p>
+<p>General : replace all "as part of day" with "as parts of day"</p>
+<p>§2.6.9 : extend data_type dimension from 16 to 32 in b-argo and merged files</p></td>
+</tr>
+<tr class="odd">
+<td>3.1</td>
+<td>09/07/2014</td>
+<td><p>§2.4.7.2 : PARAMETER_UNITS dimension set to 32 instead of 16</p>
+<p>§2.2.6 : SCIENTIFIC_CALIB_DATE:conventions = "YYYYMMDDHHMISS";</p>
+<p>§2.3.6 JULD_DEEP_DESCENT_END:long_name = "Deep descent end date of the cycle";</p>
+<p>§2.6.1.2 : Pressure axis management in core-Argo and b-Argo trajectory files</p>
+<p>§2.6.2 Cycle timings management in core-Argo and b-Argo trajectory files</p></td>
+</tr>
+<tr class="even">
+<td>3.1</td>
+<td>11/07/2014</td>
+<td><p>§2.2.4 : CONFIG_MISSION_NUMBER:long_name updated to be consistent with trajectory and metadata formats.</p>
+<p>§2.3.6 : typo error corrected in JULD_FIRST_LOCATION:long_name and JULD_FIRST_LOCATION_STATUS:long_name</p>
+<p>§2.2.5 : *_ADJUSTED_ERROR:long_name updated to be consistent with trajectory format.</p>
+<p>§3.25 §3.26 §0 : update reference tables 25, 26 and 27 (new sensors and platforms)</p></td>
+</tr>
+<tr class="odd">
+<td>3.1</td>
+<td>15/07/2014</td>
+<td><p>§2.4.6.2 : config_mission_number dimension in prof and traj files</p>
+<p>§2.3.6 : update long name JULD_LAST_LOCATION_STATUS:long_name = "Status of date of latest location";</p>
+<p>§3.3 : update of B-Argo parameters and I-Argo parameters</p></td>
+</tr>
+<tr class="even">
+<td>3.1</td>
+<td>18/07/2014</td>
+<td>§2.2.4 §2.3.4 §2.4.4 : extend FIRMWARE_VERSION from STRING16 to STRING32</td>
+</tr>
+<tr class="odd">
+<td>3.1</td>
+<td>15/09/2014</td>
+<td><p>§2.3.5.1 : clarification on how to report unusual pressure resolutions in the N_MEASUREMENT variable group of the TRAJ file</p>
+<p>§2.2.5.1 : how to report unusual parameter resolutions in a profile</p></td>
+</tr>
+<tr class="even">
+<td>3.1</td>
+<td>07/11/2014</td>
+<td>§2.6 : the variables PROFILE_PRES_QC, PRES_QC, PRES_ADJUSTED, PRES_ADJUSTED_ERROR are not duplicated in the b-Argo profile files.</td>
+</tr>
+<tr class="odd">
+<td>3.1</td>
+<td>18/03/2015</td>
+<td>§2.2.5: &lt;PARAM&gt;_ADJUSTED_ERROR:long_name updated to be consistent between profile and trajectory.</td>
+</tr>
+<tr class="even">
+<td>3.2</td>
+<td>10/11/2015</td>
+<td><p>§2.2.5 clarification on DATA_MODE</p>
+<p>§2.6.8 clarification on PARAMETER_DATA_MODE</p>
+<p>§2.6.7 clarification on QC and ADJUSTED variables in b-Argo profile files</p>
+<p>§6.2.2 the GDAC greylist operation is transferred in the GDAC cookbook</p>
+<p>§6.3 the "GDAC file removal" chapter is transferred to the GDAC cookbook</p></td>
+</tr>
+<tr class="odd">
+<td>3.2</td>
+<td>29/12/2015</td>
+<td><p>§3.4 add MBARI in reference table 4 from Annie Wong</p>
+<p>All chapters: various corrections from Jean-Philippe Rannou (typo, unit names in examples)</p>
+<p>§2.6.6 N_PARAM management in b-Argo profile files from Annie Wong</p>
+<p>§2.3 trajectory format revision from Megan Scanderbeg</p></td>
+</tr>
+<tr class="even">
+<td>3.2</td>
+<td>02/10/2016</td>
+<td>Page 2: replace the obsolete "Authors" list with "Argo data management team". The DOI landing page lists the contributors.</td>
+</tr>
+<tr class="odd">
+<td>3.2</td>
+<td>02/10/2016</td>
+<td>§4.1 note on cycle numbers greater than 999</td>
+</tr>
+<tr class="even">
+<td>3.2</td>
+<td>02/10/2016</td>
+<td>§3.2.1 QC flag 8, replace "interpolated" with a more general "estimated".</td>
+</tr>
+<tr class="odd">
+<td>3.2</td>
+<td>08/10/2016</td>
+<td>§2.4.6.3 add a chapter "highly desirable configuration parameters"</td>
+</tr>
+<tr class="even">
+<td>3.2</td>
+<td>10/10/2016</td>
+<td>§2.6.8 Parameter names on 64 characters</td>
+</tr>
+<tr class="odd">
+<td>3.2</td>
+<td>10/10/2016</td>
+<td><p>§2.6.10 Predeployment calibration variable dimension</p>
+<p>When necessary (such as for Nitrate sensor), the string length is set to 4096.</p></td>
+</tr>
+<tr class="even">
+<td>3.2</td>
+<td>14/10/2016</td>
+<td>§2.6.3 clarification PARAM_QC do not have a N_VALUES dimension</td>
+</tr>
+<tr class="odd">
+<td>3.2</td>
+<td>17/10/2016</td>
+<td>§2.6.7 clarification on *_ADJUSTED, *_ADJUSTED_QC, and *_ADJUSTED_ERROR. They are optional as a group they must either all be present or all be absent</td>
+</tr>
+<tr class="even">
+<td>3.2</td>
+<td>17/10/2016</td>
+<td>§3.5 Reference table 5 "Location classes" : add "A", "B" and "Z" Argos location classes</td>
+</tr>
+<tr class="odd">
+<td>3.2</td>
+<td>06/08/2016</td>
+<td>§4.1.1 Note on &lt;R/D&gt; in profile file name</td>
+</tr>
+<tr class="even">
+<td>3.2</td>
+<td>08/08/2017</td>
+<td>§2.7.1 Note on date or position with a bad quality control flag in index files</td>
+</tr>
+<tr class="odd">
+<td>3.2</td>
+<td>11/09/2017</td>
+<td>§3.25 §3.26 §3.27 update SENSOR, SENSOR_MAKER and SENSOR_MODEL according to their online content</td>
+</tr>
+<tr class="even">
+<td>3.3</td>
+<td>23/10/2019</td>
+<td><p>§1.7 Real-time, real-time adjusted data and delayed mode data: additional precisions for BGC data</p>
+<p>§2.2.4 allow CONFIG_MISSION_NUMBER = 0 ADMT19 Action #19</p>
+<p>§2.2.4 Note on POSITION_QC is 8</p>
+<p>§2.2.4 §2.3.4 §2.4.4 FIRMWARE_VERSION dimension changed to length 64, but still accept 32, ADMT19 action 37</p>
+<p>§3.2 remove "not used in real time" for QC flag 2</p>
+<p>§3.4 add Laboratoire de Villefranche in reference table 4</p>
+<p>§3.5 add accuracy for Iridium, Beidou, GLONASS, GALILEO, GNSS, RAFOS accuracy and estimated position</p>
+<p>§3.9 add positioning system for BEIDOU, GLONASS, GALILEO, GNSS, NONE</p>
+<p>§3.15 add measurement codes for in water/in air samples</p>
+<p>§3.15 add RAFOS MC (measurement codes)</p>
+<p>§3.15 remove 1076-1099 and 1100 MC (measurement codes)</p>
+<p>§3.21 typo correction (PET instead of DDST)</p>
+<p>§6.3 "compressed file distribution" chapter remove - ADMT19 action #17 "Remove zipped GDAC files from Coriolis. Only serve them on DOI page."</p>
+<p>§6.3 Archived DOI dataset description</p>
+<p>§2.2.4 add POSITION_ERROR and POSITION_COMMENT</p>
+<p>§3.28 add reference table 28:CONTROLLER_BOARD_TYPE_PRIMARY</p>
+<p>§3.29 add reference table 29: BATTERY_TYPE</p>
+<p>§3.30 add reference table 30: BATTERY_PACKS (optional field)</p></td>
+</tr>
+<tr class="odd">
+<td>3.4</td>
+<td>28/11/2019</td>
+<td>Initiate version v3.4</td>
+</tr>
+<tr class="even">
+<td>3.4</td>
+<td>28/02/2020</td>
+<td>§4.1.7 Auxiliary data files chapter</td>
+</tr>
+<tr class="odd">
+<td>3.4</td>
+<td>28/12/2020</td>
+<td><p>§2.1 NetCDF references, UDUNIT references</p>
+<p>§2.2.2 CF convention reference</p>
+<p>§2.2.2 user_manual_version and Convention version 3.4</p>
+<p>§2.2.4 POSITION_ERROR_REPORTED and POSITION_ERROR_ESTIMATED revision</p>
+<p>§2.3 Argo trajectory format 3.2</p>
+<p>§2.3.2 Trajectory additional dimensions</p>
+<p>§2.3.4 trajectory_parameters dimension increased</p>
+<p>§2.3.5 addition of variables TRAJECTORY_PARAMETER_DATA_MODE, JULD_DATA_MODE, &lt;PARAM&gt;_MED, &lt;PARAM&gt;_STD</p>
+<p>§2.3.7 add a trajectory Scientific calibration section</p>
+<p>§2.3.8 HISTORY_PARAMETER dimension added</p>
+<p>§2.4.1 user_manual_version and Convention version 3.4</p>
+<p>§2.4.4 add PLATFORM_WIGOS_ID variable</p>
+<p>§2.4.9 remove PARAMETER duplicate</p>
+<p>§2.5.4 add "Timeseries of technical data" chapter</p>
+<p>§3 mention Argo vocabulary server</p>
+<p>§3.2.1 QC flags comments revisited</p>
+<p>§3.3 add intermediate parameters for Core-Argo</p>
+<p>§3.3 add parameter NB_SAMPLE_&lt;short_sensor_name&gt;</p>
+<p>§3.4 add IOPAN and AWI</p>
+<p>§3.5 revisit location classes label</p>
+<p>§3.8 add new instruments</p>
+<p>§3.15 revisit "Relative Measurement code"</p>
+<p>§3.20 revisit grounded flags</p>
+<p>§4.1.2.2 BGC Argo synthetic profile</p>
+<p>§4.1.7 add Auxiliary data files</p></td>
+</tr>
+<tr class="even">
+<td>3.4</td>
+<td>20/01/2021</td>
+<td><p>Additional feedbacks from Annie Wong, Claudia Schmid, Jean-Philippe Rannou, Gabi Semolini</p>
+<p>§2.4.2 add string17 dimension for PLATFORM_WIGOS_ID</p>
+<p>§3.20 warning on grounded flags "S" and "U", could become obsolete</p>
+<p>§4.1.2.2 link to BGC-Argo synthetic profiles documentation</p></td>
+</tr>
+<tr class="odd">
+<td>3.41</td>
+<td>20/07/2021</td>
+<td><p>§2.1 "Overview of the formats" : Argo data uses the UDUNITS convention when applicable</p>
+<p>§2.3.3 "Trajectory general information" : use 3.2 in FORMAT_VERSION example</p>
+<p>§2.3.4 "Trajectory general information on the float" : TRAJECTORY_PARAMETERS: "List of available parameters" instead of "List of available parameters for the station"</p>
+<p>§2.3.5 "Trajectory measurements group" : &lt;param&gt;_adjusted, _adjusted_qc, _adjusted_error are not mandatory for intermediate parameters</p>
+<p>§2.3.7 "Trajectory scientific calibration" : Replace SCIENTIFIC_CALIB_PARAMETER STRING256 with STRING64</p>
+<p>§2.3.8 "Trajectory history information" : HISTORY_PARAMETER: "Parameter action is performed on", instead of "Station parameter action is performed on"</p>
+<p>§2.5.2 "Technical information dimensions" : add N_TECH_MESAUREMENT optional dimension</p>
+<p>§2.5.4 "Technical data" : &lt;TECH_PARAM&gt; long name and units attributes</p>
+<p>§3.3 "Reference tables": in Table 3, NB_SAMPLE_&lt;short_sensor_name&gt; is now NB_SAMPLE_&lt;parameter_sensor_name&gt;</p></td>
+</tr>
+<tr class="even">
+<td>3.41.1</td>
+<td>05/07/2022</td>
+<td><p>§2.3.2 N_CALIB_JULD dimension added</p>
+<p>§2.3.2 N_CALIB replaced with N_CALIB_PARAM</p>
+<p>§2.3.5 AXES_ERROR_ELLIPSE_MAJOR and AXES_ERROR_ELLIPSE_MINOR long names updated (semi-major and semi-minor ellipses) see <a href="https://github.com/euroargodev/ArgoNetCDF/issues/3"><u>https://github.com/euroargodev/ArgoNetCDF/issues/3</u></a></p>
+<p>§2.3.5 &lt;PARAM&gt;_MED and &lt;PARAM&gt;_STD removed from the manual, see <a href="https://github.com/euroargodev/ArgoNetCDF/issues/4"><u>https://github.com/euroargodev/ArgoNetCDF/issues/4</u></a></p>
+<p>§2.3.7 N_CALIB replaced with N_CALIB_PARAM</p>
+<p>§2.3.8 JULD calibration chapter added</p>
+<p>§3.2 Reference Table 2a: clean up of comments</p>
+<p>§3.2 Notes on QC removed from the manual, these notes are maintained in the QC manuals.</p>
+<p>§3.31 reference table 31 added: ENDING_CAUSE and ENDING_CAUSE_CATEGORY</p>
+<p>§all document: remove tinyurl links (use the original link)</p></td>
+</tr>
+<tr class="odd">
+<td>3.42.0</td>
+<td>26/05/2025</td>
+<td><p>§2.2.1 optional global attribute "id" contains "Argo GDAC DOI"<br />
+Argo GDAC data DOI global attribute is optional and recommended<br />
+<a href="https://github.com/nvs-vocabs/ArgoVocabs/issues/43"><u>https://github.com/nvs-vocabs/ArgoVocabs/issues/43</u></a> and <a href="https://github.com/OneArgo/ADMT/issues/72"><u>https://github.com/OneArgo/ADMT/issues/72</u></a></p>
+<p>§3.22 … §3.28: remove the remaining tyinurl</p>
+<p>§3.1 add "Argo auxiliary meta-data" data type</p>
+<p>Throughout the document: added links to individual Reference tables in the NVS</p>
+<p>§2.2.4 §2.3.4 §2.4.4 PI_NAME has a controlled vocabulary <a href="https://github.com/OneArgo/ArgoVocabs/issues/6"><u>https://github.com/OneArgo/ArgoVocabs/issues/6</u></a></p>
+<p>§2.4.7.1 SENSOR_FIRMWARE_VERSION <a href="https://github.com/OneArgo/ArgoVocabs/issues/55"><u>https://github.com/OneArgo/ArgoVocabs/issues/55</u></a></p>
+<p>§2.4.5 deployment_platform dimension extended to string128 <a href="https://github.com/OneArgo/ArgoVocabs/issues/2#issuecomment-2437421119"><u>https://github.com/OneArgo/ArgoVocabs/issues/2#issuecomment-2437421119</u></a></p>
+<p>§3.2.1: add a comment to provide examples when *_qc= ‘ ‘ can occur as per <a href="https://github.com/OneArgo/ArgoVocabs/issues/21">https://github.com/OneArgo/ArgoVocabs/issues/21</a></p>
+<p>§3.33 add PI_NAME reference table</p>
+<p>§3.11 change from grey list to supplemental sensor exclusion list in reference table 11 (example) <a href="https://github.com/OneArgo/ADMT/discussions/70"><u>https://github.com/OneArgo/ADMT/discussions/70</u></a></p>
+<p><u>§6.2 remove greylist paragraph (<a href="https://github.com/OneArgo/ADMT/discussions/70">https://github.com/OneArgo/ADMT/discussions/70</a>)</u></p>
+<p><u>§6.2 "Grey list" removed: the greylist management is internal, documented in the Quality control manual.</u></p></td>
+</tr>
+<tr class="even">
+<td>3.43.0</td>
+<td>23/06/2025</td>
+<td><p><a href="#general-information-for-each-profile"><u>§2.2.4</u></a> §2.3.4 §2.4.4 PROJECT_NAME comment revision</p>
+<p>§2.4.4 add PROGRAM_NAME variable (<a href="https://github.com/OneArgo/ArgoVocabs/issues/5"><u>https://github.com/OneArgo/ArgoVocabs/issues/5</u></a>)</p>
+<p>§2.4.4 PROJECT_NAME long_name changed</p>
+<p>§2.4.7.1 SENSOR_MODEL comment clarification: the new definition of SENSOR_MODEL is "as defined by the sensor manufacturer" (reference table R27) <a href="https://github.com/OneArgo/ArgoVocabs/issues/55"><u>https://github.com/OneArgo/ArgoVocabs/issues/55</u></a></p>
+<p>§ 3.3. remove the sentence about FillValue = 99999.f. The FillValue of various parameters are now specified in R03.</p>
+<p><a href="#note-on-parameter-local-attributes-in-the-netcdf-file"><u>§3.3.1</u></a> How to indicate multiple sensors for the same parameter<br />
+<a href="https://github.com/OneArgo/ArgoVocabs/issues/81"><u>https://github.com/OneArgo/ArgoVocabs/issues/81</u></a></p>
+<p>§ 4.1.2.2. Under File Naming Convention, change the filename prefix of the synthetic files from "M" to "S".</p></td>
+</tr>
+<tr class="odd">
+<td>3.44.0</td>
+<td>10/07/2025</td>
+<td><a href="#note-on-parameter-local-attributes-in-the-netcdf-file"><u>§3.3.1</u></a>, <a href="#how-to-indicate-multiple-sensors-for-the-same-parameter-multiple-sensor-entries-for-the-same-parameter"><u>§3.25.1</u></a>, §2.4.7.1 and §2.4.7.2 Complete the rules to indicate multiple sensors. PARAMETER field was dealt with in release 3.43.0. In this release, the SENSOR field is also covered (completion of ticket <a href="https://github.com/OneArgo/ArgoVocabs/issues/81"><u>https://github.com/OneArgo/ArgoVocabs/issues/81</u></a>).</td>
+</tr>
+<tr class="even">
+<td>3.45.0</td>
+<td>xx/xx/2026</td>
+<td><p>TO SEE THE DRAFT MODIFICATIONS, you need to connect to your account and/or ask for an access in "comment mode".</p>
+<p><a href="#67a5l3ez3g65"><u>§1.8</u></a> new paragraph explaining optional vs mandatory variables (<a href="https://github.com/OneArgo/ArgoVocabs/issues/185"><u>https://github.com/OneArgo/ArgoVocabs/issues/185</u></a>)</p>
+<p><a href="#n_cycle-dimension-variable-group"><u>§2.3.6</u></a>: adding a reference to the RTV NVS table</p>
+<p><a href="#w182w38fxh8s"><u>§2.3.6</u></a>: Adding the ICE_ALGORITHM_STATUS (<a href="https://github.com/OneArgo/ArgoVocabs/issues/233"><u>https://github.com/OneArgo/ArgoVocabs/issues/233</u></a>)</p>
+<p><a href="#metadata-format-version-3.2"><u>§2.4</u></a>: from 3.1 to 3.2 for the metadata file (<a href="https://github.com/OneArgo/ArgoVocabs/issues/151"><u>https://github.com/OneArgo/ArgoVocabs/issues/151</u></a>)</p>
+<p><a href="#metadata-format-version-3.2"><u>§2.4</u></a>: review consistency of how optional and mandatory metadata fields are presented (<a href="https://github.com/OneArgo/ArgoVocabs/issues/151"><u>https://github.com/OneArgo/ArgoVocabs/issues/151</u></a>); §2.4.9 was deleted, and, where relevant, some additional details were reported within the <a href="#metadata-format-version-3.2"><u>§2.4</u></a> tables.</p>
+<p>§2.2.1, §2.3.1, §2.4.1, §2.5.1: add consistent mention of the optional global attribute <strong>id</strong> (only in §2.2.1 previously).</p>
+<p><a href="#dimensions-and-definitions-1"><u>§2.4.2</u></a>, <a href="#float-predeployment-calibration-information"><u>§2.4.8</u></a>: extension possible to STRING8192 for PREDEPLOYMENT_CALIB_COEFFICIENTS, + add STRING4096 for all PREDEPLOYMENT_CALIB_* fields (<a href="https://github.com/OneArgo/ArgoVocabs/issues/151"><u>https://github.com/OneArgo/ArgoVocabs/issues/151</u></a>).</p>
+<p><a href="#general-information-on-the-metadata-file"><u>§2.4.3</u></a>: remove obsolete HANDBOOK_VERSION in meta 3.2 (<a href="https://github.com/OneArgo/ArgoVocabs/issues/151"><u>https://github.com/OneArgo/ArgoVocabs/issues/151</u></a>)</p>
+<p><a href="#float-characteristics"><u>§2.4.4</u></a>: rename FIRMWARE_VERSION to FLOAT_FIRMWARE_VERSION and MANUAL_VERSION to FLOAT_MANUAL_VERSION (<a href="https://github.com/OneArgo/ArgoVocabs/issues/151"><u>https://github.com/OneArgo/ArgoVocabs/issues/151</u></a>)</p>
+<p><a href="#dl3hidx36tx8"><u>§2.4.4</u></a>: PLATFORM_WIGOS_ID becomes mandatory</p>
+<p><a href="#float-characteristics"><u>§2.4.4</u></a>: update comment for BATTERY_TYPE and BATTERY_PACKS with reference to R33, R34 and R35 reference tables, newly included in the NVS. <a href="#reference-table-33-battery-maker"><u>§3.30</u></a>, <a href="#reference-table-34-battery-type"><u>§3.31</u></a> and <a href="#reference-table-35-battery-size"><u>§3.32</u></a> created in replacement of the old R29 and R30 numbers (and thus remove old associated paragraphs in section 3).(<a href="https://github.com/OneArgo/ArgoVocabs/issues/134"><u>https://github.com/OneArgo/ArgoVocabs/issues/134</u></a>)</p>
+<p><a href="#float-characteristics"><u>§2.4.4</u></a>: SPECIAL_FEATURES comment enhanced with examples. The associated §3 table was deleted, this will remain a free text field (<a href="https://github.com/OneArgo/ArgoVocabs/issues/195"><u>https://github.com/OneArgo/ArgoVocabs/issues/195</u></a>, <a href="https://github.com/OneArgo/ArgoVocabs/issues/151"><u>https://github.com/OneArgo/ArgoVocabs/issues/151</u></a>)</p>
+<p><a href="#float-deployment-and-mission-information"><u>§2.4.5</u></a>: add DEPLOYMENT_COMMENT (<a href="https://github.com/OneArgo/ArgoVocabs/issues/161"><u>https://github.com/OneArgo/ArgoVocabs/issues/161</u></a>)</p>
+<p><a href="#float-deployment-and-mission-information"><u>§2.4.5</u></a>: add a recommendation for DEPLOYMENT_REFERENCE_STATION_ID (<a href="https://github.com/OneArgo/ArgoVocabs/issues/4"><u>https://github.com/OneArgo/ArgoVocabs/issues/4</u></a>)</p>
+<p><a href="#float-deployment-and-mission-information"><u>§2.4.5</u></a>: add information in comment for DEPLOYMENT_PLATFORM constraints (<a href="https://github.com/OneArgo/ArgoVocabs/issues/2"><u>https://github.com/OneArgo/ArgoVocabs/issues/2</u></a>)</p>
+<p><a href="#float-sensor-information"><u>§2.4.7.1</u></a>: add SENSOR_VERTICAL_PRES_OFFSET (<a href="https://github.com/OneArgo/ArgoVocabs/issues/171"><u>https://github.com/OneArgo/ArgoVocabs/issues/171</u></a>)</p>
+<p><a href="#configuration-parameters"><u>§2.4.6</u></a>: config parameter names: update text regarding reference table R18 explanation to reflect the recent updates on the NVS and Github repository.</p>
+<p><a href="#float-predeployment-calibration-information"><u>§2.4.8</u></a>: add PREDEPLOYMENT_CALIB_DATE (<a href="https://github.com/OneArgo/ArgoVocabs/issues/162"><u>https://github.com/OneArgo/ArgoVocabs/issues/162</u></a>)</p>
+<p><a href="#predeployment_calib-_equation-syntax-guidelines"><u>§2.4.8.1</u></a> and <a href="#predeployment_calib-_coefficient-syntax-guidelines"><u>§2.4.8.2</u></a>: add general syntax guidelines (<a href="https://github.com/OneArgo/ArgoVocabs/issues/151"><u>https://github.com/OneArgo/ArgoVocabs/issues/151</u></a>)</p>
+<p><a href="#float-characteristics"><u>§2.4.4</u></a> , <a href="#float-sensor-information"><u>2.4.7.1</u></a>: from optional to mandatory for PROGRAM_NAME and SENSOR_FIRMWARE_VERSION (<a href="https://github.com/OneArgo/ArgoVocabs/issues/151"><u>https://github.com/OneArgo/ArgoVocabs/issues/151</u></a>)</p>
+<p><a href="#technical-data"><u>§2.5.4</u></a>: change technical parameter time series local attribute and management of parameter reported with two different units by the same float.</p>
+<p><u>(<a href="https://github.com/OneArgo/ArgoVocabs/issues/173">https://github.com/OneArgo/ArgoVocabs/issues/173</a></u>)</p>
+<p><a href="#index-files-of-the-gdac-content"><u>§2.7</u></a> regarding Argo index files was outdated: it was thoroughly reviewed.</p>
+<p><a href="#reference-table-15-codes-of-trajectory-measurements-performed-within-a-cycle"><u>§3.15</u></a>: the relative generic measurement code definition table had disappeared since UM 3.42. The table has been put back in the document as it offers a synthesis of how these codes work (compared to the NVS R15 table)</p>
+<p><u>(<a href="https://github.com/OneArgo/ArgoVocabs/issues/164">https://github.com/OneArgo/ArgoVocabs/issues/164</a></u>)</p>
+<p><a href="#reference-table-3-parameter-code-table"><u>§3.3</u></a>, <a href="#reference-table-14-technical-parameter-names"><u>§3.14</u></a> and <a href="#reference-table-18-metadata-configuration-parameter-names"><u>§3.18</u></a>: add detail explanation of the R03 implementation in the NVS (<a href="https://github.com/OneArgo/ArgoVocabs/issues/168"><u>https://github.com/OneArgo/ArgoVocabs/issues/168</u></a>; <a href="https://github.com/OneArgo/ArgoVocabs/issues/175"><u>https://github.com/OneArgo/ArgoVocabs/issues/175</u></a>)</p>
+<p><a href="#reference-table-8-instrument-types"><u>§3.8</u></a>: adding an explanation of the R08 purpose as per <a href="https://github.com/OneArgo/ArgoVocabs/discussions/138"><u>https://github.com/OneArgo/ArgoVocabs/discussions/138</u></a></p>
+<p><a href="#reference-table-15-codes-of-trajectory-measurements-performed-within-a-cycle"><u>§3.15</u></a>: relative MC updated for RAFOS</p>
+<p>(<a href="https://github.com/OneArgo/ArgoVocabs/issues/206"><u>https://github.com/OneArgo/ArgoVocabs/issues/206</u></a>)</p>
+<p><a href="#reference-table-26-sensor_maker"><u>§3.26</u></a> : add an explicative note regarding platform_maker entries inside sensor_maker list (<a href="https://github.com/OneArgo/ArgoVocabs/issues/158"><u>https://github.com/OneArgo/ArgoVocabs/issues/158</u></a>)</p>
+<p><a href="#reference-table-31-ending_cause"><u>§3.29</u></a>: add the reference to the NVS table and remove ending_cause_category (<a href="https://github.com/OneArgo/ArgoVocabs/issues/26"><u>https://github.com/OneArgo/ArgoVocabs/issues/26</u></a>)</p>
+<p><a href="#reference-table-41-program_name"><u>§3.34</u></a>: add a section to refer to PROGRAM_NAME R41 table</p>
+<p><a href="#reference-table-42-ice_algorithm_status"><u>§3.35</u></a>: add a section to refer to ICE_ALGORITHM_STATUS table</p>
+<p>§1.4, §2.7.1, §4 : updating websites and gdac access addresses.</p></td>
+</tr>
+</tbody>
+</table>

@@ -1,0 +1,346 @@
+# Technical information format version 3.1 
+The format version 3.1 of Argo technical data will replace versions 2.3 and 2.2 gradually. During the transition period, both formats will be valid. However, when a Data Assembly Center (DAC) produces technical files with the new 3.1 format, all its technical files must be provided in version 3.1.
+
+An Argo technical file contains technical information from an Argo float. This information is registered for each cycle performed by the float.
+
+The number and the type of technical information is different from one float model to another. To be flexible, for each cycle, the name of the parameters and their values are recorded. The name of the parameters recorded may therefore change from one model of float to another. See Argo reference table 14 ([<u>https://vocab.nerc.ac.uk/collection/R14/</u>](https://vocab.nerc.ac.uk/collection/R14/)).
+
+For file naming conventions, see [<u>§4.1.6</u>](#auxiliary-data-files).
+
+## Global attributes
+The global attributes section is used for data discovery. It complies with NetCDF Climate and Forecast (CF) Metadata Conventions (version 1.6).
+
+- [<u>http://cfconventions.org/</u>](http://cfconventions.org/)
+
+The following global attributes should appear in the global section (attributes in italic are optional attributes):
+
+// global attributes:
+
+:title = "Argo float technical data file";
+
+:institution = "CSIRO";
+
+:source = "Argo float";
+
+:history = "2011-04-22T06:00:00Z creation";
+
+:references = "[<u>http://www.argodatamgt.org/Documentation</u>](http://www.argodatamgt.org/Documentation)";
+
+*:id = "[<u>https://doi.org/10.17882/42182</u>](https://doi.org/10.17882/42182)"*
+
+:comment = "free text";
+
+:user_manual_version = "3.45";
+
+:Conventions = "Argo-3.1 CF-1.6";
+
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 78%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Global attribute name</strong></td>
+<td><strong>Definition</strong></td>
+</tr>
+<tr class="even">
+<td>title</td>
+<td>A succinct description of what is in the dataset.</td>
+</tr>
+<tr class="odd">
+<td>institution</td>
+<td>Specifies where the original data was produced.</td>
+</tr>
+<tr class="even">
+<td>source</td>
+<td>The method of production of the original data. If it was model-generated, source should name the model and its version, as specifically as could be useful. If it is observational, source should characterize it (e.g., "surface observation" or "radiosonde").</td>
+</tr>
+<tr class="odd">
+<td>history</td>
+<td>Provides an audit trail for modifications to the original data. Well-behaved generic NetCDF filters will automatically append their name and the parameters with which they were invoked to the global history attribute of an input NetCDF file. We recommend that each line begin with a timestamp indicating the date and time of day that the program was executed.</td>
+</tr>
+<tr class="even">
+<td>references</td>
+<td>Published or web-based references that describe the data or methods used to produce it.</td>
+</tr>
+<tr class="odd">
+<td>id</td>
+<td><p>The Argo GDAC data DOI: <a href="https://doi.org/10.17882/42182"><u>https://doi.org/10.17882/42182</u></a></p>
+<p>This attribute is <strong>optional</strong> but highly recommended</p></td>
+</tr>
+<tr class="even">
+<td>comment</td>
+<td>Miscellaneous information about the data or methods used to produce it.</td>
+</tr>
+<tr class="odd">
+<td>user_manual_version</td>
+<td>The version number of the user manual</td>
+</tr>
+<tr class="even">
+<td>Conventions</td>
+<td>The conventions supported by this file, blank separated</td>
+</tr>
+</tbody>
+</table>
+
+## Dimensions and definitions
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 21%" />
+<col style="width: 56%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Definition</strong></td>
+<td><strong>Comment</strong></td>
+</tr>
+<tr class="even">
+<td>DATE_TIME</td>
+<td>DATE_TIME = 14;</td>
+<td><p>This dimension is the length of an ASCII date and time value.</p>
+<p>Date and time values are always in universal time coordinates (UTC).</p>
+<p>Date_time convention is : YYYYMMDDHHMISS</p>
+<p>YYYY : year</p>
+<p>MM : month</p>
+<p>DD : day</p>
+<p>HH : hour of the day</p>
+<p>MI : minutes</p>
+<p>SS : seconds</p>
+<p>Examples :</p>
+<p>20010105172834 (meaning January 5<sup>th</sup> 2001 17:28:34)</p>
+<p>19971217000000 (meaning December 17<sup>th</sup> 1997 00:00:00)</p></td>
+</tr>
+<tr class="odd">
+<td><p>STRING128,</p>
+<p>STRING32<br />
+STRING8<br />
+STRING4<br />
+STRING2</p></td>
+<td><p>STRING128 = 128;</p>
+<p>STRING32 = 32;</p>
+<p>STRING8 = 8;</p>
+<p>STRING4 = 4;</p>
+<p>STRING2 = 2;</p></td>
+<td>String dimensions from 2 to 128.</td>
+</tr>
+<tr class="even">
+<td>N_TECH_PARAM</td>
+<td>N_TECH_PARAM = UNLIMITED;</td>
+<td>Number of technical parameters.</td>
+</tr>
+<tr class="odd">
+<td>N_TECH_MEASUREMENT</td>
+<td>N_TECH_MEASUREMENT</td>
+<td>This optional dimension reports the number of recorded technical dated information of the file.</td>
+</tr>
+</tbody>
+</table>
+
+## General information on the technical data file
+This section contains information about the technical data file itself.
+
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 30%" />
+<col style="width: 47%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Definition</strong></td>
+<td><strong>Comment</strong></td>
+</tr>
+<tr class="even">
+<td>PLATFORM_NUMBER</td>
+<td><p>char PLATFORM_NUMBER(STRING8);</p>
+<p>PLATFORM_NUMBER:long_name = "Float unique identifier";</p>
+<p>PLATFORM_NUMBER:conventions = "WMO float identifier : A9IIIII";</p>
+<p>PLATFORM_NUMBER:_FillValue = " ";</p></td>
+<td><p>WMO float identifier.</p>
+<p>WMO is the World Meteorological Organization.</p>
+<p>This platform number is unique.</p>
+<p>Example: 6900045</p></td>
+</tr>
+<tr class="odd">
+<td>DATA_TYPE</td>
+<td><p>char DATA_TYPE(STRING32);</p>
+<p>DATA_TYPE:long_name = "Data type";</p>
+<p>DATA_TYPE:conventions = "Argo reference table 1";</p>
+<p>DATA_TYPE:_FillValue = " ";</p></td>
+<td><p>This field contains the type of data contained in the file.</p>
+<p>The list of acceptable data types is in the reference table 1 (<a href="https://vocab.nerc.ac.uk/collection/R01/"><u>https://vocab.nerc.ac.uk/collection/R01/</u></a>).</p>
+<p>Example: "Argo technical data"</p></td>
+</tr>
+<tr class="even">
+<td>FORMAT_VERSION</td>
+<td><p>char FORMAT_VERSION(STRING4);</p>
+<p>FORMAT_VERSION:long_name = "File format version";</p>
+<p>FORMAT_VERSION:_FillValue = " ";</p></td>
+<td><p>File format version</p>
+<p>Example: "3.1"</p></td>
+</tr>
+<tr class="odd">
+<td>HANDBOOK_VERSION</td>
+<td><p>char HANDBOOK_VERSION(STRING4);</p>
+<p>HANDBOOK_VERSION:long_name = "Data handbook version";</p>
+<p>HANDBOOK_VERSION:_FillValue = " ";</p></td>
+<td><p>Version number of the data handbook.</p>
+<p>This field indicates that the data contained in this file are managed according to the policy described in the Argo data management handbook.</p>
+<p>Example: "1.0"</p></td>
+</tr>
+<tr class="even">
+<td>DATA_CENTRE</td>
+<td><p>char DATA_CENTRE(STRING2);</p>
+<p>DATA_CENTRE:long_name = "Data centre in charge of float data processing";</p>
+<p>DATA_CENTRE:conventions = "Argo reference table 4";</p>
+<p>DATA_CENTRE:_FillValue = " ";</p></td>
+<td><p>Code of the data centre in charge of the float data management.</p>
+<p>The data centre codes are described in the reference table 4 (<a href="https://vocab.nerc.ac.uk/collection/R04/"><u>https://vocab.nerc.ac.uk/collection/R04/</u></a>).</p>
+<p>Example: "ME" for MEDS</p></td>
+</tr>
+<tr class="odd">
+<td>DATE_CREATION</td>
+<td><p>char DATE_CREATION(DATE_TIME);</p>
+<p>DATE_CREATION:long_name = "Date of file creation";</p>
+<p>DATE_CREATION:conventions = "YYYYMMDDHHMISS";</p>
+<p>DATE_CREATION:_FillValue = " ";</p></td>
+<td><p>Date and time (UTC) of creation of this file.</p>
+<p>Format : YYYYMMDDHHMISS</p>
+<p>Example: "20011229161700" (meaning December 29<sup>th</sup> 2001 16:17:00)</p></td>
+</tr>
+<tr class="even">
+<td>DATE_UPDATE</td>
+<td><p>char DATE_UPDATE(DATE_TIME);</p>
+<p>DATE_UPDATE:long_name = "Date of update of this file";</p>
+<p>DATE_UPDATE:conventions = "YYYYMMDDHHMISS";</p>
+<p>DATE_UPDATE:_FillValue = " ";</p></td>
+<td><p>Date and time (UTC) of update of this file.</p>
+<p>Format : YYYYMMDDHHMISS</p>
+<p>Example: "20011229161700" (meaning December 29<sup>th</sup> 2001 16:17:00)</p></td>
+</tr>
+</tbody>
+</table>
+
+## Technical data
+This section contains a set of technical data for each profile.
+
+For each cycle, for each technical parameter, the name of the parameter and the value of the parameter are recorded.
+
+The parameter name and its value are recorded as strings of 128 characters.
+
+All parameter names are standardized and available in reference table 14 ([<u>https://vocab.nerc.ac.uk/collection/R14/</u>](https://vocab.nerc.ac.uk/collection/R14/)).
+
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 33%" />
+<col style="width: 36%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Definition</strong></td>
+<td><strong>Comment</strong></td>
+</tr>
+<tr class="even">
+<td>TECHNICAL_PARAMETER_NAME</td>
+<td><p>char TECHNICAL_PARAMETER_NAME(N_TECH_PARAM, STRING128)</p>
+<p>TECHNICAL_PARAMETER_NAME:long_name="Name of technical parameter";</p>
+<p>TECHNICAL_PARAMETER_NAME:_FillValue = " ";</p></td>
+<td><p>Name of the technical parameter. See reference table 14 (<a href="https://vocab.nerc.ac.uk/collection/R14/"><u>https://vocab.nerc.ac.uk/collection/R14/</u></a>) for standard technical parameter names.</p>
+<p>Example: "CLOCK_FloatTime_HHMMSS"</p></td>
+</tr>
+<tr class="odd">
+<td>TECHNICAL_PARAMETER_VALUE</td>
+<td><p>char TECHNICAL_PARAMETER_VALUE(N_TECH_PARAM, STRING128)</p>
+<p>TECHNICAL_PARAMETER_VALUE:long_name="Value of technical parameter";</p>
+<p>TECHNICAL_PARAMETER_VALUE:_FillValue = " ";</p></td>
+<td><p>Value of the technical parameter.</p>
+<p>Example: "125049"</p></td>
+</tr>
+<tr class="even">
+<td>CYCLE_NUMBER</td>
+<td><p>int CYCLE_NUMBER(N_TECH_PARAM);</p>
+<p>CYCLE_NUMBER:long_name = "Float cycle number";</p>
+<p>CYCLE_NUMBER:conventions = "0...N, 0 : launch cycle (if exists), 1 : first complete cycle";</p>
+<p>CYCLE_NUMBER:_FillValue = 99999;</p></td>
+<td><p>Cycle number of the technical parameter.</p>
+<p>Example: 157</p></td>
+</tr>
+</tbody>
+</table>
+
+**Timeseries of technical data (optional)**
+
+Some technical data are transmitted with time stamps, such as battery voltage during parking drift (Apex APF11, Arvor). Some technical data are sent in distinct parts of a cycle, such as SOLOII battery voltage on drift, ascent and surface.
+
+This optional section is for technical data reported with a timestamp or a Measurement Code (MC).
+
+Regarding \<TECH_PARAM\>, compared to the R14 table, the units were removed from the NetCDF variable name due to the presence of forbidden characters (e.g. "/"). However, some floats may report similar technical parameters with two different units (e.g. volts and COUNT). In this case, the values for the "main" unit is stored in \<TECH_PARAM\> and the value of the secondary unit is stored in \<TECH_PARAM\>\_2.
+
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 33%" />
+<col style="width: 36%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Definition</strong></td>
+<td><strong>Comment</strong></td>
+</tr>
+<tr class="even">
+<td>JULD</td>
+<td><p>double JULD(N_TECH_MEASUREMENT)</p>
+<p>JULD:long_name = "Julian day (UTC) of each measurement";</p>
+<p>JULD:standard_name = "time";</p>
+<p>JULD:units = "days since 1950-01-01 00:00:00 UTC";</p>
+<p>JULD:conventions = "Relative julian days with decimal part (as parts of day)";</p>
+<p>JULD:_FillValue = 999999.;</p>
+<p>JULD:axis = "T";</p></td>
+<td><p>Julian day of the measurement.</p>
+<p>The integer part represents the day, the decimal part represents the time of the measurement.</p>
+<p>Date and time are in universal time coordinates.</p>
+<p>Example: 18833.8013889885 (meaning July 25 2001 19:14:00)</p></td>
+</tr>
+<tr class="odd">
+<td>CYCLE_NUMBER_MEAS</td>
+<td>int CYCLE_NUMBER_MEAS(N_TECH_MEASUREMENT)</td>
+<td><p>Cycle number of the measurement.</p>
+<p>Example: 4</p></td>
+</tr>
+<tr class="even">
+<td>MEASUREMENT_CODE</td>
+<td><p>int MEASUREMENT_CODE(N_TECH_MEASUREMENT)</p>
+<p>MEASUREMENT_CODE:long_name = "Flag referring to a measurement event in the cycle";</p>
+<p>MEASUREMENT_CODE:conventions = "Argo reference table 15";</p>
+<p>MEASUREMENT_CODE:_FillValue = 99999;</p></td>
+<td><p>Flag for each event in the cycle which corresponds to Argo reference table 15 (<a href="https://vocab.nerc.ac.uk/collection/R15/"><u>https://vocab.nerc.ac.uk/collection/R15/</u></a>).</p>
+<p>Example: 100 (meaning any measurements made at start of descent to drift pressure)</p></td>
+</tr>
+<tr class="odd">
+<td>&lt;TECH_PARAM&gt;</td>
+<td><p>float &lt;TECH_PARAM&gt;(N_TECH_MEASUREMENT)</p>
+<p>&lt;TECH_PARAM&gt;:long_name="&lt;X&gt;";</p>
+<p>&lt;TECH_PARAM&gt;:units="&lt;Y&gt;";</p></td>
+<td><p>Value of the technical parameter &lt;TECH_PARAM&gt;.</p>
+<p>&lt;TECH_PARAM&gt; can be any entry from the reference table 14, with the last unit part removed (<a href="https://vocab.nerc.ac.uk/collection/R14/"><u>https://vocab.nerc.ac.uk/collection/R14/</u></a>). When two different units are reported by one float, use &lt;TECH_PARAM&gt;_2 for the secondary unit.</p>
+<p>&lt;X&gt;: Associated full technical parameter name (&lt;TECH_PARAM&gt;_&lt;UNIT&gt;), where &lt;UNIT&gt; corresponds to the <em>units</em> local attribute and, when they exist, templates are replaced by their value.</p>
+<p>&lt;Y&gt;: use the units part of the technical parameter name</p>
+<p>Example:</p>
+<p>To store "VOLTAGE_Battery_volts" and "VOLTAGE_Battery_COUNT" data, use</p>
+<p>float VOLTAGE_Battery(N_TECH_MEASUREMENT)</p>
+<p>&lt;TECH_PARAM&gt;:long_name="VOLTAGE_Battery_volts";</p>
+<p>&lt;TECH_PARAM&gt;:units="volts";</p>
+<p>float VOLTAGE_Battery_2(N_TECH_MEASUREMENT)</p>
+<p>&lt;TECH_PARAM&gt;:long_name="VOLTAGE_Battery_COUNT";</p>
+<p>&lt;TECH_PARAM&gt;:units="COUNT";</p></td>
+</tr>
+</tbody>
+</table>
+
