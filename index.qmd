@@ -1,4 +1,4 @@
-# Préface {.unnumbered}
+# Preface {.unnumbered}
 
 <p align="center">
 <img src="images/image2.png" alt="Argo logo" style="width:250px;">
@@ -20,4 +20,5 @@
 
 ---
 
-Ce document a été converti depuis le fichier Word *argo-dm-user-manual-3.45.0-WorkInProgress.docx* vers Markdown/Quarto. L'historique détaillé des révisions du document est disponible au chapitre [Historique du document](00-historique.qmd).
+This document was converted from the Word file *argo-dm-user-manual-3.45.0-WorkInProgress.docx* to Markdown/Quarto. The detailed revision history of the document is available in the [History of the document](00-historique.qmd) chapter.
+
