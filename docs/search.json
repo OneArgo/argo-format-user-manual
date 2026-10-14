@@ -4,17 +4,7 @@
     "href": "index.html",
     "title": "Argo User’s Manual",
     "section": "",
-    "text": "Preface",
-    "crumbs": [
-      "Preface"
-    ]
-  },
-  {
-    "objectID": "index.html#argo-users-manual",
-    "href": "index.html#argo-users-manual",
-    "title": "Argo User’s Manual",
-    "section": "Argo User’s Manual",
-    "text": "Argo User’s Manual\nVersion 3.45.0 — 2026 (Work in Progress)\n\nWORK IN PROGRESS VERSION\nTO SEE THE DRAFT MODIFICATIONS, you need to connect to your account and/or ask for an access in “comment mode”.\n\nAuthors: Argo data management team\n\nHow to cite this document\nArgo User’s manual, xxx 2026, http://dx.doi.org/10.13155/29825\n\nThis document was converted from the Word file argo-dm-user-manual-3.45.0-WorkInProgress.docx to Markdown/Quarto. The detailed revision history of the document is available in the History of the document chapter.",
+    "text": "Preface\nThis document was converted from the Google Docs argo-dm-user-manual-3.45.0-WorkInProgress ↗ to Markdown/Quarto. The detailed revision history of the document is available in the History of the document chapter.\n\n\nHow to cite this document\nArgo User’s manual, xxx 2026, http://dx.doi.org/10.13155/29825",
     "crumbs": [
       "Preface"
     ]

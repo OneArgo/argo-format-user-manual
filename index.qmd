@@ -1,24 +1,15 @@
 # Preface {.unnumbered}
 
-<p align="center">
-<img src="images/image2.png" alt="Argo logo" style="width:250px;">
-</p>
+This document was converted from the Google Docs [argo-dm-user-manual-3.45.0-WorkInProgress](https://docs.google.com/document/d/11MBdyosocl-JwFwwigTFOvZg6w1_l9cT5GT-I0EF028){target="_blank" rel="noopener"} <span aria-hidden="true">↗</span> to Markdown/Quarto. The detailed revision history of the document is available in the [History of the document](00-historique.qmd) chapter.
 
-## Argo User's Manual
 
-**Version 3.45.0 — 2026 (Work in Progress)**
+# How to cite this document
 
-> **WORK IN PROGRESS VERSION**
->
-> TO SEE THE DRAFT MODIFICATIONS, you need to connect to your account and/or ask for an access in "comment mode".
-
-**Authors:** Argo data management team
-
-### How to cite this document
-
-**Argo User's manual, xxx 2026,** [http://dx.doi.org/10.13155/29825](http://dx.doi.org/10.13155/29825)
+**Argo User's manual, xxx 2026,** [http://dx.doi.org/10.13155/29825](http://dx.doi.org/10.13155/29825){target="_blank" rel="noopener"} <span aria-hidden="true">↗</span>
 
 ---
 
-This document was converted from the Word file *argo-dm-user-manual-3.45.0-WorkInProgress.docx* to Markdown/Quarto. The detailed revision history of the document is available in the [History of the document](00-historique.qmd) chapter.
 
+<p align="left">
+<img src="images/image2.png" alt="Argo logo" style="width:250px;">
+</p>
